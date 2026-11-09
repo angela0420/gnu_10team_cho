@@ -1,0 +1,11 @@
+# 논문 원문과 원문이 들어 있는 결과는 올리지 않는다
+*.pdf
+*.zip
+1_extract/
+1_extract_passed/
+evidence.csv
+prose_audit.json
+*_input.txt
+*_structure.tsv
+.venv/
+__pycache__/

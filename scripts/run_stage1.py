@@ -1,0 +1,81 @@
+"""
+Stage 1 한 번에 실행: PDF 묶음(2~10편) → 본문 추출 → 추출 품질 검사 → 섹션별 동사·헷지 기준선
+사용: python scripts/run_stage1.py <PDF 폴더> <출력 폴더> [--model en_core_web_sm]   (Python 3.12 권장, Windows는 py -3.12)
+품질 기준을 넘지 못한 논문은 기준선에서 빼고 이유를 남긴다(--keep-all이면 넣고 경고만).
+"""
+import sys, os, glob, json, argparse, shutil, subprocess
+HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
+import extract_pdf
+
+GATE_CITE = 0.95    # 참고문헌 번호 가운데 본문 인용으로 복원된 비율
+GATE_OPEN = 0.05    # 끝이 열린(문장부호로 끝나지 않은) 문장 비율
+GATE_WORDS = 1000   # 초록을 뺀 본문 단어 수 하한(0.4.8: gnu_10team 기준선과 같은 기준)
+
+
+def gate_check(st, ex, did):
+    """품질 점검. 0.4.8부터 서론·결과논의 인식과 본문 1,000단어 이상도 본다. (통과 여부, 이유 목록, 절별 단어 수)를 돌려준다."""
+    import csv
+    cite = st['cited_in_list'] / st['refs_in_list'] if st['refs_in_list'] else 0
+    open_ = len(st['no_terminal_punct']) / max(1, st['sentences'])
+    words = {}
+    for r in csv.DictReader(open(os.path.join(ex, did + '_structure.tsv'), encoding='utf-8-sig'), delimiter='\t'):
+        if r.get('prose') == 'true': words[r['section_type']] = words.get(r['section_type'], 0) + int(r['word_count'])
+    body = sum(v for k, v in words.items() if k != 'ABS')
+    reasons = []
+    if cite < GATE_CITE: reasons.append(f'인용 회수율 {cite:.1%} < 95%')
+    if open_ > GATE_OPEN: reasons.append(f'끝이 열린 문장 {open_:.1%} > 5%')
+    if st['leaks']: reasons.append('여백 메타데이터 누출')
+    if not st['sentences']: reasons.append('문장 없음')
+    if not words.get('INT'): reasons.append('서론 미인식')
+    if not any(words.get(k) for k in ('RD', 'RES', 'DIS')): reasons.append('결과·논의 미인식')
+    if body < GATE_WORDS: reasons.append(f'본문 {GATE_WORDS}단어 미만 ({body})')
+    return not reasons, reasons, dict(cite=cite, open=open_, words=words, body=body)
+
+def check_env(model):
+    """실행 첫머리 환경 점검: 한국어 Windows(cp949) 콘솔, spaCy 모델, pdftotext 종류(xpdf면 참고문헌 수가 틀린다)"""
+    for s in (sys.stdout, sys.stderr):
+        try: s.reconfigure(encoding='utf-8')
+        except (AttributeError, ValueError): pass
+    try:
+        import spacy; spacy.load(model)
+    except Exception as e:
+        sys.exit(f'spaCy 또는 모델 {model}을 불러오지 못했습니다({type(e).__name__}: {e}). '
+                 f'Python 3.12에서 pip install -r requirements.txt, python -m spacy download {model}을 실행하세요. 지금 Python {sys.version.split()[0]}')
+    try:
+        v = subprocess.run(['pdftotext', '-v'], capture_output=True, text=True, encoding='utf-8', errors='replace')
+        ver = (v.stdout + v.stderr).strip().splitlines()[0] if (v.stdout + v.stderr).strip() else '?'
+        if 'Glyph & Cog' in v.stdout + v.stderr and 'poppler' not in (v.stdout + v.stderr).lower():
+            sys.exit(f'PATH에서 xpdf의 pdftotext가 먼저 잡힙니다({ver}). xpdf는 저자 수·참고문헌 수를 틀리게 냅니다. poppler의 bin 폴더를 PATH 맨 앞에 두세요.')
+        print(f'환경: Python {sys.version.split()[0]}, {ver}')
+    except FileNotFoundError:
+        print(f'환경: Python {sys.version.split()[0]}, pdftotext 없음(참고문헌 수를 pdfplumber로 셉니다)')
+
+def main():
+    ap = argparse.ArgumentParser(); ap.add_argument('pdf_dir'); ap.add_argument('out_dir')
+    ap.add_argument('--model', default='en_core_web_sm'); ap.add_argument('--keep-all', action='store_true')
+    ap.add_argument('--max-papers', type=int, default=10, help='한 번에 넣을 수 있는 최대 편수(기준선 만들기는 학술지당 20편까지 씀)')
+    a = ap.parse_args()
+    check_env(a.model)
+    pdfs = sorted(glob.glob(os.path.join(a.pdf_dir, '*.pdf')))
+    if not 2 <= len(pdfs) <= a.max_papers: sys.exit(f'PDF는 2~{a.max_papers}편이어야 합니다(지금 {len(pdfs)}편). 더 넣으려면 --max-papers.')
+    ex, ok_dir = os.path.join(a.out_dir, '1_extract'), os.path.join(a.out_dir, '1_extract_passed')
+    os.makedirs(ex, exist_ok=True); os.makedirs(ok_dir, exist_ok=True)
+    gate = []
+    for p in pdfs:
+        did = os.path.splitext(os.path.basename(p))[0]
+        st = extract_pdf.main(p, did, ex)
+        passed, reasons, m = gate_check(st, ex, did)
+        cite, open_ = m['cite'], m['open']
+        gate.append(dict(document_id=did, sentences=st['sentences'], cite_recovery=round(cite, 3), open_sentences=round(open_, 3),
+                         leaks=len(st['leaks']), review_items=st['review_items'], section_words=m['words'], body_words=m['body'],
+                         reasons=reasons, result='Pass' if passed else 'Fail'))
+        if passed or a.keep_all:
+            for suf in ('_input.txt', '_structure.tsv'): shutil.copy(os.path.join(ex, did + suf), ok_dir)
+    json.dump(gate, open(os.path.join(a.out_dir, 'extract_gate.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    for g in gate: print(f"{g['result']}  {g['document_id']}: 문장 {g['sentences']}, 인용 회수 {g['cite_recovery']:.0%}, 끝이 열린 문장 {g['open_sentences']:.1%}, 확인 목록 {g['review_items']}건")
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'hedge_baseline.py'), ok_dir, os.path.join(a.out_dir, '2_baseline'), '--model', a.model, '--max-papers', str(a.max_papers)],
+                       env=dict(os.environ, PYTHONUTF8='1'))   # 하위 프로세스도 UTF-8(python -X utf8과 같음)
+    sys.exit(r.returncode)
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,253 @@
+[
+ {
+  "document_id": "acs.joc.0c00186",
+  "sentences": 229,
+  "refs_in_list": 22,
+  "cited_in_list": 22,
+  "cite_recovery": 1.0,
+  "open_sentences": 0.0,
+  "leaks": 0,
+  "review_items": 37,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "acs.joc.0c00235",
+  "sentences": 273,
+  "refs_in_list": 39,
+  "cited_in_list": 31,
+  "cite_recovery": 0.795,
+  "open_sentences": 0.007,
+  "leaks": 0,
+  "review_items": 34,
+  "reasons": [
+   "인용 회수율 79.5% < 95%",
+   "서론 미인식"
+  ],
+  "result": "Fail"
+ },
+ {
+  "document_id": "acs.joc.0c00617",
+  "sentences": 115,
+  "refs_in_list": 20,
+  "cited_in_list": 19,
+  "cite_recovery": 0.95,
+  "open_sentences": 0.009,
+  "leaks": 0,
+  "review_items": 24,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "acs.joc.0c00653",
+  "sentences": 182,
+  "refs_in_list": 16,
+  "cited_in_list": 16,
+  "cite_recovery": 1.0,
+  "open_sentences": 0.0,
+  "leaks": 0,
+  "review_items": 36,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "acs.joc.0c00657",
+  "sentences": 260,
+  "refs_in_list": 19,
+  "cited_in_list": 18,
+  "cite_recovery": 0.947,
+  "open_sentences": 0.0,
+  "leaks": 0,
+  "review_items": 76,
+  "reasons": [
+   "인용 회수율 94.7% < 95%"
+  ],
+  "result": "Fail"
+ },
+ {
+  "document_id": "acs.joc.0c01097",
+  "sentences": 124,
+  "refs_in_list": 96,
+  "cited_in_list": 87,
+  "cite_recovery": 0.906,
+  "open_sentences": 0.0,
+  "leaks": 0,
+  "review_items": 35,
+  "reasons": [
+   "인용 회수율 90.6% < 95%"
+  ],
+  "result": "Fail"
+ },
+ {
+  "document_id": "acs.joc.0c01564",
+  "sentences": 136,
+  "refs_in_list": 27,
+  "cited_in_list": 27,
+  "cite_recovery": 1.0,
+  "open_sentences": 0.007,
+  "leaks": 0,
+  "review_items": 68,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "acs.joc.0c02385",
+  "sentences": 201,
+  "refs_in_list": 32,
+  "cited_in_list": 32,
+  "cite_recovery": 1.0,
+  "open_sentences": 0.005,
+  "leaks": 0,
+  "review_items": 32,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "acs.joc.0c02486",
+  "sentences": 182,
+  "refs_in_list": 21,
+  "cited_in_list": 21,
+  "cite_recovery": 1.0,
+  "open_sentences": 0.005,
+  "leaks": 0,
+  "review_items": 36,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "acs.joc.9b03279",
+  "sentences": 141,
+  "refs_in_list": 18,
+  "cited_in_list": 18,
+  "cite_recovery": 1.0,
+  "open_sentences": 0.0,
+  "leaks": 0,
+  "review_items": 22,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "jo0c00175",
+  "sentences": 323,
+  "refs_in_list": 23,
+  "cited_in_list": 23,
+  "cite_recovery": 1.0,
+  "open_sentences": 0.003,
+  "leaks": 0,
+  "review_items": 74,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "jo0c00880",
+  "sentences": 231,
+  "refs_in_list": 27,
+  "cited_in_list": 26,
+  "cite_recovery": 0.963,
+  "open_sentences": 0.004,
+  "leaks": 0,
+  "review_items": 32,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "jo0c02350",
+  "sentences": 384,
+  "refs_in_list": 31,
+  "cited_in_list": 30,
+  "cite_recovery": 0.968,
+  "open_sentences": 0.0,
+  "leaks": 0,
+  "review_items": 50,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "jo0c02512",
+  "sentences": 329,
+  "refs_in_list": 48,
+  "cited_in_list": 48,
+  "cite_recovery": 1.0,
+  "open_sentences": 0.003,
+  "leaks": 0,
+  "review_items": 47,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "jo0c02882",
+  "sentences": 310,
+  "refs_in_list": 56,
+  "cited_in_list": 56,
+  "cite_recovery": 1.0,
+  "open_sentences": 0.003,
+  "leaks": 0,
+  "review_items": 40,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "jo1c00333",
+  "sentences": 608,
+  "refs_in_list": 35,
+  "cited_in_list": 35,
+  "cite_recovery": 1.0,
+  "open_sentences": 0.0,
+  "leaks": 0,
+  "review_items": 50,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "jo1c00755",
+  "sentences": 166,
+  "refs_in_list": 22,
+  "cited_in_list": 22,
+  "cite_recovery": 1.0,
+  "open_sentences": 0.006,
+  "leaks": 0,
+  "review_items": 36,
+  "reasons": [],
+  "result": "Pass"
+ },
+ {
+  "document_id": "jo1c01794",
+  "sentences": 256,
+  "refs_in_list": 19,
+  "cited_in_list": 16,
+  "cite_recovery": 0.842,
+  "open_sentences": 0.016,
+  "leaks": 0,
+  "review_items": 55,
+  "reasons": [
+   "인용 회수율 84.2% < 95%"
+  ],
+  "result": "Fail"
+ },
+ {
+  "document_id": "jo1c01801",
+  "sentences": 164,
+  "refs_in_list": 65,
+  "cited_in_list": 55,
+  "cite_recovery": 0.846,
+  "open_sentences": 0.006,
+  "leaks": 0,
+  "review_items": 75,
+  "reasons": [
+   "인용 회수율 84.6% < 95%"
+  ],
+  "result": "Fail"
+ },
+ {
+  "document_id": "jo9b03117",
+  "sentences": 354,
+  "refs_in_list": 25,
+  "cited_in_list": 25,
+  "cite_recovery": 1.0,
+  "open_sentences": 0.006,
+  "leaks": 0,
+  "review_items": 50,
+  "reasons": [],
+  "result": "Pass"
+ }
+]

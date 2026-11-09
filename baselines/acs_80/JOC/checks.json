@@ -1,0 +1,253 @@
+{
+ "version": "hedge-baseline-0.4.5",
+ "papers": 15,
+ "items": [
+  {
+   "check": "논문 수 2~20편",
+   "result": "Pass",
+   "detail": "15편"
+  },
+  {
+   "check": "acs.joc.0c00186: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 3,
+    "INT": 17,
+    "RD": 50,
+    "CON": 4,
+    "MET": 155
+   }
+  },
+  {
+   "check": "acs.joc.0c00186: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 2935
+  },
+  {
+   "check": "acs.joc.0c00617: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 4,
+    "INT": 15,
+    "RD": 26,
+    "CON": 5,
+    "MET": 65
+   }
+  },
+  {
+   "check": "acs.joc.0c00617: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 2017
+  },
+  {
+   "check": "acs.joc.0c00653: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 9,
+    "INT": 10,
+    "RD": 40,
+    "CON": 5,
+    "MET": 118
+   }
+  },
+  {
+   "check": "acs.joc.0c00653: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 3386
+  },
+  {
+   "check": "acs.joc.0c01564: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 3,
+    "INT": 8,
+    "RD": 56,
+    "CON": 4,
+    "MET": 65
+   }
+  },
+  {
+   "check": "acs.joc.0c01564: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 1967
+  },
+  {
+   "check": "acs.joc.0c02385: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 4,
+    "INT": 17,
+    "RD": 57,
+    "CON": 4,
+    "MET": 119
+   }
+  },
+  {
+   "check": "acs.joc.0c02385: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 3465
+  },
+  {
+   "check": "acs.joc.0c02486: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 3,
+    "INT": 21,
+    "RD": 27,
+    "CON": 4,
+    "MET": 127
+   }
+  },
+  {
+   "check": "acs.joc.0c02486: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 2565
+  },
+  {
+   "check": "acs.joc.9b03279: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 3,
+    "INT": 13,
+    "RD": 32,
+    "CON": 3,
+    "MET": 90
+   }
+  },
+  {
+   "check": "acs.joc.9b03279: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 1545
+  },
+  {
+   "check": "jo0c00175: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 2,
+    "INT": 13,
+    "RD": 69,
+    "CON": 5,
+    "MET": 234
+   }
+  },
+  {
+   "check": "jo0c00175: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4142
+  },
+  {
+   "check": "jo0c00880: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 5,
+    "INT": 11,
+    "RD": 41,
+    "CON": 5,
+    "MET": 169
+   }
+  },
+  {
+   "check": "jo0c00880: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 2941
+  },
+  {
+   "check": "jo0c02350: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 5,
+    "INT": 17,
+    "RD": 70,
+    "CON": 7,
+    "MET": 285
+   }
+  },
+  {
+   "check": "jo0c02350: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 5741
+  },
+  {
+   "check": "jo0c02512: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 6,
+    "INT": 13,
+    "RD": 108,
+    "CON": 16,
+    "MET": 186
+   }
+  },
+  {
+   "check": "jo0c02512: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 5289
+  },
+  {
+   "check": "jo0c02882: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 6,
+    "INT": 31,
+    "RD": 132,
+    "CON": 16,
+    "MET": 125
+   }
+  },
+  {
+   "check": "jo0c02882: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 6402
+  },
+  {
+   "check": "jo1c00333: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 4,
+    "INT": 18,
+    "RD": 75,
+    "CON": 6,
+    "MET": 505
+   }
+  },
+  {
+   "check": "jo1c00333: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 5059
+  },
+  {
+   "check": "jo1c00755: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 5,
+    "INT": 17,
+    "RD": 51,
+    "CON": 6,
+    "MET": 87
+   }
+  },
+  {
+   "check": "jo1c00755: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 3045
+  },
+  {
+   "check": "jo9b03117: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 4,
+    "INT": 17,
+    "RD": 81,
+    "CON": 8,
+    "MET": 244
+   }
+  },
+  {
+   "check": "jo9b03117: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4167
+  }
+ ],
+ "model": "en_core_web_sm",
+ "include_abstract": false
+}

@@ -1,0 +1,308 @@
+{
+ "version": "hedge-baseline-0.4.5",
+ "papers": 18,
+ "items": [
+  {
+   "check": "논문 수 2~20편",
+   "result": "Pass",
+   "detail": "18편"
+  },
+  {
+   "check": "acs.chemmater.0c00020: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 6,
+    "INT": 36,
+    "MET": 46,
+    "RD": 98,
+    "CON": 21
+   }
+  },
+  {
+   "check": "acs.chemmater.0c00020: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4907
+  },
+  {
+   "check": "acs.chemmater.0c00223: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 5,
+    "INT": 26,
+    "MET": 70,
+    "RES": 122,
+    "CON": 5
+   }
+  },
+  {
+   "check": "acs.chemmater.0c00223: RESULTS 절만 있어 결과·논의로 묶음",
+   "result": "Pass",
+   "detail": "RES 122문장"
+  },
+  {
+   "check": "acs.chemmater.0c00223: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 5306
+  },
+  {
+   "check": "acs.chemmater.0c01266: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 8,
+    "INT": 23,
+    "MET": 47,
+    "RD": 106,
+    "CON": 10
+   }
+  },
+  {
+   "check": "acs.chemmater.0c01266: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4037
+  },
+  {
+   "check": "acs.chemmater.0c01417: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 4,
+    "INT": 27,
+    "RD": 98,
+    "CON": 14,
+    "MET": 34
+   }
+  },
+  {
+   "check": "acs.chemmater.0c01417: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4796
+  },
+  {
+   "check": "acs.chemmater.0c01887: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 10,
+    "INT": 41,
+    "RD": 156,
+    "CON": 12,
+    "MET": 78
+   }
+  },
+  {
+   "check": "acs.chemmater.0c01887: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 6461
+  },
+  {
+   "check": "acs.chemmater.0c02345: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 6,
+    "INT": 163,
+    "DIS": 23,
+    "CON": 10
+   }
+  },
+  {
+   "check": "acs.chemmater.0c02345: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 3702
+  },
+  {
+   "check": "acs.chemmater.0c02449: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 6,
+    "INT": 50,
+    "RES": 69,
+    "DIS": 24,
+    "CON": 5
+   }
+  },
+  {
+   "check": "acs.chemmater.0c02449: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 3512
+  },
+  {
+   "check": "acs.chemmater.0c02460: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 8,
+    "INT": 29,
+    "MET": 49,
+    "RD": 178,
+    "CON": 6
+   }
+  },
+  {
+   "check": "acs.chemmater.0c02460: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 5724
+  },
+  {
+   "check": "acs.chemmater.0c04425: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 15,
+    "INT": 41,
+    "RES": 81,
+    "DIS": 20,
+    "CON": 27,
+    "MET": 12
+   }
+  },
+  {
+   "check": "acs.chemmater.0c04425: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4593
+  },
+  {
+   "check": "acs.chemmater.9b04510: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 10,
+    "INT": 48,
+    "MET": 37,
+    "RES": 105,
+    "DIS": 42,
+    "CON": 14
+   }
+  },
+  {
+   "check": "acs.chemmater.9b04510: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 5641
+  },
+  {
+   "check": "acs.chemmater.9b05171: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 11,
+    "INT": 26,
+    "RD": 70,
+    "CON": 8,
+    "MET": 67
+   }
+  },
+  {
+   "check": "acs.chemmater.9b05171: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 3636
+  },
+  {
+   "check": "cm0c04725: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 8,
+    "INT": 26,
+    "MET": 38,
+    "RES": 67,
+    "DIS": 21,
+    "CON": 6
+   }
+  },
+  {
+   "check": "cm0c04725: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 3376
+  },
+  {
+   "check": "cm0c04761: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 8,
+    "INT": 33,
+    "MET": 37,
+    "RES": 80,
+    "DIS": 26,
+    "CON": 9
+   }
+  },
+  {
+   "check": "cm0c04761: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4320
+  },
+  {
+   "check": "cm1c00763: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 8,
+    "INT": 33,
+    "RD": 165,
+    "CON": 10,
+    "MET": 41
+   }
+  },
+  {
+   "check": "cm1c00763: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 6244
+  },
+  {
+   "check": "cm1c01448: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 7,
+    "INT": 62,
+    "MET": 39,
+    "RD": 102,
+    "CON": 9
+   }
+  },
+  {
+   "check": "cm1c01448: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 5469
+  },
+  {
+   "check": "cm1c01486: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 6,
+    "INT": 30,
+    "RD": 65,
+    "CON": 8
+   }
+  },
+  {
+   "check": "cm1c01486: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 2530
+  },
+  {
+   "check": "cm1c02236: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 6,
+    "INT": 31,
+    "MET": 39,
+    "RD": 85,
+    "CON": 9
+   }
+  },
+  {
+   "check": "cm1c02236: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 3975
+  },
+  {
+   "check": "cm1c02654: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 13,
+    "INT": 24,
+    "RD": 128,
+    "CON": 12,
+    "MET": 31
+   }
+  },
+  {
+   "check": "cm1c02654: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 5480
+  }
+ ],
+ "model": "en_core_web_sm",
+ "include_abstract": false
+}

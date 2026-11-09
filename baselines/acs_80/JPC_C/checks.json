@@ -1,0 +1,277 @@
+{
+ "version": "hedge-baseline-0.4.5",
+ "papers": 17,
+ "items": [
+  {
+   "check": "논문 수 2~20편",
+   "result": "Pass",
+   "detail": "17편"
+  },
+  {
+   "check": "acs.jpcc.0c01724: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 4,
+    "INT": 49,
+    "RD": 58
+   }
+  },
+  {
+   "check": "acs.jpcc.0c01724: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 2805
+  },
+  {
+   "check": "acs.jpcc.0c05262: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 9,
+    "INT": 117,
+    "RD": 234,
+    "CON": 17
+   }
+  },
+  {
+   "check": "acs.jpcc.0c05262: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 8439
+  },
+  {
+   "check": "acs.jpcc.0c07053: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 9,
+    "INT": 28,
+    "MET": 31,
+    "RD": 142
+   }
+  },
+  {
+   "check": "acs.jpcc.0c07053: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4702
+  },
+  {
+   "check": "acs.jpcc.0c07413: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 6,
+    "INT": 72,
+    "RES": 53,
+    "DIS": 65,
+    "CON": 6
+   }
+  },
+  {
+   "check": "acs.jpcc.0c07413: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 5539
+  },
+  {
+   "check": "acs.jpcc.0c07531: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 7,
+    "INT": 15,
+    "MET": 13,
+    "RD": 108,
+    "CON": 12
+   }
+  },
+  {
+   "check": "acs.jpcc.0c07531: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 3738
+  },
+  {
+   "check": "acs.jpcc.9b11057: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 5,
+    "INT": 21,
+    "MET": 43,
+    "RD": 96,
+    "CON": 20
+   }
+  },
+  {
+   "check": "acs.jpcc.9b11057: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4082
+  },
+  {
+   "check": "acs.jpcc.9b11594: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 5,
+    "INT": 11,
+    "MET": 15,
+    "RD": 31,
+    "CON": 6
+   }
+  },
+  {
+   "check": "acs.jpcc.9b11594: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 1805
+  },
+  {
+   "check": "jp0c06199: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 7,
+    "INT": 28,
+    "MET": 112,
+    "RD": 94,
+    "CON": 11
+   }
+  },
+  {
+   "check": "jp0c06199: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4910
+  },
+  {
+   "check": "jp0c06750: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 5,
+    "INT": 34,
+    "MET": 17,
+    "RD": 102,
+    "CON": 15
+   }
+  },
+  {
+   "check": "jp0c06750: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4726
+  },
+  {
+   "check": "jp0c09717: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 8,
+    "INT": 16,
+    "MET": 63,
+    "RD": 198,
+    "CON": 14
+   }
+  },
+  {
+   "check": "jp0c09717: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 5781
+  },
+  {
+   "check": "jp1c00363: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 9,
+    "INT": 45,
+    "MET": 30,
+    "RD": 126,
+    "CON": 11
+   }
+  },
+  {
+   "check": "jp1c00363: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4838
+  },
+  {
+   "check": "jp1c00689: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 7,
+    "INT": 19,
+    "MET": 15,
+    "RD": 66,
+    "CON": 10
+   }
+  },
+  {
+   "check": "jp1c00689: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 2951
+  },
+  {
+   "check": "jp1c00797: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 7,
+    "INT": 44,
+    "RD": 106,
+    "CON": 7
+   }
+  },
+  {
+   "check": "jp1c00797: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4171
+  },
+  {
+   "check": "jp1c04287: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 6,
+    "INT": 51,
+    "RD": 64,
+    "CON": 8
+   }
+  },
+  {
+   "check": "jp1c04287: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 3137
+  },
+  {
+   "check": "jp1c05531: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 6,
+    "INT": 64,
+    "RD": 96,
+    "CON": 6
+   }
+  },
+  {
+   "check": "jp1c05531: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 3197
+  },
+  {
+   "check": "jp1c06031: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 5,
+    "INT": 114,
+    "RD": 76,
+    "CON": 19
+   }
+  },
+  {
+   "check": "jp1c06031: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4166
+  },
+  {
+   "check": "jp9b10912: 서론과 결과·논의 절 있음",
+   "result": "Pass",
+   "detail": {
+    "ABS": 8,
+    "INT": 23,
+    "MET": 41,
+    "RD": 89,
+    "CON": 17
+   }
+  },
+  {
+   "check": "jp9b10912: 분석 단어 수 1,000 이상",
+   "result": "Pass",
+   "detail": 4318
+  }
+ ],
+ "model": "en_core_web_sm",
+ "include_abstract": false
+}
