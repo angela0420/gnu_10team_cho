@@ -1,0 +1,232 @@
+{
+  "_note": "포털 화면 언어 토글용 문구(2026-11-09). ko=한국어, en=English. 한·EN 모드는 ko 아래에 en을 한 단계 작게. 영어 예문은 모든 모드에서 그대로, 예문 아래 한국어 번역(gloss)은 English 모드에서만 숨김. 한국어 본문은 조은정 교수 승인 문장 그대로(질문 상자 제목은 승인 본문의 이끄는 문장). 용례 예시 아래 문장은 모든 칸에서 공통 문장(foot_common)을 씀.",
+
+  "nav": {
+    "about": { "ko": "이 도구는 무엇인가요?", "en": "About this tool" },
+    "why": { "ko": "왜 동사를 살펴보나요?", "en": "Why look at verbs?" },
+    "kwic": { "ko": "용례 보기(KWIC)", "en": "Concordance (KWIC)" },
+    "diagnose": { "ko": "진단하기", "en": "Diagnose" }
+  },
+  "brand": {
+    "title": { "ko": "논문 글쓰기 진단", "en": "Manuscript Diagnosis" },
+    "sub": { "ko": "Manuscript Diagnosis", "en": "for research writing" }
+  },
+
+  "hero": {
+    "title": { "ko": "실험 결과를 쓰는 것에서,\n연구를 설득력 있게\n전달하는 것으로.", "en": "From writing up results\nto communicating research\nconvincingly." },
+    "lede": { "ko": "내 원고의 표현을 모아 읽고, 출판 논문과 비교하며 연구 서술을 살펴보세요.", "en": "Read the expressions in your manuscript together, compare them with published papers, and look again at how you present your research." },
+    "link": { "ko": "왜 동사를 살펴보나요?", "en": "Why look at verbs?" }
+  },
+  "tiles": {
+    "observe": { "label": { "ko": "관찰", "en": "Observation" }, "role": { "ko": "무엇을 확인했는지", "en": "what you found" } },
+    "suggest": { "label": { "ko": "해석", "en": "Interpretation" }, "role": { "ko": "어디까지 주장하는지", "en": "how far you claim" } },
+    "report": { "label": { "ko": "선행연구", "en": "Previous studies" }, "role": { "ko": "다른 연구를 어떻게 전하는지", "en": "how you present other work" } },
+    "hint": { "ko": "칸을 누르면 그 동사가 쓰인 자리가 아래에 모이고, 강조된 단어를 누르면 앞뒤 문장과 함께 읽을 수 있습니다. 진단 결과도 이 순서로 읽습니다.", "en": "Select a tile to gather the places where the verb is used below, then select the highlighted word to read it with the surrounding sentences. Your results work the same way." }
+  },
+
+  "about": {
+    "title": { "ko": "이 도구는 무엇인가요?", "en": "What is this tool?" },
+    "p1": { "ko": "논문 글쓰기 진단은 영어로 쓴 화학 논문 원고를 출판 논문과 비교해, 동사와 주장 표현을 절별로 살펴보게 해 주는 도구입니다. 원고를 고쳐 주지는 않습니다. 대신 다시 읽어 볼 문장을 찾아 줍니다.", "en": "Manuscript Diagnosis compares your English chemistry manuscript with published papers, so that you can look at your verbs and stance expressions section by section. It does not correct your writing. Instead, it points you to sentences worth rereading." },
+    "p2": { "ko": "비교 기준은 ACS 네 저널의 공개 논문(CC BY)입니다. 서론, 실험·방법, 결과·논의, 결론을 나누어 붙여 넣으면 동사, 완화·강조 표현, 보고동사의 쓰임을 출판 논문의 범위와 함께 보여 줍니다.", "en": "The comparison is based on open-access (CC BY) papers from four ACS journals. Paste your Introduction, Methods, Results and discussion, and Conclusion separately, and the tool shows how you use verbs, hedges and boosters, and reporting verbs, against the range found in published papers." },
+    "p3": { "ko": "분석은 미리 정한 규칙으로 하며, 생성형 AI를 쓰지 않습니다. 같은 원고에는 같은 규칙 버전에서 언제나 같은 결과가 나옵니다.", "en": "The analysis follows fixed rules and does not use generative AI. With the same rule version, the same manuscript always gives the same result." }
+  },
+
+  "features": {
+    "title": { "ko": "이 도구의 특징", "en": "Features of this tool" },
+    "lead": { "ko": "숫자에서 문장으로, 자동 분석에서 작성자의 판단으로", "en": "From numbers to sentences, from automatic analysis to the writer’s judgement" },
+    "intro": { "ko": "논문 글쓰기 진단은 표현의 빈도를 보여 주는 데서 끝나지 않습니다. 어떤 표현이 어느 문장에서 사용되었는지 확인하고, 자신의 연구 내용을 의도한 대로 전달했는지 다시 읽도록 구성했습니다.", "en": "Manuscript Diagnosis does not stop at showing how often expressions occur. It lets you see which expression was used in which sentence, and leads you to reread whether you have conveyed your research as you intended." },
+    "items": [
+      { "h": { "ko": "같은 절끼리 비교합니다", "en": "It compares like with like, section by section" },
+        "p": { "ko": "서론, 실험·방법, 결과·논의, 결론을 구분하여 출판 논문의 같은 절과 비교합니다. 논문 전체를 하나의 평균으로 보는 대신, 연구 배경을 소개하는 부분과 실험을 설명하는 부분, 결과를 해석하는 부분을 나누어 살펴봅니다.", "en": "Your Introduction, Methods, Results and Discussion, and Conclusions are each compared with the same section of published papers. Instead of treating the whole paper as one average, the parts that introduce the background, describe the experiments and interpret the results are examined separately." } },
+      { "h": { "ko": "동사의 개수뿐 아니라 쓰임을 보여 줍니다", "en": "It shows how verbs are used, not just how many there are" },
+        "p": { "ko": "같은 동사라도 문장의 술어로 쓰였는지, 명사를 꾸미는 분사인지, 비정형 표현인지 구분하여 제시합니다. 자동 분류는 잠정적인 결과이며, 판단하기 어려운 항목은 문맥을 확인하도록 표시합니다.", "en": "For each verb, it shows whether it is used as the predicate of a clause, as a participle modifying a noun, or in a non-finite form. The automatic classification is provisional, and items that are hard to decide are marked for you to check in context." } },
+      { "h": { "ko": "비교 수치를 실제 문장으로 연결합니다", "en": "It links the comparison figures to actual sentences" },
+        "p": { "ko": "궁금한 동사의 용례를 KWIC으로 모아 읽고, 원문 문맥으로 돌아가 확인할 수 있습니다. 비교 논문에서 드물거나 확인되지 않은 표현도 오류로 단정하지 않습니다. 수치는 다시 읽을 곳을 찾는 단서이고, 수정 여부는 작성자가 판단합니다.", "en": "You can gather the uses of a verb in a concordance (KWIC) and go back to the original context. Expressions that are rare or not found in the comparison papers are not treated as errors. The figures are clues to where to reread; whether to revise is for the writer to decide." } },
+      { "h": { "ko": "분석 기준과 한계를 공개합니다", "en": "It states its criteria and limits" },
+        "p": { "ko": "어떤 표현을 세고 제외하는지, 어떤 비교 자료와 규칙 버전을 사용하는지 제시합니다. 짧은 절은 빈도에 따른 높고 낮음 판정을 보류하고, 품사 분석과 문법적 쓰임 분류에 오류가 있을 수 있음을 안내합니다.", "en": "It states which expressions are counted and which are excluded, and which comparison data and rule versions are used. For short sections it withholds judgements of higher or lower frequency, and it explains that part-of-speech analysis and usage classification can be wrong." } },
+      { "h": { "ko": "추가 검토에 필요한 근거를 함께 제공합니다", "en": "It provides the evidence needed for further review" },
+        "p": { "ko": "번호가 붙은 원고 전문, 분석 기준, 결과표, 전체 탐지 목록과 KWIC을 PDF와 텍스트로 내보낼 수 있습니다. 사용자는 이를 직접 검토하거나, 자신이 선택한 AI에 제공하여 누락·오분류 의심 사례에 대한 추가 의견을 받을 수 있습니다.", "en": "You can export your numbered full manuscript, the analysis criteria, the result tables, and the complete detection list with KWIC as a PDF or as text. You can review them yourself, or give them to an AI of your choice for further comments on possible omissions or misclassifications." } }
+    ],
+    "note": { "ko": "기본 분석에는 생성형 AI를 사용하지 않으며, 외부 AI로 원고를 자동 전송하지 않습니다. 사용자가 내보낸 자료를 외부 AI에 업로드하면 해당 서비스로 전달되므로, 연구 자료의 이용 조건과 보안 기준을 먼저 확인해야 합니다.", "en": "The analysis itself does not use generative AI, and your manuscript is never sent automatically to an external AI. If you upload the exported material to an external AI, it is sent to that service, so check the terms of use and security requirements for your research data first." }
+  },
+  "background": {
+    "title": { "ko": "설계의 학술적 배경", "en": "Academic background of the design" },
+    "q": { "ko": "어떤 연구를 바탕으로 만들었나요?", "en": "What research is this tool based on?" },
+    "intro": { "ko": "이 포털은 학술 글쓰기를 단순히 문법적으로 맞는 문장을 만드는 일이 아니라, 연구 과정과 결과를 전달하고 근거에 맞게 주장하며 선행연구와 관계를 맺는 활동으로 바라봅니다. 이를 위해 다음 연구 관점을 참고했습니다.", "en": "This portal treats academic writing not simply as producing grammatically correct sentences, but as communicating research procedures and results, making claims that match the evidence, and engaging with previous research. It draws on the following research perspectives." },
+    "items": [
+      { "src": "hyl02", "h": { "ko": "출발점: Hyland(2001)의 보고동사 연구", "en": "Starting point: Hyland’s (2001) study of reporting verbs" },
+        "p": [ { "ko": "이 포털의 출발점은 Hyland(2001)의 보고동사 연구입니다. 이 연구는 선행연구를 소개하는 동사 선택을, 다른 연구의 활동을 전달하면서 그 내용에 대한 평가를 나타내는 선택으로 살펴봅니다. 또한 분야에 따라 보고동사의 사용 양상이 다를 수 있음을 보여 줍니다.", "en": "The starting point of this portal is Hyland’s (2001) study of reporting verbs. It examines the choice of verbs for introducing previous studies as a choice that conveys what other researchers did while also expressing an evaluation of it. It also shows that the use of reporting verbs can differ across disciplines." },
+               { "ko": "이 포털은 이러한 관점을 참고하여 선행연구 보고 표현을 문맥 속에서 읽도록 구성했습니다. 나아가 자신의 연구 수행·결과·해석을 나타내는 내용 동사까지 검토 범위를 확장했습니다. 다만 Hyland의 과정·평가 분류 전체를 자동으로 구현한 것은 아닙니다.", "en": "Drawing on this view, the portal lets you read the expressions that report previous studies in their context. It also extends the scope of review to the content verbs with which you present your own procedures, results and interpretations. It does not, however, automatically implement Hyland’s full classification of process and evaluation." } ] },
+      { "src": "uea", "h": { "ko": "인용과 작성자의 태도: Hyland와 Jiang의 후속 연구", "en": "Citation and the writer’s stance: later work by Hyland and Jiang" },
+        "p": [ { "ko": "보고동사는 다른 연구가 무엇을 했는지 전달하는 동시에, 그 내용에 대한 작성자의 평가와 거리를 나타낼 수 있습니다. Hyland와 Jiang은 보고동사와 입장 표현이 인용한 정보의 증거적 지위를 긍정적·부정적·중립적으로 평가하는 데 관여한다고 설명합니다.", "en": "Reporting verbs convey what other studies did and can, at the same time, show the writer’s evaluation of and distance from that content. Hyland and Jiang explain that reporting verbs and stance expressions are involved in evaluating the evidential status of cited information as positive, negative or neutral." },
+               { "ko": "이 포털에서는 이러한 관점을 바탕으로 선행연구를 소개하는 표현을 모아 읽도록 합니다. 자신의 연구를 설명하는 동사와 다른 연구에 내용을 귀속시키는 보고동사를 구분하여 살펴보되, 작성자의 태도를 동사 하나만으로 확정하지 않습니다.", "en": "Building on this view, the portal lets you read together the expressions with which you introduce previous studies. It distinguishes verbs that describe your own study from reporting verbs that attribute content to other studies, but it does not decide the writer’s stance from a single verb." } ] },
+      { "src": "hyl05", "h": { "ko": "완화와 강조: Hyland의 메타담화 연구", "en": "Hedges and boosters: Hyland’s work on metadiscourse" },
+        "p": [ { "ko": "Hyland의 메타담화 연구는 작성자가 독자와 관계를 맺고 자신의 주장과 논증을 제시하는 언어적 자원을 다룹니다. 그중 완화 표현과 강조 표현은 주장에 대한 확신과 대안의 여지를 살펴보는 데 중요한 자원입니다.", "en": "Hyland’s research on metadiscourse deals with the linguistic resources writers use to engage readers and present their claims and arguments. Among them, hedges and boosters are important resources for looking at certainty about claims and room for alternatives." },
+               { "ko": "이 포털의 완화·강조 표현 목록은 Hyland(2005) 부록(218–223쪽)의 Hedges·Boosters 항목을 바탕으로 하며, 화학 논문에서 문자 그대로 쓰인 경우(예: a peak appears at 390 nm) 등을 품사와 문맥 조건으로 거르는 규칙을 더했습니다. 다만 같은 표현도 문맥에 따라 기능이 달라질 수 있으므로, 탐지 결과는 원문과 함께 확인해야 합니다.", "en": "The portal’s lists of hedges and boosters are based on the Hedges and Boosters entries in the appendix of Hyland (2005, pp. 218–223), with added rules that use part of speech and context to filter out literal uses in chemistry papers (for example, a peak appears at 390 nm). Because the same expression can work differently in different contexts, detections should be checked against the original text." } ] },
+      { "src": "johns", "h": { "ko": "용례를 통한 탐색: Tim Johns의 자료 기반 학습", "en": "Exploring through concordances: Tim Johns’s data-driven learning" },
+        "p": [ { "ko": "Johns의 자료 기반 학습은 학습자가 언어 자료와 용례를 직접 살펴보며 사용 양상을 발견하는 접근입니다.", "en": "Johns’s data-driven learning is an approach in which learners examine language data and concordance lines themselves to discover patterns of use." },
+               { "ko": "이 포털의 KWIC은 이러한 학습 방향과 연결됩니다. 정해진 대체 표현을 제시하기보다, 같은 표현이 쓰인 문장들을 나란히 읽고 자신의 서술 방식을 검토하도록 구성했습니다.", "en": "The portal’s KWIC view follows this direction. Rather than offering fixed replacements, it lets you read side by side the sentences in which the same expression is used, and review how you write." } ] },
+      { "src": "cam", "h": { "ko": "과학 글쓰기의 압축된 표현: Douglas Biber와 Bethany Gray", "en": "Compressed expression in science writing: Douglas Biber and Bethany Gray" },
+        "p": [ { "ko": "Biber와 Gray는 과학 학술 글쓰기에서 동사구의 명사화와 관련된 문체적 변화를 연구했습니다.", "en": "Biber and Gray studied stylistic change in academic science writing related to the nominalisation of the verb phrase." },
+               { "ko": "이 연구는 동사 개수만으로 과학 문체를 평가하지 않아야 한다는 배경으로 참고합니다. 현재 포털은 명사화를 직접 탐지하거나 명사구의 정보 밀도를 평가하지 않습니다.", "en": "We draw on this work as background for not judging scientific style by verb counts alone. The portal does not currently detect nominalisation or assess the information density of noun phrases." } ] }
+    ],
+    "refs_title": { "ko": "참고문헌", "en": "References" },
+    "refs": [
+      "Hyland, K. (2001). Activity and evaluation: Reporting practices in academic writing. In J. Flowerdew (Ed.), Academic discourse (pp. 115–130). Longman.",
+      "Hyland, K., & Jiang, F. K. (2024). Talking to the literature: Stance taking in citing others’ work. In Teaching and learning source-based writing (pp. 223–240). Routledge. https://doi.org/10.4324/9781003283485-19",
+      "Hyland, K. (2005). Metadiscourse: Exploring interaction in writing. Continuum.",
+      "Johns, T. (1991). Should you be persuaded: Two samples of data-driven learning materials. English Language Research Journal, 4, 1–16.",
+      "Biber, D., & Gray, B. (2013). Nominalizing the verb phrase in academic science writing. In B. Aarts, J. Close, G. Leech, & S. Wallis (Eds.), The verb phrase in English (pp. 99–132). Cambridge University Press. https://doi.org/10.1017/CBO9781139060998.006",
+      "Deng, L., & Li, X. (2026). Reporting verbs across genre sets and research paradigms: A corpus-based analysis of denotation and evaluation in applied linguistics research articles. Frontiers in Psychology. https://doi.org/10.3389/fpsyg.2026.1799996"
+    ],
+    "sep_title": { "ko": "연구 관점과 자동 분석은 구분합니다", "en": "Research perspectives and automatic analysis are kept apart" },
+    "sep_p": { "ko": "이 포털은 위 연구들의 모든 분석 범주를 자동으로 재현하는 도구가 아닙니다. 연구 관점을 참고하여 규칙 기반 탐지, 절별 비교, KWIC, 검토 자료 내보내기를 구성했습니다. 자동 분석의 결과는 문맥을 읽기 위한 출발점이며, 최종 판단은 작성자에게 남겨 둡니다.", "en": "This portal does not automatically reproduce all the analytical categories of these studies. Drawing on their perspectives, it combines rule-based detection, section-by-section comparison, KWIC and the export of review material. The results of automatic analysis are a starting point for reading in context; the final judgement remains with the writer." }
+  },
+  "kwic_box": {
+    "title": { "ko": "용례 보기", "en": "Concordance" },
+    "label": { "ko": "설명용 구성 예문", "en": "Constructed examples" },
+    "col_left": { "ko": "앞 문맥", "en": "Left context" },
+    "col_key": { "ko": "찾는 말", "en": "Keyword" },
+    "col_right": { "ko": "뒤 문맥", "en": "Right context" },
+    "open_title": { "ko": "문장 전체 보기", "en": "Read the whole sentence" },
+    "foot_common": { "ko": "빈도는 다시 읽을 곳을 찾는 단서입니다. 수정 여부는 문맥을 읽은 뒤에 판단하세요.", "en": "Frequency tells you where to reread. Decide whether to revise only after reading the context." }
+  },
+
+  "why": {
+    "title": { "ko": "왜 동사를 살펴보나요?", "en": "Why look at verbs?" },
+    "jump_label": { "ko": "바로 가기", "en": "Contents" },
+    "toc_label": { "ko": "이 페이지의 내용", "en": "On this page" },
+    "p1": { "ko": "핵심은 동사 개수를 늘리거나 줄이는 것이 아닙니다. 동사는 연구자가 무엇을 했고, 무엇을 관찰했으며, 그 결과를 어디까지 주장하는지를 드러내는 단서입니다. 특히 보고동사는 선행연구의 내용을 전달하는 동시에, 그 내용에 대한 작성자의 태도를 나타낼 수 있습니다.", "en": "The point is not to use more or fewer verbs. Verbs are clues to what researchers did, what they observed, and how far they take their results. Reporting verbs in particular convey the content of previous studies and, at the same time, can show the writer’s stance towards it." },
+    "p2": { "ko": "동사의 개수만 확인하는 데 그치지 않고, 그 동사가 쓰인 문장을 읽으며 연구 내용을 어떻게 전달했는지 살펴보세요.", "en": "Don’t stop at counting verbs. Read the sentences in which they appear, and look at how you have presented your research." }
+  },
+  "toc": {
+    "s1": { "ko": "관찰한 사실과 해석", "en": "Observation and interpretation" },
+    "s2": { "ko": "주장하는 정도와 근거", "en": "Strength of claims and evidence" },
+    "s3": { "ko": "선행연구 소개", "en": "Introducing previous studies" },
+    "s4": { "ko": "같은 방식의 설명", "en": "Explaining in the same way" },
+    "s5": { "ko": "동작과 명사구", "en": "Actions and noun phrases" },
+    "s6": { "ko": "이 도구로 살펴볼 수 있는 것", "en": "What this tool shows" },
+    "kwic": { "ko": "KWIC으로 내 글 읽기", "en": "Reading your text with KWIC" },
+    "background": { "ko": "설계의 학술적 배경", "en": "Academic background" },
+    "start": { "ko": "시작해 볼까요?", "en": "Get started" }
+  },
+
+  "s1": {
+    "title": { "ko": "관찰한 사실과 해석한 내용을 구분하는 데 도움이 됩니다", "en": "It helps you separate what you observed from how you interpret it" },
+    "intro": { "ko": "다음은 설명을 위한 구성 예문입니다.", "en": "The following are constructed examples for illustration." },
+    "p1": { "ko": "첫 문장은 무엇을 관찰했는지 보고하고, 두 번째 문장은 관찰 결과에 어떤 해석을 붙였는지 보여 줍니다. 학술 담화 연구에서도 동사 선택은 실험·관찰 행위, 결론, 인지·담화 행위 등의 차이를 드러내는 자원으로 다룹니다.", "en": "The first sentence reports what was observed; the second shows what interpretation has been attached to the observation. Studies of academic discourse also treat verb choice as a resource that marks differences between experimental and observational acts, conclusions, and cognitive or discourse acts." },
+    "q_label": { "ko": "작성자가 확인할 질문은 다음과 같습니다.", "en": "Questions to ask yourself" },
+    "q": [
+      { "ko": "지금 문장은 측정·관찰 결과를 말하는가, 원인을 해석하는가?", "en": "Does this sentence report a measurement or observation, or does it interpret a cause?" },
+      { "ko": "실제로 확인한 것과 추론한 것을 구분하여 썼는가?", "en": "Have you kept what you actually confirmed separate from what you inferred?" },
+      { "ko": "선택한 동사가 자신이 전달하려는 의미와 맞는가?", "en": "Does the verb you chose match the meaning you intend?" }
+    ],
+    "p2": { "ko": "이 도구는 observe, suggest 같은 동사가 쓰인 문장을 모아 보여 줍니다. 다만 동사만으로 문장의 기능이나 해석의 타당성을 판단할 수는 없습니다. 앞뒤 문맥을 함께 읽어 보세요.", "en": "This tool gathers the sentences in which verbs such as observe and suggest appear. However, a verb alone cannot tell you what a sentence does or whether an interpretation is sound. Read the surrounding context as well." }
+  },
+  "s2": {
+    "title": { "ko": "주장하는 정도가 근거와 맞는지 돌아볼 수 있습니다", "en": "You can check whether the strength of your claims matches your evidence" },
+    "intro": { "ko": "다음 두 문장은 비슷해 보이지만 같은 주장은 아닙니다.", "en": "These two sentences look similar, but they do not make the same claim." },
+    "p1": { "ko": "작성자는 단순히 다른 단어를 선택한 것이 아니라, 결과와 결론의 관계를 다르게 제시한 것입니다. 보고동사와 입장 표현은 정보의 증거적 지위에 대한 평가와 확신을 나타내는 데 사용됩니다.", "en": "The writer has not simply chosen a different word but has presented the relationship between results and conclusions differently. Reporting verbs and stance expressions are used to evaluate the evidential status of information and to express certainty." },
+    "p2": { "ko": "결과를 설명할 때 어떤 동사를 선택했는지 살펴보세요. 그 동사가 나타내는 주장 정도가 제시한 근거와 맞는지 확인하는 데 도움이 됩니다.", "en": "Look at which verbs you chose to describe your results. This helps you check whether the strength of claim each verb conveys matches the evidence you present." },
+    "p3": { "ko": "중요한 것은 demonstrate를 무조건 강한 표현, suggest를 무조건 적절한 표현으로 정해 놓는 것이 아닙니다. 해당 문장의 주어, 보어, 부정·조동사, 주변 문맥까지 읽어야 합니다.", "en": "The point is not to treat demonstrate as always too strong or suggest as always appropriate. You need to read the subject, complement, negation and modal verbs, and the surrounding context of each sentence." }
+  },
+  "s3": {
+    "title": { "ko": "선행연구를 ‘나열’하는지, 어떤 관계로 소개하는지 살펴볼 수 있습니다", "en": "You can see whether you merely list previous studies or show how they relate" },
+    "intro": { "ko": "예를 들어 다음과 같은 문장들이 있다고 해 봅시다.", "en": "Suppose you have sentences like these:" },
+    "p1": { "ko": "모두 선행연구를 소개하지만, ‘보고했다’, ‘제안했다’, ‘이의를 제기했다’는 서로 다른 관계를 만듭니다. 보고동사는 다른 연구의 내용을 출처에 귀속시키면서, 그 연구에 대한 작성자의 평가나 거리를 드러낼 수 있습니다.", "en": "All of them introduce previous studies, but reported, proposed and challenged set up different relationships. Reporting verbs attribute content to its source while also revealing the writer’s evaluation of, or distance from, that work." },
+    "q_label": { "ko": "따라서 동사가 쓰인 문장을 모아 읽으며 다음을 확인해 볼 수 있습니다.", "en": "What to check as you read them together" },
+    "q": [
+      { "ko": "선행연구가 실제로 한 일을 정확히 전달했는가?", "en": "Have you accurately conveyed what the previous studies actually did?" },
+      { "ko": "가설이나 제안을 확정된 결과처럼 소개하지 않았는가?", "en": "Have you presented hypotheses or proposals as if they were established results?" },
+      { "ko": "다른 연구의 주장과 자신의 해석이 구분되는가?", "en": "Can readers tell other researchers’ claims apart from your own interpretation?" }
+    ],
+    "p2": { "ko": "이는 “보고동사를 많이 썼는가?”보다 글쓰기에 더 직접적으로 도움이 되는 질문입니다.", "en": "These questions help your writing more directly than “Have I used enough reporting verbs?”" }
+  },
+  "s4": {
+    "title": { "ko": "같은 단어의 반복이 아니라 ‘같은 방식으로만 설명하는지’를 살펴볼 수 있습니다", "en": "You can see not just repeated words, but whether you explain everything the same way" },
+    "p1": { "ko": "show가 여러 번 나왔다고 해서 나쁜 글은 아닙니다. 서로 다른 결과를 정확하게 설명하는 데 같은 동사가 필요할 수도 있지요.", "en": "Using show several times does not make a text bad. You may need the same verb to describe different results accurately." },
+    "q_label": { "ko": "하지만 show가 나온 문장들을 한데 모아 읽으면 다음 질문을 던질 수 있습니다.", "en": "Questions to ask when you read all your show sentences together" },
+    "q": [
+      { "ko": "모두 단순한 결과 제시인가?", "en": "Are they all simple presentations of results?" },
+      { "ko": "일부는 ‘관찰되었다’, ‘증가했다’, ‘관련된다’처럼 다른 의미를 전달하려던 문장인가?", "en": "Were some meant to say something different, such as was observed, increased or is related to?" },
+      { "ko": "같은 동사를 사용하면서 서로 다른 수준의 주장을 구분하지 않은 것은 아닌가?", "en": "Have you used the same verb without distinguishing different levels of claim?" }
+    ],
+    "p2": { "ko": "이 도구는 동의어로 바꿔 주지 않습니다. 반복된 표현을 문맥과 함께 모아 보여 주어, 자기 글의 서술 습관을 확인할 수 있게 합니다.", "en": "This tool does not replace words with synonyms. It gathers repeated expressions with their context so that you can see your own writing habits." }
+  },
+  "s5": {
+    "title": { "ko": "동작을 문장으로 풀었는지, 명사구 안에 담았는지도 볼 수 있습니다", "en": "You can also see whether actions are written as clauses or packed into noun phrases" },
+    "intro": { "ko": "다음은 같은 과정을 다르게 표현한 구성 예문입니다.", "en": "These constructed examples express the same process in different ways." },
+    "p1": { "ko": "하나는 동작을 문장으로 서술하고, 다른 하나는 측정을 명사구로 제시합니다. 과학 글쓰기에서는 동사로 나타낼 관계나 과정을 명사구에 담는 방식이 중요한 문체적 특징으로 연구되어 왔습니다.", "en": "One describes the action in a clause; the other presents the measurement as a noun phrase. In scientific writing, packing relations or processes that could be expressed by verbs into noun phrases has been studied as an important stylistic feature." },
+    "q_label": { "ko": "이런 차이는 다음을 검토하는 계기가 될 수 있습니다.", "en": "Points to consider" },
+    "q": [
+      { "ko": "행위나 과정이 독자에게 분명하게 드러나는가?", "en": "Are actions and processes clear to the reader?" },
+      { "ko": "명사구에 정보가 지나치게 몰려 있지는 않은가?", "en": "Is too much information packed into noun phrases?" },
+      { "ko": "반대로 이미 알려진 과정을 매번 긴 문장으로 풀어 쓰지는 않았는가?", "en": "Conversely, are you spelling out well-known procedures in long sentences every time?" }
+    ],
+    "p2": { "ko": "이 도구는 명사화 자체를 분석하지 않습니다. 따라서 동사 빈도만으로 명사화가 많거나 글이 읽기 어렵다고 판단할 수는 없습니다. 명사구에 정보가 지나치게 몰려 있는지는 실제 문장을 읽으며 확인해 보세요.", "en": "This tool does not analyse nominalisation itself. Verb frequencies alone cannot tell you whether you nominalise too much or whether your text is hard to read. Read the actual sentences to see whether noun phrases are overloaded." }
+  },
+  "s6": {
+    "title": { "ko": "이 도구로 무엇을 살펴볼 수 있나요?", "en": "What can you look at with this tool?" },
+    "th": [ { "ko": "기능", "en": "Feature" }, { "ko": "살펴볼 수 있는 것", "en": "What you can look at" }, { "ko": "이 기능만으로 판단할 수 없는 것", "en": "What this feature alone cannot tell you" } ],
+    "rows": [
+      [ { "ko": "동사별 용례 모아 보기", "en": "Concordance by verb" }, { "ko": "연구 과정과 결과를 어떤 말로 서술했는지", "en": "Which words you used to describe your procedures and results" }, { "ko": "글 전체의 완성도", "en": "The overall quality of the text" } ],
+      [ { "ko": "보고동사와 인용 문장 보기", "en": "Reporting verbs and citing sentences" }, { "ko": "선행연구를 어떻게 소개했는지", "en": "How you introduced previous studies" }, { "ko": "문헌 검토가 충분한지", "en": "Whether your literature review is sufficient" } ],
+      [ { "ko": "완화·강조 표현 보기", "en": "Hedges and boosters" }, { "ko": "가능성과 확신을 어떤 표현으로 나타냈는지", "en": "How you expressed possibility and certainty" }, { "ko": "주장과 근거가 적절하게 연결되는지", "en": "Whether claims and evidence are properly connected" } ],
+      [ { "ko": "출판 논문과 사용 빈도 비교", "en": "Frequency comparison with published papers" }, { "ko": "내 원고의 사용 양상이 비교 논문들과 어떻게 다른지", "en": "How your usage differs from the comparison papers" }, { "ko": "반드시 수정해야 하는지", "en": "Whether you must revise" } ]
+    ],
+    "p": { "ko": "비교 수치는 글의 좋고 나쁨을 판정하는 점수가 아닙니다. 어떤 문장을 다시 살펴볼지 찾는 데 활용해 보세요.", "en": "The comparison figures are not a score of good or bad writing. Use them to find sentences worth rereading." }
+  },
+  "summary": {
+    "title": { "ko": "왜 동사를 살펴보나요?", "en": "Why look at verbs?" },
+    "p1": { "ko": "논문의 동사는 무엇을 했는지, 무엇을 관찰했는지, 그 결과를 어떻게 해석했는지를 드러냅니다. 선행연구를 소개할 때는 그 연구의 내용을 어떤 태도로 전달하는지도 보여 줍니다.", "en": "The verbs in a paper reveal what was done, what was observed, and how the results were interpreted. When you introduce previous studies, they also show the attitude with which you present that work." },
+    "p2": { "ko": "이 도구는 동사가 쓰인 문장을 모아 보여 줍니다. 자신의 의도에 맞는 표현을 골랐는지 확인하고, 필요하면 출판 논문에서의 사용 빈도와 비교해 보세요.", "en": "This tool gathers the sentences in which verbs appear. Check whether you chose expressions that match your intentions and, if needed, compare your usage with frequencies in published papers." },
+    "p3": { "ko": "동사를 많이 쓰거나 다양하게 쓰는 것이 목표는 아닙니다. 전달하려는 연구 내용을 정확하게 표현했는지 살펴보는 것이 목표입니다.", "en": "The goal is not to use more verbs or more varied verbs. The goal is to check whether you have expressed your research accurately." }
+  },
+  "kwic_section": {
+    "title": { "ko": "숫자를 확인했다면, 이제 문장을 읽어 보세요.", "en": "Once you have checked the numbers, read the sentences." },
+    "p1": { "ko": "같은 동사가 쓰인 문장을 나란히 읽으면, 어떤 주어와 함께 썼는지, 무엇을 설명했는지, 비슷한 문장 구조를 반복했는지 살펴볼 수 있습니다.", "en": "Reading sentences with the same verb side by side shows you which subjects you used it with, what you described, and whether you repeated similar sentence structures." },
+    "p2": { "ko": "용례 보기(KWIC)는 찾는 표현을 중심으로 앞뒤 문맥을 모아 보여 주는 기능입니다. 궁금한 문장은 전체 문맥으로 이어서 확인해 보세요.", "en": "The concordance (KWIC) view lines up the words around a search expression. To read a sentence in full, open its wider context." },
+    "hint": { "ko": "강조된 단어를 누르면 앞뒤 문장과 함께 읽을 수 있습니다.", "en": "Select the highlighted word to read it with the surrounding sentences." }
+  },
+  "start": {
+    "title": { "ko": "시작해 볼까요?", "en": "Shall we begin?" },
+    "note": { "ko": "원고를 붙여 넣는 화면으로 이동합니다. 이동만으로는 분석이 시작되지 않습니다.", "en": "This takes you to the screen where you paste your manuscript. Nothing is analysed until you run the diagnosis." },
+    "button": { "ko": "시작해 볼까요?", "en": "Get started" }
+  },
+  "footer": { "ko": "논문 글쓰기 진단 · 비교 자료: ACS 저널 공개 논문(CC BY) · 외부 링크는 해당 연구 소개 페이지로 이동하며, 원고나 분석 결과는 보내지 않습니다.", "en": "Manuscript Diagnosis · Comparison data: open-access ACS journal papers (CC BY) · External links lead to pages about the cited research; your manuscript and results are not sent with them." },
+
+  "examples": {
+    "s1": [ { "en": "We <v c='observe'>observed</v> a decrease in particle size.", "gloss_ko": "입자 크기의 감소를 관찰했다." }, { "en": "These results <v c='suggest'>suggest</v> a change in the growth mechanism.", "gloss_ko": "이 결과는 성장 기제의 변화를 시사한다." } ],
+    "s2": [ { "en": "These results <v c='suggest'>suggest</v> that …" }, { "en": "These results <v c='suggest'>demonstrate</v> that …" } ],
+    "s3": [ { "en": "Kim et al. <v c='report'>reported</v> …" }, { "en": "Lee et al. <v c='report'>proposed</v> …" }, { "en": "Park et al. <v c='report'>challenged</v> …" } ],
+    "s5": [ { "en": "We <v c='observe'>measured</v> the absorption spectrum." }, { "en": "The <v c='observe'>measurement</v> of the absorption spectrum …" } ]
+  },
+
+  "kwic_paragraphs": {
+    "observe": [
+      "We annealed the nanoparticles at 400 °C for 2 h. After annealing, we observed a decrease in particle size. TEM images confirmed a narrower size distribution.",
+      "We monitored the PL spectra over 30 days of storage. No significant change was observed in the PL intensity. The films therefore remained stable under ambient conditions.",
+      "The conductivity of the Mn-doped samples increased gradually with temperature. A similar trend was observed for the Co-doped samples. This suggests that both dopants act through the same mechanism.",
+      "The C 1s spectrum was deconvoluted into Gaussian components. Two distinct peaks were observed at 285 and 289 eV. These were assigned to C–C and O–C=O bonds, respectively."
+    ],
+    "suggest": [
+      "The average grain size increased from 15 to 40 nm at higher temperatures. These results suggest a change in the growth mechanism. Further in situ measurements are needed to confirm this.",
+      "The absorption edge moved from 520 to 495 nm. The blue shift suggests a reduced particle size. This interpretation is consistent with the TEM data.",
+      "A new peak appeared at 530.5 eV in the O 1s region. The XPS data suggest partial oxidation of the surface. However, no oxide phase was detected by XRD.",
+      "The PL lifetime decreased as the defect density increased. This trend suggests that defects act as carrier traps. A similar effect has been reported for CdSe quantum dots."
+    ],
+    "report": [
+      "Doping is known to shift the optical absorption of thin films. Kim et al. reported a similar shift in doped films. Our results extend this observation to nanoparticle systems.",
+      "The reaction temperature strongly affects the yield. Previous studies have reported higher yields at 80 °C. In this work, comparable yields were obtained at 60 °C.",
+      "The band gap of our films was estimated to be 3.0 eV. This value is lower than that reported for bulk TiO2. The difference may arise from oxygen vacancies.",
+      "The catalyst was tested over repeated reaction cycles. As reported earlier, the catalyst loses activity after five cycles. We attribute this loss to the leaching of Pd species."
+    ],
+    "show": [
+      "We recorded UV–vis spectra of the films before and after Mn doping. The spectra show a red shift after doping. This shift suggests a narrowing of the band gap.",
+      "Figure 3 compares the XRD patterns of the as-prepared and annealed samples. The XRD patterns show no impurity phase. All peaks can be indexed to the cubic spinel structure.",
+      "After the surface treatment, the PL lifetime increased from 12 to 35 ns. These data show that the defects are passivated. However, the mechanism of passivation remains unclear.",
+      "The PL decay curves were fitted with a biexponential function. Table 1 shows the fitted parameters. The average lifetime was calculated from these values."
+    ]
+  },
+  "kwic_keys": { "observe": "observed", "suggest": "suggests?", "report": "reported", "show": "shows?" }
+}

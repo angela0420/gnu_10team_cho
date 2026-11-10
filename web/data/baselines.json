@@ -1,0 +1,3717 @@
+{
+ "version": "baseline 0.4.9 (pdf-extract-0.4.9 / hedge-baseline-0.4.5)",
+ "baselines": {
+  "ACS_CM": {
+   "en": "Materials chemistry (Chem. Mater.)",
+   "ko": "재료화학 (Chem. Mater.)",
+   "reference_only": false,
+   "papers": 19,
+   "sections": {
+    "INT": {
+     "words": {
+      "n": 19,
+      "median": 802.0,
+      "q1": 659.5,
+      "q3": 906.5,
+      "min": 549.0,
+      "max": 3056.0,
+      "values": [
+       549.0,
+       583.0,
+       598.0,
+       644.0,
+       653.0,
+       666.0,
+       671.0,
+       698.0,
+       751.0,
+       802.0,
+       810.0,
+       822.0,
+       879.0,
+       886.0,
+       927.0,
+       994.0,
+       1207.0,
+       1546.0,
+       3056.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 19,
+      "median": 99.85,
+      "q1": 98.52,
+      "q3": 115.5,
+      "min": 90.3,
+      "max": 130.89,
+      "values": [
+       90.3,
+       93.68,
+       94.56,
+       97.76,
+       98.5,
+       98.54,
+       98.59,
+       98.97,
+       99.24,
+       99.85,
+       106.35,
+       108.73,
+       112.35,
+       112.61,
+       118.4,
+       119.84,
+       121.12,
+       124.0,
+       130.89
+      ]
+     },
+     "reporting_per1000": {
+      "n": 19,
+      "median": 8.58,
+      "q1": 7.48,
+      "q3": 11.57,
+      "min": 3.64,
+      "max": 15.8,
+      "values": [
+       3.64,
+       4.47,
+       5.33,
+       6.47,
+       7.46,
+       7.51,
+       7.66,
+       8.18,
+       8.36,
+       8.58,
+       9.98,
+       10.06,
+       10.24,
+       10.79,
+       12.35,
+       12.89,
+       13.38,
+       13.98,
+       15.8
+      ]
+     },
+     "hedge_per1000": {
+      "n": 19,
+      "median": 2.28,
+      "q1": 1.51,
+      "q3": 3.33,
+      "min": 0.0,
+      "max": 10.03,
+      "values": [
+       0.0,
+       1.01,
+       1.08,
+       1.25,
+       1.49,
+       1.53,
+       1.67,
+       1.82,
+       2.26,
+       2.28,
+       2.62,
+       3.0,
+       3.11,
+       3.23,
+       3.43,
+       3.7,
+       4.97,
+       7.3,
+       10.03
+      ]
+     },
+     "booster_per1000": {
+      "n": 19,
+      "median": 1.64,
+      "q1": 0.5,
+      "q3": 3.26,
+      "min": 0.0,
+      "max": 7.45,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       1.01,
+       1.25,
+       1.33,
+       1.53,
+       1.64,
+       1.72,
+       2.16,
+       2.26,
+       3.11,
+       3.41,
+       3.65,
+       6.17,
+       7.16,
+       7.45
+      ]
+     },
+     "usage_pooled": {
+      "비정형": 399,
+      "확인 필요": 32,
+      "명사 뒤 수식": 172,
+      "술어": 1032,
+      "명사 앞 수식": 265,
+      "굳은 표현": 18,
+      "명사처럼": 16,
+      "전치사처럼": 16
+     }
+    },
+    "MET": {
+     "words": {
+      "n": 18,
+      "median": 737.0,
+      "q1": 701.0,
+      "q3": 913.25,
+      "min": 322.0,
+      "max": 1630.0,
+      "values": [
+       322.0,
+       597.0,
+       599.0,
+       607.0,
+       695.0,
+       719.0,
+       720.0,
+       724.0,
+       732.0,
+       742.0,
+       810.0,
+       837.0,
+       905.0,
+       916.0,
+       994.0,
+       1094.0,
+       1425.0,
+       1630.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 18,
+      "median": 120.19,
+      "q1": 113.56,
+      "q3": 127.66,
+      "min": 95.97,
+      "max": 140.03,
+      "values": [
+       95.97,
+       101.08,
+       107.53,
+       112.23,
+       113.52,
+       113.67,
+       114.72,
+       116.05,
+       118.83,
+       121.55,
+       122.11,
+       123.36,
+       127.33,
+       127.77,
+       128.42,
+       129.17,
+       132.6,
+       140.03
+      ]
+     },
+     "reporting_per1000": {
+      "n": 18,
+      "median": 5.98,
+      "q1": 2.79,
+      "q3": 9.24,
+      "min": 0.91,
+      "max": 18.43,
+      "values": [
+       0.91,
+       1.39,
+       1.65,
+       2.39,
+       2.78,
+       2.81,
+       3.02,
+       3.28,
+       5.76,
+       6.21,
+       6.83,
+       7.36,
+       8.64,
+       9.43,
+       10.02,
+       11.05,
+       15.19,
+       18.43
+      ]
+     },
+     "usage_pooled": {
+      "술어": 908,
+      "명사 앞 수식": 209,
+      "명사 뒤 수식": 182,
+      "비정형": 431,
+      "확인 필요": 48,
+      "명사처럼": 9,
+      "전치사처럼": 7,
+      "굳은 표현": 3
+     }
+    },
+    "RD": {
+     "words": {
+      "n": 19,
+      "median": 2715.0,
+      "q1": 2228.5,
+      "q3": 3476.0,
+      "min": 426.0,
+      "max": 4327.0,
+      "values": [
+       426.0,
+       1607.0,
+       1672.0,
+       1829.0,
+       2212.0,
+       2245.0,
+       2372.0,
+       2604.0,
+       2643.0,
+       2715.0,
+       2914.0,
+       2983.0,
+       3047.0,
+       3362.0,
+       3590.0,
+       3722.0,
+       3772.0,
+       3961.0,
+       4327.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 19,
+      "median": 100.48,
+      "q1": 96.31,
+      "q3": 106.4,
+      "min": 92.96,
+      "max": 123.72,
+      "values": [
+       92.96,
+       94.88,
+       95.44,
+       95.77,
+       96.13,
+       96.49,
+       97.22,
+       98.83,
+       100.28,
+       100.48,
+       101.27,
+       101.43,
+       104.45,
+       104.55,
+       108.26,
+       110.47,
+       118.91,
+       119.72,
+       123.72
+      ]
+     },
+     "reporting_per1000": {
+      "n": 19,
+      "median": 4.03,
+      "q1": 3.34,
+      "q3": 5.56,
+      "min": 2.39,
+      "max": 9.39,
+      "values": [
+       2.39,
+       2.73,
+       2.95,
+       2.97,
+       3.28,
+       3.41,
+       3.46,
+       3.56,
+       3.79,
+       4.03,
+       4.42,
+       5.29,
+       5.38,
+       5.42,
+       5.7,
+       6.7,
+       6.85,
+       7.21,
+       9.39
+      ]
+     },
+     "hedge_per1000": {
+      "n": 19,
+      "median": 5.6,
+      "q1": 4.19,
+      "q3": 6.95,
+      "min": 1.61,
+      "max": 18.78,
+      "values": [
+       1.61,
+       1.64,
+       1.85,
+       3.62,
+       4.16,
+       4.22,
+       4.77,
+       5.03,
+       5.38,
+       5.6,
+       5.65,
+       6.18,
+       6.26,
+       6.68,
+       7.22,
+       8.85,
+       8.91,
+       9.09,
+       18.78
+      ]
+     },
+     "booster_per1000": {
+      "n": 19,
+      "median": 1.87,
+      "q1": 1.02,
+      "q3": 2.63,
+      "min": 0.0,
+      "max": 3.94,
+      "values": [
+       0.0,
+       0.0,
+       0.6,
+       0.84,
+       0.89,
+       1.16,
+       1.33,
+       1.78,
+       1.84,
+       1.87,
+       2.26,
+       2.27,
+       2.42,
+       2.52,
+       2.73,
+       2.95,
+       3.07,
+       3.35,
+       3.94
+      ]
+     },
+     "usage_pooled": {
+      "술어": 2786,
+      "명사 앞 수식": 632,
+      "확인 필요": 229,
+      "명사 뒤 수식": 590,
+      "비정형": 1038,
+      "전치사처럼": 23,
+      "굳은 표현": 77,
+      "명사처럼": 35
+     }
+    },
+    "CON": {
+     "words": {
+      "n": 19,
+      "median": 220.0,
+      "q1": 155.5,
+      "q3": 307.5,
+      "min": 109.0,
+      "max": 673.0,
+      "values": [
+       109.0,
+       121.0,
+       125.0,
+       136.0,
+       139.0,
+       172.0,
+       199.0,
+       200.0,
+       217.0,
+       220.0,
+       246.0,
+       257.0,
+       258.0,
+       285.0,
+       330.0,
+       367.0,
+       396.0,
+       469.0,
+       673.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 19,
+      "median": 110.0,
+      "q1": 92.19,
+      "q3": 118.9,
+      "min": 81.71,
+      "max": 158.27,
+      "values": [
+       81.71,
+       88.0,
+       88.24,
+       89.55,
+       91.74,
+       92.64,
+       98.48,
+       101.63,
+       106.06,
+       110.0,
+       111.44,
+       112.28,
+       113.64,
+       115.7,
+       122.09,
+       125.63,
+       131.78,
+       133.64,
+       158.27
+      ]
+     },
+     "reporting_per1000": {
+      "n": 19,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 0.0,
+      "min": 0.0,
+      "max": 8.26,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       1.49,
+       3.51,
+       5.81,
+       8.26
+      ]
+     },
+     "hedge_per1000": {
+      "n": 19,
+      "median": 4.26,
+      "q1": 0.0,
+      "q3": 7.94,
+      "min": 0.0,
+      "max": 14.04,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       4.26,
+       4.55,
+       5.0,
+       7.35,
+       7.75,
+       8.13,
+       9.17,
+       10.1,
+       11.89,
+       14.04
+      ]
+     },
+     "booster_per1000": {
+      "n": 19,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 4.31,
+      "min": 0.0,
+      "max": 10.1,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       1.49,
+       2.13,
+       3.89,
+       4.07,
+       4.55,
+       5.0,
+       5.81,
+       7.35,
+       10.1
+      ]
+     },
+     "usage_pooled": {
+      "술어": 281,
+      "비정형": 120,
+      "명사 앞 수식": 74,
+      "명사 뒤 수식": 44,
+      "확인 필요": 3,
+      "굳은 표현": 6,
+      "명사처럼": 5,
+      "전치사처럼": 1
+     }
+    }
+   },
+   "hidden": false,
+   "paper_list": [
+    {
+     "id": "acs.chemmater.0c00020",
+     "doi": "10.1021/acs.chemmater.0c00020",
+     "title": "Morphologically Tunable MOF Nanosheets in Mixed Matrix Membranes for CO2 Separation",
+     "year": "2020"
+    },
+    {
+     "id": "acs.chemmater.0c00223",
+     "doi": "10.1021/acs.chemmater.0c00223",
+     "title": "Isotype Heterojunction Solar Cells Using n-Type Sb2Se3 Thin Films",
+     "year": "2020"
+    },
+    {
+     "id": "acs.chemmater.0c01266",
+     "doi": "10.1021/acs.chemmater.0c01266",
+     "title": "Mechanochemical Grafting: A Solvent-less Highly Efficient Method for the Synthesis of Hybrid Inorganic–Organic Materials",
+     "year": "2020"
+    },
+    {
+     "id": "acs.chemmater.0c01417",
+     "doi": "10.1021/acs.chemmater.0c01417",
+     "title": "Postsynthetic Framework Contraction Enhances the Two-Photon Absorption Properties of Pillar-Layered Metal–Organic Frameworks",
+     "year": "2020"
+    },
+    {
+     "id": "acs.chemmater.0c01887",
+     "doi": "10.1021/acs.chemmater.0c01887",
+     "title": "Atomic Layer Deposition of PbS Thin Films at Low Temperatures",
+     "year": "2020"
+    },
+    {
+     "id": "acs.chemmater.0c02345",
+     "doi": "10.1021/acs.chemmater.0c02345",
+     "title": "Small Electron Polarons in CsPbBr3: Competition between Electron Localization and Delocalization",
+     "year": "2020"
+    },
+    {
+     "id": "acs.chemmater.0c02449",
+     "doi": "10.1021/acs.chemmater.0c02449",
+     "title": "Luminescence Quenching via Deep Defect States: A Recombination Pathway via Oxygen Vacancies in Ce-Doped YAG",
+     "year": "2020"
+    },
+    {
+     "id": "acs.chemmater.0c02460",
+     "doi": "10.1021/acs.chemmater.0c02460",
+     "title": "Rapid Low-Dimensional Li+ Ion Hopping Processes in Synthetic Hectorite-Type Li0.5[Mg2.5Li0.5]Si4O10F2",
+     "year": "2020"
+    },
+    {
+     "id": "acs.chemmater.0c03326",
+     "doi": "10.1021/acs.chemmater.0c03326",
+     "title": "Tuning between Proper and Hybrid-Improper Mechanisms for Polar Behavior in CsLn2Ti2NbO10 Dion-Jacobson Phases",
+     "year": "2020"
+    },
+    {
+     "id": "acs.chemmater.0c04425",
+     "doi": "10.1021/acs.chemmater.0c04425",
+     "title": "Probing Dynamics of Water Mass Transfer in Organic Porous Photocatalyst Water-Splitting Materials by Neutron Spectroscopy",
+     "year": "2021"
+    },
+    {
+     "id": "acs.chemmater.9b04510",
+     "doi": "10.1021/acs.chemmater.9b04510",
+     "title": "Factors Determining Microporous Material Stability in Water: The Curious Case of SAPO-37",
+     "year": "2020"
+    },
+    {
+     "id": "acs.chemmater.9b05171",
+     "doi": "10.1021/acs.chemmater.9b05171",
+     "title": "In Situ Activation of an Indium(III) Triazenide Precursor for Epitaxial Growth of Indium Nitride by Atomic Layer Deposition",
+     "year": "2020"
+    },
+    {
+     "id": "cm0c04725",
+     "doi": "10.1021/acs.chemmater.0c04725",
+     "title": "Molecular Disorder in Crystalline Thin Films of an Asymmetric BTBT Derivative",
+     "year": "2021"
+    },
+    {
+     "id": "cm0c04761",
+     "doi": "10.1021/acs.chemmater.0c04761",
+     "title": "Ligand Adsorption Energy and the Postpurification Surface Chemistry of Colloidal Metal Chalcogenide Nanocrystals",
+     "year": "2021"
+    },
+    {
+     "id": "cm1c00763",
+     "doi": "10.1021/acs.chemmater.1c00763",
+     "title": "Graphene-Based Electrodes in a Vanadium Redox Flow Battery Produced by Rapid Low-Pressure Combined Gas Plasma Treatments",
+     "year": "2021"
+    },
+    {
+     "id": "cm1c01448",
+     "doi": "10.1021/acs.chemmater.1c01448",
+     "title": "Mode Crystallography Analysis through the Structural Phase Transition and Magnetic Critical Behavior of the Lacunar Spinel GaMo4Se8",
+     "year": "2021"
+    },
+    {
+     "id": "cm1c01486",
+     "doi": "10.1021/acs.chemmater.1c01486",
+     "title": "Cut from the Same Cloth: Enamine-Derived Spirobifluorenes as Hole Transporters for Perovskite Solar Cells",
+     "year": "2021"
+    },
+    {
+     "id": "cm1c02236",
+     "doi": "10.1021/acs.chemmater.1c02236",
+     "title": "Tuning the Optical Absorption of Sn-, Ge-, and Zn-Substituted Cs2AgBiBr6 Double Perovskites: Structural and Electronic Effect…",
+     "year": "2021"
+    },
+    {
+     "id": "cm1c02654",
+     "doi": "10.1021/acs.chemmater.1c02654",
+     "title": "A Milestone in the Chemical Synthesis of Fe3O4 Nanoparticles: Unreported Bulklike Properties Lead to a Remarkable Magnetic Hy…",
+     "year": "2021"
+    }
+   ]
+  },
+  "ACS_IC": {
+   "en": "Inorganic chemistry (Inorg. Chem.)",
+   "ko": "무기화학 (Inorg. Chem.)",
+   "reference_only": false,
+   "papers": 17,
+   "sections": {
+    "INT": {
+     "words": {
+      "n": 17,
+      "median": 565.0,
+      "q1": 458.0,
+      "q3": 638.0,
+      "min": 315.0,
+      "max": 800.0,
+      "values": [
+       315.0,
+       424.0,
+       433.0,
+       450.0,
+       458.0,
+       536.0,
+       543.0,
+       551.0,
+       565.0,
+       581.0,
+       600.0,
+       636.0,
+       638.0,
+       684.0,
+       760.0,
+       780.0,
+       800.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 17,
+      "median": 93.42,
+      "q1": 84.71,
+      "q3": 104.8,
+      "min": 64.67,
+      "max": 125.0,
+      "values": [
+       64.67,
+       72.33,
+       72.6,
+       79.65,
+       84.71,
+       89.34,
+       91.67,
+       92.94,
+       93.42,
+       94.87,
+       98.88,
+       103.75,
+       104.8,
+       106.73,
+       107.94,
+       108.89,
+       125.0
+      ]
+     },
+     "reporting_per1000": {
+      "n": 17,
+      "median": 7.69,
+      "q1": 6.67,
+      "q3": 9.43,
+      "min": 1.46,
+      "max": 25.41,
+      "values": [
+       1.46,
+       1.57,
+       5.6,
+       6.35,
+       6.67,
+       6.67,
+       6.93,
+       7.08,
+       7.69,
+       8.61,
+       9.21,
+       9.21,
+       9.43,
+       10.92,
+       10.97,
+       16.25,
+       25.41
+      ]
+     },
+     "hedge_per1000": {
+      "n": 17,
+      "median": 1.72,
+      "q1": 0.0,
+      "q3": 3.85,
+      "min": 0.0,
+      "max": 9.24,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       1.32,
+       1.46,
+       1.57,
+       1.72,
+       2.22,
+       2.5,
+       3.14,
+       3.85,
+       5.44,
+       5.6,
+       6.55,
+       9.24
+      ]
+     },
+     "booster_per1000": {
+      "n": 17,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 1.67,
+      "min": 0.0,
+      "max": 4.72,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       1.25,
+       1.57,
+       1.57,
+       1.67,
+       1.87,
+       2.18,
+       2.31,
+       4.72
+      ]
+     },
+     "usage_pooled": {
+      "술어": 467,
+      "명사 앞 수식": 135,
+      "명사 뒤 수식": 94,
+      "비정형": 173,
+      "확인 필요": 26,
+      "전치사처럼": 12,
+      "굳은 표현": 3,
+      "명사처럼": 2
+     }
+    },
+    "MET": {
+     "words": {
+      "n": 15,
+      "median": 941.0,
+      "q1": 535.5,
+      "q3": 1207.5,
+      "min": 349.0,
+      "max": 2378.0,
+      "values": [
+       349.0,
+       379.0,
+       466.0,
+       489.0,
+       582.0,
+       749.0,
+       840.0,
+       941.0,
+       1054.0,
+       1097.0,
+       1144.0,
+       1271.0,
+       1283.0,
+       1679.0,
+       2378.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 15,
+      "median": 112.7,
+      "q1": 106.26,
+      "q3": 128.61,
+      "min": 79.16,
+      "max": 147.77,
+      "values": [
+       79.16,
+       95.87,
+       103.15,
+       104.14,
+       108.38,
+       111.21,
+       111.72,
+       112.7,
+       116.9,
+       118.03,
+       128.57,
+       128.65,
+       132.87,
+       134.72,
+       147.77
+      ]
+     },
+     "reporting_per1000": {
+      "n": 15,
+      "median": 6.31,
+      "q1": 3.02,
+      "q3": 10.12,
+      "min": 0.0,
+      "max": 14.31,
+      "values": [
+       0.0,
+       0.87,
+       1.82,
+       2.85,
+       3.19,
+       3.44,
+       6.29,
+       6.31,
+       6.68,
+       8.58,
+       9.53,
+       10.71,
+       12.47,
+       13.19,
+       14.31
+      ]
+     },
+     "usage_pooled": {
+      "술어": 982,
+      "명사 뒤 수식": 175,
+      "비정형": 338,
+      "확인 필요": 47,
+      "명사 앞 수식": 168,
+      "명사처럼": 2,
+      "전치사처럼": 9,
+      "굳은 표현": 7
+     }
+    },
+    "RD": {
+     "words": {
+      "n": 17,
+      "median": 2472.0,
+      "q1": 1642.0,
+      "q3": 2925.0,
+      "min": 980.0,
+      "max": 5626.0,
+      "values": [
+       980.0,
+       1075.0,
+       1368.0,
+       1567.0,
+       1642.0,
+       2321.0,
+       2398.0,
+       2400.0,
+       2472.0,
+       2568.0,
+       2658.0,
+       2696.0,
+       2925.0,
+       3086.0,
+       3353.0,
+       4310.0,
+       5626.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 17,
+      "median": 93.18,
+      "q1": 87.43,
+      "q3": 98.83,
+      "min": 76.02,
+      "max": 120.0,
+      "values": [
+       76.02,
+       80.28,
+       83.15,
+       84.69,
+       87.43,
+       89.76,
+       90.21,
+       92.25,
+       93.18,
+       94.58,
+       98.12,
+       98.52,
+       98.83,
+       102.22,
+       105.31,
+       113.74,
+       120.0
+      ]
+     },
+     "reporting_per1000": {
+      "n": 17,
+      "median": 4.82,
+      "q1": 3.02,
+      "q3": 5.83,
+      "min": 1.88,
+      "max": 7.92,
+      "values": [
+       1.88,
+       2.5,
+       2.68,
+       2.79,
+       3.02,
+       3.06,
+       3.08,
+       4.47,
+       4.82,
+       5.0,
+       5.17,
+       5.26,
+       5.83,
+       5.85,
+       6.5,
+       7.79,
+       7.92
+      ]
+     },
+     "hedge_per1000": {
+      "n": 17,
+      "median": 3.75,
+      "q1": 3.02,
+      "q3": 6.7,
+      "min": 1.46,
+      "max": 11.62,
+      "values": [
+       1.46,
+       1.86,
+       2.09,
+       2.49,
+       3.02,
+       3.06,
+       3.24,
+       3.71,
+       3.75,
+       4.17,
+       4.74,
+       5.45,
+       6.7,
+       7.15,
+       7.69,
+       8.3,
+       11.62
+      ]
+     },
+     "booster_per1000": {
+      "n": 17,
+      "median": 1.11,
+      "q1": 0.68,
+      "q3": 1.86,
+      "min": 0.0,
+      "max": 5.11,
+      "values": [
+       0.0,
+       0.0,
+       0.42,
+       0.6,
+       0.68,
+       0.81,
+       0.83,
+       0.93,
+       1.11,
+       1.46,
+       1.72,
+       1.83,
+       1.86,
+       1.94,
+       2.63,
+       2.67,
+       5.11
+      ]
+     },
+     "usage_pooled": {
+      "비정형": 733,
+      "술어": 2242,
+      "명사 앞 수식": 449,
+      "명사 뒤 수식": 458,
+      "확인 필요": 178,
+      "굳은 표현": 32,
+      "명사처럼": 23,
+      "전치사처럼": 8
+     }
+    },
+    "CON": {
+     "words": {
+      "n": 16,
+      "median": 193.5,
+      "q1": 166.0,
+      "q3": 290.25,
+      "min": 104.0,
+      "max": 676.0,
+      "values": [
+       104.0,
+       144.0,
+       152.0,
+       166.0,
+       166.0,
+       172.0,
+       176.0,
+       192.0,
+       195.0,
+       217.0,
+       266.0,
+       285.0,
+       306.0,
+       378.0,
+       409.0,
+       676.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 16,
+      "median": 104.22,
+      "q1": 78.38,
+      "q3": 115.25,
+      "min": 65.79,
+      "max": 142.05,
+      "values": [
+       65.79,
+       69.77,
+       78.24,
+       78.31,
+       78.4,
+       83.33,
+       94.74,
+       103.17,
+       105.26,
+       107.69,
+       114.38,
+       115.21,
+       115.38,
+       120.48,
+       130.21,
+       142.05
+      ]
+     },
+     "reporting_per1000": {
+      "n": 16,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 0.74,
+      "min": 0.0,
+      "max": 5.68,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       2.96,
+       5.13,
+       5.21,
+       5.68
+      ]
+     },
+     "hedge_per1000": {
+      "n": 16,
+      "median": 0.74,
+      "q1": 0.0,
+      "q3": 6.27,
+      "min": 0.0,
+      "max": 13.82,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       1.48,
+       5.29,
+       5.81,
+       6.02,
+       7.02,
+       9.8,
+       10.42,
+       13.82
+      ]
+     },
+     "booster_per1000": {
+      "n": 16,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 3.95,
+      "min": 0.0,
+      "max": 7.52,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       3.27,
+       3.51,
+       5.29,
+       5.68,
+       6.58,
+       7.52
+      ]
+     },
+     "usage_pooled": {
+      "술어": 198,
+      "명사 앞 수식": 54,
+      "명사 뒤 수식": 47,
+      "확인 필요": 7,
+      "비정형": 80,
+      "굳은 표현": 4,
+      "명사처럼": 2,
+      "전치사처럼": 1
+     }
+    }
+   },
+   "hidden": false,
+   "paper_list": [
+    {
+     "id": "acs.inorgchem.0c00734",
+     "doi": "10.1021/acs.inorgchem.0c00734",
+     "title": "Tweaking the Charge Transfer: Bonding Analysis of Bismuth(III) Complexes with a Flexidentate Phosphane Ligand",
+     "year": "2020"
+    },
+    {
+     "id": "acs.inorgchem.0c00947",
+     "doi": "10.1021/acs.inorgchem.0c00947",
+     "title": "Synthesis and Hydrosilylation of Vinyl-Substituted Open-Cage Silsesquioxanes with Phenylsilanes…",
+     "year": "2020"
+    },
+    {
+     "id": "acs.inorgchem.0c02181",
+     "doi": "10.1021/acs.inorgchem.0c02181",
+     "title": "The Chemistry of Acylgermanes: Triacylgermenolates Represent Valuable Building Blocks for the Synthesis of a Variety of Germanium-Based Photoinitiator…",
+     "year": "2020"
+    },
+    {
+     "id": "acs.inorgchem.0c02357",
+     "doi": "10.1021/acs.inorgchem.0c02357",
+     "title": "Cage Adaption by High-Pressure Synthesis: The Clathrate-I Borosilicide Rb8B8Si38",
+     "year": "2020"
+    },
+    {
+     "id": "acs.inorgchem.0c02696",
+     "doi": "10.1021/acs.inorgchem.0c02696",
+     "title": "Diradical Character of Neutral Heteroleptic Bis(1,2-dithiolene) Metal Complexes: Case Study of [Pd(Me2timdt)(mnt)]…",
+     "year": "2020"
+    },
+    {
+     "id": "ic0c01076",
+     "doi": "10.1021/acs.inorgchem.0c01076",
+     "title": "Synthesis and Reactivity of Fluorinated Triaryl Aluminum Complexes",
+     "year": "2020"
+    },
+    {
+     "id": "ic0c02748",
+     "doi": "10.1021/acs.inorgchem.0c02748",
+     "title": "Tetrasubstituted Selenophenes from the Stepwise Assembly of Molecular Fragments on a Diiron Frame and Final Cleavage of a Bridging Alkylidene",
+     "year": "2020"
+    },
+    {
+     "id": "ic0c02763",
+     "doi": "10.1021/acs.inorgchem.0c02763",
+     "title": "Understanding the Hydrothermal Formation of NaNbO3: Its Full Reaction Scheme and Kinetics",
+     "year": "2021"
+    },
+    {
+     "id": "ic0c03389",
+     "doi": "10.1021/acs.inorgchem.0c03389",
+     "title": "Luminescent cis-Bis(bipyridyl)ruthenium(II) Complexes with 1,2-Azolylamidino Ligands: Photophysical, Electrochemical Studies, and Photocatalyti…",
+     "year": "2021"
+    },
+    {
+     "id": "ic1c00682",
+     "doi": "10.1021/acs.inorgchem.1c00682",
+     "title": "Unveiling the Structural Behavior under Pressure of Filled M0.5Co4Sb12 (M = K, Sr, La, Ce, and Yb) Thermoelectric Sku…",
+     "year": "2021"
+    },
+    {
+     "id": "ic1c01068",
+     "doi": "10.1021/acs.inorgchem.1c01068",
+     "title": "Synergy Effects in Heavy Metal Ion Chelation with Aryl- and Aroyl-Substituted Thiourea Derivatives",
+     "year": "2021"
+    },
+    {
+     "id": "ic1c01249",
+     "doi": "10.1021/acs.inorgchem.1c01249",
+     "title": "Toward Electrochromic Metallopolymers: Synthesis and Properties of Polyazomethines Based on Complexes of Transition-Metal Ions",
+     "year": "2021"
+    },
+    {
+     "id": "ic1c01297",
+     "doi": "10.1021/acs.inorgchem.1c01297",
+     "title": "Self-Assembly and Host–Guest Interactions of Pd3L2 Metallo-cryptophanes with Photoisomerizable Ligands",
+     "year": "2021"
+    },
+    {
+     "id": "ic1c01455",
+     "doi": "10.1021/acs.inorgchem.1c01455",
+     "title": "Bifunctional Paramagnetic and Luminescent Clays Obtained by Incorporation of Gd3+ and Eu3+ Ions in the Saponite Framework",
+     "year": "2021"
+    },
+    {
+     "id": "ic1c02769",
+     "doi": "10.1021/acs.inorgchem.1c02769",
+     "title": "From 1D to 3D Graphitic Carbon Nitride (Melon): A Bottom-Up Route via Crystalline Microporous Templates",
+     "year": "2021"
+    },
+    {
+     "id": "ic9b02912",
+     "doi": "10.1021/acs.inorgchem.9b02912",
+     "title": "Thermal Growth of Au–Fe Heterometallic Carbonyl Clusters Containing N-Heterocyclic Carbene and Phosphine Ligands",
+     "year": "2020"
+    },
+    {
+     "id": "ic9b03613",
+     "doi": "10.1021/acs.inorgchem.9b03613",
+     "title": "Infrared Spectroelectrochemistry of Iron-Nitrosyl Triarylcorroles. Implications for Ligand Noninnocence",
+     "year": "2020"
+    }
+   ]
+  },
+  "ACS_JOC": {
+   "en": "Organic chemistry (J. Org. Chem.)",
+   "ko": "유기화학 (J. Org. Chem.)",
+   "reference_only": false,
+   "papers": 15,
+   "sections": {
+    "INT": {
+     "words": {
+      "n": 15,
+      "median": 349.0,
+      "q1": 304.0,
+      "q3": 394.5,
+      "min": 270.0,
+      "max": 847.0,
+      "values": [
+       270.0,
+       289.0,
+       301.0,
+       303.0,
+       305.0,
+       322.0,
+       329.0,
+       349.0,
+       373.0,
+       391.0,
+       393.0,
+       396.0,
+       462.0,
+       494.0,
+       847.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 15,
+      "median": 99.57,
+      "q1": 88.6,
+      "q3": 114.79,
+      "min": 58.82,
+      "max": 140.74,
+      "values": [
+       58.82,
+       69.77,
+       82.07,
+       88.38,
+       88.83,
+       91.8,
+       95.63,
+       99.57,
+       102.48,
+       107.29,
+       112.53,
+       117.05,
+       118.81,
+       126.01,
+       140.74
+      ]
+     },
+     "reporting_per1000": {
+      "n": 15,
+      "median": 8.1,
+      "q1": 4.18,
+      "q3": 9.48,
+      "min": 0.0,
+      "max": 20.06,
+      "values": [
+       0.0,
+       0.0,
+       2.54,
+       3.3,
+       5.05,
+       7.41,
+       8.04,
+       8.1,
+       8.26,
+       8.66,
+       9.12,
+       9.84,
+       10.23,
+       12.42,
+       20.06
+      ]
+     },
+     "hedge_per1000": {
+      "n": 15,
+      "median": 2.87,
+      "q1": 0.0,
+      "q3": 4.53,
+      "min": 0.0,
+      "max": 9.32,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       2.53,
+       2.54,
+       2.87,
+       3.3,
+       3.46,
+       3.7,
+       5.36,
+       5.9,
+       6.08,
+       9.32
+      ]
+     },
+     "booster_per1000": {
+      "n": 15,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 3.39,
+      "min": 0.0,
+      "max": 6.6,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       2.53,
+       2.56,
+       3.32,
+       3.46,
+       3.7,
+       4.05,
+       6.6
+      ]
+     },
+     "usage_pooled": {
+      "비정형": 112,
+      "술어": 283,
+      "명사 앞 수식": 96,
+      "명사 뒤 수식": 61,
+      "굳은 표현": 7,
+      "전치사처럼": 13,
+      "명사처럼": 5,
+      "확인 필요": 13
+     }
+    },
+    "MET": {
+     "words": {
+      "n": 15,
+      "median": 1603.0,
+      "q1": 1348.5,
+      "q3": 1904.0,
+      "min": 518.0,
+      "max": 3210.0,
+      "values": [
+       518.0,
+       548.0,
+       961.0,
+       1297.0,
+       1400.0,
+       1435.0,
+       1586.0,
+       1603.0,
+       1694.0,
+       1772.0,
+       1799.0,
+       2009.0,
+       2211.0,
+       3166.0,
+       3210.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 15,
+      "median": 127.14,
+      "q1": 110.44,
+      "q3": 142.3,
+      "min": 78.05,
+      "max": 160.64,
+      "values": [
+       78.05,
+       94.98,
+       98.69,
+       108.01,
+       112.86,
+       119.94,
+       126.66,
+       127.14,
+       127.26,
+       131.05,
+       139.0,
+       145.6,
+       147.76,
+       158.76,
+       160.64
+      ]
+     },
+     "reporting_per1000": {
+      "n": 15,
+      "median": 1.77,
+      "q1": 0.59,
+      "q3": 3.41,
+      "min": 0.0,
+      "max": 14.65,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.56,
+       0.62,
+       1.13,
+       1.26,
+       1.77,
+       2.49,
+       2.79,
+       3.17,
+       3.65,
+       3.78,
+       8.57,
+       14.65
+      ]
+     },
+     "usage_pooled": {
+      "비정형": 556,
+      "확인 필요": 226,
+      "술어": 1712,
+      "명사 뒤 수식": 271,
+      "명사 앞 수식": 251,
+      "명사처럼": 8,
+      "전치사처럼": 60,
+      "굳은 표현": 1
+     }
+    },
+    "RD": {
+     "words": {
+      "n": 15,
+      "median": 1050.0,
+      "q1": 886.0,
+      "q3": 1740.5,
+      "min": 532.0,
+      "max": 3287.0,
+      "values": [
+       532.0,
+       672.0,
+       687.0,
+       853.0,
+       919.0,
+       1020.0,
+       1037.0,
+       1050.0,
+       1388.0,
+       1440.0,
+       1530.0,
+       1951.0,
+       1957.0,
+       2775.0,
+       3287.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 15,
+      "median": 113.07,
+      "q1": 103.85,
+      "q3": 120.77,
+      "min": 96.84,
+      "max": 148.47,
+      "values": [
+       96.84,
+       100.9,
+       100.97,
+       101.99,
+       105.71,
+       108.0,
+       111.76,
+       113.07,
+       113.83,
+       116.52,
+       118.04,
+       123.51,
+       134.03,
+       137.22,
+       148.47
+      ]
+     },
+     "reporting_per1000": {
+      "n": 15,
+      "median": 3.52,
+      "q1": 3.02,
+      "q3": 4.9,
+      "min": 0.0,
+      "max": 13.5,
+      "values": [
+       0.0,
+       1.46,
+       2.94,
+       2.98,
+       3.07,
+       3.26,
+       3.27,
+       3.52,
+       3.59,
+       3.6,
+       4.17,
+       5.64,
+       5.71,
+       5.78,
+       13.5
+      ]
+     },
+     "hedge_per1000": {
+      "n": 15,
+      "median": 4.82,
+      "q1": 3.25,
+      "q3": 7.76,
+      "min": 0.0,
+      "max": 12.25,
+      "values": [
+       0.0,
+       0.0,
+       1.96,
+       2.98,
+       3.52,
+       3.81,
+       4.37,
+       4.82,
+       5.62,
+       6.13,
+       6.69,
+       8.82,
+       10.76,
+       11.11,
+       12.25
+      ]
+     },
+     "booster_per1000": {
+      "n": 15,
+      "median": 1.44,
+      "q1": 0.0,
+      "q3": 2.37,
+      "min": 0.0,
+      "max": 5.82,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.65,
+       0.95,
+       1.44,
+       1.96,
+       2.04,
+       2.18,
+       2.56,
+       3.47,
+       3.6,
+       5.82
+      ]
+     },
+     "usage_pooled": {
+      "술어": 1160,
+      "비정형": 537,
+      "명사 앞 수식": 346,
+      "명사 뒤 수식": 215,
+      "확인 필요": 93,
+      "명사처럼": 21,
+      "굳은 표현": 24,
+      "전치사처럼": 14
+     }
+    },
+    "CON": {
+     "words": {
+      "n": 15,
+      "median": 131.0,
+      "q1": 97.5,
+      "q3": 188.0,
+      "min": 70.0,
+      "max": 496.0,
+      "values": [
+       70.0,
+       91.0,
+       94.0,
+       95.0,
+       100.0,
+       101.0,
+       102.0,
+       131.0,
+       131.0,
+       146.0,
+       169.0,
+       207.0,
+       216.0,
+       386.0,
+       496.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 15,
+      "median": 111.11,
+      "q1": 101.71,
+      "q3": 124.29,
+      "min": 69.31,
+      "max": 142.86,
+      "values": [
+       69.31,
+       95.89,
+       98.04,
+       100.59,
+       102.82,
+       105.26,
+       106.87,
+       111.11,
+       117.02,
+       119.17,
+       120.0,
+       128.57,
+       130.43,
+       137.4,
+       142.86
+      ]
+     },
+     "reporting_per1000": {
+      "n": 15,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 5.27,
+      "min": 0.0,
+      "max": 10.08,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       2.59,
+       4.63,
+       5.92,
+       6.85,
+       7.63,
+       10.08
+      ]
+     },
+     "hedge_per1000": {
+      "n": 15,
+      "median": 5.92,
+      "q1": 0.0,
+      "q3": 10.58,
+      "min": 0.0,
+      "max": 19.32,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       5.92,
+       7.63,
+       7.77,
+       10.53,
+       10.64,
+       10.99,
+       16.13,
+       19.32
+      ]
+     },
+     "booster_per1000": {
+      "n": 15,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 4.91,
+      "min": 0.0,
+      "max": 10.53,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       4.63,
+       5.18,
+       7.63,
+       9.66,
+       10.53
+      ]
+     },
+     "usage_pooled": {
+      "술어": 127,
+      "명사 앞 수식": 53,
+      "명사 뒤 수식": 27,
+      "비정형": 69,
+      "굳은 표현": 2,
+      "확인 필요": 5,
+      "전치사처럼": 1,
+      "명사처럼": 1
+     }
+    }
+   },
+   "hidden": false,
+   "paper_list": [
+    {
+     "id": "acs.joc.0c00186",
+     "doi": "10.1021/acs.joc.0c00186",
+     "title": "Synthesis of Cross-Conjugated Polyenes via Palladium-Catalyzed Oxidative C–C Bond Forming Cascade Reactions of Allenes",
+     "year": "2020"
+    },
+    {
+     "id": "acs.joc.0c00617",
+     "doi": "10.1021/acs.joc.0c00617",
+     "title": "Chemo- and Diastereoselective Hydrosilylation of Amorphadiene toward the Synthesis of Artemisinin",
+     "year": "2020"
+    },
+    {
+     "id": "acs.joc.0c00653",
+     "doi": "10.1021/acs.joc.0c00653",
+     "title": "Synthesis of Fluorescent Jasplakinolide Analogues for Live-Cell STED Microscopy of Actin",
+     "year": "2020"
+    },
+    {
+     "id": "acs.joc.0c01564",
+     "doi": "10.1021/acs.joc.0c01564",
+     "title": "Optically Pure Aziridin-2-yl Methanols as Readily Available 1H NMR Sensors for Enantiodiscrimination of α-Racemic Carboxylic Acids…",
+     "year": "2020"
+    },
+    {
+     "id": "acs.joc.0c02385",
+     "doi": "10.1021/acs.joc.0c02385",
+     "title": "Counterion-Enhanced Pd/Enamine Catalysis: Direct Asymmetric α-Allylation of Aldehydes with Allylic Alcohols…",
+     "year": "2020"
+    },
+    {
+     "id": "acs.joc.0c02486",
+     "doi": "10.1021/acs.joc.0c02486",
+     "title": "Stereoselective α-Chlorination of β-Keto Esters in the Presence of Hybrid Amide-Based Cinchona Alkaloids as Catalysts",
+     "year": "2020"
+    },
+    {
+     "id": "acs.joc.9b03279",
+     "doi": "10.1021/acs.joc.9b03279",
+     "title": "Silver-Assisted [3 + 2] Annulation of Nitrones with Isocyanides: Synthesis of 2,3,4-Trisubstituted 1,2,4-Oxadiazolidin-5-ones",
+     "year": "2020"
+    },
+    {
+     "id": "jo0c00175",
+     "doi": "10.1021/acs.joc.0c00175",
+     "title": "Light-Triggered Catalytic Asymmetric Allylic Benzylation with Photogenerated C-Nucleophiles",
+     "year": "2020"
+    },
+    {
+     "id": "jo0c00880",
+     "doi": "10.1021/acs.joc.0c00880",
+     "title": "An Entry to Enantioenriched 3,3-Disubstituted Phthalides through Asymmetric Phase-Transfer-Catalyzed γ-Alkylation",
+     "year": "2020"
+    },
+    {
+     "id": "jo0c02350",
+     "doi": "10.1021/acs.joc.0c02350",
+     "title": "Coupling of Alternating Current to Transition-Metal Catalysis: Examples of Nickel-Catalyzed Cross-Coupling",
+     "year": "2020"
+    },
+    {
+     "id": "jo0c02512",
+     "doi": "10.1021/acs.joc.0c02512",
+     "title": "Basicity-Tuned Reactivity: diaza-[1,2]-Wittig versus diaza-[1,3]-Wittig Rearrangements of 3,4-Dihydro-2H-1,2,3-benzothiadiazine…",
+     "year": "2020"
+    },
+    {
+     "id": "jo0c02882",
+     "doi": "10.1021/acs.joc.0c02882",
+     "title": "The Properties and Role of O-Acyl-ω-hydroxy Fatty Acids and Type I-St and Type II Diesters in the Tear Film Lipid Layer Revealed by a Combin…",
+     "year": "2021"
+    },
+    {
+     "id": "jo1c00333",
+     "doi": "10.1021/acs.joc.1c00333",
+     "title": "From Propargylic Alcohols to Substituted Thiochromenes: gem-Disubstituent Effect in Intramolecular Alkyne Iodo/hydroarylation",
+     "year": "2021"
+    },
+    {
+     "id": "jo1c00755",
+     "doi": "10.1021/acs.joc.1c00755",
+     "title": "Automated Radiosynthesis of cis- and trans-4-[18F]Fluoro-l-proline Using [18F]Fluoride",
+     "year": "2021"
+    },
+    {
+     "id": "jo9b03117",
+     "doi": "10.1021/acs.joc.9b03117",
+     "title": "Synthesis of Cyclohepta[b]indoles by (4 + 3) Cycloaddition of 2-Vinylindoles or 4H-Furo[3,2-b]indoles with Oxyallyl Cations",
+     "year": "2020"
+    }
+   ]
+  },
+  "ACS_JPC_C": {
+   "en": "Physical (J. Phys. Chem. C)",
+   "ko": "물리 (J. Phys. Chem. C)",
+   "reference_only": false,
+   "papers": 16,
+   "sections": {
+    "INT": {
+     "words": {
+      "n": 16,
+      "median": 605.0,
+      "q1": 441.0,
+      "q3": 714.75,
+      "min": 348.0,
+      "max": 1605.0,
+      "values": [
+       348.0,
+       365.0,
+       405.0,
+       426.0,
+       446.0,
+       542.0,
+       557.0,
+       596.0,
+       614.0,
+       653.0,
+       667.0,
+       693.0,
+       780.0,
+       961.0,
+       1058.0,
+       1605.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 16,
+      "median": 99.88,
+      "q1": 93.72,
+      "q3": 109.01,
+      "min": 85.57,
+      "max": 133.23,
+      "values": [
+       85.57,
+       88.46,
+       92.31,
+       92.61,
+       94.1,
+       96.95,
+       98.12,
+       98.63,
+       101.13,
+       102.61,
+       104.67,
+       107.98,
+       112.11,
+       113.58,
+       126.44,
+       133.23
+      ]
+     },
+     "reporting_per1000": {
+      "n": 16,
+      "median": 5.64,
+      "q1": 4.49,
+      "q3": 9.57,
+      "min": 1.63,
+      "max": 24.5,
+      "values": [
+       1.63,
+       2.74,
+       3.12,
+       4.48,
+       4.5,
+       4.69,
+       5.03,
+       5.54,
+       5.75,
+       8.66,
+       8.98,
+       9.35,
+       10.26,
+       11.34,
+       17.28,
+       24.5
+      ]
+     },
+     "hedge_per1000": {
+      "n": 16,
+      "median": 2.65,
+      "q1": 1.83,
+      "q3": 5.38,
+      "min": 0.0,
+      "max": 11.74,
+      "values": [
+       0.0,
+       0.0,
+       0.95,
+       1.8,
+       1.85,
+       2.08,
+       2.24,
+       2.56,
+       2.74,
+       2.87,
+       3.36,
+       4.89,
+       6.85,
+       7.41,
+       11.54,
+       11.74
+      ]
+     },
+     "booster_per1000": {
+      "n": 16,
+      "median": 1.11,
+      "q1": 0.0,
+      "q3": 2.07,
+      "min": 0.0,
+      "max": 3.59,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.95,
+       1.28,
+       1.44,
+       1.53,
+       1.85,
+       2.74,
+       3.0,
+       3.26,
+       3.59
+      ]
+     },
+     "usage_pooled": {
+      "술어": 552,
+      "명사 앞 수식": 168,
+      "명사 뒤 수식": 112,
+      "비정형": 222,
+      "확인 필요": 20,
+      "명사처럼": 10,
+      "굳은 표현": 11,
+      "전치사처럼": 7
+     }
+    },
+    "MET": {
+     "words": {
+      "n": 16,
+      "median": 760.0,
+      "q1": 550.5,
+      "q3": 1072.25,
+      "min": 211.0,
+      "max": 1719.0,
+      "values": [
+       211.0,
+       233.0,
+       333.0,
+       432.0,
+       590.0,
+       648.0,
+       685.0,
+       733.0,
+       787.0,
+       798.0,
+       911.0,
+       1050.0,
+       1139.0,
+       1372.0,
+       1426.0,
+       1719.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 16,
+      "median": 111.34,
+      "q1": 104.83,
+      "q3": 122.18,
+      "min": 96.21,
+      "max": 136.57,
+      "values": [
+       96.21,
+       99.89,
+       102.1,
+       104.19,
+       105.05,
+       107.3,
+       108.87,
+       110.48,
+       112.2,
+       115.74,
+       119.05,
+       122.03,
+       122.63,
+       123.22,
+       123.91,
+       136.57
+      ]
+     },
+     "reporting_per1000": {
+      "n": 16,
+      "median": 2.36,
+      "q1": 0.0,
+      "q3": 5.95,
+      "min": 0.0,
+      "max": 18.96,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.95,
+       1.36,
+       2.19,
+       2.54,
+       4.07,
+       4.63,
+       5.01,
+       8.78,
+       9.01,
+       11.86,
+       18.96
+      ]
+     },
+     "usage_pooled": {
+      "술어": 832,
+      "명사 앞 수식": 174,
+      "확인 필요": 41,
+      "비정형": 284,
+      "명사 뒤 수식": 127,
+      "명사처럼": 4,
+      "굳은 표현": 7,
+      "전치사처럼": 3
+     }
+    },
+    "RD": {
+     "words": {
+      "n": 16,
+      "median": 2374.0,
+      "q1": 1758.5,
+      "q3": 2920.5,
+      "min": 1013.0,
+      "max": 5481.0,
+      "values": [
+       1013.0,
+       1179.0,
+       1567.0,
+       1718.0,
+       1772.0,
+       1943.0,
+       2210.0,
+       2221.0,
+       2527.0,
+       2762.0,
+       2839.0,
+       2912.0,
+       2946.0,
+       3244.0,
+       4072.0,
+       5481.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 16,
+      "median": 103.2,
+      "q1": 97.67,
+      "q3": 107.85,
+      "min": 83.75,
+      "max": 122.14,
+      "values": [
+       83.75,
+       84.66,
+       94.24,
+       95.58,
+       98.37,
+       99.55,
+       99.7,
+       102.03,
+       104.37,
+       104.99,
+       106.79,
+       107.26,
+       109.62,
+       114.01,
+       115.89,
+       122.14
+      ]
+     },
+     "reporting_per1000": {
+      "n": 16,
+      "median": 4.13,
+      "q1": 2.66,
+      "q3": 6.09,
+      "min": 1.28,
+      "max": 7.9,
+      "values": [
+       1.28,
+       1.7,
+       1.8,
+       2.17,
+       2.82,
+       2.91,
+       4.01,
+       4.07,
+       4.2,
+       4.41,
+       5.14,
+       5.66,
+       7.37,
+       7.55,
+       7.75,
+       7.9
+      ]
+     },
+     "hedge_per1000": {
+      "n": 16,
+      "median": 5.07,
+      "q1": 4.05,
+      "q3": 6.02,
+      "min": 1.8,
+      "max": 9.96,
+      "values": [
+       1.8,
+       3.05,
+       3.17,
+       3.83,
+       4.12,
+       4.58,
+       4.98,
+       5.07,
+       5.08,
+       5.24,
+       5.66,
+       5.82,
+       6.63,
+       7.63,
+       8.88,
+       9.96
+      ]
+     },
+     "booster_per1000": {
+      "n": 16,
+      "median": 1.62,
+      "q1": 1.22,
+      "q3": 2.63,
+      "min": 0.45,
+      "max": 5.15,
+      "values": [
+       0.45,
+       0.99,
+       1.03,
+       1.06,
+       1.28,
+       1.36,
+       1.45,
+       1.54,
+       1.7,
+       2.04,
+       2.26,
+       2.46,
+       3.17,
+       4.07,
+       4.47,
+       5.15
+      ]
+     },
+     "usage_pooled": {
+      "술어": 2192,
+      "명사 앞 수식": 513,
+      "비정형": 740,
+      "명사처럼": 32,
+      "명사 뒤 수식": 447,
+      "확인 필요": 165,
+      "굳은 표현": 74,
+      "전치사처럼": 12
+     }
+    },
+    "CON": {
+     "words": {
+      "n": 16,
+      "median": 283.0,
+      "q1": 223.0,
+      "q3": 438.25,
+      "min": 144.0,
+      "max": 477.0,
+      "values": [
+       144.0,
+       161.0,
+       176.0,
+       193.0,
+       233.0,
+       237.0,
+       242.0,
+       278.0,
+       288.0,
+       294.0,
+       297.0,
+       437.0,
+       442.0,
+       451.0,
+       460.0,
+       477.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 16,
+      "median": 96.67,
+      "q1": 84.84,
+      "q3": 114.96,
+      "min": 70.71,
+      "max": 140.29,
+      "values": [
+       70.71,
+       74.66,
+       82.61,
+       84.26,
+       85.03,
+       85.23,
+       86.96,
+       96.11,
+       97.22,
+       103.0,
+       103.63,
+       113.92,
+       118.06,
+       119.5,
+       132.23,
+       140.29
+      ]
+     },
+     "reporting_per1000": {
+      "n": 16,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 2.41,
+      "min": 0.0,
+      "max": 5.68,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       2.1,
+       3.37,
+       4.43,
+       4.58,
+       5.68
+      ]
+     },
+     "hedge_per1000": {
+      "n": 16,
+      "median": 3.77,
+      "q1": 2.15,
+      "q3": 6.39,
+      "min": 0.0,
+      "max": 17.36,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       2.1,
+       2.17,
+       2.26,
+       3.37,
+       3.4,
+       4.13,
+       4.29,
+       4.43,
+       6.21,
+       6.94,
+       10.79,
+       13.73,
+       17.36
+      ]
+     },
+     "booster_per1000": {
+      "n": 16,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 2.55,
+      "min": 0.0,
+      "max": 6.94,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       2.26,
+       3.4,
+       4.43,
+       6.29,
+       6.94
+      ]
+     },
+     "usage_pooled": {
+      "술어": 233,
+      "비정형": 97,
+      "명사 앞 수식": 81,
+      "명사처럼": 7,
+      "확인 필요": 13,
+      "명사 뒤 수식": 42,
+      "굳은 표현": 5
+     }
+    }
+   },
+   "hidden": false,
+   "paper_list": [
+    {
+     "id": "acs.jpcc.0c01724",
+     "doi": "10.1021/acs.jpcc.0c01724",
+     "title": "Reduction of Carbon Impurities in Aluminum Nitride from Time-Resolved Chemical Vapor Deposition Using Trimethylaluminum",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.0c05262",
+     "doi": "10.1021/acs.jpcc.0c05262",
+     "title": "Interplay between Ruthenium Sensitizer and Ruthenium Catalyst in Photoelectrochemical Cells with Different Water-Based Electrolytes",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.0c07053",
+     "doi": "10.1021/acs.jpcc.0c07053",
+     "title": "The Impact of the Molecular Weight on the Nonequilibrium Glass Transition Dynamics of Poly(Phenylmethyl Siloxane) in Cylindrical Nanopores",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.0c07413",
+     "doi": "10.1021/acs.jpcc.0c07413",
+     "title": "X-ray Photoelectron Spectroscopy of Ti3AlC2, Ti3C2Tz, and TiC Provides Evidence for the Electrostatic Interaction between Laminated Layers…",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.0c07531",
+     "doi": "10.1021/acs.jpcc.0c07531",
+     "title": "Early Events in the Photoinduced Electron Transfer between Carbazole and Divinylbenzene in a Silylene-Bridged Donor–Acceptor Compound",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.9b11057",
+     "doi": "10.1021/acs.jpcc.9b11057",
+     "title": "Anisotropy of Spin–Lattice Relaxations in Mononuclear Tb3+ Single-Molecule Magnets",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.9b11594",
+     "doi": "10.1021/acs.jpcc.9b11594",
+     "title": "Small Ionic Radius Limits Magnesium Water Interaction in Amorphous Calcium/Magnesium Carbonates",
+     "year": "2020"
+    },
+    {
+     "id": "jp0c06199",
+     "doi": "10.1021/acs.jpcc.0c06199",
+     "title": "Lateral Size Dependence in FRET between Semiconductor Nanoplatelets and Conjugated Fluorophores",
+     "year": "2020"
+    },
+    {
+     "id": "jp0c09717",
+     "doi": "10.1021/acs.jpcc.0c09717",
+     "title": "Complexity of a Co3O4 System under Ambient-Pressure CO2 Methanation: Influence of Bulk and Surface Properties…",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c00363",
+     "doi": "10.1021/acs.jpcc.1c00363",
+     "title": "Atomic-Scale Structural Characterization of Silver-Doped Phosphate-Based Glasses Prepared by Coacervation",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c00689",
+     "doi": "10.1021/acs.jpcc.1c00689",
+     "title": "Growth of Corrole Films from Solution: A Nanometer-Scale Study at the Real Solid–Liquid Interface",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c00797",
+     "doi": "10.1021/acs.jpcc.1c00797",
+     "title": "Hybrid Spinel Iron Oxide Nanoarchitecture Combining Crystalline and Amorphous Parent Material",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c04287",
+     "doi": "10.1021/acs.jpcc.1c04287",
+     "title": "Local Optical Properties in CVD-Grown Monolayer WS2 Flakes",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c05531",
+     "doi": "10.1021/acs.jpcc.1c05531",
+     "title": "\"Liquid-like\" Water in Clathrates Induced by Host–Guest Hydrogen Bonding",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c06031",
+     "doi": "10.1021/acs.jpcc.1c06031",
+     "title": "Neutron Imaging of Paramagnetic Ions: Electrosorption by Carbon Aerogels and Macroscopic Magnetic Forces",
+     "year": "2021"
+    },
+    {
+     "id": "jp9b10912",
+     "doi": "10.1021/acs.jpcc.9b10912",
+     "title": "Surface and Bulk Distribution of Fluorides and Ti3+ Species in TiO2 Nanosheets: Implications on Charge Carrier Dynamics…",
+     "year": "2020"
+    }
+   ]
+  },
+  "JPC_C_exp": {
+   "en": "Physical–experimental (J. Phys. Chem. C)",
+   "ko": "물리-실험 (J. Phys. Chem. C)",
+   "reference_only": false,
+   "papers": 19,
+   "sections": {
+    "INT": {
+     "words": {
+      "n": 19,
+      "median": 596.0,
+      "q1": 436.5,
+      "q3": 736.5,
+      "min": 348.0,
+      "max": 1605.0,
+      "values": [
+       348.0,
+       365.0,
+       405.0,
+       426.0,
+       427.0,
+       446.0,
+       452.0,
+       542.0,
+       557.0,
+       596.0,
+       614.0,
+       653.0,
+       667.0,
+       693.0,
+       780.0,
+       795.0,
+       961.0,
+       1058.0,
+       1605.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 19,
+      "median": 101.13,
+      "q1": 93.35,
+      "q3": 112.84,
+      "min": 85.57,
+      "max": 133.23,
+      "values": [
+       85.57,
+       88.46,
+       89.31,
+       92.31,
+       92.61,
+       94.1,
+       96.95,
+       98.12,
+       98.63,
+       101.13,
+       102.61,
+       104.67,
+       107.98,
+       112.11,
+       113.58,
+       119.47,
+       124.12,
+       126.44,
+       133.23
+      ]
+     },
+     "reporting_per1000": {
+      "n": 19,
+      "median": 5.75,
+      "q1": 4.49,
+      "q3": 10.79,
+      "min": 0.0,
+      "max": 25.76,
+      "values": [
+       0.0,
+       1.63,
+       2.74,
+       3.12,
+       4.48,
+       4.5,
+       4.69,
+       5.03,
+       5.54,
+       5.75,
+       8.66,
+       8.98,
+       9.35,
+       10.26,
+       11.32,
+       11.34,
+       17.28,
+       24.5,
+       25.76
+      ]
+     },
+     "hedge_per1000": {
+      "n": 19,
+      "median": 2.87,
+      "q1": 1.96,
+      "q3": 5.87,
+      "min": 0.0,
+      "max": 11.74,
+      "values": [
+       0.0,
+       0.0,
+       0.95,
+       1.8,
+       1.85,
+       2.08,
+       2.24,
+       2.56,
+       2.74,
+       2.87,
+       3.36,
+       4.42,
+       4.68,
+       4.89,
+       6.85,
+       7.41,
+       7.55,
+       11.54,
+       11.74
+      ]
+     },
+     "booster_per1000": {
+      "n": 19,
+      "median": 1.44,
+      "q1": 0.0,
+      "q3": 2.87,
+      "min": 0.0,
+      "max": 7.03,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.95,
+       1.28,
+       1.44,
+       1.53,
+       1.85,
+       2.52,
+       2.74,
+       3.0,
+       3.26,
+       3.59,
+       4.42,
+       7.03
+      ]
+     },
+     "usage_pooled": {
+      "술어": 637,
+      "명사 앞 수식": 203,
+      "명사 뒤 수식": 117,
+      "비정형": 269,
+      "확인 필요": 24,
+      "명사처럼": 11,
+      "굳은 표현": 12,
+      "전치사처럼": 8
+     }
+    },
+    "MET": {
+     "words": {
+      "n": 18,
+      "median": 760.0,
+      "q1": 471.5,
+      "q3": 1015.25,
+      "min": 211.0,
+      "max": 1719.0,
+      "values": [
+       211.0,
+       233.0,
+       333.0,
+       362.0,
+       432.0,
+       590.0,
+       648.0,
+       685.0,
+       733.0,
+       787.0,
+       798.0,
+       911.0,
+       911.0,
+       1050.0,
+       1139.0,
+       1372.0,
+       1426.0,
+       1719.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 18,
+      "median": 111.34,
+      "q1": 105.61,
+      "q3": 121.91,
+      "min": 96.21,
+      "max": 136.57,
+      "values": [
+       96.21,
+       99.89,
+       102.1,
+       104.19,
+       105.05,
+       107.3,
+       108.87,
+       109.77,
+       110.48,
+       112.2,
+       115.74,
+       119.05,
+       121.55,
+       122.03,
+       122.63,
+       123.22,
+       123.91,
+       136.57
+      ]
+     },
+     "reporting_per1000": {
+      "n": 18,
+      "median": 3.31,
+      "q1": 0.24,
+      "q3": 8.51,
+      "min": 0.0,
+      "max": 18.96,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.95,
+       1.36,
+       2.19,
+       2.54,
+       4.07,
+       4.63,
+       5.01,
+       7.68,
+       8.78,
+       9.01,
+       11.86,
+       13.81,
+       18.96
+      ]
+     },
+     "usage_pooled": {
+      "술어": 895,
+      "명사 앞 수식": 193,
+      "확인 필요": 46,
+      "비정형": 326,
+      "명사 뒤 수식": 141,
+      "명사처럼": 4,
+      "굳은 표현": 7,
+      "전치사처럼": 4
+     }
+    },
+    "RD": {
+     "words": {
+      "n": 19,
+      "median": 2221.0,
+      "q1": 1837.0,
+      "q3": 2929.0,
+      "min": 1013.0,
+      "max": 5481.0,
+      "values": [
+       1013.0,
+       1179.0,
+       1567.0,
+       1718.0,
+       1772.0,
+       1902.0,
+       1929.0,
+       1943.0,
+       2210.0,
+       2221.0,
+       2527.0,
+       2762.0,
+       2839.0,
+       2912.0,
+       2946.0,
+       3130.0,
+       3244.0,
+       4072.0,
+       5481.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 19,
+      "median": 102.56,
+      "q1": 98.96,
+      "q3": 107.03,
+      "min": 83.75,
+      "max": 122.14,
+      "values": [
+       83.75,
+       84.66,
+       94.24,
+       95.58,
+       98.37,
+       99.55,
+       99.7,
+       101.47,
+       102.03,
+       102.56,
+       104.2,
+       104.37,
+       104.99,
+       106.79,
+       107.26,
+       109.62,
+       114.01,
+       115.89,
+       122.14
+      ]
+     },
+     "reporting_per1000": {
+      "n": 19,
+      "median": 4.07,
+      "q1": 2.5,
+      "q3": 5.4,
+      "min": 1.28,
+      "max": 7.9,
+      "values": [
+       1.28,
+       1.7,
+       1.8,
+       1.92,
+       2.17,
+       2.82,
+       2.91,
+       3.15,
+       4.01,
+       4.07,
+       4.15,
+       4.2,
+       4.41,
+       5.14,
+       5.66,
+       7.37,
+       7.55,
+       7.75,
+       7.9
+      ]
+     },
+     "hedge_per1000": {
+      "n": 19,
+      "median": 5.08,
+      "q1": 4.14,
+      "q3": 6.47,
+      "min": 1.8,
+      "max": 9.96,
+      "values": [
+       1.8,
+       3.05,
+       3.17,
+       3.83,
+       4.12,
+       4.15,
+       4.58,
+       4.98,
+       5.07,
+       5.08,
+       5.24,
+       5.66,
+       5.82,
+       6.31,
+       6.63,
+       7.63,
+       8.81,
+       8.88,
+       9.96
+      ]
+     },
+     "booster_per1000": {
+      "n": 19,
+      "median": 1.54,
+      "q1": 1.17,
+      "q3": 2.81,
+      "min": 0.0,
+      "max": 5.15,
+      "values": [
+       0.0,
+       0.45,
+       0.99,
+       1.03,
+       1.06,
+       1.28,
+       1.28,
+       1.36,
+       1.45,
+       1.54,
+       1.7,
+       2.04,
+       2.26,
+       2.46,
+       3.17,
+       4.07,
+       4.21,
+       4.47,
+       5.15
+      ]
+     },
+     "usage_pooled": {
+      "술어": 2550,
+      "명사 앞 수식": 611,
+      "명사 뒤 수식": 507,
+      "비정형": 904,
+      "명사처럼": 35,
+      "확인 필요": 194,
+      "굳은 표현": 77,
+      "전치사처럼": 15
+     }
+    },
+    "CON": {
+     "words": {
+      "n": 19,
+      "median": 278.0,
+      "q1": 213.0,
+      "q3": 438.0,
+      "min": 144.0,
+      "max": 477.0,
+      "values": [
+       144.0,
+       161.0,
+       176.0,
+       193.0,
+       205.0,
+       221.0,
+       233.0,
+       237.0,
+       242.0,
+       278.0,
+       288.0,
+       294.0,
+       297.0,
+       437.0,
+       439.0,
+       442.0,
+       451.0,
+       460.0,
+       477.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 19,
+      "median": 103.0,
+      "q1": 85.13,
+      "q3": 115.99,
+      "min": 70.71,
+      "max": 140.29,
+      "values": [
+       70.71,
+       74.66,
+       82.61,
+       84.26,
+       85.03,
+       85.23,
+       86.96,
+       96.11,
+       97.22,
+       103.0,
+       103.63,
+       109.34,
+       112.2,
+       113.92,
+       118.06,
+       119.5,
+       126.7,
+       132.23,
+       140.29
+      ]
+     },
+     "reporting_per1000": {
+      "n": 19,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 2.19,
+      "min": 0.0,
+      "max": 5.68,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       2.1,
+       2.28,
+       3.37,
+       4.43,
+       4.58,
+       5.68
+      ]
+     },
+     "hedge_per1000": {
+      "n": 19,
+      "median": 4.13,
+      "q1": 2.14,
+      "q3": 8.35,
+      "min": 0.0,
+      "max": 17.36,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       2.1,
+       2.17,
+       2.26,
+       3.37,
+       3.4,
+       4.13,
+       4.29,
+       4.43,
+       6.21,
+       6.94,
+       9.76,
+       10.79,
+       13.67,
+       13.73,
+       17.36
+      ]
+     },
+     "booster_per1000": {
+      "n": 19,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 1.13,
+      "min": 0.0,
+      "max": 6.94,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       2.26,
+       3.4,
+       4.43,
+       6.29,
+       6.94
+      ]
+     },
+     "usage_pooled": {
+      "술어": 281,
+      "비정형": 116,
+      "명사 앞 수식": 93,
+      "명사처럼": 9,
+      "확인 필요": 14,
+      "명사 뒤 수식": 57,
+      "전치사처럼": 2,
+      "굳은 표현": 6
+     }
+    }
+   },
+   "hidden": true,
+   "paper_list": [
+    {
+     "id": "acs.jpcc.0c01724",
+     "doi": "10.1021/acs.jpcc.0c01724",
+     "title": "Reduction of Carbon Impurities in Aluminum Nitride from Time-Resolved Chemical Vapor Deposition Using Trimethylaluminum",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.0c02291",
+     "doi": "10.1021/acs.jpcc.0c02291",
+     "title": "Length-Dependent Electron Spin Polarization in Oligopeptides and DNA",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.0c05262",
+     "doi": "10.1021/acs.jpcc.0c05262",
+     "title": "Interplay between Ruthenium Sensitizer and Ruthenium Catalyst in Photoelectrochemical Cells with Different Water-Based Electrolytes",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.0c07053",
+     "doi": "10.1021/acs.jpcc.0c07053",
+     "title": "The Impact of the Molecular Weight on the Nonequilibrium Glass Transition Dynamics of Poly(Phenylmethyl Siloxane) in Cylindrical Nanopores",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.0c07413",
+     "doi": "10.1021/acs.jpcc.0c07413",
+     "title": "X-ray Photoelectron Spectroscopy of Ti3AlC2, Ti3C2Tz, and TiC Provides Evidence for the Electrostatic Interaction between Laminated Layers…",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.0c07531",
+     "doi": "10.1021/acs.jpcc.0c07531",
+     "title": "Early Events in the Photoinduced Electron Transfer between Carbazole and Divinylbenzene in a Silylene-Bridged Donor–Acceptor Compound",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.0c11264",
+     "doi": "10.1021/acs.jpcc.0c11264",
+     "title": "Modulating Interfacial Energy Dissipation via Potential-Controlled Ion Trapping",
+     "year": "2021"
+    },
+    {
+     "id": "acs.jpcc.9b11057",
+     "doi": "10.1021/acs.jpcc.9b11057",
+     "title": "Anisotropy of Spin–Lattice Relaxations in Mononuclear Tb3+ Single-Molecule Magnets",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.9b11594",
+     "doi": "10.1021/acs.jpcc.9b11594",
+     "title": "Small Ionic Radius Limits Magnesium Water Interaction in Amorphous Calcium/Magnesium Carbonates",
+     "year": "2020"
+    },
+    {
+     "id": "jp0c06199",
+     "doi": "10.1021/acs.jpcc.0c06199",
+     "title": "Lateral Size Dependence in FRET between Semiconductor Nanoplatelets and Conjugated Fluorophores",
+     "year": "2020"
+    },
+    {
+     "id": "jp0c06750",
+     "doi": "10.1021/acs.jpcc.0c06750",
+     "title": "Can Single Metal Atoms Trapped in Defective h-BN/Cu(111) Improve Electrocatalysis of the H2 Evolution Reaction?",
+     "year": "2020"
+    },
+    {
+     "id": "jp0c09717",
+     "doi": "10.1021/acs.jpcc.0c09717",
+     "title": "Complexity of a Co3O4 System under Ambient-Pressure CO2 Methanation: Influence of Bulk and Surface Properties…",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c00363",
+     "doi": "10.1021/acs.jpcc.1c00363",
+     "title": "Atomic-Scale Structural Characterization of Silver-Doped Phosphate-Based Glasses Prepared by Coacervation",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c00689",
+     "doi": "10.1021/acs.jpcc.1c00689",
+     "title": "Growth of Corrole Films from Solution: A Nanometer-Scale Study at the Real Solid–Liquid Interface",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c00797",
+     "doi": "10.1021/acs.jpcc.1c00797",
+     "title": "Hybrid Spinel Iron Oxide Nanoarchitecture Combining Crystalline and Amorphous Parent Material",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c04287",
+     "doi": "10.1021/acs.jpcc.1c04287",
+     "title": "Local Optical Properties in CVD-Grown Monolayer WS2 Flakes",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c05531",
+     "doi": "10.1021/acs.jpcc.1c05531",
+     "title": "\"Liquid-like\" Water in Clathrates Induced by Host–Guest Hydrogen Bonding",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c06031",
+     "doi": "10.1021/acs.jpcc.1c06031",
+     "title": "Neutron Imaging of Paramagnetic Ions: Electrosorption by Carbon Aerogels and Macroscopic Magnetic Forces",
+     "year": "2021"
+    },
+    {
+     "id": "jp9b10912",
+     "doi": "10.1021/acs.jpcc.9b10912",
+     "title": "Surface and Bulk Distribution of Fluorides and Ti3+ Species in TiO2 Nanosheets: Implications on Charge Carrier Dynamics…",
+     "year": "2020"
+    }
+   ]
+  },
+  "JPC_C_comp": {
+   "en": "Physical–computational (J. Phys. Chem. C)",
+   "ko": "물리-계산 (J. Phys. Chem. C)",
+   "reference_only": true,
+   "papers": 10,
+   "sections": {
+    "INT": {
+     "words": {
+      "n": 10,
+      "median": 855.0,
+      "q1": 627.5,
+      "q3": 1015.25,
+      "min": 492.0,
+      "max": 1846.0,
+      "values": [
+       492.0,
+       596.0,
+       603.0,
+       701.0,
+       795.0,
+       915.0,
+       1007.0,
+       1018.0,
+       1500.0,
+       1846.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 10,
+      "median": 101.75,
+      "q1": 99.31,
+      "q3": 104.65,
+      "min": 85.37,
+      "max": 109.29,
+      "values": [
+       85.37,
+       89.31,
+       99.13,
+       99.86,
+       100.67,
+       102.82,
+       103.28,
+       105.11,
+       105.33,
+       109.29
+      ]
+     },
+     "reporting_per1000": {
+      "n": 10,
+      "median": 8.62,
+      "q1": 6.76,
+      "q3": 10.06,
+      "min": 4.37,
+      "max": 12.67,
+      "values": [
+       4.37,
+       4.97,
+       6.63,
+       7.13,
+       8.39,
+       8.84,
+       9.75,
+       10.16,
+       11.32,
+       12.67
+      ]
+     },
+     "hedge_per1000": {
+      "n": 10,
+      "median": 3.28,
+      "q1": 2.38,
+      "q3": 4.52,
+      "min": 0.0,
+      "max": 9.99,
+      "values": [
+       0.0,
+       0.0,
+       2.19,
+       2.98,
+       3.25,
+       3.32,
+       3.33,
+       4.91,
+       7.55,
+       9.99
+      ]
+     },
+     "booster_per1000": {
+      "n": 10,
+      "median": 1.54,
+      "q1": 0.25,
+      "q3": 2.39,
+      "min": 0.0,
+      "max": 5.03,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.98,
+       1.43,
+       1.66,
+       2.03,
+       2.52,
+       2.67,
+       5.03
+      ]
+     },
+     "usage_pooled": {
+      "술어": 464,
+      "명사 뒤 수식": 94,
+      "비정형": 214,
+      "확인 필요": 27,
+      "명사 앞 수식": 150,
+      "굳은 표현": 8,
+      "전치사처럼": 3,
+      "명사처럼": 5
+     }
+    },
+    "MET": {
+     "words": {
+      "n": 9,
+      "median": 832.0,
+      "q1": 407.0,
+      "q3": 1278.0,
+      "min": 362.0,
+      "max": 2181.0,
+      "values": [
+       362.0,
+       368.0,
+       407.0,
+       711.0,
+       832.0,
+       900.0,
+       1278.0,
+       1556.0,
+       2181.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 9,
+      "median": 108.7,
+      "q1": 102.67,
+      "q3": 118.94,
+      "min": 88.05,
+      "max": 122.22,
+      "values": [
+       88.05,
+       101.33,
+       102.67,
+       105.65,
+       108.7,
+       115.38,
+       118.94,
+       121.55,
+       122.22
+      ]
+     },
+     "reporting_per1000": {
+      "n": 9,
+      "median": 4.5,
+      "q1": 3.33,
+      "q3": 9.83,
+      "min": 1.41,
+      "max": 16.3,
+      "values": [
+       1.41,
+       1.56,
+       3.33,
+       3.67,
+       4.5,
+       9.62,
+       9.83,
+       13.81,
+       16.3
+      ]
+     },
+     "usage_pooled": {
+      "명사 뒤 수식": 106,
+      "술어": 463,
+      "비정형": 197,
+      "확인 필요": 28,
+      "명사 앞 수식": 118,
+      "명사처럼": 2,
+      "굳은 표현": 3,
+      "전치사처럼": 2
+     }
+    },
+    "RD": {
+     "words": {
+      "n": 10,
+      "median": 3258.5,
+      "q1": 1930.0,
+      "q3": 3643.0,
+      "min": 1279.0,
+      "max": 6655.0,
+      "values": [
+       1279.0,
+       1719.0,
+       1721.0,
+       2557.0,
+       3130.0,
+       3387.0,
+       3502.0,
+       3690.0,
+       4213.0,
+       6655.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 10,
+      "median": 102.76,
+      "q1": 97.76,
+      "q3": 105.18,
+      "min": 65.25,
+      "max": 113.75,
+      "values": [
+       65.25,
+       93.76,
+       96.46,
+       101.68,
+       102.56,
+       102.97,
+       104.07,
+       105.55,
+       111.08,
+       113.75
+      ]
+     },
+     "reporting_per1000": {
+      "n": 10,
+      "median": 2.68,
+      "q1": 2.02,
+      "q3": 4.05,
+      "min": 0.6,
+      "max": 5.47,
+      "values": [
+       0.6,
+       1.77,
+       1.92,
+       2.32,
+       2.37,
+       2.98,
+       4.0,
+       4.07,
+       4.69,
+       5.47
+      ]
+     },
+     "hedge_per1000": {
+      "n": 10,
+      "median": 4.42,
+      "q1": 3.25,
+      "q3": 5.25,
+      "min": 1.16,
+      "max": 6.0,
+      "values": [
+       1.16,
+       2.35,
+       3.16,
+       3.54,
+       4.15,
+       4.69,
+       4.75,
+       5.42,
+       5.82,
+       6.0
+      ]
+     },
+     "booster_per1000": {
+      "n": 10,
+      "median": 1.9,
+      "q1": 1.3,
+      "q3": 2.35,
+      "min": 0.0,
+      "max": 3.8,
+      "values": [
+       0.0,
+       1.16,
+       1.28,
+       1.36,
+       1.48,
+       2.32,
+       2.35,
+       2.35,
+       3.61,
+       3.8
+      ]
+     },
+     "usage_pooled": {
+      "술어": 1630,
+      "명사 앞 수식": 456,
+      "비정형": 592,
+      "명사 뒤 수식": 376,
+      "확인 필요": 118,
+      "명사처럼": 23,
+      "굳은 표현": 47,
+      "전치사처럼": 10
+     }
+    },
+    "CON": {
+     "words": {
+      "n": 9,
+      "median": 407.0,
+      "q1": 306.0,
+      "q3": 561.0,
+      "min": 144.0,
+      "max": 625.0,
+      "values": [
+       144.0,
+       233.0,
+       306.0,
+       354.0,
+       407.0,
+       439.0,
+       561.0,
+       568.0,
+       625.0
+      ]
+     },
+     "verbs_per1000": {
+      "n": 9,
+      "median": 111.11,
+      "q1": 98.04,
+      "q3": 115.88,
+      "min": 89.6,
+      "max": 125.0,
+      "values": [
+       89.6,
+       90.91,
+       98.04,
+       109.34,
+       111.11,
+       115.82,
+       115.88,
+       123.24,
+       125.0
+      ]
+     },
+     "reporting_per1000": {
+      "n": 9,
+      "median": 0.0,
+      "q1": 0.0,
+      "q3": 2.46,
+      "min": 0.0,
+      "max": 6.94,
+      "values": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       2.28,
+       2.46,
+       4.29,
+       6.94
+      ]
+     },
+     "hedge_per1000": {
+      "n": 9,
+      "median": 7.37,
+      "q1": 7.04,
+      "q3": 12.88,
+      "min": 4.8,
+      "max": 27.78,
+      "values": [
+       4.8,
+       6.54,
+       7.04,
+       7.13,
+       7.37,
+       8.47,
+       12.88,
+       13.67,
+       27.78
+      ]
+     },
+     "booster_per1000": {
+      "n": 9,
+      "median": 4.29,
+      "q1": 1.6,
+      "q3": 6.54,
+      "min": 0.0,
+      "max": 9.83,
+      "values": [
+       0.0,
+       0.0,
+       1.6,
+       2.82,
+       4.29,
+       5.28,
+       6.54,
+       6.94,
+       9.83
+      ]
+     },
+     "usage_pooled": {
+      "명사 뒤 수식": 46,
+      "비정형": 80,
+      "술어": 187,
+      "굳은 표현": 3,
+      "명사 앞 수식": 58,
+      "명사처럼": 3,
+      "확인 필요": 10,
+      "전치사처럼": 2
+     }
+    }
+   },
+   "hidden": false,
+   "paper_list": [
+    {
+     "id": "acs.jpcc.0c02246",
+     "doi": "10.1021/acs.jpcc.0c02246",
+     "title": "Does Confinement Enable Methane Hydrate Growth at Low Pressures? Insights from Molecular Dynamics Simulations",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.0c03064",
+     "doi": "10.1021/acs.jpcc.0c03064",
+     "title": "Charge Transport in Disordered Organic Solids: Refining the Bässler Equation with High-Precision Simulation Results",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.0c05974",
+     "doi": "10.1021/acs.jpcc.0c05974",
+     "title": "Deconstructing the Enhancing Effect on CO2 Activation in the Electric Double Layer with EVB Dynamic Reaction Modeling",
+     "year": "2020"
+    },
+    {
+     "id": "acs.jpcc.0c06726",
+     "doi": "10.1021/acs.jpcc.0c06726",
+     "title": "Surface-Confined Metal–Organic Precursors Comprising Naphthalene-Like Derivatives with Differently Distributed Halogen Substituents: A Monte Carlo …",
+     "year": "2020"
+    },
+    {
+     "id": "jp0c06750",
+     "doi": "10.1021/acs.jpcc.0c06750",
+     "title": "Can Single Metal Atoms Trapped in Defective h-BN/Cu(111) Improve Electrocatalysis of the H2 Evolution Reaction?",
+     "year": "2020"
+    },
+    {
+     "id": "jp0c11038",
+     "doi": "10.1021/acs.jpcc.0c11038",
+     "title": "Influence of the Contact Geometry and Counterions on the Current Flow and Charge Transfer in Polyoxometalate Molecular Junctions: A Density Functio…",
+     "year": "2021"
+    },
+    {
+     "id": "jp0c11485",
+     "doi": "10.1021/acs.jpcc.0c11485",
+     "title": "Large-Scale Screening of Interface Parameters in the WC/W System Using Classical Force Field and First-Principles Calculations",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c02510",
+     "doi": "10.1021/acs.jpcc.1c02510",
+     "title": "Computational Optimization of the Size of Gold Nanorods for Single-Molecule Plasmonic Biosensors Operating in Scattering and Absorption Modes",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c04397",
+     "doi": "10.1021/acs.jpcc.1c04397",
+     "title": "Tuning the Electronic Properties of Graphane via Hydroxylation: An Ab Initio Study",
+     "year": "2021"
+    },
+    {
+     "id": "jp1c05230",
+     "doi": "10.1021/acs.jpcc.1c05230",
+     "title": "Composition Related Tunability of “Green” Core/Shell Quantum Dots for Photovoltaic Applications from First Principles",
+     "year": "2021"
+    }
+   ]
+  }
+ }
+}

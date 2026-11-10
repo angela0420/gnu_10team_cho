@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>논문 글쓰기 진단</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* 2026-11-09 디자인 시안(포털과 같은 청록·남색·황토, 원소 칸 모티프) 적용. 빨강은 쓰지 않는다. */
+:root{--bg:#FAFCFC;--card:#FFFFFF;--sunk:#F3F7F8;--band:#EFF6F5;--ink:#13233A;--navy:#13233A;--muted:#4E5E6B;--faint:#7C8A94;--line:#DCE5E7;--line2:#C8D4D7;
+--accent:#0E6F68;--accent-hover:#0A5A54;--accent-soft:#E2F2EF;--on-accent:#FFFFFF;--mark:#D7F5E9;
+--out:#9A6312;--out-soft:#FBF1E1;--c1:#0E6F68;--c2:#2F4B8C;--c3:#9A6312;--c4:#6B7780;
+--sans:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+--serif:"Source Serif 4",Georgia,"Times New Roman",serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#0F1A22;--card:#15232D;--sunk:#12202A;--band:#132A2C;--ink:#E7EEF2;--navy:#E7EEF2;--muted:#A9B8C2;--faint:#7D8D98;--line:#263843;--line2:#33495566;
+--accent:#4FC2B4;--accent-hover:#74D3C7;--accent-soft:#173A38;--on-accent:#0F1A22;--mark:#1D4A44;--out:#E0A956;--out-soft:#3A2E1A;--c1:#4FC2B4;--c2:#8FA9EC;--c3:#E0A956;--c4:#93A1AB}}
+*{box-sizing:border-box}
+html{scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 var(--sans);-webkit-font-smoothing:antialiased;word-break:keep-all}
+button,select,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:10px 32px;min-height:64px}
+header .brand span,.seg button{white-space:nowrap}
+header .brand{flex:1;display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--ink)}
+header .brand span{font-weight:700;font-size:18px;letter-spacing:-.01em}
+header .brand small{font-size:13px;color:var(--faint)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;padding:2px;background:var(--card)}
+.seg button{border:0;background:transparent;padding:4px 12px;border-radius:6px;font-size:14px;color:var(--muted);cursor:pointer}
+.seg button.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
+main{max-width:1200px;margin:0 auto;padding:0 32px 40px}
+.hero{padding:56px 0 36px}
+.hero h2{font-size:clamp(28px,3.6vw,40px);letter-spacing:-.025em;line-height:1.3;font-weight:700;margin:0 0 12px;color:var(--ink)}
+.hero .sub,.hero .desc{margin:0;color:var(--muted);font-size:17px;max-width:46em}
+/* 01~03 세로선 단계 */
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:20px}
+.card.step{position:relative;background:transparent;border:0;border-radius:0;padding:4px 0 48px 76px;margin:0}
+.card.step::before{content:"";position:absolute;left:23px;top:48px;bottom:0;width:1.5px;background:var(--line)}
+.card.step h2,h2.step{font-size:24px;letter-spacing:-.02em;line-height:1.35;font-weight:700;margin:0 0 6px;color:var(--ink);display:flex;align-items:center;gap:12px}
+.card.step h2 .stepno{position:absolute;left:4px;top:0}
+h2.step{position:relative;padding-left:76px;margin:0 0 16px!important}
+h2.step .stepno{position:absolute;left:4px;top:-4px}
+.stepno{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--accent);color:var(--on-accent);background:var(--accent);display:inline-grid;place-items:center;font-weight:700;font-size:15px;font-variant-numeric:tabular-nums}
+.step select{width:100%;max-width:680px;height:52px;padding:0 16px;background:var(--card);border:1.5px solid var(--line2);border-radius:10px;font-size:16.5px;cursor:pointer}
+.step select:hover{border-color:var(--accent)}
+.step .note{max-width:680px}
+/* 2×2 원고 입력 */
+#inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:12px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.box:focus-within{border-color:var(--accent)}
+.box-head{display:flex;justify-content:space-between;align-items:baseline;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--sunk)}
+.box-head label{font-weight:600;font-size:15px}
+.box-head span{font-size:13px;color:var(--faint);font-variant-numeric:tabular-nums}
+.box textarea{border:0;resize:vertical;min-height:180px;padding:14px 16px;background:transparent;font:15.5px/1.65 var(--serif);outline:none;color:var(--ink);width:100%}
+.box textarea::placeholder{font-family:var(--sans);color:var(--faint)}
+.go-row{margin-top:24px}
+.row{display:flex;gap:12px 16px;align-items:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;height:50px;padding:0 26px;background:var(--accent);color:var(--on-accent);border:0;border-radius:10px;font-size:16.5px;font-weight:600;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--accent-hover)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line2);font-weight:500;font-size:15.5px;padding:0 20px}
+.btn.ghost:hover{border-color:var(--faint);color:var(--ink)}
+.btn:disabled{opacity:.5;cursor:wait}
+.note{font-size:14px;color:var(--muted)}
+.muted{color:var(--faint)}
+.warn{display:flex;gap:10px;align-items:flex-start;background:var(--out-soft);color:var(--ink);border-radius:8px;padding:10px 14px;font-size:14.5px;margin:12px 0;max-width:820px}
+.warn::before{content:"";flex:0 0 6px;height:6px;margin-top:9px;border-radius:50%;background:var(--out)}
+.linkish{background:none;border:0;color:var(--accent);cursor:pointer;font:inherit;padding:0;text-decoration:underline;text-underline-offset:3px;text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+/* ▸ 설명 단추 */
+.i,.ibtn{display:inline-flex;align-items:center;gap:2px;border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);color:var(--accent);border-radius:6px;padding:0 7px;height:21px;
+font:600 11.5px/1 var(--sans);cursor:pointer;background:transparent;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.i:hover,.ibtn:hover,.i[aria-expanded=true]{background:var(--accent-soft)}
+.ex{border-left:3px solid var(--accent);background:var(--band);border-radius:0 8px 8px 0;padding:8px 12px;margin:6px 0;font-size:14px}
+.ex b{display:block;margin-bottom:2px}
+.ex .en{font-family:var(--serif)}
+.ex .en+.ko{margin-top:4px;padding-top:4px;border-top:1px dashed var(--line)}
+.ko2{display:block;font-size:11.5px;font-weight:400;color:var(--faint)}
+.guide,.hint{font-size:13.5px;color:var(--faint);margin:8px 0 12px}
+/* 결과: 절별 개요 탭 */
+#overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden;margin:0 0 24px}
+.ov{text-align:left;background:transparent;border:0;border-right:1px solid var(--line);padding:16px 18px 18px;cursor:pointer;display:flex;flex-direction:column;gap:6px}
+.ov:last-child{border-right:0}
+.ov:hover{background:var(--sunk)}
+.ov[aria-selected=true]{background:var(--band);box-shadow:inset 0 -3px 0 var(--accent)}
+.ov .t{font-weight:700;font-size:16px}
+.ov .w,.ov .o{font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ov .w b{color:var(--ink);font-weight:600}
+.ov .o b{color:var(--out);font-weight:600}
+.ov[disabled]{cursor:default;opacity:.5}
+.secttl{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px 16px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:8px}
+.secttl h2{margin:0;font-size:20px;letter-spacing:-.015em}
+.secttl .muted{font-size:14px;color:var(--muted)}
+#results>section.card{background:transparent;border:0;padding:0;margin:0 0 32px}
+h3{font-size:16.5px;font-weight:700;margin:36px 0 10px}
+/* 표 */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.tablewrap table{min-width:860px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.5}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;font-weight:600;color:var(--faint);background:var(--sunk);white-space:nowrap}
+tbody tr:last-child>td{border-bottom:0}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.exrow td{border-bottom:0;padding-top:0;padding-bottom:0}
+tr.exrow td>div{position:sticky;left:0;max-width:min(1100px,calc(100vw - 72px));white-space:normal}
+tr.exrow td>div:not(:empty){padding:4px 0 10px}
+/* 판정: 빨강 없이 글자 색으로 */
+.tag{display:inline-block;font-size:13.5px;white-space:nowrap;color:var(--muted)}
+.typical{color:var(--muted)}
+.higher,.lower{color:var(--out);font-weight:600}
+.beyond_high,.beyond_low{color:var(--out);font-weight:700}
+.na{color:var(--faint)}
+/* ①~④ 분류 배지(원소 칸) */
+.cat{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font-size:13.5px}
+.cat .el{width:22px;height:22px;border-radius:4px;border:1.5px solid var(--c);color:var(--c);background:color-mix(in srgb,var(--c) 10%,transparent);display:grid;place-items:center;font:700 12px/1 var(--mono)}
+.cat .lb{color:var(--c);font-weight:600}
+.L-genre{--c:var(--c1)}.L-field{--c:var(--c2)}.L-rare{--c:var(--c3)}.L-none{--c:var(--c4)}
+.cats{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 12px}
+/* 위치 눈금: 전체 범위(회색 선)·비교 범위(청록 띠)·중앙값(눈금)·원고(점) */
+.bar{position:relative;width:220px;height:22px}
+.bar .track{position:absolute;top:10px;height:2px;background:var(--line2);border-radius:1px}
+.bar .iqr{position:absolute;top:5px;height:12px;background:color-mix(in srgb,var(--accent) 22%,transparent);border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);border-radius:3px}
+.bar .med{position:absolute;top:2px;width:2px;height:18px;background:var(--accent)}
+.bar .you{position:absolute;top:4px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--ink);border:2px solid var(--card);z-index:2}
+.bar .you.out{background:var(--out)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:13px;color:var(--muted);margin:10px 0 0;align-items:center}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block}
+.sw.trk{width:22px;height:2px;background:var(--line2)}
+.sw.iqr{width:22px;height:12px;background:color-mix(in srgb,var(--accent) 22%,transparent);border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);border-radius:3px}
+.sw.med{width:2px;height:14px;background:var(--accent)}
+.sw.you{width:12px;height:12px;border-radius:50%;background:var(--ink)}
+/* 쓰임 알약 */
+.chip{display:inline-block;font-size:12.5px;border:1px solid var(--line2);border-radius:999px;padding:0 8px;margin:1px 3px 1px 0;white-space:nowrap;color:var(--muted);background:var(--card)}
+/* 동사 이름: 펼침 꺾쇠 */
+button.vbtn{display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:0;cursor:pointer;font:600 16.5px/1.4 var(--serif);color:var(--ink);text-decoration:none}
+button.vbtn::before{content:"";width:7px;height:7px;border-right:1.5px solid var(--faint);border-bottom:1.5px solid var(--faint);transform:rotate(-45deg);transition:transform .15s;margin-right:2px}
+button.vbtn[aria-expanded=true]::before{transform:rotate(45deg)}
+button.vbtn:hover{color:var(--accent)}
+tbody td:first-child:has(.vbtn){white-space:nowrap}
+.ext{font-size:12px;color:var(--faint);margin-left:4px;text-decoration:none}
+.nl{font-size:12px;color:var(--out);font-weight:600;margin-top:4px;white-space:nowrap}
+.nlt{color:var(--out);font-weight:600}
+/* KWIC 줄 */
+.kwic{background:var(--sunk);border-radius:8px;padding:6px 14px 8px;margin:4px 0;overflow-x:auto}
+.kwic .kl{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto;column-gap:8px;align-items:baseline;font:13.5px/1.9 var(--mono);color:var(--muted);cursor:pointer;border-bottom:1px dashed var(--line);min-width:640px}
+.kwic .kl:has(.s){grid-template-columns:4ch minmax(0,1fr) auto minmax(0,1fr) auto}
+.kwic .kl:last-child{border-bottom:0}
+.kwic .kl:hover{background:var(--accent-soft)}
+.kwic .l{white-space:nowrap;overflow:hidden;display:flex;justify-content:flex-end}
+.kwic .r{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kwic .k{color:var(--ink);font-weight:500;background:var(--mark);padding:0 5px;border-radius:3px;cursor:pointer}
+.kwic .k:hover{text-decoration:underline dotted;text-underline-offset:3px}
+.vguide{font-size:13px;color:var(--faint);margin:0 0 10px}
+.kwic .s{color:var(--accent);font-weight:600;font-family:var(--sans);font-size:12px}
+.kwic .kl .muted{font:12px var(--sans)}
+.kwic .full{font:15px/1.65 var(--serif);color:var(--ink);margin:2px 0 8px;padding:8px 0 8px 14px;border-left:2px solid var(--accent);white-space:normal}
+.kwic .full mark{background:var(--mark);color:var(--ink);font-weight:700;border-radius:3px;padding:0 3px;box-shadow:inset 0 -2px 0 var(--accent)}
+.ev{font-size:14px;margin:4px 0;font-family:var(--serif)}
+.selfnote{margin:6px 0 2px;font-size:13px;color:var(--muted)}
+.selfnote .linkish{font-size:13px;text-align:left}
+.selfnote .en{display:block;font-size:12px;color:var(--faint);font-family:var(--serif)}
+.ev mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 2px}
+/* 분석 결과 풀이 */
+.ctitle{margin:18px 0 0;font-size:15px;color:var(--ink)}
+.comm{border-left:3px solid var(--accent);padding:2px 0 2px 18px;margin:10px 0}
+.comm>b{display:none}
+.comm p{margin:0 0 10px;font-size:15px;line-height:1.7}
+.comm b.sub{display:block;font-weight:600;font-size:14px;margin:16px 0 6px;color:var(--ink)}
+.comm p.cnote{font-size:13px;color:var(--faint);margin:6px 0 12px}
+.comm p.en{font-family:var(--serif)}
+.comm p.en+p.ko{margin-top:-6px;color:var(--muted)}
+/* 기준 자료(네 저널 공통) — 접어 둠 */
+details#commonfold{border:1px solid var(--line);border-radius:12px;background:var(--card);margin:0 0 28px}
+details#commonfold>summary{cursor:pointer;padding:14px 18px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+details#commonfold>summary::-webkit-details-marker{display:none}
+details#commonfold>summary span{font-weight:400;font-size:13.5px;color:var(--faint)}
+details#commonfold[open]>summary{border-bottom:1px solid var(--line)}
+#commonbox{border:0;background:transparent;padding:14px 18px 18px;margin:0}
+#commonbox>h2{display:none}
+#commonbox table{min-width:0}
+#commonbox .tablewrap{margin:0 0 12px}
+#commonbox td.vs{font-family:var(--serif);font-size:15.5px}
+#commonbox details{margin-top:10px}
+#commonbox summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:14.5px}
+/* 내 글 살펴보기 */
+#explore{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:40px 0 0;margin-top:24px}
+#explore h2{font-size:22px;letter-spacing:-.015em}
+.wl{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.wl button{font:13px var(--mono);border:1px solid var(--line);border-radius:6px;padding:2px 9px;background:var(--card);cursor:pointer;color:var(--muted)}
+.wl button b{font-weight:400;color:var(--faint);margin-left:4px}
+.wl button:hover{border-color:var(--accent);color:var(--ink)}
+.wl button.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+#explore select,#xq{height:40px;border:1px solid var(--line2);border-radius:8px;background:var(--card);padding:0 12px;font-size:14.5px}
+#xq{width:220px;font-family:var(--mono)}
+#savebox{background:var(--band);border:0}
+#savebox h2{font-size:20px}
+details.fold{padding:0}
+details.fold summary{cursor:pointer;padding:14px 18px;font-weight:600;color:var(--ink)}
+details.fold>div{padding:0 18px 14px}
+#version{font:12px var(--mono);color:var(--faint)}
+/* 결과 저장 영역 */
+#savebox{padding:24px}
+#savebox .save-g{max-width:860px;font-size:14.5px}
+#savebox .save-row{margin:12px 0}
+#savebox select{height:40px;border:1px solid var(--line2);border-radius:8px;background:var(--card);padding:0 12px;font-size:14.5px}
+#savebox details.save-p summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:14.5px;margin-top:8px}
+#savebox pre{white-space:pre-wrap;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font:13.5px/1.65 var(--sans);max-width:860px}
+/* 원고 정보(선택) */
+details.mi{margin:14px 0 0;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+details.mi summary{cursor:pointer;padding:10px 16px;font-weight:600;font-size:15px}
+details.mi .mi-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px;padding:0 16px 14px}
+details.mi .mi-body .note,details.mi .mi-body .wide{grid-column:1/-1}
+details.mi label{display:flex;flex-direction:column;gap:4px;font-size:14px;font-weight:600}
+details.mi input,details.mi select,details.mi textarea{font-weight:400;border:1px solid var(--line2);border-radius:8px;background:var(--bg);padding:8px 10px;font-size:14.5px}
+@media (max-width:860px){details.mi .mi-body{grid-template-columns:minmax(0,1fr)}}
+/* 인쇄용 화면: 'PDF로 저장하기'를 누를 때만 쓴다. 한 단, 글자는 텍스트 */
+#printview{display:none}
+@media print{
+  body.print-export>*:not(#printview){display:none!important}
+  /* 인쇄용 화면은 일반(정적) 글꼴만 쓴다: 화면의 가변 글꼴(Pretendard Variable, Source Serif 4)은 Chrome이 Type3로 넣어
+     읽는 도구에 따라 글자가 깨졌다(2026-11-10 점검, 점검_PDF_2026-11-10). 맑은 고딕·Times New Roman·Consolas는 일반 글꼴로 들어가 두 추출 도구 모두 통과 */
+  body.print-export #printview{display:block!important;color:#000;font:11pt/1.55 "Malgun Gothic","맑은 고딕","Apple SD Gothic Neo",Arial,sans-serif}
+  body.print-export #printview *{font-family:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo",Arial,sans-serif}
+  body.print-export #printview .pv-s{font-family:"Times New Roman","Malgun Gothic","맑은 고딕",serif}
+  body.print-export #printview .pv-s b{font-family:Consolas,"Malgun Gothic","맑은 고딕",monospace}
+  #printview h1{font-size:18pt;margin:0 0 8pt}#printview h2{font-size:14pt;margin:16pt 0 6pt;border-bottom:1px solid #999;padding-bottom:3pt}
+  #printview h3{font-size:12pt;margin:12pt 0 4pt}#printview p,#printview li{margin:3pt 0}
+  #printview table{border-collapse:collapse;width:100%;font-size:9.5pt;margin:4pt 0 8pt}#printview th,#printview td{border:1px solid #bbb;padding:3pt 5pt;text-align:left;vertical-align:top}
+  #printview th{background:#eee}#printview tr{break-inside:avoid}
+  #printview .pv-ai{border:1px solid #888;padding:6pt 8pt;margin:4pt 0 10pt}
+  #printview .pv-s b{font-size:9pt}
+  #printview mark{background:#ffe9a8;color:#000;font-weight:700}#printview .pv-l{font-size:9pt;color:#444}
+}
+@media print{.hero,#step1,#step2,details.fold,header,.btn,.i,.ibtn,#inputs,.seg,#savebox,#status,.note[data-t=privacy],#overview,#exnone,#exall{display:none!important}
+  body{background:#fff;color:#000;font-size:12px}.tablewrap{overflow:visible;border-color:#ccc}
+  [hidden]{display:none!important}#results>section.card[hidden]{display:block!important}
+  details#commonfold{display:block}tr{break-inside:avoid}tr.exrow td>div{position:static;max-width:none}.kwic .kl{min-width:0}}
+@media (max-width:860px){header{padding:0 18px}main{padding:0 18px 32px}.card.step{padding-left:52px}.card.step::before{left:17px;top:40px}
+  .stepno{width:32px;height:32px;font-size:13px}h2.step{padding-left:52px}#inputs{grid-template-columns:minmax(0,1fr)}
+  #overview{grid-template-columns:repeat(2,minmax(0,1fr))}.ov:nth-child(2){border-right:0}.ov:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  header .brand small{display:none}.kwic .kl{min-width:560px}}
+@media (max-width:600px){header .brand span{font-size:15.5px}.seg button{padding:4px 8px;font-size:13px}.hero{padding:32px 0 20px}}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="/"><span data-t="app_ko"></span><small data-t="app_en"></small></a>
+  <div class="seg" role="group" aria-label="language">
+    <button data-lang="ko">한국어</button><button data-lang="en">English</button><button data-lang="both">한·EN</button>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <h2 data-t="hero_t"></h2>
+    <p class="sub" data-t="hero_s"></p>
+    <p class="desc" data-t="hero_d"></p>
+  </section>
+  <section class="card step" id="step1">
+    <h2><span class="stepno">01</span><label for="baseline" data-t="st1"></label></h2>
+    <p class="note" data-t="field_hint"></p>
+    <select id="baseline"></select>
+    <p class="note" data-t="pc_hint"></p>
+    <div id="refonly" class="warn" hidden></div>
+    <p class="note"><button class="linkish" id="openfold" data-t="see_fold"></button></p>
+  </section>
+  <section class="card step" id="step2">
+    <h2><span class="stepno">02</span><span data-t="st2"></span></h2>
+    <p class="note" data-t="input_hint"></p>
+    <div id="inputs"></div>
+    <details class="mi" id="mi-box"></details>
+    <div class="row go-row">
+      <button class="btn" id="go"></button>
+      <button class="btn ghost" id="sample"></button>
+      <button class="btn ghost" id="clearall" data-t="clear"></button>
+    </div>
+    <p class="note" data-t="diff_note"></p>
+    <p class="note" id="status"></p>
+    <p class="note" data-t="privacy"></p>
+  </section>
+  <h2 class="step" id="step3h" hidden style="margin:24px 0 12px"><span class="stepno">03</span><span data-t="st3"></span>
+    <a class="linkish" id="savejump" href="#savebox" style="margin-left:auto;font-size:13px;font-weight:400;text-decoration:underline"></a>
+    <button class="linkish" id="exnone" data-t="ex_none" style="margin-left:16px;font-size:13px;font-weight:400"></button>
+    <button class="linkish" id="exall" data-t="ex_all" style="margin-left:12px;font-size:13px;font-weight:400"></button></h2>
+  <div id="overview" role="tablist" hidden></div>
+  <details id="commonfold" hidden><summary><b data-t="ref_h"></b><span data-t="ref_open"></span></summary>
+    <section class="card" id="commonbox" hidden></section></details>
+  <div id="results"></div>
+  <section class="card" id="explore" hidden>
+    <h2><span data-t="explore_h"></span><button class="i" data-ex="explore" aria-expanded="false">i</button></h2>
+    <div class="slot" data-for="explore"></div>
+    <div class="row">
+      <label for="xsec"><b data-t="x_section"></b></label><select id="xsec"></select>
+      <label for="xpos"><b data-t="x_pos"></b></label><select id="xpos"></select>
+    </div>
+    <h3><span data-t="wordlist_h"></span><button class="i" data-ex="wordlist" aria-expanded="false">i</button></h3>
+    <div class="slot" data-for="wordlist"></div>
+    <div id="wordlist" class="wl"></div>
+    <h3><span data-t="kwic_h"></span><button class="i" data-ex="kwic" aria-expanded="false">i</button></h3>
+    <div class="slot" data-for="kwic"></div>
+    <div class="row">
+      <input id="xq" type="search" autocomplete="off" spellcheck="false">
+      <label><input type="checkbox" id="xlemma" checked> <span data-t="x_lemma"></span></label>
+      <label for="xsort"><span data-t="x_sort"></span></label><select id="xsort"></select>
+    </div>
+    <p class="note" id="xcount"></p>
+    <div id="xkwic" class="kwic" hidden></div>
+  </section>
+  <!-- 결과를 저장하고, 내가 쓰는 AI에게 물어보세요(export.js가 그린다: PDF, 전체·간단·절별 복사, 프롬프트 복사) -->
+  <section class="card" id="savebox" hidden></section>
+  <details class="card fold" id="fold">
+    <summary data-t="fold_h"></summary>
+    <div id="foldbody"></div>
+  </details>
+  <p class="note" id="version"></p>
+</main>
+<div id="printview" aria-hidden="true"></div>
+<script>
+const SECS = [["INT","Introduction","서론"],["MET","Methods","실험·방법"],["RD","Results and Discussion","결과·논의"],["CON","Conclusions","결론"]];
+const T = {
+  app:["Manuscript diagnosis","논문 글쓰기 진단"], app_ko:["Manuscript Diagnosis","논문 글쓰기 진단"], app_en:["for research writing","Manuscript Diagnosis"],
+  hero_t:["How are you writing your paper?","내 논문, 어떻게 쓰고 있을까요?"],
+  hero_s:["Look at the expressions and structure of your manuscript in comparison with published papers.","출판 논문과 비교하며 내 원고의 표현과 구성을 살펴보세요."],
+  hero_d:["Verbs and stance expressions are analysed section by section, to help you review for yourself where revision may be needed.","절별 동사와 주장 표현을 분석하고, 수정이 필요한 부분을 스스로 검토하도록 돕습니다."],
+  to_input:["Enter your manuscript","원고 입력하기"], st1:["Choose papers to compare","비교할 논문 선택"], st2:["Enter your manuscript","원고 입력"], st3:["See the results","결과 확인"],
+  input_hint:["Paste each section into its box. Leave a box empty if your manuscript has no such section.","절마다 해당 칸에 붙여 넣으세요. 없는 절은 비워 두세요."],
+  diff_note:["Differences from published papers are not errors; they are information for review.","출판 논문과의 차이는 오류가 아니라 검토를 위한 참고 정보입니다."],
+  fold_h:["Analysis method and comparison data","분석 방법 및 비교 자료 안내"], see_fold:["About the comparison papers and the method","비교 자료와 분석 방법 안내 보기"], about_h:["About this page","이 화면에 대해"], field:["Papers to compare with","비교할 논문 집합"], method_l:["Analysis method and data sources","분석 방법 및 자료 출처"], pc_hint:["For physical chemistry you can compare with computation-centred papers (Physical–computational) or the other papers (Physical). Choose the set that fits your manuscript.","물리화학은 계산 위주 논문(물리-계산)과 그렇지 않은 논문(물리)으로 나누어 비교할 수 있습니다. 원고의 성격에 맞는 집합을 선택하세요."], field_hint:["Choose the field you want to compare with from the list below.","아래에서 여러 분야 중 원하는 분야를 선택해 주세요."],
+  go:["Start diagnosis","진단 시작하기"], sample:["Load an example","예시 원고 넣기"], clear:["Clear all","모두 지우기"], words_n:["words","단어"], running:["Analysing… (about 10–30 s)","분석 중… (10–30초)"],
+  privacy:["Your manuscript is analysed only on this service’s server and is not sent to any external AI service. The service code does not write it to files or a database.","입력한 원고는 이 서비스의 서버에서만 분석하며, 외부 AI 서비스로 보내지 않습니다. 서비스 코드는 원고를 파일이나 데이터베이스에 저장하지 않습니다."],
+  paste:["Paste the section text (optional)","이 절의 본문을 붙여 넣으세요(없으면 비워 둠)"],
+  measure:["Measure","지표"], yours:["Your manuscript","원고"], count:["Count","개수"], rate:["per 1,000 words","1,000단어당"],
+  median:["Comparison median","비교 중앙값"], iqr:["Comparison range","비교 범위"], minmax:["Full range","전체 범위"], label:["Position","판정"], pos:["Where you are","위치"],
+  words:["words","단어"], papers:["papers","편"], basewords:["Section length in comparison papers (median)","비교 논문 절 길이(중앙값)"],
+  verbs_h:["Verbs","동사"], verb:["Verb","동사"], layer:["Category","분류"], basev:["Baseline papers using it as predicate","기준선에서 술어로 쓴 논문"], aspred:["As predicate","술어로"], alluses:["All uses","모든 쓰임"], predrate:["Predicate per 1,000 words","술어 1,000단어당"], baseuse:["Baseline usage","기준선 쓰임"], freq:["Frequency","빈도"], usage:["Usage in your text","원고에서의 쓰임"],
+  missing:["All-four-journal verbs not used","원고에 없는 ‘네 저널 공통’ 동사"], preplike:["Left out as preposition-like","전치사처럼 쓰여 목록에서 뺀 것"],
+  show:["show","보기"], hide:["hide","닫기"], none:["none","없음"], nores:["No text was entered.","입력한 글이 없습니다."],
+  refonly:["This comparison set has few papers ({n}). Use it for reference only.","이 비교 집합은 논문 수가 적습니다({n}편). 참고로만 보세요."],
+  legend_iqr:["comparison range","비교 범위"], legend_med:["median","중앙값"], legend_you:["your manuscript","원고"],
+  of:["of","중"],
+  cv_h:["Verbs frequently found in all four journals","네 저널에서 공통으로 자주 확인된 동사"],
+  cv_rule:["Verbs used as predicates in at least half of the papers in which the section can be compared, in each of the four ACS journal sets separately (not the four sets pooled).","ACS 네 저널 집합 각각에서, 해당 절을 비교할 수 있는 논문의 절반 이상에서 술어 용법이 확인된 동사입니다(네 집합을 합쳐서가 아니라 집합마다 따로 셉니다)."],
+  cv_sec:["Section","절"], cv_verbs:["Verbs meeting the condition","조건을 충족한 동사"], cv_n:["Number","종류 수"], cv_none:["No verb meets the condition","해당 동사 없음"],
+  cv_note1:["The list differs by section. “No verb” for a section does not mean the section has no verbs; it means no verb met the condition in this comparison data.","목록은 절마다 다릅니다. ‘해당 동사 없음’은 그 절에 동사가 없다는 뜻이 아니라, 이번 자료에서 위 분류 조건을 충족한 동사가 없다는 뜻입니다."],
+  cv_note2:["This is not a list of verbs you must use. Choose expressions that fit your research and context.","반드시 사용해야 할 동사 목록은 아닙니다. 자신의 연구 내용과 문맥에 맞는 표현을 선택하세요."],
+  cv_ev:["Show the per-journal counts","저널별 집계 근거 보기"],
+  cv_prov:["This list follows the current analysis rules. The list and the numbers may change after the part-of-speech and usage checks.","현재 분석 규칙에 따른 목록입니다. 품사·용법 판정 점검 결과에 따라 목록과 수치가 달라질 수 있습니다."],
+  cv_frac:["The first number is the papers in which the verb is used as a predicate at least once; the second is the papers in which the section can be compared. It is not the number of occurrences.","앞의 수는 해당 동사의 술어 용법이 한 번 이상 확인된 논문 수이고, 뒤의 수는 해당 절을 비교할 수 있는 논문 수입니다. 동사의 총 등장 횟수를 뜻하지 않습니다."],
+  cv_verb:["Verb","동사"], verb_list:["Show the verb list for this section","이 절의 동사 목록 보기"], vguide:["Select a verb to see where it appears, then select the highlighted word to read the whole sentence.","동사를 누르면 원고에서 쓰인 자리가 펼쳐지고, 강조된 단어를 누르면 문장 전체를 읽을 수 있습니다."], kw_full:["Read the whole sentence","문장 전체 보기"], ref_h:["Reference: verbs frequently found in all four journals","기준 자료: 네 저널에서 공통으로 자주 확인된 동사"], ref_open:["Expand","펼쳐 보기"], ov_out:["measures outside the comparison range","비교 범위를 벗어난 지표"], ov_none:["none","없음"], legend_trk:["full range","전체 범위"], cv_unit:["", "종"], comm_h:["Reading the results","분석 결과 풀이"], ex_open:["Explain","설명"], ex_close:["Hide","설명 접기"],
+  guide:["Click “Explain” to see what an item means; click an underlined number or verb to see where it occurs.","‘설명’을 누르면 항목의 뜻을, 밑줄 친 숫자나 동사를 누르면 해당 용례를 볼 수 있습니다."], of_which:["of which","그중"], check_h:["Check further","추가로 확인해 보세요"],
+  pdf_hint:["In the print window, choose “Save as PDF”. Explanations you have opened are saved too.","인쇄 창에서 ‘PDF로 저장’을 선택하세요. 펼쳐 둔 설명도 함께 저장됩니다."], save_h:["Save the results","결과 저장하기"],
+  ex_all:["Open all explanations","설명 모두 열기"], ex_none:["Close all explanations","설명 모두 닫기"],
+  explore_h:["Explore your text","내 글 살펴보기"], x_section:["Section","절"], x_pos:["Word class","품사"], wordlist_h:["Word list","어휘 목록"],
+  kwic_h:["Concordance (KWIC)","용례 보기(KWIC)"], x_lemma:["all forms of the base form","기본형의 모든 꼴"], x_sort:["Sort","정렬"],
+  x_all:["All sections","모든 절"], p_VERB:["Verbs","동사"], p_NOUN:["Nouns","명사"], p_ADJ:["Adjectives","형용사"], p_ADV:["Adverbs","부사"], p_ALL:["All words","모든 낱말"],
+  s_order:["Text order","글 순서"], s_right:["Next word","오른쪽 낱말"], s_left:["Previous word","왼쪽 낱말"],
+  x_hits:["occurrences · click a line to see the whole sentence","개 · 줄을 누르면 문장 전체가 보입니다"], x_type:["Type a word, or click one in the word list.","낱말을 치거나 어휘 목록에서 고르세요."], fixed:["fixed expr.","굳은 표현"], err:["Error","오류"]
+};
+const BAND = {typical:["Within range","범위 안"],higher:["Higher","높음"],lower:["Lower","낮음"],beyond_high:["Higher than all comparison papers","모든 비교 논문보다 높음"],beyond_low:["Lower than all comparison papers","모든 비교 논문보다 낮음"]};
+const LAYER = {genre:["① All four journals","① 네 저널 공통","layer_genre"],field:["② Frequent in chosen set","② 선택 집합에서 자주 확인","layer_field"],rare:["③ Some papers","③ 일부 논문에서 확인","layer_rare"],none:["④ Use not found","④ 해당 용법 미확인","layer_none"]};
+const MET = {verbs_per1000:"verbs_per1000",hedge_per1000:"hedge_per1000",booster_per1000:"booster_per1000",reporting_per1000:"reporting_per1000"};
+let LANG = "ko", EX = {}, BL = {}, LAST = null;
+try{ LANG = localStorage.getItem("diag-lang") || "ko"; }catch(e){}
+// 주소의 ?lang=ko|en|both가 있으면 그 언어를 우선한다(포털과 같은 저장 이름 diag-lang)
+{ const q = new URLSearchParams(location.search).get("lang"); if(["ko","en","both"].includes(q)){ LANG = q; try{ localStorage.setItem("diag-lang", q); }catch(e){} } }
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function tt(pair){ if(!pair) return ""; const [en,ko]=pair; return LANG==="en"?en:LANG==="ko"?ko:`${en} · ${ko}`; }
+function t(k){ if(k==="app_ko") return LANG==="en" ? T.app_ko[0] : T.app_ko[1]; if(k==="app_en") return LANG==="en" ? T.app_en[0] : T.app_en[1]; return tt(T[k]); }
+// 표 안에서는 영·한을 두 줄로 쌓는다(EN · 한 모드)
+function h2(pair){ if(!pair) return ""; const [en,ko]=pair; return LANG==="en"?esc(en):LANG==="ko"?esc(ko):`${esc(en)}<span class="ko2">${esc(ko)}</span>`; }
+function exPair(k){ const e=EX[k]; return e? [e.title.en,e.title.ko] : [k,k]; }
+function exTitle(k){ const e=EX[k]; return e? tt([e.title.en,e.title.ko]) : k; }
+function exHtml(k){
+  const e = EX[k]; if(!e) return "";
+  const en = `<div class="en">${esc(e.en)}</div>`, ko = `<div class="ko">${esc(e.ko)}</div>`;
+  return `<div class="ex"><b>${esc(exTitle(k))}</b>${LANG==="ko"?ko:LANG==="en"?en:en+ko}</div>`;
+}
+const ib = k => `<button class="i" data-ex="${k}" aria-expanded="false" title="${esc(exTitle(k))}">i</button>`;
+const fmt = v => v==null? "–" : (Math.round(v*100)/100).toLocaleString("en-US");
+
+function applyStatic(){
+  document.querySelectorAll("[data-t]").forEach(el => el.textContent = t(el.dataset.t));
+  document.getElementById("go").textContent = t("go");
+  document.getElementById("sample").textContent = t("sample");
+  if(window.EXPORT){ EXPORT.drawInfoFields(); if(LAST && !document.getElementById("savebox").hidden) EXPORT.drawSave(); }
+  document.querySelectorAll(".seg button").forEach(b => b.classList.toggle("on", b.dataset.lang===LANG));
+  document.documentElement.lang = LANG==="en" ? "en" : "ko";
+  const sel = document.getElementById("baseline"), cur = sel.value;
+  // "물리화학 — J. Phys. Chem. C 논문 17편"
+  const optLabel = v => { const m = s => (s.match(/^(.*) \((.*)\)$/) || [null, s, ""]);
+    const [, fe, j] = m(v.en), [, fk] = m(v.ko);
+    const en = `${fe} — ${j}, ${v.papers} papers`, ko = `${fk} — ${j} 논문 ${v.papers}편`;
+    return LANG==="en" ? en : LANG==="ko" ? ko : `${fe} · ${fk} — ${j} (${v.papers} papers · 논문 ${v.papers}편)`; };
+  sel.innerHTML = Object.entries(BL).map(([k,v]) => `<option value="${k}">${esc(optLabel(v))}</option>`).join("");
+  if(cur) sel.value = cur;
+  const ref = document.getElementById("refonly"); ref.hidden = !(BL[sel.value]||{}).reference_only; ref.textContent = t("refonly").replace(/\{n\}/g, (BL[sel.value]||{}).papers);
+  document.querySelectorAll("#inputs label.sec").forEach(l => { const s=SECS.find(x=>x[0]===l.dataset.sec); l.textContent = tt([s[1],s[2]]); });
+  document.querySelectorAll("#inputs textarea").forEach(a => a.placeholder = t("paste"));
+  SECS.forEach(([c]) => { if(document.getElementById("wc-"+c)) updWc(c); });
+  document.querySelectorAll(".slot").forEach(s => { if(s.innerHTML) s.innerHTML = exHtml(s.dataset.for); });
+  const fb = document.getElementById("foldbody"); if(fb && EX.about) fb.innerHTML = ["about","baseline","method"].map(exHtml).join("");
+  drawCommon();
+  if(LAST){ render(LAST); if(!document.getElementById("explore").hidden){ xopts(); kwicAll(); } }
+}
+
+// ⓘ 단추: 바로 다음 설명 칸(같은 줄의 .slot 또는 표의 설명 줄)을 열고 닫는다
+document.addEventListener("click", e => {
+  const b = e.target.closest(".i"); if(!b) return;
+  b.setAttribute("aria-expanded", b.getAttribute("aria-expanded") !== "true");
+  fillSlot(b); relabel(document);
+});
+// 단추 글자: 접힘 '▸ 설명', 펼침 '▾ 설명 접기'
+function relabel(root){
+  root.querySelectorAll(".i").forEach(b => { b.textContent = b.getAttribute("aria-expanded") === "true" ? "▾ " + t("ex_close") : "▸ " + t("ex_open"); b.title = exTitle(b.dataset.ex); });
+  root.querySelectorAll(".ctog").forEach(b => { const el = document.getElementById(b.dataset.toggle); b.textContent = el && !el.hidden ? "▾ " + t("ex_close") : "▸ " + t("ex_open"); });
+}
+function slotOf(b){
+  if(b.dataset.slot) return document.getElementById(b.dataset.slot);
+  const host = b.closest(".card") || document; return host.querySelector(`.slot[data-for="${b.dataset.ex}"]`);
+}
+function fillSlot(b){
+  const slot = slotOf(b); if(!slot) return;
+  const keys = [...document.querySelectorAll(".i")].filter(x => slotOf(x) === slot && x.getAttribute("aria-expanded") === "true").map(x => x.dataset.ex);
+  slot.innerHTML = [...new Set(keys)].map(exHtml).join("");
+}
+// 처음 서비스할 때는 설명을 모두 열어 둔다. 같은 설명이 표의 여러 줄에 되풀이되는 것(동사 층)은 표마다 한 번만 연다.
+const OPEN_ALL = false;   // 2026-11-09: 처음에는 표만 간결하게, 설명은 단추로 펼친다
+function openAll(root){
+  if(!OPEN_ALL) return;
+  const seen = new Set();
+  root.querySelectorAll(".i").forEach(b => {
+    if(b.hidden || b.closest("[hidden]")) return;
+    const table = b.closest("table"), key = (table ? table.dataset.tid || "" : "") + "|" + b.dataset.ex;
+    if(table && seen.has(key)) return;
+    seen.add(key); b.setAttribute("aria-expanded", "true");
+  });
+  const slots = new Set([...root.querySelectorAll(".i[aria-expanded=true]")].map(slotOf).filter(Boolean));
+  slots.forEach(sl => { const k = [...root.querySelectorAll(".i[aria-expanded=true]")].find(x => slotOf(x) === sl); if(k) fillSlot(k); });
+}
+function setAll(open){
+  document.querySelectorAll("#results .i, #explore .i").forEach(b => b.setAttribute("aria-expanded", "false"));
+  document.querySelectorAll("#results [id^=x], #explore .slot").forEach(el => { if(el.querySelector && el.querySelector(".ex")) el.innerHTML = ""; });
+  if(open){ const keep = OPEN_ALL; forceOpen(document.getElementById("results")); forceOpen(document.getElementById("explore")); }
+  relabel(document);
+}
+function forceOpen(root){
+  const seen = new Set();
+  root.querySelectorAll(".i").forEach(b => { if(b.closest("[hidden]")) return; const table = b.closest("table"), key = (table ? table.dataset.tid || "" : "") + "|" + b.dataset.ex;
+    if(table && seen.has(key)) return; seen.add(key); b.setAttribute("aria-expanded", "true"); });
+  new Set([...root.querySelectorAll(".i[aria-expanded=true]")].map(slotOf).filter(Boolean)).forEach(sl => { const k = [...root.querySelectorAll(".i[aria-expanded=true]")].find(x => slotOf(x) === sl); if(k) fillSlot(k); });
+}
+
+let COMM_ID = 0;
+// 네 저널 공통 동사: 분류 데이터(/api/common_verbs)에서 그대로 그린다
+let CV = null;
+function commonHtml(){
+  if(!CV) return "";
+  const J = [["ACS_CM","CM"],["ACS_IC","IC"],["ACS_JOC","JOC"],["ACS_JPC_C","JPC C"]];
+  const secName = c => { const x = SECS.find(s => s[0]===c); return tt([x[1], x[2]]); };
+  const unit = n => LANG==="en" ? String(n) : `${n}${T.cv_unit[1]}`;
+  const rows = SECS.map(([c]) => { const vs = CV.sections[c] || [];
+    return `<tr><td>${esc(secName(c))}</td><td class="vs">${vs.length ? vs.map(v => esc(v.verb)).join(", ") : `<span class="muted">${esc(t("cv_none"))}</span>`}</td><td class="num">${unit(vs.length)}</td></tr>`; }).join("");
+  const ev = SECS.flatMap(([c]) => (CV.sections[c] || []).map(v => `<tr><td>${esc(secName(c))}</td><td class="vs">${esc(v.verb)}</td>${J.map(([k]) => `<td class="num">${v.journals[k].papers}/${v.journals[k].n}</td>`).join("")}</tr>`)).join("");
+  return `<h2>${esc(t("cv_h"))}</h2><p class="warn">${esc(t("cv_prov"))}</p><p class="note">${esc(t("cv_rule"))}</p>
+    <div class="tablewrap"><table><thead><tr><th>${h2(T.cv_sec)}</th><th>${h2(T.cv_verbs)}</th><th>${h2(T.cv_n)}</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <p class="note">${esc(cvCount())}</p>
+    <p class="note">${esc(t("cv_note1"))}</p><p class="note">${esc(t("cv_note2"))}</p>
+    <details><summary>${esc(t("cv_ev"))}</summary><p class="note">${esc(t("cv_frac"))}</p>
+    <div class="tablewrap"><table><thead><tr><th>${h2(T.cv_sec)}</th><th>${h2(T.cv_verb)}</th>${J.map(([,n]) => `<th>${n}</th>`).join("")}</tr></thead><tbody>${ev}</tbody></table></div></details>`;
+}
+// 절별 분류 항목 수와 서로 다른 동사 수(같은 동사가 여러 절에 들어가므로 구분한다). 둘 다 데이터에서 센다.
+function cvCount(){
+  const items = SECS.flatMap(([c]) => (CV.sections[c] || []).map(v => v.verb));
+  const distinct = new Set(items).size;
+  return LANG==="en" ? `${items.length} section entries in total; ${distinct} different verbs (some verbs appear in more than one section).`
+    : LANG==="ko" ? `절별 분류 항목은 모두 ${items.length}개이고, 같은 동사가 여러 절에 들어가므로 서로 다른 동사는 ${distinct}종입니다.`
+    : `${items.length} section entries in total; ${distinct} different verbs (some verbs appear in more than one section). · 절별 분류 항목은 모두 ${items.length}개이고, 같은 동사가 여러 절에 들어가므로 서로 다른 동사는 ${distinct}종입니다.`;
+}
+function drawCommon(){ const b = document.getElementById("commonbox"); if(b && !b.hidden) b.innerHTML = commonHtml(); }
+function commentaryHtml(c){
+  if(!c) return "";
+  const paras = (ko, en) => [...Array(Math.max(ko.length, en.length)).keys()].map(i => LANG==="ko" ? `<p>${esc(ko[i])}</p>` : LANG==="en" ? `<p class="en">${esc(en[i])}</p>`
+    : `<p class="en">${esc(en[i])}</p><p class="ko">${esc(ko[i])}</p>`).join("");
+  const chk = (c.check_ko||[]).length ? `<b class="sub">${esc(t("check_h"))}</b>${paras(c.check_ko, c.check_en)}` : "";
+  const cid = "c" + (++COMM_ID);
+  return `<p class="ctitle"><b>${esc(t("comm_h"))}</b><button class="ibtn ctog" data-toggle="${cid}"></button></p><div class="comm" id="${cid}" hidden><b>${esc(t("comm_h"))}</b><p class="cnote">${esc(LANG==="en"?c.note_en:LANG==="ko"?c.note_ko:c.note_en+" "+c.note_ko)}</p>${paras(c.ko, c.en)}${chk}</div>`;
+}
+function bar(v, s, band){
+  if(!s || v==null) return "";
+  const lo = Math.min(s.min, v), hi = Math.max(s.max, v), span = (hi-lo)||1, p = x => ((x-lo)/span*100).toFixed(1);
+  const out = band ? band !== "typical" : (v < s.q1 || v > s.q3);
+  return `<div class="bar" aria-hidden="true"><div class="track" style="left:${p(s.min)}%;right:${(100-p(s.max)).toFixed(1)}%"></div>
+    <div class="iqr" style="left:${p(s.q1)}%;width:${Math.max(p(s.q3)-p(s.q1),0.8)}%"></div><div class="med" style="left:${p(s.median)}%"></div>
+    <div class="you${out?" out":""}" style="left:${p(v)}%"></div></div>`;
+}
+function bandTag(b){ return b ? `<span class="tag ${b}">${esc(LANG==="both"?BAND[b][0]+" / "+BAND[b][1]:tt(BAND[b]))}</span>` : `<span class="tag na">–</span>`; }
+
+function highlight(sent, spans){
+  let out = "", pos = 0;
+  [...spans].sort((a,b)=>a.start-b.start).forEach(h => { if(h.start<pos) return; out += esc(sent.slice(pos,h.start)) + `<mark>${esc(sent.slice(h.start,h.end))}</mark>`; pos = h.end; });
+  return out + esc(sent.slice(pos));
+}
+
+function render(r){
+  LAST = r;
+  const box = document.getElementById("results");
+  const secs = SECS.filter(s => r.sections[s[0]]);
+  if(!secs.length){ box.innerHTML = `<div class="card">${esc(t("nores"))}</div>`; return; }
+  let uid = 0; const id = () => "x" + (++uid); let tid = 0;
+  // 보고동사 행: 자기 연구를 소개해 보고동사에서 뺀 문장 수(verb-usage v0.4)
+  const selfNote = (m, S) => {
+    const n = m.excluded_self_sents; if(!n) return "";
+    const sid = id(), seen = new Set(), ev = m.excluded_self.filter(h => !seen.has(h.sent) && seen.add(h.sent));
+    const msg = LANG==="en" ? `${n} sentence${n>1?"s":""} introducing your own study ${n>1?"were":"was"} not counted as reporting verbs.`
+      : `자기 연구를 소개한 문장 ${n}개는 보고동사에서 제외했습니다.`;
+    const both = LANG==="both" ? `<span class="en">${n} sentence${n>1?"s":""} introducing your own study ${n>1?"were":"was"} not counted as reporting verbs.</span>` : "";
+    return `<p class="selfnote"><button class="linkish" data-toggle="${sid}">${esc(msg)}</button>${both}</p>
+      <div id="${sid}" hidden>${ev.map(h => `<div class="ev">${highlight(S.sentences[h.sent-1], m.excluded_self.filter(x => x.sent===h.sent))}</div>`).join("")}</div>`;
+  };
+  box.innerHTML = secs.map(([code,en,ko]) => {
+    const S = r.sections[code], bw = S.words_baseline;
+    const metrics = S.metrics.map(m => {
+      const rid = id(), k = MET[m.key], s = m.baseline;
+      const evid = m.evidence && m.evidence.length ? id() : null;
+      const cnt = evid ? `<button class="linkish" data-toggle="${evid}">${m.count}</button>`
+        : (m.key==="verbs_per1000" && m.count) ? `<button class="linkish" title="${esc(t("verb_list"))}" onclick="openVerbList('${code}')">${m.count}</button>` : m.count;
+      return `<tr><td>${h2(exPair(k))}<button class="i" data-ex="${k}" data-slot="${rid}" aria-expanded="false">i</button></td>
+        <td class="num">${cnt}</td><td class="num"><b>${fmt(m.rate)}</b></td><td class="num">${s?fmt(s.median):"–"}</td>
+        <td class="num">${s?fmt(s.q1)+"–"+fmt(s.q3):"–"}</td><td class="num">${s?fmt(s.min)+"–"+fmt(s.max):"–"}</td>
+        <td>${S.short?`<span class="tag na">${esc(t("count"))}</span>`:bandTag(m.band)}</td><td>${S.short?"":bar(m.rate,s,m.band)}</td></tr>
+        <tr class="exrow"><td colspan="8"><div id="${rid}"></div>${selfNote(m, S)}${evid?`<div id="${evid}" hidden>${m.evidence.map(h=>`<div class="ev">${highlight(S.sentences[h.sent-1],[h])}</div>`).join("")}</div>`:""}</td></tr>`;
+    }).join("");
+    // 굳은 표현은 따로 세는 쓰임이 아니라 비정형 안의 속성이다: "비정형 1 (그중 굳은 표현 1)"
+    const usageChips = (u, fixed) => Object.entries(u).filter(([k])=>k!=="굳은 표현").map(([k,n]) => `<span class="chip">${esc(exTitle("usage_"+k))} ${n}${(k==="비정형"&&fixed)?` <span class="muted">(${esc(t("of_which"))} ${esc(exTitle("fixed"))} ${fixed})</span>`:""}</span>`).join("");
+    const baseChips = u => { if(!u) return "–"; const tot = Object.entries(u).filter(([k])=>k!=="굳은 표현").reduce((a,[,n])=>a+n,0)||1;
+      return Object.entries(u).filter(([k])=>k!=="굳은 표현").sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,n]) => `<span class="chip">${esc(exTitle("usage_"+k))} ${Math.round(n/tot*100)}%${(k==="비정형"&&u["굳은 표현"])?` <span class="muted">(${esc(t("of_which"))} ${esc(exTitle("fixed"))} ${Math.round(u["굳은 표현"]/tot*100)}%)</span>`:""}</span>`).join(""); };
+    const verbRows = (list, full) => list.map(v => {
+      const rid = id(), kid = id(), L = LAYER[v.layer], b = v.baseline;
+      const basev = b ? `${b.papers}/${b.n} ${esc(t("papers"))}${(v.layer==="genre"||v.layer==="field")? `<br><span class="muted">${esc(t("iqr"))} ${fmt(b.q1)}–${fmt(b.q3)}</span>`:""}` : "–";
+      const kw = v.hits.map(h => { const s = S.sentences[h.sent-1];
+        return `<div class="kl" data-full="${esc(s)}" data-s="${h.start}" data-e="${h.end}"><span class="l">${esc(s.slice(Math.max(0,h.start-46),h.start))}</span><span class="k" title="${esc(t("kw_full"))}">${esc(s.slice(h.start,h.end))}</span><span class="r">${esc(s.slice(h.end,h.end+46))}</span> <span class="muted">${esc(exTitle("usage_"+h.usage))}${h.noun_like?` · <span class="nlt">${esc(exTitle("noun_like"))}</span>`:""}</span></div>`; }).join("");
+      const num = {genre:1, field:2, rare:3, none:4}[v.layer], nm = s => s.replace(/^[①②③④]\s*/, "");
+      const layerCell = `<span class="cat L-${v.layer}"><span class="el">${num}</span><span class="lb">${esc(LANG==="en"?nm(L[0]):LANG==="ko"?nm(L[1]):nm(L[0])+" / "+nm(L[1]))}</span></span><button class="i" data-ex="${L[2]}" data-slot="${rid}" aria-expanded="false">i</button>`;
+      const cells = full
+        ? `<td class="num"><b>${v.pred}</b></td><td class="num">${v.count}</td><td class="num">${fmt(v.rate)}</td><td>${layerCell}</td><td class="num">${basev}</td><td>${v.band?bandTag(v.band):'<span class="muted">–</span>'}</td>`
+        : `<td class="num">${v.count}</td><td class="num">${v.pred}</td>`;
+      const ncol = full ? 9 : 5;
+      const nl = v.noun_like ? `<div class="nl">${esc(exTitle("noun_like"))} ${v.noun_like}<button class="i" data-ex="noun_like" data-slot="${rid}" aria-expanded="false">i</button></div>` : "";
+      return `<tr><td><button class="vbtn" aria-expanded="false" data-toggle="${kid}">${esc(v.verb)}</button> <button class="linkish ext" data-word="${esc(v.verb)}" title="${esc(t("kwic_h"))}" onclick="showExplore('${esc(v.verb)}')">↗</button>${nl}</td>${cells}<td>${usageChips(v.usage, v.fixed)}</td><td>${baseChips(b&&b.usage)}</td></tr>
+        <tr class="exrow"><td colspan="${ncol}"><div id="${rid}"></div><div id="${kid}" hidden><div class="kwic">${kw}</div></div></td></tr>`;
+    }).join("");
+    const verbs = verbRows(S.top_verbs, true), others = verbRows(S.other_verbs || [], false);
+    const vexp = id(), uexp = id(), bexp = id(), mexp = id(), fexp = id(), pexp = id(), oexp = id();
+    const prep = Object.entries(S.prep_like);
+    return `<section class="card" data-sec="${code}">
+      <div class="secttl"><h2>${esc(tt([en,ko]))}</h2>
+        <span class="muted">${S.words.toLocaleString()} ${esc(t("words"))}${bw?` · ${esc(t("basewords"))} ${fmt(bw.median)}`:""} · ${S.baseline_papers} ${esc(t("papers"))}
+        <button class="i" data-ex="n_papers" data-slot="${pexp}" aria-expanded="false">i</button></span></div>
+      <div id="${pexp}"></div>
+      ${S.short?`<div class="warn">${esc(tt([EX.short_section.en,EX.short_section.ko]))}</div>`:""}
+      <p class="guide">${esc(t("guide"))}</p>
+      <div class="tablewrap"><table data-tid="${++tid}">
+        <thead><tr><th>${h2(T.measure)}</th><th>${h2(T.count)}</th><th>${h2(T.rate)}<button class="i" data-ex="per1000" data-slot="${bexp}" aria-expanded="false">i</button></th>
+        <th>${h2(T.median)}<button class="i" data-ex="median" data-slot="${bexp}" aria-expanded="false">i</button></th>
+        <th>${h2(T.iqr)}<button class="i" data-ex="iqr" data-slot="${bexp}" aria-expanded="false">i</button></th>
+        <th>${h2(T.minmax)}<button class="i" data-ex="minmax" data-slot="${bexp}" aria-expanded="false">i</button></th>
+        <th>${h2(T.label)}<button class="i" data-ex="band" data-slot="${bexp}" aria-expanded="false">i</button></th><th>${h2(T.pos)}</th></tr>
+        <tr class="exrow"><td colspan="8"><div id="${bexp}"></div></td></tr></thead>
+        <tbody>${metrics}</tbody></table></div>
+      ${S.short?"":`<div class="legend"><span><i class="sw trk"></i>${esc(t("legend_trk"))}</span><span><i class="sw iqr"></i>${esc(t("legend_iqr"))}</span><span><i class="sw med"></i>${esc(t("legend_med"))}</span><span><i class="sw you"></i>${esc(t("legend_you"))}</span></div>`}
+      ${commentaryHtml(S.commentary)}
+      <h3>${esc(exTitle("verbs_top"))}<button class="i" data-ex="verbs_top" data-slot="${vexp}" aria-expanded="false">i</button></h3>
+      <div id="${vexp}"></div>
+      <p class="vguide">${esc(t("vguide"))}</p>
+      <div class="tablewrap"><table data-tid="${++tid}">
+        <thead><tr><th>${h2(T.verb)}</th><th>${h2(T.aspred)}</th><th>${h2(T.alluses)}</th><th>${h2(T.predrate)}</th><th>${h2(T.layer)}</th><th>${h2(T.basev)}</th>
+        <th>${h2(T.freq)}<button class="i" data-ex="verb_band" data-slot="${uexp}" aria-expanded="false">i</button></th>
+        <th>${h2(T.usage)}<button class="i" data-ex="usage" data-slot="${uexp}" aria-expanded="false">i</button></th>
+        <th>${h2(T.baseuse)}<button class="i" data-ex="base_usage" data-slot="${uexp}" aria-expanded="false">i</button></th></tr>
+        <tr class="exrow"><td colspan="9"><div id="${uexp}"></div></td></tr></thead>
+        <tbody>${verbs}</tbody></table></div>
+      ${others?`<h3>${esc(exTitle("verbs_other"))}<button class="i" data-ex="verbs_other" data-slot="${oexp}" aria-expanded="false">i</button></h3><div id="${oexp}"></div>
+      <div class="tablewrap"><table data-tid="${++tid}"><thead><tr><th>${h2(T.verb)}</th><th>${h2(T.alluses)}</th><th>${h2(T.aspred)}</th><th>${h2(T.usage)}</th><th>${h2(T.baseuse)}</th></tr></thead>
+        <tbody>${others}</tbody></table></div>`:""}
+      ${S.short ? "" : `<p><b>${esc(exTitle("missing_genre"))}</b><button class="i" data-ex="missing_genre" data-slot="${mexp}" aria-expanded="false">i</button>:
+        ${S.missing_genre.length? S.missing_genre.map(esc).join(", ") : esc(t("none"))}</p><div id="${mexp}"></div>`}
+      ${prep.length?`<p class="note">${esc(t("preplike"))}<button class="i" data-ex="usage_전치사처럼" data-slot="${fexp}" aria-expanded="false">i</button>: ${prep.map(([k,n])=>`${esc(k)} ${n}`).join(", ")}</p><div id="${fexp}"></div>`:""}
+    </section>`;
+  }).join("");
+  document.getElementById("version").textContent = `${r.version.baseline} · ${r.version.counting} · ${r.version.usage_rules}`;
+  if(!secs.find(x => x[0]===CUR)) CUR = secs[0][0];
+  drawOverview(); showSec(CUR);
+  openAll(box); relabel(document);
+}
+
+// 절별 개요 탭: 한 번에 한 절씩 보여 준다(인쇄할 때는 모두)
+let CUR = "INT";
+function drawOverview(){
+  const ov = document.getElementById("overview"); if(!LAST) return; ov.hidden = false;
+  ov.innerHTML = SECS.map(([c,en,ko]) => { const S = LAST.sections[c];
+    if(!S) return `<button class="ov" disabled><span class="t">${esc(tt([en,ko]))}</span><span class="w">–</span></button>`;
+    const out = S.short ? 0 : S.metrics.filter(m => m.band && m.band !== "typical").length, bw = S.words_baseline;
+    return `<button class="ov" role="tab" aria-selected="${c===CUR}" data-sec="${c}"><span class="t">${esc(tt([en,ko]))}</span>
+      <span class="w"><b>${S.words.toLocaleString()}</b> ${esc(t("words"))}${bw?` · ${esc(t("median"))} ${fmt(bw.median)}`:""}</span>
+      <span class="o">${esc(t("ov_out"))} ${out?`<b>${out}</b>`:esc(t("ov_none"))}</span></button>`; }).join("");
+}
+function showSec(c){ CUR = c; document.querySelectorAll("#results>section.card[data-sec]").forEach(el => el.hidden = el.dataset.sec !== c);
+  document.querySelectorAll("#overview .ov[data-sec]").forEach(b => b.setAttribute("aria-selected", b.dataset.sec === c)); }
+document.addEventListener("click", e => { const b = e.target.closest("#overview .ov[data-sec]"); if(b) showSec(b.dataset.sec); });
+
+// ── 내 글 살펴보기: 올린 원고에서만 어휘 목록과 KWIC를 만든다(기준선 논문 문장은 쓰지 않음)
+const XPOS = ["VERB","NOUN","ADJ","ADV","ALL"], XSORT = ["order","right","left"];
+function xopts(){
+  const sec = document.getElementById("xsec"), pos = document.getElementById("xpos"), so = document.getElementById("xsort");
+  const sv = sec.value, pv = pos.value || "VERB", ov = so.value || "order";
+  const have = LAST ? SECS.filter(x => LAST.sections[x[0]]) : [];
+  sec.innerHTML = `<option value="ALL">${esc(t("x_all"))}</option>` + have.map(([c,en,ko]) => `<option value="${c}">${esc(tt([en,ko]))}</option>`).join("");
+  pos.innerHTML = XPOS.map(p => `<option value="${p}">${esc(t("p_"+p))}</option>`).join("");
+  so.innerHTML = XSORT.map(o => `<option value="${o}">${esc(t("s_"+o))}</option>`).join("");
+  sec.value = sv || "ALL"; pos.value = pv; so.value = ov;
+  document.getElementById("xq").placeholder = t("x_type");
+}
+function xtokens(){
+  const sv = document.getElementById("xsec").value || "ALL";
+  const out = [];
+  SECS.forEach(([c]) => { const S = LAST && LAST.sections[c]; if(!S || (sv!=="ALL" && sv!==c)) return;
+    S.tokens.forEach(k => out.push({sec:c, sent:k[0], start:k[1], end:k[2], lemma:k[3], pos:k[4], usage:k[5], nl:k[6], S})); });
+  return out;
+}
+function wordlist(){
+  const pv = document.getElementById("xpos").value, cnt = {};
+  xtokens().forEach(k => { const p = k.pos==="PROPN" ? "NOUN" : k.pos; if(pv!=="ALL" && p!==pv) return; cnt[k.lemma] = (cnt[k.lemma]||0) + 1; });
+  const q = document.getElementById("xq").value.trim().toLowerCase();
+  document.getElementById("wordlist").innerHTML = Object.entries(cnt).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,60)
+    .map(([w,n]) => `<button data-word="${esc(w)}" class="${w===q?"on":""}">${esc(w)}<b>${n}</b></button>`).join("") || esc(t("none"));
+}
+function kwicAll(){
+  const q = document.getElementById("xq").value.trim().toLowerCase(), box = document.getElementById("xkwic"), cntEl = document.getElementById("xcount");
+  if(!q){ box.hidden = true; cntEl.textContent = ""; wordlist(); return; }
+  const useLemma = document.getElementById("xlemma").checked;
+  let hits = xtokens().filter(k => useLemma ? k.lemma === q : k.S.sentences[k.sent-1].slice(k.start,k.end).toLowerCase() === q);
+  const word = (k, dir) => { const s = k.S.sentences[k.sent-1]; const m = dir>0 ? s.slice(k.end).match(/[A-Za-z]+/) : s.slice(0,k.start).match(/([A-Za-z]+)[^A-Za-z]*$/); return m ? (dir>0?m[0]:m[1]).toLowerCase() : ""; };
+  const so = document.getElementById("xsort").value;
+  if(so==="right") hits.sort((a,b)=>word(a,1).localeCompare(word(b,1)));
+  if(so==="left") hits.sort((a,b)=>word(a,-1).localeCompare(word(b,-1)));
+  cntEl.textContent = `“${q}” ${hits.length} ${t("x_hits")}`;
+  box.hidden = !hits.length;
+  box.innerHTML = hits.map(k => { const s = k.S.sentences[k.sent-1];
+    return `<div class="kl" data-full="${esc(s)}" data-s="${k.start}" data-e="${k.end}"><span class="s">${k.sec}</span><span class="l">${esc(s.slice(Math.max(0,k.start-46),k.start))}</span><span class="k" title="${esc(t("kw_full"))}">${esc(s.slice(k.start,k.end))}</span><span class="r">${esc(s.slice(k.end,k.end+46))}</span>${k.usage?` <span class="muted">${esc(exTitle("usage_"+k.usage))}${k.nl?` · <span class="nlt">${esc(exTitle("noun_like"))}</span>`:""}</span>`:""}</div>`; }).join("");
+  wordlist();
+}
+// 동사 개수를 누르면: '내 글 살펴보기'에서 그 절의 동사 어휘 목록(많이 쓴 순)을 연다
+function openVerbList(code){
+  showExplore(); const sec = document.getElementById("xsec"), pos = document.getElementById("xpos");
+  sec.value = code; pos.value = "VERB"; document.getElementById("xq").value = ""; wordlist(); kwicAll();
+  document.getElementById("explore").scrollIntoView({behavior:"smooth"});
+}
+function showExplore(word){
+  const el = document.getElementById("explore"); const first = el.hidden; el.hidden = false; xopts(); wordlist(); if(first) openAll(el); relabel(el);
+  if(word){ document.getElementById("xq").value = word; document.getElementById("xlemma").checked = true; kwicAll(); el.scrollIntoView({behavior:"smooth"}); }
+}
+document.addEventListener("click", e => { const k = e.target.closest(".kl"); if(!k) return;
+  const nx = k.nextElementSibling; if(nx && nx.classList.contains("full")){ nx.remove(); return; }
+  const f = k.dataset.full, a = +k.dataset.s, b = +k.dataset.e;
+  k.insertAdjacentHTML("afterend", `<div class="full">${esc(f.slice(0,a))}<mark>${esc(f.slice(a,b))}</mark>${esc(f.slice(b))}</div>`); });
+document.addEventListener("click", e => { const w = e.target.closest("[data-word]"); if(!w) return; document.getElementById("xq").value = w.dataset.word; document.getElementById("xlemma").checked = true; kwicAll(); });
+["xsec","xpos","xsort","xlemma"].forEach(i => document.getElementById(i).addEventListener("change", () => { wordlist(); kwicAll(); }));
+document.getElementById("xq").addEventListener("input", kwicAll);
+
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-toggle]"); if(!b) return;
+  const el = document.getElementById(b.dataset.toggle); el.hidden = !el.hidden;
+  if(b.classList.contains("vbtn")) b.setAttribute("aria-expanded", !el.hidden);
+  if(b.classList.contains("ctog")) relabel(b.closest("section") || document);
+});
+document.querySelectorAll(".seg button").forEach(b => b.onclick = () => { LANG = b.dataset.lang; try{localStorage.setItem("diag-lang",LANG);}catch(e){} applyStatic(); });
+document.getElementById("baseline").onchange = applyStatic;
+document.getElementById("exnone").onclick = () => setAll(false);
+document.getElementById("exall").onclick = () => setAll(true);
+
+function updWc(c){ const v = document.getElementById("t-"+c).value.trim(); const n = v ? v.split(/\s+/).length : 0; document.getElementById("wc-"+c).textContent = `${n.toLocaleString()} ${t("words_n")}`; }
+const SAMPLE = {
+  INT: "Layered transition-metal oxides have attracted considerable interest as cathode materials for sodium-ion batteries.[1,2] Earlier studies reported that structural transitions limit their cycling stability.[3,4] Kim et al. suggested that surface doping may suppress these transitions, but the mechanism remains unclear.[5] In this work, we examine how a small amount of titanium changes the phase behaviour of the oxide. We show that doping clearly delays the transition and improves the capacity retention.",
+  MET: "The oxides were synthesized by a solid-state reaction. Stoichiometric amounts of the precursors were mixed, pressed into pellets and heated at 900 °C for 12 h. X-ray diffraction patterns were collected at room temperature. Electrochemical tests were performed in coin cells using sodium metal as the counter electrode.",
+  RD: "Figure 1 shows the diffraction patterns of the pristine and doped samples. All reflections can be indexed to a hexagonal cell, indicating that no impurity phase is formed. Compared to the pristine oxide, the doped sample shows a slightly larger lattice parameter, which suggests that titanium occupies the transition-metal site. During charging, the pristine electrode undergoes a phase transition at 4.2 V, whereas this transition is clearly shifted to higher voltage in the doped electrode. This shift is likely related to the stronger Ti–O bond, which may stabilize the layered framework. The capacity retention after 100 cycles increases from 71% to 89%, including the first ten cycles.",
+  CON: "We have shown that a small amount of titanium delays the phase transition of the layered oxide and improves its cycling stability. These results suggest that bulk doping is a simple route to more durable cathodes."
+};
+document.getElementById("sample").onclick = () => { SECS.forEach(([c]) => { document.getElementById("t-"+c).value = SAMPLE[c]; updWc(c); }); };
+document.getElementById("clearall").onclick = () => { SECS.forEach(([c]) => { document.getElementById("t-"+c).value = ""; updWc(c); }); };
+document.getElementById("openfold").onclick = () => { const f = document.getElementById("fold"); f.open = true; f.scrollIntoView({behavior:"smooth"}); };
+
+
+document.getElementById("go").onclick = async () => {
+  const btn = document.getElementById("go"), st = document.getElementById("status");
+  const sections = {}; SECS.forEach(([c]) => { const v = document.getElementById("t-"+c).value.trim(); if(v) sections[c] = v; });
+  btn.disabled = true; st.textContent = t("running");
+  try{
+    const res = await fetch("/api/diagnose", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({baseline: document.getElementById("baseline").value, sections})});
+    if(!res.ok) throw new Error(res.status + " " + (await res.text()));
+    render(await res.json()); st.textContent = ""; document.getElementById("step3h").hidden = false; document.getElementById("commonbox").hidden = false; document.getElementById("commonfold").hidden = false; drawCommon(); showExplore(); document.getElementById("savebox").hidden = false; if(window.EXPORT) EXPORT.drawSave();
+    document.getElementById("step3h").scrollIntoView({behavior:"smooth"});
+  }catch(err){ st.textContent = t("err") + ": " + err.message; }
+  finally{ btn.disabled = false; }
+};
+
+(async () => {
+  document.getElementById("inputs").innerHTML = SECS.map(([c]) => `<div class="box"><div class="box-head"><label class="sec" for="t-${c}" data-sec="${c}"></label><span id="wc-${c}"></span></div><textarea id="t-${c}" spellcheck="false"></textarea></div>`).join("");
+  SECS.forEach(([c]) => document.getElementById("t-"+c).addEventListener("input", () => updWc(c)));
+  [EX, BL, CV] = await Promise.all([fetch("/api/explanations").then(r=>r.json()), fetch("/api/baselines").then(r=>r.json()), fetch("/api/common_verbs").then(r=>r.json())]);
+  const sel = document.getElementById("baseline");
+  applyStatic(); sel.value = "ACS_JPC_C"; applyStatic();
+  applyStatic();
+})();
+</script>
+<script src="/static/export.js"></script>
+<script>if(window.EXPORT) EXPORT.drawInfoFields();</script>
+</body>
+</html>

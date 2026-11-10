@@ -1,0 +1,307 @@
+{
+ "_note": "화면의 ⓘ 설명. en·ko를 고치면 화면을 새로 고칠 때 반영된다. 숫자는 넣지 않는다(숫자는 계산 결과에서 채움).",
+ "about": {
+  "title": {
+   "en": "What this page does",
+   "ko": "이 화면이 하는 일"
+  },
+  "en": "This page counts how often each section of your manuscript uses verbs and stance expressions (expressions that present a claim as possible or with certainty), and compares the counts with published papers from the journal you choose. The comparison is information for deciding whether to revise. A number that differs from the other papers is not an error and does not mean you must change it.",
+  "ko": "원고의 각 절에서 동사와 주장 표현(가능성을 제시하거나 확신을 드러내는 표현)이 얼마나 쓰였는지 분석하고, 선택한 저널의 출판 논문들과 비교해 보여 줍니다. 비교 결과는 수정 여부를 판단하는 참고 정보입니다. 다른 논문들과 수치가 다르다고 해서 오류이거나 반드시 고쳐야 한다는 뜻은 아닙니다."
+ },
+ "baseline": {
+  "title": {
+   "en": "About the comparison papers",
+   "ko": "비교 자료 안내"
+  },
+  "en": "The selected set of published papers from one journal, analysed for the same items as your manuscript. For each number, the page shows the range it usually takes in these papers and where your manuscript falls. These papers are a reference for comparison, not the correct answer for writing.",
+  "ko": "선택한 저널의 출판 논문들을 분석한 자료입니다. 내 원고와 같은 항목을 계산하여, 각 수치가 비교 논문들에서 주로 어느 범위에 있고 내 원고는 어디에 있는지 보여 줍니다. 이 자료는 글쓰기의 정답이 아니라 비교를 위한 참고 자료입니다."
+ },
+ "n_papers": {
+  "title": {
+   "en": "Number of papers",
+   "ko": "논문 수"
+  },
+  "en": "How many baseline papers have this section. Fewer than about 10 papers makes the range unstable; read it as a rough guide.",
+  "ko": "기준선 논문 가운데 이 절이 있는 논문 수입니다. 10편 안팎보다 적으면 범위가 흔들리기 쉬우니 대략적인 참고로만 보세요."
+ },
+ "per1000": {
+  "title": {
+   "en": "Per 1,000 words",
+   "ko": "1,000단어당"
+  },
+  "en": "Counts are divided by the number of words in the section and multiplied by 1,000, so that a short section and a long section can be compared.",
+  "ko": "개수를 그 절의 단어 수로 나누고 1,000을 곱한 값입니다. 길이가 다른 절과 논문을 같은 잣대로 비교하기 위해서입니다."
+ },
+ "median": {
+  "title": {
+   "en": "Median",
+   "ko": "중앙값"
+  },
+  "en": "The middle value when the baseline papers are lined up from lowest to highest. Half of the papers are below it and half above.",
+  "ko": "기준선 논문들의 값을 작은 것부터 줄 세웠을 때 한가운데 값입니다. 논문의 절반은 이보다 작고 절반은 큽니다."
+ },
+ "iqr": {
+  "title": {
+   "en": "Comparison range (Q1–Q3)",
+   "ko": "비교 범위(Q1–Q3)"
+  },
+  "en": "The range covered by the middle half of the baseline papers (first to third quartile). A value inside it is typical for the field. Quartiles are computed with the inclusive method (same as Excel QUARTILE.INC).",
+  "ko": "기준선 논문 가운데 가운데 절반이 들어가는 범위(1사분위수–3사분위수)입니다. 이 안에 들면 그 분야에서 흔한 값입니다. 사분위수는 포함 방식(엑셀 QUARTILE.INC와 같음)으로 계산합니다."
+ },
+ "minmax": {
+  "title": {
+   "en": "Full range (min–max)",
+   "ko": "전체 범위(최솟값–최댓값)"
+  },
+  "en": "The lowest and highest values found in any baseline paper. A value outside this range was not seen in any published paper of the baseline.",
+  "ko": "기준선 논문 가운데 가장 작은 값과 가장 큰 값입니다. 이 범위를 벗어나면 기준선의 출판 논문 어디에서도 나오지 않은 값입니다."
+ },
+ "band": {
+  "title": {
+   "en": "How to read the label",
+   "ko": "판정 표시 읽는 법"
+  },
+  "en": "Within range: inside the comparison range. Higher / Lower: outside the comparison range but inside the full range. Higher / Lower than all comparison papers: outside the full range. These labels describe position, not quality.",
+  "ko": "범위 안: 비교 범위 안. 높음 / 낮음: 비교 범위 밖이지만 전체 범위 안. 모든 비교 논문보다 높음 / 낮음: 전체 범위도 벗어남. 이 표시는 위치를 말할 뿐, 잘 썼다 못 썼다는 평가가 아닙니다."
+ },
+ "short_section": {
+  "title": {
+   "en": "Short section",
+   "ko": "짧은 절"
+  },
+  "en": "This section is shorter than 300 words, so higher or lower frequencies are not judged. The per-1,000-word rates are given for reference only; focus on the actual counts and sentences. The 300-word threshold is this tool's own criterion for withholding frequency judgements on short sections.",
+  "ko": "이 절은 300단어보다 짧아 빈도에 따른 높고 낮음은 판정하지 않습니다. 환산 수치는 참고용으로만 제시하므로, 실제 개수와 문장을 중심으로 확인해 주세요. 300단어는 이 도구에서 짧은 절의 빈도 판정을 보류하기 위해 정한 기준입니다."
+ },
+ "words": {
+  "title": {
+   "en": "Words",
+   "ko": "단어 수"
+  },
+  "en": "Alphabetic words in the section (numbers and symbols are not counted). Used as the denominator of every rate.",
+  "ko": "그 절의 알파벳 낱말 수입니다(숫자·기호는 세지 않음). 모든 비율의 분모가 됩니다."
+ },
+ "verbs_per1000": {
+  "title": {
+   "en": "Verbs",
+   "ko": "동사"
+  },
+  "en": "Lexical verbs (content verbs such as measure, show, increase) per 1,000 words. Auxiliaries (be, have, can, may, etc.) are not counted. Click the count to see the verb list for this section.",
+  "ko": "내용을 지닌 동사(measure, show, increase 등)의 1,000단어당 수입니다. 조동사(be, have, can, may 등)로 쓰인 것은 세지 않습니다. 개수를 누르면 이 절의 동사 목록을 볼 수 있습니다."
+ },
+ "hedge_per1000": {
+  "title": {
+   "en": "Hedges",
+   "ko": "완화 표현(헷지)"
+  },
+  "en": "Hedges express possibility or inference and lower how categorically a claim is made (may, might, suggest, likely, possibly…), following Hyland (2005). Not counted in the Methods section.",
+  "ko": "완화 표현(헷지, hedge)은 가능성이나 추정을 나타내어 주장의 단정적인 정도를 낮추는 표현입니다(may, might, suggest, likely, possibly 등). Hyland(2005)의 목록을 따르며, 실험·방법 절에서는 세지 않습니다."
+ },
+ "booster_per1000": {
+  "title": {
+   "en": "Boosters",
+   "ko": "강조 표현(부스터)"
+  },
+  "en": "Boosters present a claim with certainty (clearly, demonstrate, indeed, obviously…), following Hyland (2005). Not counted in the Methods section.",
+  "ko": "강조 표현(부스터, booster)은 주장을 확신 있게 내놓는 표현입니다(clearly, demonstrate, indeed, obviously 등). Hyland(2005)를 따르며, 실험·방법 절에서는 세지 않습니다."
+ },
+ "reporting_per1000": {
+  "title": {
+   "en": "Reporting verbs (prior work)",
+   "ko": "보고동사(선행연구)"
+  },
+  "en": "Verbs whose content is attributed to other studies. A verb counts when its subject is an author name (Kim et al., Whitesides and co-workers) or a prior-work expression (previous studies, several groups), when it is an agentless passive report (it has been reported, as reported earlier), or when a citation is attached to it. When the subject is your own study (we, I, this work, this paper, the present study, here we), the verb is not counted; it stays in the list of verbs used as predicates. Exception: “We previously reported…[12]” cites your own earlier work, so it counts when a citation or previously / earlier / our previous work appears with it. Usually highest in the Introduction, where the research gap is built from the literature.",
+  "ko": "내용이 다른 연구에 귀속되는 동사입니다. 주어가 저자 이름(Kim et al., Whitesides and co-workers)이나 선행연구 표현(previous studies, several groups)일 때, 행위자 없는 수동 보고(it has been reported, as reported earlier)일 때, 동사에 인용 표시가 붙어 있을 때 셉니다. 주어가 자기 연구(we, I, this work, this paper, the present study, here we)이면 세지 않으며, 이 동사는 ‘원고에서 술어로 쓴 동사’ 목록에는 그대로 남습니다. 다만 “We previously reported…[12]”처럼 인용 표시나 previously·earlier·our previous work가 함께 있으면 자기 이전 연구 인용으로 보고 셉니다. 문헌으로 연구 공백을 세우는 서론에서 가장 많은 것이 보통입니다."
+ },
+ "verbs_top": {
+  "title": {
+   "en": "Verbs you use as predicates",
+   "ko": "원고에서 술어로 쓴 동사"
+  },
+  "en": "The ten verbs you use most often as predicates (finite verbs) in this section, by base form. Layers and frequency are judged on predicate use only, so that participles such as 'the doped film' or fixed expressions such as 'compared to' do not decide whether a verb is typical. Other uses of the same verb are shown in the usage column.",
+  "ko": "이 절에서 술어(정형 동사)로 가장 많이 쓴 동사 10개입니다(기본형 기준). 층과 빈도는 술어로 쓴 것만으로 판정합니다. 'the doped film' 같은 분사나 'compared to' 같은 굳은 표현이 그 동사가 흔한지 여부를 정하지 않게 하기 위해서입니다. 같은 동사의 다른 쓰임은 쓰임 칸에 보여 줍니다."
+ },
+ "layer_genre": {
+  "title": {
+   "en": "Verbs found in all four journals",
+   "ko": "네 저널에서 공통으로 확인된 동사"
+  },
+  "en": "In each of the four journal sets compared, this verb is used as a predicate in at least half of the papers in which this section can be compared. It does not mean the verb must be used.",
+  "ko": "비교한 네 저널 집합 각각에서, 해당 절을 비교할 수 있는 논문의 절반 이상에 이 동사의 술어 용법이 확인되었습니다. 반드시 사용해야 하는 동사라는 뜻은 아닙니다."
+ },
+ "layer_field": {
+  "title": {
+   "en": "Verbs frequently found in the chosen set",
+   "ko": "선택 집합에서 자주 확인된 동사"
+  },
+  "en": "In the chosen set, this verb is used as a predicate in at least half of the papers in which this section can be compared, but not all four sets meet this condition. It does not mean the verb belongs only to one field.",
+  "ko": "선택한 논문 집합에서는 해당 절을 비교할 수 있는 논문의 절반 이상에 술어 용법이 확인되었지만, 네 집합 모두가 이 조건을 충족하지는 않았습니다. 특정 분야에만 쓰이는 동사라는 뜻은 아닙니다."
+ },
+ "layer_rare": {
+  "title": {
+   "en": "Verbs found in some comparison papers",
+   "ko": "일부 비교 논문에서 확인된 동사"
+  },
+  "en": "In the chosen set, this verb is used as a predicate in at least one but fewer than half of the papers in which this section can be compared. The category reflects the number of papers only; it does not judge whether the expression is appropriate.",
+  "ko": "선택한 논문 집합에서 해당 절을 비교할 수 있는 논문 중 한 편 이상, 절반 미만에서 술어 용법이 확인되었습니다. 사용 문헌 수에 따른 분류이며, 표현의 적절성을 평가한 것은 아닙니다."
+ },
+ "layer_none": {
+  "title": {
+   "en": "Verbs not used as predicates in the same section",
+   "ko": "같은 절에서 술어 용법이 확인되지 않은 동사"
+  },
+  "en": "In the same section of the chosen comparison set, this verb is not used as a predicate. Whether it occurs in other uses or other sections is given under “Reading the results”. It does not mean the expression cannot be used.",
+  "ko": "선택한 비교 집합의 같은 절에서는 이 동사의 술어 용법이 확인되지 않았습니다. 다른 용법이나 다른 절에서 사용되었는지는 ‘분석 결과 풀이’에서 확인할 수 있습니다. 사용할 수 없는 표현이라는 뜻은 아닙니다."
+ },
+ "verb_band": {
+  "title": {
+   "en": "Frequency compared with the baseline",
+   "ko": "빈도 비교"
+  },
+  "en": "For ① and ② verbs, your predicate uses per 1,000 words are compared with the comparison range of predicate uses of that verb in the baseline papers. For ③ and ④ verbs no range is given, because most baseline papers do not use them as predicates.",
+  "ko": "①·② 동사는 원고에서 술어로 쓴 횟수(1,000단어당)를 기준선 논문들의 같은 동사 술어 사용 비교 범위와 비교합니다. ③·④ 동사는 기준선 논문 대부분이 술어로 쓰지 않으므로 비교하지 않습니다."
+ },
+ "missing_genre": {
+  "title": {
+   "en": "Verbs found in all four journals that you did not use as predicates",
+   "ko": "원고에서 술어로 쓰지 않은 ‘네 저널 공통’ 동사"
+  },
+  "en": "Verbs in the “all four journals” category that at least 80% of the comparison papers use as predicates in this section but your manuscript does not. Not a must-use list.",
+  "ko": "‘네 저널 공통’ 동사 가운데 비교 논문의 80% 이상이 이 절에서 술어로 쓰지만 원고에서는 술어로 쓰지 않은 것입니다. 꼭 써야 하는 목록은 아닙니다."
+ },
+ "usage": {
+  "title": {
+   "en": "How the verb is used",
+   "ko": "동사 쓰임"
+  },
+  "en": "Each occurrence of the verb is classified by its grammatical use. The usage classification rules (verb_usage_rules v0.3) are still being checked against human judgements, so treat individual labels as provisional.",
+  "ko": "동사가 나올 때마다 문법적 쓰임을 구분합니다. 쓰임 분류 규칙(verb_usage_rules v0.3)은 사람 판정과 대조하는 중이므로, 낱낱의 판정은 잠정적인 것으로 보세요."
+ },
+ "usage_술어": {
+  "title": {
+   "en": "Predicate",
+   "ko": "술어"
+  },
+  "en": "A finite verb: it carries tense or has a finite auxiliary (The phase orders; were calculated; may be surpassed).",
+  "ko": "정형 동사입니다. 시제 꼴이거나 정형 조동사가 붙어 있습니다(The phase orders; were calculated; may be surpassed)."
+ },
+ "usage_명사 앞 수식": {
+  "title": {
+   "en": "Pre-modifier",
+   "ko": "명사 앞 수식"
+  },
+  "en": "A participle before a noun, used like an adjective (the doped samples, the resulting film).",
+  "ko": "명사 앞에서 형용사처럼 꾸미는 분사입니다(the doped samples, the resulting film)."
+ },
+ "usage_명사 뒤 수식": {
+  "title": {
+   "en": "Post-modifier",
+   "ko": "명사 뒤 수식"
+  },
+  "en": "A participle after a noun: a reduced relative clause (energies calculated by DFT). Typical of compressed scientific prose.",
+  "ko": "명사 뒤에서 꾸미는 분사, 곧 축약 관계절입니다(energies calculated by DFT). 압축된 과학 문체의 특징입니다."
+ },
+ "usage_비정형": {
+  "title": {
+   "en": "Non-finite",
+   "ko": "비정형"
+  },
+  "en": "A verb without tense: to-infinitive, participle clause or -ing after a preposition (to calculate; Using DFT, …; by comparing).",
+  "ko": "시제가 없는 동사구입니다. to부정사, 분사구문, 전치사 뒤 -ing(to calculate; Using DFT, …; by comparing)."
+ },
+ "usage_명사처럼": {
+  "title": {
+   "en": "Nominal (gerund)",
+   "ko": "명사처럼"
+  },
+  "en": "An -ing form in a noun position, as subject or object (Heating the sample causes…).",
+  "ko": "-ing 꼴이 주어·목적어 같은 명사 자리에 온 경우입니다(Heating the sample causes…)."
+ },
+ "usage_전치사처럼": {
+  "title": {
+   "en": "Preposition-like",
+   "ko": "전치사처럼"
+  },
+  "en": "A participle that has lost its verbal meaning and works as a preposition (including, following, regarding, concerning). Counted in the baseline totals, but left out of the verb list on this page.",
+  "ko": "동사 뜻을 잃고 전치사처럼 쓰이는 분사입니다(including, following, regarding, concerning). 기준선 총계에는 들어 있지만 이 화면의 동사 목록에서는 뺍니다."
+ },
+ "usage_확인 필요": {
+  "title": {
+   "en": "Check",
+   "ko": "확인 필요"
+  },
+  "en": "The rules could not decide (a heading, a fragment, or a tagging error). Look at the sentence.",
+  "ko": "규칙으로 정하지 못한 경우입니다(제목, 조각문, 품사 오류 등). 문장을 직접 확인하세요."
+ },
+ "fixed": {
+  "title": {
+   "en": "Fixed expression",
+   "ko": "굳은 표현"
+  },
+  "en": "compared to/with, based on, given: grammatically close to prepositions (marginal prepositions; Quirk et al., 1985), but they keep a comparing or grounding meaning, so they are counted as non-finite verbs and marked here.",
+  "ko": "compared to/with, based on, given은 문법적으로 전치사에 가깝지만(준전치사; Quirk et al., 1985) 비교·근거의 뜻이 남아 있어 비정형 동사로 세고 이렇게 표시합니다."
+ },
+ "verbs_other": {
+  "title": {
+   "en": "Verbs used mostly as modifiers or non-finite forms",
+   "ko": "주로 수식어·비정형으로 쓴 동사"
+  },
+  "en": "Verbs that appear more often as participle modifiers, non-finite forms or gerunds than as predicates. Many of these are the compressed noun phrases typical of scientific prose (energies calculated by DFT, the doped samples).",
+  "ko": "술어보다 분사 수식어, 비정형, 동명사로 더 많이 쓴 동사입니다. 과학 논문에 흔한 압축된 명사구(energies calculated by DFT, the doped samples)인 경우가 많습니다."
+ },
+ "base_usage": {
+  "title": {
+   "en": "How the baseline papers use this verb",
+   "ko": "기준선 논문의 쓰임"
+  },
+  "en": "All occurrences of this verb in the same section of the baseline papers, split by usage. Compare it with your own usage: e.g. if published papers mostly write 'compared to' and you mostly write 'we compared', both are fine, but the difference is visible here.",
+  "ko": "기준선 논문들의 같은 절에 나온 이 동사를 쓰임별로 나눈 합계입니다. 원고의 쓰임과 견주어 보세요. 예를 들어 출판 논문은 주로 'compared to'로, 원고는 주로 'we compared'로 쓴다면 둘 다 문제는 없지만 차이가 여기에서 보입니다."
+ },
+ "pdf": {
+  "title": {
+   "en": "Save as PDF",
+   "ko": "PDF로 저장"
+  },
+  "en": "Opens the print dialog. Choose 'Save as PDF'. Explanations you have opened are included in the PDF.",
+  "ko": "인쇄 창이 열립니다. 'PDF로 저장'을 고르세요. 열어 둔 설명도 PDF에 함께 들어갑니다."
+ },
+ "explore": {
+  "title": {
+   "en": "Explore your text",
+   "ko": "내 글 살펴보기"
+  },
+  "en": "A small concordancer for the text you entered: your own paper, a student's paper or a paper used for external checking. It works only on the text on this page; no baseline sentences are shown. Reading your own sentences around a word is often the quickest way to decide whether a number needs action.",
+  "ko": "입력한 글(본인 논문, 학생 논문, 외부 검증용 논문)만으로 만드는 작은 코퍼스 도구입니다. 이 화면의 글만 쓰고, 기준선 논문의 문장은 보여 주지 않습니다. 숫자를 보고 고칠지 정할 때는 그 낱말이 쓰인 자기 문장을 다시 읽어 보는 것이 가장 빠릅니다."
+ },
+ "wordlist": {
+  "title": {
+   "en": "Word list",
+   "ko": "어휘 목록"
+  },
+  "en": "The most frequent words of the chosen word class, by base form (e.g. shows, showed and shown all count as show). Click a word to see its concordance.",
+  "ko": "고른 품사에서 가장 많이 나온 낱말을 기본형으로 묶어 셉니다(shows, showed, shown은 모두 show). 낱말을 누르면 용례가 나옵니다."
+ },
+ "kwic": {
+  "title": {
+   "en": "Concordance (KWIC)",
+   "ko": "용례 보기(KWIC)"
+  },
+  "en": "Key word in context: every occurrence of the word with the words before and after it, and the section it comes from. For verbs, the usage label is shown at the end. Sort by the next or previous word to see recurring patterns such as 'shown in' or 'is attributed to'.",
+  "ko": "찾는 낱말이 나온 곳을 앞뒤 문맥과 함께 한 줄씩 보여 줍니다(KWIC). 앞에는 절 이름이, 동사에는 끝에 쓰임이 붙습니다. 오른쪽이나 왼쪽 낱말로 정렬하면 'shown in', 'is attributed to' 같은 되풀이 패턴이 보입니다."
+ },
+ "method": {
+  "title": {
+   "en": "Analysis method and data sources",
+   "ko": "분석 방법 및 자료 출처"
+  },
+  "en": "Comparison papers: open-access research articles (CC BY) published in ACS journals in 2020–2021, extracted and analysed with section-verb-hedge-baseline 0.4.9. The analysis is rule-based: predefined rules find and count the expressions (spaCy en_core_web_sm for word classes; Hyland (2005) for hedges and boosters). The papers were used to obtain the comparison numbers; no AI model was trained on them. Your text is analysed with the same rules. The service code does not write your text to files or a database, and no external generative AI is called to produce the explanations. Because your pasted text is split into sentences again, a count can differ slightly from what the same paper gives in the stored comparison data.",
+  "ko": "비교 논문: ACS 저널에 2020–2021년에 출판된 공개 연구 논문(CC BY)이며, section-verb-hedge-baseline 0.4.9로 추출·분석했습니다. 분석은 규칙 기반입니다. 미리 정한 규칙에 따라 표현을 찾아 셉니다(품사는 spaCy en_core_web_sm, 완화 표현·강조 표현은 Hyland(2005)). 이 논문들은 비교할 수치를 얻는 데 썼을 뿐, AI를 훈련하는 데 쓰지 않았습니다. 입력한 글도 같은 규칙으로 분석합니다. 서비스 코드는 입력한 글을 파일이나 데이터베이스에 저장하지 않으며, 해설을 만들 때 외부 생성형 AI를 호출하지 않습니다. 붙여 넣은 글을 문장 단위로 다시 나누므로, 같은 논문이라도 저장된 비교 자료의 개수와 조금 다를 수 있습니다."
+ },
+ "noun_like": {
+  "title": {
+   "en": "May be a noun · check the examples",
+   "ko": "명사일 수 있음 · 용례 확인"
+  },
+  "en": "The analyser took this word as a verb, but it has an article, adjective, number or noun modifier, as nouns do. It is still counted as a verb. Open the examples (KWIC) and decide from the context.",
+  "ko": "분석기는 동사로 보았지만, 명사처럼 관사·형용사·수사·명사 수식어를 거느린 경우입니다. 숫자는 동사로 센 그대로입니다. 용례(KWIC)를 펼쳐 문맥을 보고 판단하세요."
+ }
+}

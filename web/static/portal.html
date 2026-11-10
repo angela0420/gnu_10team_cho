@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>논문 글쓰기 진단</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* 2026-11-09 디자인 시안 적용(청록·남색·황토, 원소 칸). 교육 본문은 조은정 교수 승인 문장 그대로. */
+:root{--bg:#FAFCFC;--surface:#FFFFFF;--band:#EFF6F5;--ink:#13233A;--ink-2:#4E5E6B;--ink-3:#7C8A94;--rule:#DCE5E7;
+--teal:#0E6F68;--teal-hover:#0A5A54;--teal-tint:#E2F2EF;--mark:#D7F5E9;--on-teal:#FFFFFF;
+--v-observe:#0E6F68;--v-suggest:#2F4B8C;--v-report:#9A6312;
+--sans:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+--serif:"Source Serif 4",Georgia,"Times New Roman",serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0F1A22;--surface:#15232D;--band:#132A2C;--ink:#E7EEF2;--ink-2:#A9B8C2;--ink-3:#7D8D98;--rule:#263843;
+--teal:#4FC2B4;--teal-hover:#74D3C7;--teal-tint:#173A38;--mark:#1D4A44;--on-teal:#0F1A22;--v-observe:#4FC2B4;--v-suggest:#8FA9EC;--v-report:#E0A956;color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+header.site{border-bottom:1px solid var(--rule);background:var(--bg);position:sticky;top:0;z-index:10}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:24px}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;white-space:nowrap}
+.brand b{font-weight:700;font-size:18px;letter-spacing:-.01em}
+.brand span{font-size:13px;color:var(--ink-3)}
+nav.site{display:flex;gap:28px;font-size:15px}
+nav.site a{text-decoration:none;color:var(--ink-2);padding:6px 0;border-bottom:2px solid transparent}
+nav.site a:hover{color:var(--ink);border-bottom-color:var(--teal)}
+/* 첫 화면 */
+.hero{padding:88px 0 56px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:64px;align-items:center}
+h1{font-size:clamp(34px,4.6vw,52px);line-height:1.28;letter-spacing:-.03em;font-weight:700;margin:0 0 24px}
+.lede{font-size:19px;color:var(--ink-2);max-width:30em;margin:0 0 36px}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}
+.btn{display:inline-flex;align-items:center;height:52px;padding:0 28px;background:var(--teal);color:var(--on-teal);border-radius:10px;font-size:17px;font-weight:600;text-decoration:none;border:0;cursor:pointer}
+.btn:hover{background:var(--teal-hover)}
+.link-quiet{font-size:16px;color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:5px}
+.link-quiet:hover{color:var(--ink);text-decoration-color:var(--teal)}
+.note{font-size:14px;color:var(--ink-3);margin:16px 0 0}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.tile{position:relative;aspect-ratio:1/1.12;background:var(--surface);border:1.5px solid var(--rule);border-radius:6px;padding:14px 14px 16px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;font:inherit;color:inherit;cursor:pointer;transition:border-color .15s,transform .15s}
+.tile::before{content:"";position:absolute;left:-1.5px;right:-1.5px;top:-1.5px;height:5px;background:var(--c);border-radius:6px 6px 0 0}
+.tile:hover{border-color:var(--c)}
+.tile[aria-pressed=true]{border-color:var(--c);transform:translateY(-4px)}
+.tile .ko{font-size:15px;font-weight:600;color:var(--c);margin-top:6px}
+.tile .en{font-family:var(--serif);font-size:clamp(20px,2.2vw,26px);font-weight:600;letter-spacing:-.01em;line-height:1.1}
+.tile .role{font-size:12.5px;color:var(--ink-3);line-height:1.45}
+.observe{--c:var(--v-observe)}.suggest{--c:var(--v-suggest)}.report{--c:var(--v-report)}
+.tiles-cap{font-size:14px;color:var(--ink-3);margin:14px 0 0}
+/* KWIC 예시(첫 화면 아래) */
+.kwic-sec{padding:0 0 72px}
+.kwic{background:var(--surface);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.kwic-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:16px 24px;border-bottom:1px solid var(--rule)}
+.kwic-head h2{font-size:16px;font-weight:600;margin:0}
+.kwic-head h2 code{font-family:var(--mono);font-weight:500;color:var(--teal);background:var(--teal-tint);padding:2px 8px;border-radius:4px;margin-left:4px}
+.chip{font-size:13px;color:var(--ink-3);border:1px solid var(--rule);border-radius:999px;padding:3px 12px}
+.kwic-body{padding:18px 0;overflow-x:auto}
+.kwic-lines{min-width:640px;padding:0 24px}
+.line,.line-h{display:grid;grid-template-columns:minmax(0,1fr) calc(8ch + 14px) minmax(0,1fr);column-gap:10px}
+.line-h{font-size:12.5px;color:var(--ink-3);padding:0 0 4px;border-bottom:1px solid var(--rule)}
+.line-h span:first-child{text-align:right}
+.line{font-family:var(--mono);font-size:14.5px;line-height:2.25;color:var(--ink-2)}
+.line+.line{border-top:1px dashed var(--rule)}
+.line .l{white-space:nowrap;overflow:hidden;display:flex;justify-content:flex-end}
+.line .r{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.line .k{font-weight:500;color:var(--ink);background:var(--mark);padding:0 6px;border-radius:3px;align-self:center;justify-self:start;line-height:1.7}
+.kwic-foot{margin:0;padding:14px 24px;border-top:1px solid var(--rule);font-size:14.5px;color:var(--ink-2);background:var(--bg)}
+.kwic-lines.swap{animation:swap .25s ease-out}
+@keyframes swap{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+/* 교육 본문 */
+.body-grid{display:grid;grid-template-columns:220px minmax(0,720px);gap:72px;padding:72px 0 32px;border-top:1px solid var(--rule)}
+aside.toc{position:sticky;top:96px;align-self:start;font-size:14.5px}
+aside.toc p{font-size:13px;color:var(--ink-3);margin:0 0 10px}
+aside.toc ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--rule)}
+aside.toc a{display:block;padding:6px 0 6px 14px;margin-left:-1px;border-left:2px solid transparent;color:var(--ink-2);text-decoration:none;line-height:1.45}
+aside.toc a:hover{color:var(--ink)}
+aside.toc a.on{color:var(--teal);border-left-color:var(--teal);font-weight:600}
+article h2{font-size:30px;line-height:1.35;letter-spacing:-.02em;font-weight:700;margin:0 0 20px}
+article h3{font-size:22px;line-height:1.45;letter-spacing:-.015em;font-weight:700;margin:0 0 16px}
+article h3 .n{color:var(--teal);margin-right:8px;font-variant-numeric:tabular-nums}
+article p{margin:0 0 18px}
+article section{padding:0 0 56px}
+article section+section{border-top:1px solid var(--rule);padding-top:48px}
+.src{font-size:12.5px;color:var(--ink-3);white-space:nowrap;margin-left:2px}
+.src a{color:var(--ink-3)}
+.src a:hover{color:var(--teal)}
+code{font-family:var(--mono);font-size:.92em}
+.jump{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:20px 24px;margin:0 0 32px}
+.jump p{font-size:14px;color:var(--ink-3);margin:0 0 8px}
+.jump ol{margin:0;padding-left:22px}
+.jump li{padding:3px 0}
+.jump a{text-decoration:none;color:var(--ink)}
+.jump a:hover{color:var(--teal);text-decoration:underline;text-underline-offset:4px}
+.ex{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:18px 24px;margin:0 0 22px}
+.ex-cap{font-size:13px;color:var(--ink-3);margin:0 0 10px!important}
+.ex .en{font-family:var(--serif);font-size:19px;line-height:1.6;margin:0}
+.ex .ko{font-size:15px;color:var(--ink-2);margin:2px 0 0}
+.ex .pair+.pair{margin-top:14px;padding-top:14px;border-top:1px dashed var(--rule)}
+.ex .tight+.tight{margin-top:6px}
+.v{font-weight:600;color:var(--c);background:color-mix(in srgb,var(--c) 10%,transparent);padding:0 4px;border-radius:3px}
+.q{background:var(--band);border-radius:10px;padding:18px 24px 18px 22px;margin:0 0 22px}
+.q p{font-size:14.5px;color:var(--teal);font-weight:600;margin:0 0 6px!important}
+.q ul{margin:0;padding-left:20px}
+.q li{padding:3px 0}
+.pull{border-left:3px solid var(--teal);padding:2px 0 2px 20px;margin:0 0 18px}
+.table-wrap{overflow-x:auto;margin:0 0 18px;border:1px solid var(--rule);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15.5px;line-height:1.55}
+th,td{text-align:left;vertical-align:top;padding:14px 18px;border-bottom:1px solid var(--rule)}
+tr:last-child td{border-bottom:0}
+th{font-size:14px;color:var(--ink-3);font-weight:600;background:var(--bg)}
+td:first-child{font-weight:600;width:28%}
+td:last-child{color:var(--ink-2)}
+.summary{border-left:3px solid var(--teal);padding:4px 0 4px 24px;margin:0}
+.summary h2{font-size:22px;margin-bottom:12px}
+.summary p:last-child{margin-bottom:0;font-weight:600}
+/* 끝: 숫자를 확인했다면 */
+.end-kwic{padding:72px 0 80px;border-top:1px solid var(--rule)}
+.end-kwic .intro{max-width:720px;margin:0 0 28px}
+.end-kwic h2{font-size:30px;line-height:1.35;letter-spacing:-.02em;font-weight:700;margin:0 0 16px}
+.end-kwic .intro p{margin:0 0 12px;color:var(--ink-2)}
+.start{background:var(--band);padding:80px 0}
+.start .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 48px;align-items:center}
+.start h2{font-size:clamp(28px,3.4vw,38px);letter-spacing:-.02em;line-height:1.3;font-weight:700;margin:0 0 8px}
+.start p{margin:0;color:var(--ink-2)}
+footer.site{padding:28px 0 40px;font-size:13.5px;color:var(--ink-3);border-top:1px solid var(--rule)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tile,.tile[aria-pressed=true]{transition:none;transform:none}.kwic-lines.swap{animation:none}}
+@media (min-width:1081px){.jump{display:none}}
+@media (max-width:1080px){.body-grid{grid-template-columns:minmax(0,1fr);gap:0}aside.toc{display:none}article{max-width:720px}}
+@media (max-width:880px){nav.site{display:none}.wrap{padding:0 20px}.hero{padding:56px 0 40px}.hero-grid{grid-template-columns:minmax(0,1fr);gap:40px}
+  .tile{aspect-ratio:auto;min-height:132px}article h2,.end-kwic h2{font-size:25px}.start .wrap{grid-template-columns:minmax(0,1fr)}}
+@media print{header.site,.actions,.note,.tiles-cap,.btn,aside.toc{display:none!important}
+  body{background:#fff;color:#000;font-size:11.5pt;line-height:1.7}.hero{padding:6mm 0}.body-grid{display:block;padding-top:6mm}
+  .ex,.q,.pull,.summary,.table-wrap,table,tr,.kwic,.jump{break-inside:avoid;page-break-inside:avoid}h2,h3{break-after:avoid}
+  .table-wrap,.kwic-body{overflow:visible}table,.kwic-lines{min-width:0}.src a::after{content:" (" attr(href) ")";font-size:8pt;word-break:break-all}.jump{display:block}}
+
+/* 2026-11-09: 언어 전환, 소개, 진단하기 링크, 누를 수 있는 용례 */
+.lang{display:inline-flex;border:1px solid var(--rule);border-radius:8px;padding:2px;background:var(--surface);flex:0 0 auto}
+.lang button{border:0;background:transparent;padding:4px 10px;border-radius:6px;font:inherit;font-size:13.5px;color:var(--ink-2);cursor:pointer;white-space:nowrap}
+.lang button.on{background:var(--teal-tint);color:var(--teal);font-weight:600}
+header.site .wrap{flex-wrap:wrap}
+nav.site{margin-left:auto}
+nav.site a.go{color:var(--teal);font-weight:600}
+nav.site a.go:hover{border-bottom-color:var(--teal)}
+.en-sub{display:block;font-size:.78em;font-weight:400;color:var(--ink-3);line-height:1.4;margin-top:2px}
+.en-para{font-size:.9em;color:var(--ink-3);margin-top:-10px!important}
+.en-para-inline{display:block;font-size:.88em;color:var(--ink-3);margin-top:6px}
+.tiles-cap{font-size:13px}
+.kwhint{font-size:13px;color:var(--ink-3);margin:0 0 10px}
+.about{padding:64px 0 8px;border-top:1px solid var(--rule)}
+.about-in{max-width:720px}
+.about h2{font-size:30px;line-height:1.35;letter-spacing:-.02em;font-weight:700;margin:0 0 16px}
+.about p{margin:0 0 14px;color:var(--ink-2)}
+.features{padding-top:40px;border-top:0}.background{padding:64px 0 48px}
+.feat-lead{font-size:19px;font-weight:600;color:var(--teal)!important;margin:-6px 0 14px!important}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:18px 0}
+.feat-i{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px}
+.feat-i h3,.bg-i h3,.background .summary h3{font-size:17px;line-height:1.45;font-weight:700;margin:0 0 8px;color:var(--ink)}
+.feat-i p{font-size:15.5px;margin:0 0 6px}
+.feat-note{font-size:14.5px;border-left:3px solid var(--teal);padding-left:14px}
+.bg-i{margin:22px 0 0}.refs{margin-top:28px}.refs h3{font-size:17px;margin:0 0 8px}.refs ul{margin:0;padding-left:20px;font-size:14px;color:var(--ink-2)}.refs li{padding:3px 0;overflow-wrap:anywhere}.background .summary{margin-top:28px}
+.line .k{cursor:pointer}
+.line .k:hover,.line .k:focus-visible{text-decoration:underline dotted;text-underline-offset:3px}
+.kwic-lines .full{font:15px/1.65 var(--serif);color:var(--ink);margin:2px 0 8px;padding:8px 0 8px 14px;border-left:2px solid var(--teal);white-space:normal}
+.kwic-lines .full mark{background:var(--mark);color:var(--ink);font-weight:700;border-radius:3px;padding:0 3px;box-shadow:inset 0 -2px 0 var(--teal)}
+@media (max-width:880px){nav.site{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:13.5px;order:3;width:100%;margin-left:0;padding-bottom:6px}nav.site a{white-space:nowrap}}
+@media print{.lang{display:none!important}}
+</style>
+
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="/"><b data-i="brand.title" data-mono="1"></b><span data-i="brand.sub" data-mono="1"></span></a>
+    <nav class="site" aria-label="주요 메뉴">
+      <a href="#about" data-i="nav.about"></a>
+      <a href="#why" data-i="nav.why"></a>
+      <a href="#kwic" data-i="nav.kwic"></a>
+      <a href="/diagnose" class="go" data-i="nav.diagnose"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="language">
+      <button data-lang="ko">한국어</button><button data-lang="en">English</button><button data-lang="both">한·EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1 data-i="hero.title" data-br="1"></h1>
+        <p class="lede" data-i="hero.lede"></p>
+        <div class="actions"><a class="link-quiet" href="#why" data-i="hero.link"></a></div>
+      </div>
+      <div>
+        <div class="tiles" role="group" aria-label="verbs">
+          <button class="tile observe" data-key="observe" aria-pressed="true"><span class="ko" data-i="tiles.observe.label"></span><span class="en">observe</span><span class="role" data-i="tiles.observe.role"></span></button>
+          <button class="tile suggest" data-key="suggest" aria-pressed="false"><span class="ko" data-i="tiles.suggest.label"></span><span class="en">suggest</span><span class="role" data-i="tiles.suggest.role"></span></button>
+          <button class="tile report" data-key="report" aria-pressed="false"><span class="ko" data-i="tiles.report.label"></span><span class="en">report</span><span class="role" data-i="tiles.report.role"></span></button>
+        </div>
+        <p class="tiles-cap" data-i="tiles.hint"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="kwic-sec">
+    <div class="wrap">
+      <div class="kwic">
+        <div class="kwic-head"><h2><span data-i="kwic_box.title"></span> <code id="kw-label">observe</code></h2><span class="chip" data-i="kwic_box.label"></span></div>
+        <div class="kwic-body"><div class="kwic-lines" id="lines" aria-live="polite"></div></div>
+        <p class="kwic-foot" data-i="kwic_box.foot_common"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap"><div class="about-in">
+      <h2 data-i="about.title"></h2>
+      <p data-i="about.p1" data-para="1"></p>
+      <p data-i="about.p2" data-para="1"></p>
+      <p data-i="about.p3" data-para="1"></p>
+    </div></div>
+  </section>
+
+  <section class="about features" id="features">
+    <div class="wrap"><div class="about-in" id="features-in"></div></div>
+  </section>
+
+  <div class="wrap body-grid">
+    <aside class="toc">
+      <p data-i="why.toc_label"></p>
+      <ol>
+        <li><a href="#why" data-i="why.title"></a></li>
+        <li><a href="#s1" data-i="toc.s1"></a></li><li><a href="#s2" data-i="toc.s2"></a></li><li><a href="#s3" data-i="toc.s3"></a></li>
+        <li><a href="#s4" data-i="toc.s4"></a></li><li><a href="#s5" data-i="toc.s5"></a></li><li><a href="#s6" data-i="toc.s6"></a></li>
+        <li><a href="#kwic" data-i="toc.kwic"></a></li><li><a href="#background" data-i="toc.background"></a></li><li><a href="#start" data-i="toc.start"></a></li>
+      </ol>
+    </aside>
+    <article id="article"></article>
+  </div>
+
+  <section class="end-kwic" id="kwic">
+    <div class="wrap">
+      <div class="intro">
+        <h2 data-i="kwic_section.title"></h2>
+        <p data-i="kwic_section.p1" data-para="1"></p>
+        <p data-i="kwic_section.p2" data-para="1"></p>
+      </div>
+      <p class="kwhint" data-i="kwic_section.hint"></p>
+      <div class="kwic">
+        <div class="kwic-head"><h2><span data-i="kwic_box.title"></span> <code>show</code></h2><span class="chip" data-i="kwic_box.label"></span></div>
+        <div class="kwic-body"><div class="kwic-lines" id="lines-show"></div></div>
+        <p class="kwic-foot" data-i="kwic_box.foot_common"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about background" id="background">
+    <div class="wrap"><div class="about-in" id="background-in"></div></div>
+  </section>
+
+  <section class="start" id="start">
+    <div class="wrap">
+      <div><h2 data-i="start.title"></h2><p data-i="start.note"></p></div>
+      <a class="btn" href="/diagnose" data-i="start.button"></a>
+    </div>
+  </section>
+</main>
+
+<footer class="site"><div class="wrap" data-i="footer"></div></footer>
+
+<script>
+// 포털 문구는 portal-i18n.json에서 읽는다. 고른 언어는 진단 화면과 같은 저장 이름(diag-lang)을 쓰고, 주소의 ?lang=ko|en|both가 우선한다.
+let I = null, LANG = "ko";
+try { LANG = localStorage.getItem("diag-lang") || "ko"; } catch (e) {}
+const qp = new URLSearchParams(location.search).get("lang");
+if (["ko", "en", "both"].includes(qp)) { LANG = qp; try { localStorage.setItem("diag-lang", LANG); } catch (e) {} }
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const get = path => path.split(".").reduce((o, k) => o && o[k], I);
+const SRC = {
+  uea: ["Hyland & Jiang, 2024", "https://research-portal.uea.ac.uk/en/publications/talking-to-the-literature-stance-taking-in-citing-others-work/"],
+  pmc: ["Deng & Li, 2026", "https://pmc.ncbi.nlm.nih.gov/articles/PMC13083053/"],
+  cam: ["Biber & Gray, 2013", "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/967F18DDF9184B20C9B678F65AA7CCC3/9781139060998c5_p99-132_CBO.pdf/nominalizing_the_verb_phrase_in_academic_science_writing.pdf"],
+  hyl02: ["Hyland, 2001", "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315838069-15/activity-evaluation-reporting-practices-academic-writing-ken-hyland"],
+  hyl05: ["Hyland, 2005", null],
+  johns: ["Johns, 1991", null]
+};
+const src = k => SRC[k][1] ? `<span class="src">[<a href="${SRC[k][1]}" target="_blank" rel="noopener">${SRC[k][0]}</a>]</span>` : `<span class="src">[${SRC[k][0]}]</span>`;
+// 문구 하나: 한국어 / English / 한·EN(한국어 아래에 영어를 작게)
+function L(o, br) {
+  if (!o) return "";
+  const f = s => br ? esc(s).replace(/\n/g, "<br>") : esc(s);
+  if (LANG === "en") return f(o.en);
+  if (LANG === "ko") return f(o.ko);
+  return `${f(o.ko)}<span class="en-sub">${f(o.en)}</span>`;
+}
+// 문단: 한·EN에서는 한국어 문단 아래 영어 문단을 작게
+const P = (o, extra = "", cls = "") => LANG === "both"
+  ? `<p class="${cls}">${esc(o.ko)}${extra}</p><p class="en-para ${cls}">${esc(o.en)}${extra}</p>`
+  : `<p class="${cls}">${esc(LANG === "en" ? o.en : o.ko)}${extra}</p>`;
+const EXv = s => s.replace(/<v c='(\w+)'>(.*?)<\/v>/g, '<span class="v $1">$2</span>');
+function exBox(list, cap, tight) {
+  return `<div class="ex">${cap ? `<p class="ex-cap">${L(cap)}</p>` : ""}${list.map(e => tight
+    ? `<p class="en tight">${EXv(e.en)}</p>`
+    : `<div class="pair"><p class="en">${EXv(e.en)}</p>${e.gloss_ko && LANG !== "en" ? `<p class="ko">${esc(e.gloss_ko)}</p>` : ""}</div>`).join("")}</div>`;
+}
+const qBox = s => `<div class="q"><p>${L(s.q_label)}</p><ul>${s.q.map(q => `<li>${L(q)}</li>`).join("")}</ul></div>`;
+const H3 = (n, s) => `<h3><span class="n">${n}</span>${L(s.title)}</h3>`;
+
+function renderArticle() {
+  const E = I.examples, J = I;
+  const jump = `<nav class="jump"><p>${L(J.why.jump_label)}</p><ol>${["s1","s2","s3","s4","s5","s6"].map(k => `<li><a href="#${k}">${L(J[k].title)}</a></li>`).join("")}</ol></nav>`;
+  document.getElementById("article").innerHTML = `
+  <section id="why"><h2>${L(J.why.title)}</h2>${jump}${P(J.why.p1, src("uea"))}${P(J.why.p2)}</section>
+  <section id="s1">${H3(1, J.s1)}${exBox(E.s1, J.s1.intro)}${P(J.s1.p1, src("pmc"))}${qBox(J.s1)}${P(J.s1.p2)}</section>
+  <section id="s2">${H3(2, J.s2)}${P(J.s2.intro)}${exBox(E.s2, null, true)}${P(J.s2.p1, src("uea"))}${P(J.s2.p2, "", "pull")}${P(J.s2.p3)}</section>
+  <section id="s3">${H3(3, J.s3)}${P(J.s3.intro)}${exBox(E.s3, null, true)}${P(J.s3.p1, src("uea"))}${qBox(J.s3)}${P(J.s3.p2)}</section>
+  <section id="s4">${H3(4, J.s4)}${P(J.s4.p1)}${qBox(J.s4)}${P(J.s4.p2)}</section>
+  <section id="s5">${H3(5, J.s5)}${exBox(E.s5, J.s5.intro, true)}${P(J.s5.p1, src("cam"))}${qBox(J.s5)}${P(J.s5.p2)}</section>
+  <section id="s6">${H3(6, J.s6)}<div class="table-wrap"><table><thead><tr>${J.s6.th.map(h => `<th scope="col">${L(h)}</th>`).join("")}</tr></thead>
+    <tbody>${J.s6.rows.map(r => `<tr>${r.map(c => `<td>${L(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>${P(J.s6.p)}</section>
+`;
+  const F = J.features, G = J.background;
+  document.getElementById("features-in").innerHTML = `<h2>${L(F.title)}</h2><p class="feat-lead">${L(F.lead)}</p>${P(F.intro)}
+    <div class="feat">${F.items.map(it => `<div class="feat-i"><h3>${L(it.h)}</h3>${P(it.p)}</div>`).join("")}</div>${P(F.note, "", "feat-note")}`;
+  document.getElementById("background-in").innerHTML = `<h2>${L(G.title)}</h2><p class="feat-lead">${L(G.q)}</p>${P(G.intro)}
+    ${G.items.map(it => `<div class="bg-i"><h3>${L(it.h)}</h3>${it.p.map((x, i) => P(x, i === 0 ? src(it.src) : "")).join("")}</div>`).join("")}
+    <div class="summary"><h3>${L(G.sep_title)}</h3>${P(G.sep_p)}</div>
+    <div class="refs"><h3>${L(G.refs_title)}</h3><ul>${G.refs.map(x => `<li>${esc(x).replace(/(https:\/\/doi\.org\/\S+)/, '<a href="$1" target="_blank" rel="noopener">$1</a>')}</li>`).join("")}</ul></div>`;
+}
+
+// 용례 줄: 단락 속 찾는 말 앞뒤를 한 줄로. 강조된 단어를 누르면 줄 아래에 단락 전체가 펼쳐진다(진단 화면과 같은 동작)
+function kwicLines(key, el) {
+  const re = new RegExp(`\\b(${I.kwic_keys[key]})\\b`, "i");
+  const head = `<div class="line-h"><span>${L(I.kwic_box.col_left)}</span><span>${L(I.kwic_box.col_key)}</span><span>${L(I.kwic_box.col_right)}</span></div>`;
+  el.innerHTML = head + I.kwic_paragraphs[key].map((p, i) => {
+    const m = re.exec(p), a = m.index, b = a + m[1].length;
+    return `<div class="line"><span class="l">${esc(p.slice(0, a))}</span><span class="k" role="button" tabindex="0" title="${esc(LANG === "en" ? I.kwic_box.open_title.en : I.kwic_box.open_title.ko)}" data-p="${esc(p)}" data-a="${a}" data-b="${b}">${esc(m[1])}</span><span class="r">${esc(p.slice(b))}</span></div>`;
+  }).join("");
+}
+function toggleFull(k) {
+  const line = k.closest(".line"), nx = line.nextElementSibling;
+  if (nx && nx.classList.contains("full")) { nx.remove(); return; }
+  const p = k.dataset.p, a = +k.dataset.a, b = +k.dataset.b;
+  line.insertAdjacentHTML("afterend", `<div class="full">${esc(p.slice(0, a))}<mark>${esc(p.slice(a, b))}</mark>${esc(p.slice(b))}</div>`);
+}
+document.addEventListener("click", e => { const k = e.target.closest(".line .k"); if (k) toggleFull(k); });
+document.addEventListener("keydown", e => { const k = e.target.closest && e.target.closest(".line .k"); if (k && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggleFull(k); } });
+
+let CURKEY = "observe";
+function renderTile(key) {
+  CURKEY = key; kwicLines(key, document.getElementById("lines"));
+  document.getElementById("kw-label").textContent = key;
+  document.querySelectorAll(".tile").forEach(t => t.setAttribute("aria-pressed", t.dataset.key === key ? "true" : "false"));
+  const el = document.getElementById("lines"); el.classList.remove("swap"); void el.offsetWidth; el.classList.add("swap");
+}
+document.querySelectorAll(".tile").forEach(t => t.addEventListener("click", () => renderTile(t.dataset.key)));
+
+function applyLang() {
+  document.documentElement.lang = LANG === "en" ? "en" : "ko";
+  document.querySelectorAll("[data-i]").forEach(el => {
+    const o = get(el.dataset.i);
+    if (el.dataset.mono) { el.textContent = LANG === "en" ? o.en : o.ko; return; }   // 서비스 이름은 한·EN에서도 한 번만
+    if (el.dataset.para && LANG === "both") el.innerHTML = `${esc(o.ko)}<span class="en-para-inline">${esc(o.en)}</span>`;
+    else el.innerHTML = L(o, !!el.dataset.br);
+  });
+  document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("on", b.dataset.lang === LANG));
+  document.querySelectorAll('a[href="/diagnose"]').forEach(a => a.href = "/diagnose" + (LANG !== "ko" ? `?lang=${LANG}` : ""));
+  renderArticle(); renderTile(CURKEY); kwicLines("show", document.getElementById("lines-show")); watchToc();
+}
+document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => { LANG = b.dataset.lang; try { localStorage.setItem("diag-lang", LANG); } catch (e) {} applyLang(); }));
+
+let io = null;
+function watchToc() {
+  const links = document.querySelectorAll("aside.toc a"), targets = [...links].map(a => document.querySelector(a.getAttribute("href")));
+  if (io) io.disconnect();
+  io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const i = targets.indexOf(e.target); links.forEach((a, j) => a.classList.toggle("on", j === i)); } }), {rootMargin: "-30% 0px -60% 0px"});
+  targets.forEach(t => t && io.observe(t));
+}
+fetch("/static/portal-i18n.json?v=2026-11-10f").then(r => r.json()).then(j => { I = j; applyLang(); if (location.hash) { const t = document.querySelector(location.hash); if (t) t.scrollIntoView(); } });
+</script>
+</body>
+</html>
