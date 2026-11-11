@@ -121,7 +121,7 @@ const GUIDE = [   // [종류, en, ko] 2026-11-12 교수님 문구
   ["p","This tool does not send your manuscript to any generative AI. If you would like AI feedback, save your results as a PDF and upload it yourself to the AI you usually use.","이 도구는 원고를 생성형 AI에 보내지 않습니다. AI 피드백을 받고 싶다면 결과를 PDF로 저장해, 평소 사용하는 AI에 직접 올려 보세요."],
   ["p","The PDF includes your full manuscript. If you upload it to an external AI, your manuscript is sent to that service, so before uploading, check the service’s data-handling policy and whether your manuscript may be shared.","PDF에는 원고 전문이 포함됩니다. 외부 AI에 올리면 원고가 해당 서비스로 전달되므로, 업로드 전에 그 서비스의 데이터 처리 정책과 원고의 공유 가능 여부를 확인하세요."],
   ["p","The PDF contains:","PDF에는 다음 내용이 담깁니다."],
-  ["ul",["Analysis criteria and known limits","분석 기준과 알려진 한계"],["A summary of the results","결과 요약"],["Your full manuscript with sentence numbers","문장번호가 붙은 원고 전문"],["The complete detection list with the surrounding context","전체 탐지 목록과 앞뒤 문맥"],["The comparison data and sources","비교 기준 자료와 출처"],["A review request asking the AI to check the results against your manuscript","AI가 분석 결과를 원고와 대조하도록 하는 검토 요청문"]],
+  ["ul",["Analysis criteria and known limits","분석 기준과 알려진 한계"],["A summary of the results","결과 요약"],["Your full manuscript with sentence numbers","문장번호가 붙은 원고 전문"],["The complete detection list with the surrounding context","전체 탐지 목록과 앞뒤 문맥"],["The comparison data and sources","비교 기준 자료와 출처"],["A request telling the AI how to give feedback (the same prompt as below)","AI에게 피드백 원칙을 알려 주는 요청문(아래 프롬프트와 같은 글)"]],
   ["p","If you paste the prompt below along with it, you can ask the AI to give you questions for checking your own writing instead of rewriting your manuscript. Check the AI’s answers against the original text too, and decide yourself whether to revise.","아래 프롬프트를 함께 붙여 넣으면, 원고를 대신 고쳐 쓰기보다 스스로 점검할 질문을 제시하도록 요청할 수 있습니다. AI의 답도 원문과 대조해 확인하고, 수정 여부는 직접 판단하세요."],
   ["h","If you cannot upload a PDF","PDF를 올리기 어렵다면"],
   ["p","Copy the results as text and paste them into the AI chat. If input length or usage is limited, use “Short copy” or copy one section at a time. If the copied text includes your manuscript, it is also sent to that AI service when you paste it.","결과를 텍스트로 복사해 AI 대화창에 붙여 넣으세요. 입력 길이나 사용량에 제한이 있다면 ‘간단 복사’나 절별 복사를 이용하세요. 복사한 내용에 원고가 포함되어 있다면, 붙여 넣을 때도 해당 AI 서비스로 전달됩니다."],
@@ -226,10 +226,11 @@ function buildDoc(o){
   const review = lang => REVIEW[lang];
   H("h1", P2("Manuscript Diagnosis results", "논문 글쓰기 진단 결과"));
   Pp(ui("upload"));
-  // 맨 앞: 검토용 문서(PDF·전체 복사)는 AI 검토 요청문, 간단 복사는 학생 피드백 프롬프트
+  // 맨 앞: PDF·전체 복사·간단 복사 모두 같은 프롬프트(교수님 문구)
   if(!o.short){
-    H("h2", P2("Review request to the AI reading this document", "이 문서를 읽는 AI에게: 검토 요청"));
-    D.push({t:"pre", x: review(replyLang()) + (replyLang()==="ko" ? "\n\n답은 한국어로 해 주세요." : "\n\nPlease reply in English.")});
+    // 2026-11-12 교수님 요청: PDF·전체 복사 맨 앞도 화면의 프롬프트(교수님 문구)와 같은 글로. 예전 '검토 요청'(REVIEW)은 쓰지 않음
+    H("h2", P2("Request to the AI reading this document", "이 문서를 읽는 AI에게: 피드백 요청"));
+    D.push({t:"pre", x: promptFor(replyLang(), o.mode === "text")});
   } else {
     D.push({t:"pre", x: promptFor(replyLang(), true)});
     D.push({t:"hr"});
