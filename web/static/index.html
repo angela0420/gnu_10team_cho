@@ -327,7 +327,7 @@ const T = {
   to_input:["Enter your manuscript","원고 입력하기"], st1:["Choose papers to compare","비교할 논문 선택"], st2:["Enter your manuscript","원고 입력"], st3:["See the results","결과 확인"],
   input_hint:["Paste each section into its box. Leave a box empty if your manuscript has no such section.","절마다 해당 칸에 붙여 넣으세요. 없는 절은 비워 두세요."],
   diff_note:["Differences from published papers are not errors; they are information for review.","출판 논문과의 차이는 오류가 아니라 검토를 위한 참고 정보입니다."],
-  fold_h:["Analysis method and comparison data","분석 방법 및 비교 자료 안내"], see_fold:["About the comparison papers and the method","비교 자료와 분석 방법 안내 보기"], about_h:["About this page","이 화면에 대해"], field:["Papers to compare with","비교할 논문 집합"], method_l:["Analysis method and data sources","분석 방법 및 자료 출처"], pc_hint:["For physical chemistry you can compare with computation-centred papers (Physical–computational) or the other papers (Physical). Choose the set that fits your manuscript.","물리화학은 계산 위주 논문(물리-계산)과 그렇지 않은 논문(물리)으로 나누어 비교할 수 있습니다. 원고의 성격에 맞는 집합을 선택하세요."], field_hint:["Choose the field closest to your manuscript from the list below.","아래 목록에서 원고와 가장 가까운 분야를 선택해 주세요."], pick_opt:["— Choose a comparison set —","— 비교할 분야를 고르세요 —"], pick_set:["Choose a comparison set in step 01 first.","먼저 01단계에서 비교할 분야를 골라 주세요."],
+  fold_h:["Analysis method and comparison data","분석 방법 및 비교 자료 안내"], see_fold:["About the comparison papers and the method","비교 자료와 분석 방법 안내 보기"], about_h:["About this page","이 화면에 대해"], field:["Papers to compare with","비교할 논문 집합"], method_l:["Analysis method and data sources","분석 방법 및 자료 출처"], pc_hint:["For physical chemistry you can compare with computation-centred papers (Physical–computational) or the other papers (Physical). Choose the set that fits your manuscript.","물리화학은 계산 위주 논문(물리-계산)과 그렇지 않은 논문(물리)으로 나누어 비교할 수 있습니다. 원고의 성격에 맞는 집합을 선택하세요."], field_hint:["Choose the field closest to your manuscript from the list below.","아래 목록에서 원고와 가장 가까운 분야를 선택해 주세요."], pick_opt:["— Choose a comparison set —","— 비교할 분야를 고르세요 —"], pick_set:["Choose a comparison set in step 01 first.","먼저 01단계에서 비교할 분야를 골라 주세요."], ov_hold:["not judged (under 300 words)","판정 보류(300단어 미만)"],
   go:["Start diagnosis","진단 시작하기"], sample:["Load an example","예시 원고 넣기"], clear:["Clear all","모두 지우기"], words_n:["words","단어"], running:["Analysing… (about 10–30 s)","분석 중… (10–30초)"],
   privacy:["Your manuscript is analysed only on this service’s server and is not sent to any external AI service. The service code does not write it to files or a database.","입력한 원고는 이 서비스의 서버에서만 분석하며, 외부 AI 서비스로 보내지 않습니다. 서비스 코드는 원고를 파일이나 데이터베이스에 저장하지 않습니다."],
   paste:["Paste the section text (optional)","이 절의 본문을 붙여 넣으세요(없으면 비워 둠)"],
@@ -592,7 +592,7 @@ function render(r){
       ${adjl.length?`<p class="note">${esc(t("adjlike"))}<button class="i" data-ex="usage_분사형 형용사" data-slot="${aexp}" aria-expanded="false">i</button>: ${adjl.map(([k,n])=>`${esc(k)} ${n}`).join(", ")}</p><div id="${aexp}"></div>`:""}
     </section>`;
   }).join("");
-  document.getElementById("version").textContent = `${r.version.baseline} · ${r.version.counting} · ${r.version.usage_rules}`;
+  document.getElementById("version").textContent = `${r.version.baseline} · ${r.version.counting} · reporting ${r.version.reporting} · ${r.version.usage_classes}`;
   if(!secs.find(x => x[0]===CUR)) CUR = secs[0][0];
   drawOverview(); showSec(CUR);
   openAll(box); relabel(document);
@@ -607,7 +607,7 @@ function drawOverview(){
     const out = S.short ? 0 : S.metrics.filter(m => m.band && m.band !== "typical").length, bw = S.words_baseline;
     return `<button class="ov" role="tab" aria-selected="${c===CUR}" data-sec="${c}"><span class="t">${esc(tt([en,ko]))}</span>
       <span class="w"><b>${S.words.toLocaleString()}</b> ${esc(t("words"))}${bw?` · ${esc(t("median"))} ${fmt(bw.median)}`:""}</span>
-      <span class="o">${esc(t("ov_out"))} ${out?`<b>${out}</b>`:esc(t("ov_none"))}</span></button>`; }).join("");
+      <span class="o">${S.short ? esc(t("ov_hold")) : `${esc(t("ov_out"))} ${out?`<b>${out}</b>`:esc(t("ov_none"))}`}</span></button>`; }).join("");
 }
 function showSec(c){ CUR = c; document.querySelectorAll("#results>section.card[data-sec]").forEach(el => el.hidden = el.dataset.sec !== c);
   document.querySelectorAll("#overview .ov[data-sec]").forEach(b => b.setAttribute("aria-selected", b.dataset.sec === c)); }
