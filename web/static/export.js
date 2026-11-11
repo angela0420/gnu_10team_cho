@@ -5,80 +5,174 @@
 const PROMPT = {
 ko: `첨부한 PDF는 「논문 글쓰기 진단」 결과입니다. 원고 전문, 절별 분석 결과, 결과를 읽는 법, 비교 기준 자료와 출처가 들어 있습니다. 제목·키워드·목표 저널·원고 단계와 제가 고르거나 적은 ‘확인하고 싶은 점’을 함께 참고해 주세요. 목표 저널과 실제로 사용한 비교 자료는 다를 수 있으니 구분해 주세요.
 
-다음 원칙에 따라 원고를 다시 읽고 판단하는 데 도움이 되는 피드백을 주세요.
+이 요청의 목적은 분석 수치를 평가하거나 모든 자동 분류를 교정하는 것이 아니라, 제가 원고를 다시 읽고 수정 여부를 스스로 판단하도록 도움을 받는 것입니다. 다음 원칙에 따라 한국어로 피드백해 주세요.
 
-1. 원고를 대신 고쳐 쓰지 마세요
-원고를 재작성하거나 대체 문장을 제시하지 마세요. 수정 여부와 방법은 제가 직접 판단합니다.
+1. 제 질문과 원고의 내용을 중심에 두세요
+제가 고르거나 적은 ‘확인하고 싶은 점’을 우선 반영하세요. 분석 결과표의 항목 순서대로 설명하기보다, 원고가 무엇을 주장하고 그 주장을 어떻게 뒷받침하는지 앞뒤 문맥과 함께 읽어 주세요.
 
-2. 먼저 분석 기준과 한계를 확인하세요
-PDF의 ‘이 결과를 읽는 법’과 분석 기준·알려진 한계를 먼저 읽고 따르세요. 300단어보다 짧은 절은 빈도나 참조 범위를 근거로 평가하지 마세요. 다만 문장의 의미와 근거 관계는 검토해도 됩니다.
+특히 다음 관계를 살펴봐 주세요.
+  • 직접 관찰하거나 계산한 결과와 그에 대한 해석이 구분되는가?
+  • 주장의 세기가 제시한 근거에 맞는가?
+  • 선행연구의 주장과 제 연구의 결과·해석이 구분되는가?
 
-3. 비교 수치를 글쓰기의 정답으로 삼지 마세요
-참조 범위를 벗어났다는 이유만으로 표현을 늘리거나 줄이라고 권하지 마세요. 출판 논문의 빈도나 동사 선택에 맞추도록 권하지도 마세요. 범위 안에 있다는 이유만으로 적절하다고 판단하지 마세요. 분류 ④ ‘해당 용법 미확인’은 오류나 부적절한 표현을 뜻하지 않습니다.
+제목과 키워드는 연구의 맥락을 이해하는 데 참고하되, 특정 단어의 등장 횟수만으로 원고를 판단하지 마세요.
 
-4. 도구의 탐지·분류도 원문과 대조하세요
-도구가 잘못 탐지하거나 분류한 것으로 의심되는 항목은 글쓰기 피드백과 구분해 알려 주세요. 해당 절·문장번호·표현과 의심 이유를 적고, 확실하지 않으면 ‘확인 필요’로 표시하세요. 도구의 분류를 그대로 정답으로 받아들이지 마세요.
+2. 원고를 대신 고쳐 쓰지 마세요
+원고를 재작성하거나 대체 문장을 제시하지 마세요. 표현을 바꾸라는 처방보다, 제가 무엇을 다시 읽고 판단하면 좋을지 설명해 주세요.
+
+수정 여부와 방법은 제가 직접 결정합니다. 도구나 AI의 지적을 받아들이지 않는 선택도 가능하도록 설명해 주세요.
+
+3. 먼저 분석 기준과 한계를 확인하세요
+PDF의 ‘이 결과를 읽는 법’과 분석 기준·알려진 한계를 먼저 읽고 따르세요.
+
+300단어보다 짧은 절은 빈도나 참조 범위를 근거로 평가하지 마세요. 다만 문장의 의미와 근거 관계는 검토해도 됩니다.
+
+도구가 분석하는 대상과 분석하지 않는 대상을 구분하세요. 탐지되지 않았다는 이유만으로 해당 표현이나 글쓰기 기능이 없다고 판단하지 마세요.
+
+4. 숫자는 필요할 때만 보조적으로 사용하세요
+피드백의 중심을 빈도, 순위, 참조 범위, 분류표에 두지 마세요. 숫자가 제 질문에 답하거나 특정 문장을 이해하는 데 직접 도움이 될 때만 간단히 언급하세요. 도움이 되지 않으면 생략해도 됩니다.
+
+다음 원칙을 지켜 주세요.
+  • 참조 범위를 벗어났다는 이유만으로 표현을 늘리거나 줄이라고 권하지 마세요.
+  • 출판 논문의 빈도나 동사 선택에 맞추도록 권하지 마세요.
+  • 범위 안에 있다는 이유만으로 표현이나 주장이 적절하다고 판단하지 마세요.
+  • 분류 ④ ‘해당 용법 미확인’을 오류나 부적절한 표현으로 해석하지 마세요.
+  • 숫자를 제시한다면 실제 발견 횟수와 1,000단어 기준 환산값을 구분하고, 이번 원고에서 무엇을 뜻하는지 설명하세요.
+
+수치를 설명하기 위해 원고의 내용과 관련 없는 통계 해설을 길게 덧붙이지 마세요.
 
 5. 다시 읽어 볼 문장 3~5개를 골라 주세요
-참조 범위 밖 항목에서만 고르지 말고, 원고의 내용과 앞뒤 문맥을 근거로 선택하세요. 제목·키워드가 제공되었다면 연구의 맥락을 이해하는 데 참고하되, 특정 단어의 등장 횟수만으로 판단하지 마세요.
+참조 범위 밖의 항목이나 도구가 탐지한 문장에서만 고르지 마세요. 원고 전체의 내용과 앞뒤 문맥을 근거로, 제가 확인하고 싶은 점과 관련된 문장을 선택하세요.
 
 각 문장에 대해 다음을 제시해 주세요.
   • 절과 문장번호, 확인할 원문
   • 다시 읽어 볼 가치가 있는 이유
   • 제가 스스로 답해 볼 질문 1~2개
 
-질문은 다음에 초점을 맞춰 주세요.
-  • 직접 관찰하거나 계산한 결과와 그에 대한 해석이 구분되는가?
-  • 주장의 세기가 제시한 근거에 맞는가?
-  • 선행연구의 주장과 제 연구 결과·해석이 구분되는가?
+이유를 설명할 때는 어떤 관찰이 어떤 해석으로 이어지는지, 누구의 주장인지, 주장 범위가 어디까지인지 구체적으로 짚어 주세요. 단순히 “표현이 강하다”, “완화 표현이 많다”는 설명으로 끝내지 마세요.
 
-제가 고르거나 적은 ‘확인하고 싶은 점’을 우선 반영하세요. 필요한 경우에는 문장을 억지로 3~5개 채우지 말고, 선정할 수 있는 문장만 제시하세요.
+문제를 찾기 위해 모든 문장을 의심하지는 마세요. 관찰과 해석을 잘 구분한 부분이나 한계를 적절히 밝힌 부분이 있다면, 그 역할도 짧게 설명해 주세요.
 
-6. 판단의 근거와 불확실성을 밝혀 주세요
-PDF에 있는 정보만으로 판단하기 어려우면 추측으로 결론 내리지 말고, 무엇을 더 확인해야 하는지 알려 주세요. 원고에 제시되지 않은 실험 결과·연구 의도·참고문헌 내용을 만들어 넣지 마세요.
+적절한 문장이 충분하지 않으면 억지로 3~5개를 채우지 않아도 됩니다.
 
-7. 한국어로, 이해하기 쉽게 설명해 주세요
-먼저 핵심 피드백을 제시한 뒤, 제가 이해하기 쉽도록 그 이유를 풀어서 추가 설명해 주세요. 문법·통계 용어가 필요하면 뜻을 설명하고, 숫자는 실제 원고에서 무엇을 의미하는지 구체적으로 알려 주세요. 실제 발견 횟수와 1,000단어 기준으로 환산한 수치를 구분해 주세요.
+6. 오탐·분류 오류는 원고의 문제와 구분해 주세요
+도구가 잘못 탐지하거나 분류한 것으로 의심되는 항목은 원문과 대조해 주세요. 해당 절·문장번호·표현과 의심 이유를 적고, 확실하지 않으면 ‘확인 필요’로 표시하세요.
 
-설명을 위한 예시는 가능하지만, 제 원고를 고쳐 쓴 대체 문장은 제시하지 마세요.`,
+오류 목록을 제시하는 데서 끝내지 말고, 제가 그 지적을 어떻게 받아들이면 되는지 짧게 설명해 주세요.
+  • 도구가 문장을 잘못 읽은 것이라면, 원고의 표현이 잘못됐다는 뜻은 아님을 알려 주세요.
+  • 해당 표시를 없애기 위해 원고를 고칠 필요는 없다고 설명해 주세요.
+  • ‘확인 필요’는 도구가 판단을 보류한 것이지, 문장이 틀렸거나 반드시 수정해야 한다는 뜻은 아님을 밝혀 주세요.
+  • 도구의 분류 문제와 별개로 내용상 다시 읽을 가치가 있다면, 그 질문으로 자연스럽게 돌아가 주세요.
+  • AI가 제시한 오류 지적도 최종 정답으로 단정하지 말고, 판단 근거와 불확실성을 밝혀 주세요.
+
+모든 오탐을 찾아내거나 자동 분류를 전부 교정하는 작업으로 피드백을 확대하지 마세요. 제 질문과 원고 읽기에 영향을 주는 항목부터 다뤄 주세요. 관련 수치의 영향은 판단에 꼭 필요한 경우에만 설명하세요.
+
+7. 원고의 문제와 자료 부족을 구분하세요
+PDF에 있는 정보만으로 판단하기 어려우면, 무엇이 더 필요한지 구체적으로 알려 주세요.
+
+“이 PDF에서 확인되지 않는다”는 것과 “연구에서 수행하지 않았다”는 것을 구분하세요. 그림·원자료·참고문헌이 없다는 이유만으로 근거가 없다고 단정하지 마세요.
+
+원고에 제시되지 않은 실험 결과, 연구 의도, 참고문헌 내용을 만들어 넣지 마세요. 주장에 필요한 근거가 실제로 있는지 확인하는 질문은 가능하지만, 확인하지 않은 상태에서 주장이 틀렸다고 결론 내리지 마세요.
+
+8. 표보다 원문과 설명을 중심으로 구성하세요
+먼저 제 질문에 대한 핵심 피드백을 짧게 제시한 뒤, 선정한 문장을 중심으로 이유와 자기 점검 질문을 설명해 주세요.
+
+표는 여러 항목을 간단히 비교하는 데 꼭 필요한 경우에만 사용하세요. 분석 결과표를 다시 나열하거나, 본문 설명보다 오류·수치 표가 더 큰 비중을 차지하지 않게 해 주세요.
+
+문법·통계 용어가 필요하면 쉬운 말로 뜻을 설명하세요. 설명을 위한 예시는 가능하지만, 제 원고를 고쳐 쓴 대체 문장은 제시하지 마세요.
+
+답변은 다음 순서로 구성해 주세요.
+  1) 제가 확인하고 싶은 점에 대한 핵심 피드백
+  2) 다시 읽어 볼 문장과 이유, 스스로 답해 볼 질문
+  3) 필요한 경우에만, 도구의 표시 중 받아들이지 않거나 판단을 보류해도 되는 부분
+  4) 현재 자료로 판단하기 어려운 점과 추가로 확인할 근거
+
+마지막에는 모든 표시를 해결하라는 과제를 주지 말고, 제가 원고로 돌아가 우선 생각해 볼 핵심 질문을 짧게 정리해 주세요.`,
 en: `The attached PDF contains results from Manuscript Diagnosis: my full manuscript, section-by-section analysis, a guide to reading the results, and the comparison data with sources. Please take into account the title, keywords, target journal, manuscript stage and the ‘questions to check’ I chose or wrote. The target journal and the comparison data actually used may differ; keep them apart.
 
-Please give feedback that helps me reread my manuscript and make my own judgements, following these principles.
+The purpose of this request is not to evaluate the figures or to correct every automatic classification, but to help me reread my manuscript and decide for myself whether to revise it. Please give feedback in English according to these principles.
 
-1. Do not rewrite my manuscript for me
-Do not rewrite it or suggest replacement sentences. I will decide myself whether and how to revise.
+1. Put my questions and the content of the manuscript at the centre
+Address the ‘questions to check’ I chose or wrote first. Rather than going through the results tables item by item, read what the manuscript claims and how it supports those claims, together with the surrounding context.
 
-2. First check the analysis criteria and limits
-First read “How to read these results”, the analysis criteria and the known limits in the PDF, and follow them. Do not evaluate sections shorter than 300 words on the basis of frequencies or reference ranges. You may still review the meaning of the sentences and how they relate to the evidence.
+In particular, look at these relationships:
+  • Are the results I observed or calculated kept apart from my interpretation of them?
+  • Does the strength of each claim match the evidence given?
+  • Are earlier studies’ claims kept apart from my own results and interpretation?
 
-3. Do not treat the comparison figures as the right answer for writing
-Do not recommend using an expression more or less only because a figure is outside the reference range. Do not recommend matching the frequencies or verb choices of published papers either. Do not judge something appropriate only because it is within the range. Group 4 (usage not found) does not mean an error or an inappropriate expression.
+Use the title and keywords to understand the research context, but do not judge the manuscript only by how often particular words appear.
 
-4. Check the tool’s detection and classification against the text too
-Report items the tool seems to have detected or classified wrongly separately from writing feedback. Give the section, sentence number, expression and the reason for your doubt, and mark it “needs checking” if you are not sure. Do not take the tool’s classification as the right answer.
+2. Do not rewrite my manuscript for me
+Do not rewrite it or suggest replacement sentences. Rather than prescribing changes in wording, explain what I should reread and judge.
+
+I decide whether and how to revise. Explain things so that not accepting the tool’s or the AI’s points remains a possible choice.
+
+3. First check the analysis criteria and limits
+First read “How to read these results”, the analysis criteria and the known limits in the PDF, and follow them.
+
+Do not evaluate sections shorter than 300 words on the basis of frequencies or reference ranges. You may still review the meaning of the sentences and how they relate to the evidence.
+
+Keep apart what the tool analyses and what it does not. Do not conclude that an expression or a writing function is absent only because it was not detected.
+
+4. Use numbers only when needed, as support
+Do not centre the feedback on frequencies, rankings, reference ranges or classification tables. Mention numbers briefly only when they directly help answer my questions or understand a particular sentence; leave them out otherwise.
+
+Keep to these principles:
+  • Do not recommend using an expression more or less only because a figure is outside the reference range.
+  • Do not recommend matching the frequencies or verb choices of published papers.
+  • Do not judge an expression or claim appropriate only because it is within the range.
+  • Do not interpret Group 4 (usage not found) as an error or an inappropriate expression.
+  • If you give numbers, keep the actual number of occurrences apart from the rate per 1,000 words, and explain what they mean in this manuscript.
+
+Do not add long statistical explanations unrelated to the content of the manuscript.
 
 5. Choose 3–5 sentences for me to reread
-Do not choose only from items outside the reference range; base your choice on the content of the manuscript and the surrounding context. If a title and keywords are given, use them to understand the research context, but do not judge by how often a particular word appears.
+Do not choose only from items outside the reference range or sentences the tool detected. Based on the whole manuscript and the surrounding context, choose sentences related to the questions I want to check.
 
 For each sentence, give:
   • the section, sentence number and the original text to check
   • why it is worth rereading
   • one or two questions for me to answer for myself
 
-Focus the questions on:
-  • Are the results I observed or calculated kept apart from my interpretation of them?
-  • Does the strength of the claim match the evidence given?
-  • Are earlier studies’ claims kept apart from my own results and interpretation?
+When explaining why, point concretely to which observation leads to which interpretation, whose claim it is, and how far the claim extends. Do not stop at “the wording is strong” or “there are many hedges”.
 
-Address the ‘questions to check’ I chose or wrote first. Do not force the number up to 3–5; give only the sentences you can justify.
+Do not treat every sentence with suspicion in order to find problems. If some parts separate observation from interpretation well or state limitations appropriately, briefly explain their role too.
 
-6. State the grounds and the uncertainty of your judgements
-If the information in the PDF is not enough to judge, do not draw conclusions by guessing; tell me what else needs to be checked. Do not invent experimental results, research intentions or reference contents that are not in the manuscript.
+If there are not enough suitable sentences, you do not need to force the number up to 3–5.
 
-7. Explain in English, in a way that is easy to understand
-Give the main feedback first, then explain the reasons so that I can follow them. If you need grammatical or statistical terms, explain what they mean, and say concretely what each number means in my manuscript. Keep the actual number of occurrences apart from the rate per 1,000 words.
+6. Keep detection or classification errors apart from problems in the manuscript
+Check items the tool seems to have detected or classified wrongly against the original text. Give the section, sentence number, expression and the reason for your doubt, and mark it “needs checking” if you are not sure.
 
-You may give examples for explanation, but do not give replacement sentences that rewrite my manuscript.`};
+Do not stop at a list of errors; briefly explain how I should take each point.
+  • If the tool misread the sentence, tell me that this does not mean my wording is wrong.
+  • Explain that I do not need to change the manuscript to make the mark go away.
+  • Make clear that “needs checking” means the tool withheld a judgement, not that the sentence is wrong or must be revised.
+  • If, apart from the tool’s classification problem, the content is worth rereading, return naturally to that question.
+  • Do not present the AI’s own error reports as final answers either; state the grounds and the uncertainty.
+
+Do not expand the feedback into finding every misdetection or correcting every automatic classification. Deal first with the items that affect my questions and my reading of the manuscript. Explain the effect on related figures only when it is really needed for a judgement.
+
+7. Keep problems in the manuscript apart from missing information
+If the information in the PDF is not enough to judge, tell me concretely what else is needed.
+
+Keep apart “this cannot be confirmed from this PDF” and “this was not done in the study”. Do not conclude that there is no evidence only because figures, raw data or references are not included.
+
+Do not invent experimental results, research intentions or reference contents that are not in the manuscript. You may ask questions to check whether the evidence a claim needs actually exists, but do not conclude that a claim is wrong without checking.
+
+8. Build the answer around the original text and explanation rather than tables
+First give short core feedback on my questions, then explain the reasons and self-check questions around the sentences you chose.
+
+Use tables only when really needed to compare several items briefly. Do not list the results tables again, and do not let error or number tables take up more space than the explanation.
+
+If you need grammatical or statistical terms, explain them in plain words. You may give examples for explanation, but do not give replacement sentences that rewrite my manuscript.
+
+Structure your answer in this order:
+  1) core feedback on the questions I want to check
+  2) sentences to reread, why, and questions for me to answer for myself
+  3) only if needed, the tool’s marks that I can set aside or leave undecided
+  4) points that are hard to judge from the current material, and the evidence to check further
+
+At the end, do not set me the task of resolving every mark; briefly list the core questions I should think about first when I return to my manuscript.`};
 // PDF 맨 앞 'AI 검토 요청문'(2026-11-10, 교수님 지시): 도구의 분석 결과를 정답으로 전제하지 않고 원고 전문·탐지 목록·KWIC을 대조하게 한다
 const REVIEW = {
 ko: `이 자료는 규칙 기반 작문 분석 도구의 결과입니다. 분석 결과를 정답으로 전제하지 말고, 번호가 붙은 원고 전문과 전체 탐지 목록·KWIC을 대조해 주세요.
@@ -123,8 +217,8 @@ const LIMITS = [
   ["Some words are tagged as verbs inside noun phrases or technique names, or the same -ing form is classified differently in similar contexts (e.g. ‘to room temperature’, ‘charge and discharge curves’, ‘scanning electron microscopy’, ‘during charging’ classified once as non-finite and once as nominal). Check such items in context.",
    "명사구나 기법 이름 안의 낱말이 동사로 잡히거나, 비슷한 문맥의 같은 -ing가 다르게 분류되는 경우가 있습니다(예: ‘to room temperature’, ‘charge and discharge curves’, ‘scanning electron microscopy’, ‘during charging’이 한 번은 비정형, 한 번은 명사처럼). 문맥에서 확인하세요."]];
 // 글자로 붙여 넣을 때는 'PDF' 대신 '아래 글'로 읽히게 한다
-const promptFor = (lang, asText) => asText ? PROMPT[lang].replace("첨부한 PDF는", "아래 글은").replaceAll("PDF의 ‘이 결과를 읽는 법’", "아래 ‘이 결과를 읽는 법’").replaceAll("PDF에 있는 정보", "아래 글에 있는 정보").replace("PDF의 ‘이 결과를 읽는 법’과", "아래 ‘이 결과를 읽는 법’과")
-  .replace("The attached PDF contains", "The text below contains").replaceAll("in the PDF", "below") : PROMPT[lang];
+const promptFor = (lang, asText) => asText ? PROMPT[lang].replace("첨부한 PDF는", "아래 글은").replaceAll("PDF의 ‘이 결과를 읽는 법’", "아래 ‘이 결과를 읽는 법’").replaceAll("PDF에 있는 정보", "아래 글에 있는 정보").replaceAll("“이 PDF에서", "“이 자료에서")
+  .replace("The attached PDF contains", "The text below contains").replaceAll("in the PDF", "below").replaceAll("from this PDF", "from this material") : PROMPT[lang];
 const GUIDE = [   // [종류, en, ko] 2026-11-12 교수님 문구
   ["p","This tool does not send your manuscript to any generative AI. If you would like AI feedback, save your results as a PDF and upload it yourself to the AI you usually use.","이 도구는 원고를 생성형 AI에 보내지 않습니다. AI 피드백을 받고 싶다면 결과를 PDF로 저장해, 평소 사용하는 AI에 직접 올려 보세요."],
   ["p","The PDF includes your full manuscript. If you upload it to an external AI, your manuscript is sent to that service, so before uploading, check the service’s data-handling policy and whether your manuscript may be shared.","PDF에는 원고 전문이 포함됩니다. 외부 AI에 올리면 원고가 해당 서비스로 전달되므로, 업로드 전에 그 서비스의 데이터 처리 정책과 원고의 공유 가능 여부를 확인하세요."],
