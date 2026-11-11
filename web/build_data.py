@@ -92,7 +92,7 @@ for r in csv.DictReader(open(os.path.join(SRC, '동사층', 'verb_table.csv'), e
 layers = json.load(open(os.path.join(SRC, '동사층', 'verb_layers.json'), encoding='utf-8'))
 # 술어 기반(계획 1·3단계): 동사마다 술어로 쓴 논문 비율과 술어 1,000단어당 범위, 쓰임별 합계
 pred = defaultdict(lambda: defaultdict(dict))
-USAGE_COLS = ['술어', '명사 앞 수식', '명사 뒤 수식', '비정형', '명사처럼', '전치사처럼', '확인 필요', '굳은 표현']
+USAGE_COLS = ['술어', '명사 앞 수식', '명사 뒤 수식', '비정형', '명사처럼', '전치사처럼', '분사형 형용사', '확인 필요', '굳은 표현']
 for r in csv.DictReader(open(os.path.join(SRC, '동사층', 'verb_usage_table.csv'), encoding='utf-8-sig')):
     if r['baseline'] not in BASELINES: continue
     pred[r['baseline']][r['section']][r['verb']] = dict(papers=int(r['papers_with_pred']), n=int(r['papers_in_section']), share=float(r['share_pred']),

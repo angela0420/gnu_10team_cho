@@ -119,7 +119,7 @@ const NONE_KIND = {no_pred_in_section:["appears in this section of the compariso
 // 맨 앞의 AI 검토 요청문은 도구 결과를 정답으로 전제하지 않고 원고와 탐지 목록을 대조하게 한다. 간단 복사(short)는 예전처럼 짧게 둔다.
 const CTX = 40;   // KWIC 앞뒤 문맥 글자 수. 전체 문장은 같은 번호로 '3. 원고 전문'에 있다
 const HEDGE_IN = ["INT","RD","CON"];   // 완화·강조 표현을 세는 절(app/analyzer.py HEDGE_SECS와 같음)
-const USAGE_ORDER = ["술어","명사 앞 수식","명사 뒤 수식","비정형","명사처럼","전치사처럼","확인 필요"];
+const USAGE_ORDER = ["술어","명사 앞 수식","명사 뒤 수식","비정형","명사처럼","전치사처럼","분사형 형용사","확인 필요"];
 function kwic(s, a, b){
   let L = s.slice(Math.max(0, a - CTX), a), R = s.slice(b, b + CTX);
   if(a > CTX) L = "…" + L.replace(/^\S*\s+/, "");

@@ -22,7 +22,7 @@ MISSING_SHARE = 0.8                        # 기준선 논문 80% 이상이 쓰�
 TOP = 10
 DATA = os.path.join(ROOT, 'data')
 USAGE_RULES = 'verb-usage v0.4'            # v0.4(2026-11-10): 보고동사(선행연구)를 동사가 아니라 주어·귀속으로 판정(engine whole-paper-0.4.3)
-USAGE_CLASSES = 'verb_usage_rules v0.3'    # 동사 쓰임 분류(술어·수식·비정형 …) 자체의 판본. 'verb-usage v0.4'는 이것과 보고동사 규칙을 묶어 부른 이름
+USAGE_CLASSES = 'verb_usage_rules v0.4'    # 동사 쓰임 분류 판본. v0.4 채택 2026-11-12(60용례 판정 반영, 분사형 형용사 추가). 기준선 동사층도 v0.4로 다시 만듦
 
 # 문장 나누기: 기준선(extract_pdf.split_sents)과 같은 규칙. "…unclear.[5] In this work"처럼
 # 마침표 뒤 인용 번호에서도 문장을 나눈다(spaCy 기본 분리는 여기서 두 문장을 하나로 붙였다).
@@ -132,7 +132,8 @@ def diagnose(sections, baseline):
         genre = set(lay.get('genre_wide', []))
         field = set(lay.get(baseline, [])) - genre
         bv = VERBS['pred'].get(baseline, {}).get(sec, {})
-        listed = {lem: [x for x in occ if x['usage'] != '전치사처럼'] for lem, occ in verbs.items()}
+        SET_APART = ('전치사처럼', '분사형 형용사')   # v0.4(2026-11-11): 분사형 형용사도 동사 목록과 따로 본다(총계에는 포함)
+        listed = {lem: [x for x in occ if x['usage'] not in SET_APART] for lem, occ in verbs.items()}
         listed = {k: v for k, v in listed.items() if v}
 
         def entry(lem, occ):
@@ -163,7 +164,8 @@ def diagnose(sections, baseline):
         MODS = ('명사 앞 수식', '명사 뒤 수식', '비정형', '명사처럼')
         others = {k: v for k, v in listed.items() if sum(x['usage'] in MODS for x in v) > sum(x['usage'] == '술어' for x in v)}
         other = [entry(l, o) for l, o in sorted(others.items(), key=lambda kv: (-len(kv[1]), kv[0]))[:5]]
-        prep_like = {lem: len(occ) - len(listed.get(lem, [])) for lem, occ in verbs.items() if len(occ) != len(listed.get(lem, []))}
+        prep_like = {lem: n for lem, occ in verbs.items() if (n := sum(1 for x in occ if x['usage'] == '전치사처럼'))}
+        adj_like = {lem: n for lem, occ in verbs.items() if (n := sum(1 for x in occ if x['usage'] == '분사형 형용사'))}
         pred_used = {l for l, v in listed.items() if any(x['usage'] == '술어' for x in v)}
         missing = sorted(l for l in genre if l not in pred_used and bv.get(l, {}).get('share', 0) >= MISSING_SHARE)
         mix = Counter()
@@ -172,7 +174,7 @@ def diagnose(sections, baseline):
                 mix[x['usage']] += 1
                 if x['fixed']: mix['굳은 표현'] += 1
         out['sections'][sec] = dict(usage_mix=dict(mix), words=words, words_baseline=bs.get('words'), short=short, sentences=sents, tokens=tokens,
-                                    metrics=metrics, top_verbs=top, other_verbs=other, prep_like=prep_like, missing_genre=missing,
+                                    metrics=metrics, top_verbs=top, other_verbs=other, prep_like=prep_like, adj_like=adj_like, missing_genre=missing,
                                     baseline_papers=(bs.get('words') or {}).get('n', 0))
         out['sections'][sec]['commentary'] = make_commentary(sec, out['sections'][sec], bs, B['papers'])
     return out

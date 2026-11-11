@@ -333,7 +333,7 @@ const T = {
   median:["Comparison median","비교 중앙값"], iqr:["Comparison range","비교 범위"], minmax:["Full range","전체 범위"], label:["Position","판정"], pos:["Where you are","위치"],
   words:["words","단어"], papers:["papers","편"], basewords:["Section length in comparison papers (median)","비교 논문 절 길이(중앙값)"],
   verbs_h:["Verbs","동사"], verb:["Verb","동사"], layer:["Category","분류"], basev:["Baseline papers using it as predicate","기준선에서 술어로 쓴 논문"], aspred:["As predicate","술어로"], alluses:["All uses","모든 쓰임"], predrate:["Predicate per 1,000 words","술어 1,000단어당"], baseuse:["Baseline usage","기준선 쓰임"], freq:["Frequency","빈도"], usage:["Usage in your text","원고에서의 쓰임"],
-  missing:["All-four-journal verbs not used","원고에 없는 ‘네 저널 공통’ 동사"], preplike:["Left out as preposition-like","전치사처럼 쓰여 목록에서 뺀 것"],
+  missing:["All-four-journal verbs not used","원고에 없는 ‘네 저널 공통’ 동사"], preplike:["Left out as preposition-like","전치사처럼 쓰여 목록에서 뺀 것"], adjlike:["Set apart as participial adjectives (in the verb total)","분사형 형용사로 따로 본 것(동사 총수에는 포함)"],
   show:["show","보기"], hide:["hide","닫기"], none:["none","없음"], nores:["No text was entered.","입력한 글이 없습니다."],
   refonly:["This comparison set has few papers ({n}). Use it for reference only.","이 비교 집합은 논문 수가 적습니다({n}편). 참고로만 보세요."],
   legend_iqr:["comparison range","비교 범위"], legend_med:["median","중앙값"], legend_you:["your manuscript","원고"],
@@ -553,6 +553,7 @@ function render(r){
     const verbs = verbRows(S.top_verbs, true), others = verbRows(S.other_verbs || [], false);
     const vexp = id(), uexp = id(), bexp = id(), mexp = id(), fexp = id(), pexp = id(), oexp = id();
     const prep = Object.entries(S.prep_like);
+    const adjl = Object.entries(S.adj_like || {}), aexp = id();
     return `<section class="card" data-sec="${code}">
       <div class="secttl"><h2>${esc(tt([en,ko]))}</h2>
         <span class="muted">${S.words.toLocaleString()} ${esc(t("words"))}${bw?` · ${esc(t("basewords"))} ${fmt(bw.median)}`:""} · ${S.baseline_papers} ${esc(t("papers"))}
@@ -586,6 +587,7 @@ function render(r){
       ${S.short ? "" : `<p><b>${esc(exTitle("missing_genre"))}</b><button class="i" data-ex="missing_genre" data-slot="${mexp}" aria-expanded="false">i</button>:
         ${S.missing_genre.length? S.missing_genre.map(esc).join(", ") : esc(t("none"))}</p><div id="${mexp}"></div>`}
       ${prep.length?`<p class="note">${esc(t("preplike"))}<button class="i" data-ex="usage_전치사처럼" data-slot="${fexp}" aria-expanded="false">i</button>: ${prep.map(([k,n])=>`${esc(k)} ${n}`).join(", ")}</p><div id="${fexp}"></div>`:""}
+      ${adjl.length?`<p class="note">${esc(t("adjlike"))}<button class="i" data-ex="usage_분사형 형용사" data-slot="${aexp}" aria-expanded="false">i</button>: ${adjl.map(([k,n])=>`${esc(k)} ${n}`).join(", ")}</p><div id="${aexp}"></div>`:""}
     </section>`;
   }).join("");
   document.getElementById("version").textContent = `${r.version.baseline} · ${r.version.counting} · ${r.version.usage_rules}`;

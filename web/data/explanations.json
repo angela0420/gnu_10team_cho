@@ -181,8 +181,8 @@
    "en": "Predicate",
    "ko": "술어"
   },
-  "en": "A finite verb: it carries tense or has a finite auxiliary (The phase orders; were calculated; may be surpassed).",
-  "ko": "정형 동사입니다. 시제 꼴이거나 정형 조동사가 붙어 있습니다(The phase orders; were calculated; may be surpassed)."
+  "en": "A finite verb: it carries tense or has a finite auxiliary, including imperatives and be + past participle describing a state (The phase orders; were calculated; may be surpassed; Notice that …; are H-bonded to …).",
+  "ko": "정형 동사입니다. 시제 꼴이거나 정형 조동사가 붙어 있습니다. 명령형과, be동사 뒤에서 상태를 나타내는 과거분사도 포함합니다(The phase orders; were calculated; may be surpassed; Notice that …; are H-bonded to …)."
  },
  "usage_명사 앞 수식": {
   "title": {
@@ -205,16 +205,16 @@
    "en": "Non-finite",
    "ko": "비정형"
   },
-  "en": "A verb without tense: to-infinitive, participle clause or -ing after a preposition (to calculate; Using DFT, …; by comparing).",
-  "ko": "시제가 없는 동사구입니다. to부정사, 분사구문, 전치사 뒤 -ing(to calculate; Using DFT, …; by comparing)."
+  "en": "A verb without tense that keeps its verbal properties, such as an object or an adverbial, wherever it stands: to-infinitive, participle clause, -ing after a preposition, or an -ing clause as subject (to calculate; Using DFT, …; by comparing; Heating the sample causes …).",
+  "ko": "시제가 없지만 목적어·부사어 같은 동사의 성질이 남아 있는 동사 꼴입니다. 문장 안의 자리와 상관없습니다. to부정사, 분사구문, 전치사 뒤 -ing, 주어 자리의 -ing절(to calculate; Using DFT, …; by comparing; Heating the sample causes …)."
  },
  "usage_명사처럼": {
   "title": {
-   "en": "Nominal (gerund)",
+   "en": "Nominal",
    "ko": "명사처럼"
   },
-  "en": "An -ing form in a noun position, as subject or object (Heating the sample causes…).",
-  "ko": "-ing 꼴이 주어·목적어 같은 명사 자리에 온 경우입니다(Heating the sample causes…)."
+  "en": "An -ing form that behaves as a noun: it takes an article, an of-phrase or a noun in front of it, or it names a process or a purpose (the heating of the film; the stirring rate; a drying oven). The noun it modifies does not perform the action.",
+  "ko": "명사로 행동하는 -ing입니다. 관사·of구·앞 명사의 꾸밈을 받거나, 과정·용도의 이름입니다(the heating of the film; the stirring rate; a drying oven). 꾸밈을 받는 명사가 그 동작을 하지 않습니다."
  },
  "usage_전치사처럼": {
   "title": {
@@ -311,5 +311,13 @@
   },
   "ko": "두 집합은 모두 J. Phys. Chem. C 논문이지만 따로 모았습니다. 물리화학 집합은 2020–2021년 CC BY 연구논문을 무작위로 뽑을 때 제목으로 계산 위주 논문을 미리 뺐고, 받은 뒤 초록에서 계산 중심으로 확인된 1편(10.1021/acs.jpcc.0c06750)을 물리화학·계산으로 옮겼습니다. 물리화학·계산 집합은 계산·이론 논문만 따로 뽑은 보강 목록(시드 20261107)에서 품질 점검을 통과한 논문에 그 1편을 더한 것입니다. 두 집합에 함께 들어 있는 논문은 없습니다(논문 목록으로 확인). 물리화학·계산 집합은 편수가 적어 참고용으로만 보여 줍니다.",
   "en": "Both sets are papers from J. Phys. Chem. C, but they were collected separately. For the physical chemistry set, computation-centred papers were excluded by title when 2020–2021 CC BY research articles were sampled at random, and one paper whose abstract showed it to be computation-centred (10.1021/acs.jpcc.0c06750) was moved to the computational set after download. The physical chemistry · computational set consists of the papers that passed the quality check from a separately sampled list of computational and theoretical papers (seed 20261107), plus that one paper. No paper appears in both sets (checked against the paper lists). The computational set is small, so it is shown for reference only."
+ },
+ "usage_분사형 형용사": {
+  "title": {
+   "en": "Participial adjective",
+   "ko": "분사형 형용사"
+  },
+  "en": "An adjective that comes from a participle: very and comparatives sound natural, and it describes a quality rather than an action (a very detailed analysis; interesting results). This label is used only when the part-of-speech analyser has tagged the word as a verb; such words stay in the verb total but are shown apart from the verb list. Words the analyser already tags as adjectives are not counted as verbs at all.",
+  "ko": "분사에서 나온 형용사입니다. very나 비교급이 자연스럽고, 동작이 아니라 성질을 나타냅니다(a very detailed analysis; interesting results). 품사 분석기가 동사로 붙인 낱말에만 이 표시를 쓰며, 이런 낱말은 동사 총수에는 들어가지만 동사 목록과는 따로 봅니다. 품사 분석기가 처음부터 형용사로 붙인 낱말은 동사로 세지 않습니다."
  }
 }
