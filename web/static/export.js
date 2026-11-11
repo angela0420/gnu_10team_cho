@@ -3,22 +3,82 @@
 // 같은 내용 모델(buildDoc)에서 나온다. index.html의 전역(LAST, EX, CV, BL, LANG, SECS, LAYER, BAND, esc, fmt, exTitle)을 쓴다.
 (function(){
 const PROMPT = {
-ko: `첨부한 PDF는 「논문 글쓰기 진단」 결과입니다. 내 원고 전문, 절별 분석 결과, 결과를 읽는 법, 비교 기준 자료가 들어 있습니다. 다음 원칙에 따라 피드백해 주세요.
+ko: `첨부한 PDF는 「논문 글쓰기 진단」 결과입니다. 원고 전문, 절별 분석 결과, 결과를 읽는 법, 비교 기준 자료와 출처가 들어 있습니다. 제목·키워드·목표 저널·원고 단계·특히 묻고 싶은 점이 있으면 함께 참고해 주세요.
 
-1. 원고를 고쳐 쓰거나 대체 문장을 제시하지 마세요. 수정은 제가 직접 합니다.
-2. 먼저 PDF의 ‘이 결과를 읽는 법’을 읽고 그대로 따르세요. 300단어보다 짧은 절은 빈도나 비교 범위로 판단하지 마세요.
-3. 비교 범위를 벗어났다는 이유만으로, 또는 출판 논문과 같아지도록 동사를 바꾸라고 권하지 마세요. 분류 ④(해당 용법 미확인)는 오류가 아닙니다.
-4. 도구가 잘못 탐지한 것으로 보이는 항목이 있으면 따로 알려 주세요.
-5. 다시 읽어 볼 가치가 큰 문장을 3~5개 골라, 문장마다 제가 스스로 답해 볼 질문을 1~2개씩 주세요. 관찰과 해석의 구분, 주장의 세기와 근거, 선행연구의 주장과 내 해석의 구분에 주목해 주세요.
-6. 답은 한국어로 해 주세요.`,
-en: `The attached PDF contains results from Manuscript Diagnosis: my full manuscript, section-by-section analysis, a guide to reading the results, and the comparison data. Please give feedback according to these principles.
+다음 원칙에 따라 원고를 다시 읽고 판단하는 데 도움이 되는 피드백을 주세요.
 
-1. Do not rewrite my manuscript or suggest replacement sentences. I will revise it myself.
-2. First read “How to read these results” in the PDF and follow it. Do not judge sections shorter than 300 words by frequencies or comparison ranges.
-3. Do not recommend changing verbs only because a figure is outside the comparison range, or to make my text resemble published papers. Group 4 (usage not found) is not an error.
-4. If any item looks like a misdetection by the tool, point it out separately.
-5. Choose 3–5 sentences most worth rereading, and for each give me one or two questions to answer for myself. Focus on separating observation from interpretation, matching the strength of claims to the evidence, and distinguishing previous studies’ claims from my own interpretation.
-6. Please reply in English.`};
+1. 원고를 대신 고쳐 쓰지 마세요
+원고를 재작성하거나 대체 문장을 제시하지 마세요. 수정 여부와 방법은 제가 직접 판단합니다.
+
+2. 먼저 분석 기준과 한계를 확인하세요
+PDF의 ‘이 결과를 읽는 법’과 분석 기준·알려진 한계를 먼저 읽고 따르세요. 300단어보다 짧은 절은 빈도나 참조 범위를 근거로 평가하지 마세요. 다만 문장의 의미와 근거 관계는 검토해도 됩니다.
+
+3. 비교 수치를 글쓰기의 정답으로 삼지 마세요
+참조 범위를 벗어났다는 이유만으로 표현을 늘리거나 줄이라고 권하지 마세요. 출판 논문의 빈도나 동사 선택에 맞추도록 권하지도 마세요. 범위 안에 있다는 이유만으로 적절하다고 판단하지 마세요. 분류 ④ ‘해당 용법 미확인’은 오류나 부적절한 표현을 뜻하지 않습니다.
+
+4. 도구의 탐지·분류도 원문과 대조하세요
+도구가 잘못 탐지하거나 분류한 것으로 의심되는 항목은 글쓰기 피드백과 구분해 알려 주세요. 해당 절·문장번호·표현과 의심 이유를 적고, 확실하지 않으면 ‘확인 필요’로 표시하세요. 도구의 분류를 그대로 정답으로 받아들이지 마세요.
+
+5. 다시 읽어 볼 문장 3~5개를 골라 주세요
+참조 범위 밖 항목에서만 고르지 말고, 원고의 내용과 앞뒤 문맥을 근거로 선택하세요. 제목·키워드가 제공되었다면 연구의 맥락을 이해하는 데 참고하되, 특정 단어의 등장 횟수만으로 판단하지 마세요.
+
+각 문장에 대해 다음을 제시해 주세요.
+  • 절과 문장번호, 확인할 원문
+  • 다시 읽어 볼 가치가 있는 이유
+  • 제가 스스로 답해 볼 질문 1~2개
+
+질문은 다음에 초점을 맞춰 주세요.
+  • 직접 관찰하거나 계산한 결과와 그에 대한 해석이 구분되는가?
+  • 주장의 세기가 제시한 근거에 맞는가?
+  • 선행연구의 주장과 제 연구 결과·해석이 구분되는가?
+
+특히 묻고 싶은 점을 적었다면 우선 반영하세요. 필요한 경우에는 문장을 억지로 3~5개 채우지 말고, 선정할 수 있는 문장만 제시하세요.
+
+6. 판단의 근거와 불확실성을 밝혀 주세요
+PDF에 있는 정보만으로 판단하기 어려우면 추측으로 결론 내리지 말고, 무엇을 더 확인해야 하는지 알려 주세요. 원고에 제시되지 않은 실험 결과·연구 의도·참고문헌 내용을 만들어 넣지 마세요.
+
+7. 한국어로, 이해하기 쉽게 설명해 주세요
+먼저 핵심 피드백을 제시한 뒤, 제가 이해하기 쉽도록 그 이유를 풀어서 추가 설명해 주세요. 문법·통계 용어가 필요하면 뜻을 설명하고, 숫자는 실제 원고에서 무엇을 의미하는지 구체적으로 알려 주세요. 실제 발견 횟수와 1,000단어 기준으로 환산한 수치를 구분해 주세요.
+
+설명을 위한 예시는 가능하지만, 제 원고를 고쳐 쓴 대체 문장은 제시하지 마세요.`,
+en: `The attached PDF contains results from Manuscript Diagnosis: my full manuscript, section-by-section analysis, a guide to reading the results, and the comparison data with sources. If I have given a title, keywords, target journal, manuscript stage or questions, please take them into account.
+
+Please give feedback that helps me reread my manuscript and make my own judgements, following these principles.
+
+1. Do not rewrite my manuscript for me
+Do not rewrite it or suggest replacement sentences. I will decide myself whether and how to revise.
+
+2. First check the analysis criteria and limits
+First read “How to read these results”, the analysis criteria and the known limits in the PDF, and follow them. Do not evaluate sections shorter than 300 words on the basis of frequencies or reference ranges. You may still review the meaning of the sentences and how they relate to the evidence.
+
+3. Do not treat the comparison figures as the right answer for writing
+Do not recommend using an expression more or less only because a figure is outside the reference range. Do not recommend matching the frequencies or verb choices of published papers either. Do not judge something appropriate only because it is within the range. Group 4 (usage not found) does not mean an error or an inappropriate expression.
+
+4. Check the tool’s detection and classification against the text too
+Report items the tool seems to have detected or classified wrongly separately from writing feedback. Give the section, sentence number, expression and the reason for your doubt, and mark it “needs checking” if you are not sure. Do not take the tool’s classification as the right answer.
+
+5. Choose 3–5 sentences for me to reread
+Do not choose only from items outside the reference range; base your choice on the content of the manuscript and the surrounding context. If a title and keywords are given, use them to understand the research context, but do not judge by how often a particular word appears.
+
+For each sentence, give:
+  • the section, sentence number and the original text to check
+  • why it is worth rereading
+  • one or two questions for me to answer for myself
+
+Focus the questions on:
+  • Are the results I observed or calculated kept apart from my interpretation of them?
+  • Does the strength of the claim match the evidence given?
+  • Are earlier studies’ claims kept apart from my own results and interpretation?
+
+If I wrote down particular questions, address them first. Do not force the number up to 3–5; give only the sentences you can justify.
+
+6. State the grounds and the uncertainty of your judgements
+If the information in the PDF is not enough to judge, do not draw conclusions by guessing; tell me what else needs to be checked. Do not invent experimental results, research intentions or reference contents that are not in the manuscript.
+
+7. Explain in English, in a way that is easy to understand
+Give the main feedback first, then explain the reasons so that I can follow them. If you need grammatical or statistical terms, explain what they mean, and say concretely what each number means in my manuscript. Keep the actual number of occurrences apart from the rate per 1,000 words.
+
+You may give examples for explanation, but do not give replacement sentences that rewrite my manuscript.`};
 // PDF 맨 앞 'AI 검토 요청문'(2026-11-10, 교수님 지시): 도구의 분석 결과를 정답으로 전제하지 않고 원고 전문·탐지 목록·KWIC을 대조하게 한다
 const REVIEW = {
 ko: `이 자료는 규칙 기반 작문 분석 도구의 결과입니다. 분석 결과를 정답으로 전제하지 말고, 번호가 붙은 원고 전문과 전체 탐지 목록·KWIC을 대조해 주세요.
@@ -52,18 +112,27 @@ const LIMITS = [
   ["The same word can be judged differently depending on sentence structure (e.g. “delays” was a verb in one sentence and a noun in another).","같은 낱말도 문장 구조에 따라 다르게 판정될 수 있습니다(예: delays가 한 문장에서는 동사, 다른 문장에서는 명사)."],
   ["The manuscript and the comparison papers are processed by the same procedure, but it has not been shown that errors are equally frequent in both or cancel out.","원고와 비교 논문은 같은 절차로 처리했지만, 오류의 빈도와 영향이 같거나 서로 상쇄된다는 것은 확인되지 않았습니다."],
   ["Verbs carrying noun-like dependents are still counted but marked “may be a noun”; check them in context.","명사처럼 수식어를 거느린 '동사'는 그대로 세되 '명사일 수 있음'으로 표시합니다. 문맥에서 확인하세요."],
-  ["The usage classification rules (verb_usage_rules v0.3) are still being checked against human judgements.","동사 쓰임 분류 규칙(verb_usage_rules v0.3)은 사람 판정과 대조하는 중입니다."],
+  ["The usage classification rules (verb_usage_rules v0.4) were revised to fit 60 examples judged by the researcher; on those same 60 examples, 54 matched. This is not an independent check, and some boundary cases are still undecided.","동사 쓰임 분류 규칙(verb_usage_rules v0.4)은 연구자가 판정한 60개 용례에 맞춰 고쳤고, 같은 60개에서 54개가 일치했습니다. 독립 검증은 아니며, 일부 경계 사례는 아직 정하지 않았습니다."],
   ["Comparison sets contain 10–19 papers per journal, so ranges are wide.","비교 집합은 저널마다 10–19편이라 범위가 넓습니다."]];
 // 글자로 붙여 넣을 때는 'PDF' 대신 '아래 글'로 읽히게 한다
-const promptFor = (lang, asText) => asText ? PROMPT[lang].replace("첨부한 PDF는", "아래 글은").replace("PDF의 ‘이 결과를 읽는 법’", "아래 ‘이 결과를 읽는 법’")
-  .replace("The attached PDF contains", "The text below contains").replace("in the PDF", "below") : PROMPT[lang];
-const GUIDE = {
-ko: ["이 도구는 원고를 생성형 AI에 보내지 않습니다. AI 피드백이 필요하면 결과를 PDF로 저장해, 여러분이 쓰는 AI에 직접 올려 물어보세요. 저장되는 PDF에는 분석 기준과 알려진 한계, 결과 요약, 번호가 붙은 원고 전문, 전체 탐지 목록(앞뒤 문맥 포함), 비교 기준 자료와 출처, 그리고 AI가 결과를 원고와 대조하도록 하는 검토 요청문이 들어 있습니다. 아래 프롬프트를 함께 붙여 넣으면 AI가 원고를 대신 고쳐 쓰지 않고 질문으로 피드백합니다.",
-     "PDF를 올릴 수 없을 때는 결과를 글자로 복사해 대화창에 붙여 넣으세요. AI 사용량이 빠듯하면 ‘간단 복사’나 절별 복사를 쓰세요. AI를 쓸 수 없을 때도 결과를 저장해 두었다가 나중에 물어보거나, ‘내 글 살펴보기’로 문장을 직접 읽어 볼 수 있습니다."],
-en: ["This tool does not send your manuscript to any generative AI. If you would like AI feedback, save your results as a PDF and upload it to the AI you use. The PDF contains the analysis criteria and known limits, a results summary, your numbered full manuscript, the complete detection list with context, the comparison data with sources, and a review request asking the AI to check the results against your manuscript. Paste the prompt below along with it, and the AI will give feedback through questions instead of rewriting your manuscript.",
-     "If you cannot upload a PDF, copy the results as text and paste them into the chat. If your AI usage is limited, use the short version or copy one section at a time. Even without AI, you can save your results to ask later, or read your sentences directly in “Read your own text.”"]};
+const promptFor = (lang, asText) => asText ? PROMPT[lang].replace("첨부한 PDF는", "아래 글은").replaceAll("PDF의 ‘이 결과를 읽는 법’", "아래 ‘이 결과를 읽는 법’").replaceAll("PDF에 있는 정보", "아래 글에 있는 정보").replace("PDF의 ‘이 결과를 읽는 법’과", "아래 ‘이 결과를 읽는 법’과")
+  .replace("The attached PDF contains", "The text below contains").replaceAll("in the PDF", "below") : PROMPT[lang];
+const GUIDE = [   // [종류, en, ko] 2026-11-12 교수님 문구
+  ["p","This tool does not send your manuscript to any generative AI. If you would like AI feedback, save your results as a PDF and upload it yourself to the AI you usually use.","이 도구는 원고를 생성형 AI에 보내지 않습니다. AI 피드백을 받고 싶다면 결과를 PDF로 저장해, 평소 사용하는 AI에 직접 올려 보세요."],
+  ["p","The PDF includes your full manuscript. If you upload it to an external AI, your manuscript is sent to that service, so before uploading, check the service’s data-handling policy and whether your manuscript may be shared.","PDF에는 원고 전문이 포함됩니다. 외부 AI에 올리면 원고가 해당 서비스로 전달되므로, 업로드 전에 그 서비스의 데이터 처리 정책과 원고의 공유 가능 여부를 확인하세요."],
+  ["p","The PDF contains:","PDF에는 다음 내용이 담깁니다."],
+  ["ul",["Analysis criteria and known limits","분석 기준과 알려진 한계"],["A summary of the results","결과 요약"],["Your full manuscript with sentence numbers","문장번호가 붙은 원고 전문"],["The complete detection list with the surrounding context","전체 탐지 목록과 앞뒤 문맥"],["The comparison data and sources","비교 기준 자료와 출처"],["A review request asking the AI to check the results against your manuscript","AI가 분석 결과를 원고와 대조하도록 하는 검토 요청문"]],
+  ["p","If you paste the prompt below along with it, you can ask the AI to give you questions for checking your own writing instead of rewriting your manuscript. Check the AI’s answers against the original text too, and decide yourself whether to revise.","아래 프롬프트를 함께 붙여 넣으면, 원고를 대신 고쳐 쓰기보다 스스로 점검할 질문을 제시하도록 요청할 수 있습니다. AI의 답도 원문과 대조해 확인하고, 수정 여부는 직접 판단하세요."],
+  ["h","If you cannot upload a PDF","PDF를 올리기 어렵다면"],
+  ["p","Copy the results as text and paste them into the AI chat. If input length or usage is limited, use “Short copy” or copy one section at a time. If the copied text includes your manuscript, it is also sent to that AI service when you paste it.","결과를 텍스트로 복사해 AI 대화창에 붙여 넣으세요. 입력 길이나 사용량에 제한이 있다면 ‘간단 복사’나 절별 복사를 이용하세요. 복사한 내용에 원고가 포함되어 있다면, 붙여 넣을 때도 해당 AI 서비스로 전달됩니다."],
+  ["p","You do not have to use AI. You can save the results and review them later, or read your sentences yourself in “Read your own text” and decide whether to revise.","AI를 사용하지 않아도 괜찮습니다. 결과를 저장해 두고 나중에 검토하거나, ‘내 글 살펴보기’에서 문장을 직접 읽으며 수정할지 판단할 수 있습니다."]];
+function guideHtml(){
+  const L = LANG, one = (en, ko) => L==="en" ? esc(en) : L==="ko" ? esc(ko) : `${esc(en)}<br>${esc(ko)}`;
+  return GUIDE.map(g => g[0]==="ul" ? `<ul class="note save-g">${g.slice(1).map(([en,ko]) => `<li>${one(en,ko)}</li>`).join("")}</ul>`
+    : g[0]==="h" ? `<h3 class="save-h">${one(g[1],g[2])}</h3>` : `<p class="note save-g">${one(g[1],g[2])}</p>`).join("");
+}
 const UI = {
-  title:["Save your results and ask your own AI","결과를 저장하고, 내가 쓰는 AI에게 물어보세요"], jump:["Save results ↓","결과 저장하기 ↓"],
+  title:["Save your results and ask the AI you use","결과를 저장해, 내가 쓰는 AI에 물어보세요"], jump:["Save results ↓","결과 저장하기 ↓"],
   pdf:["Save as PDF","PDF로 저장하기"], all:["Copy all","전체 복사"], short:["Copy short version","간단 복사"], sec:["Sections","절"], allsec:["All sections","모든 절"],
   words:["about {n} words","약 {n}단어"], copied:["Copied","복사했습니다"], fail:["Could not copy. Select the text in the prompt box and copy it.","복사하지 못했습니다. 프롬프트 상자의 글을 직접 골라 복사하세요."],
   pcopy:["Copy prompt","프롬프트 복사"], pcopy_ko:["Copy Korean prompt","한국어 프롬프트 복사"], pcopy_en:["Copy English prompt","Copy English prompt"],
@@ -71,12 +140,17 @@ const UI = {
   pdfnote:["A print view with everything expanded opens. In the print window, set the destination to “Save as PDF”. If you save through a printer such as Hancom PDF, the letters become pictures and an AI cannot read them.",
            "모든 내용을 펼친 인쇄용 화면이 열립니다. 인쇄 창의 대상에서 ‘PDF로 저장’을 고르세요. 한컴 PDF 같은 프린터로 저장하면 글자가 그림이 되어 AI가 읽지 못합니다."],
   upload:["This file contains your full manuscript. If you upload it to an external AI, it is sent to that service.","원고 전문이 포함되어 있으며, 외부 AI에 업로드하면 해당 서비스로 전달됩니다."],
-  info_h:["About your manuscript (optional)","원고 정보(선택)"], info_note:["When you later save your results as a PDF, a generative AI can refer to these notes and give you more specific feedback. They are not sent to the server.","나중에 PDF로 저장할 때 생성형 AI가 참고함으로써 더 구체적인 피드백을 받을 수 있습니다. 서버로 보내지 않습니다."],
+  info_h:["About your manuscript (optional)","원고 정보(선택)"], info_note:["If you note the title, keywords, target journal and so on, they help convey the research context when you reread the results or ask an AI for feedback. A working title and draft keywords are fine. What you enter here is included in the saved PDF and in the text copies. These fields are not sent to the server (only the manuscript text is sent to the server for analysis).","제목과 키워드, 목표 저널 등을 적어 두면 결과를 다시 읽거나 AI에 피드백을 요청할 때 연구 맥락을 전달하는 데 도움이 됩니다. 가제나 작성 중인 키워드를 입력해도 됩니다. 입력한 정보는 결과 PDF와 텍스트 복사에 포함됩니다. 이 칸의 정보는 서버로 보내지 않습니다(원고 본문만 분석을 위해 서버로 보냅니다)."],
   info_ex:["Example →","예시 →"],
+  info_ex_t:["Titanium doping delays the phase transition in a layered sodium manganese oxide cathode","Titanium doping delays the phase transition in a layered sodium manganese oxide cathode"],
+  info_ex_k:["sodium-ion battery, layered oxide, titanium doping, phase transition, X-ray diffraction","sodium-ion battery, layered oxide, titanium doping, phase transition, X-ray diffraction"],
   info_ex_j:["Inorganic Chemistry","Inorganic Chemistry"],
   info_ex_s:["Before submission","투고 전 원고"],
   info_ex_q:["In Results and Discussion, I want to check whether I separate what I observed from how I interpret it, and whether my claims compared with earlier studies are too strong for my data.","결과·논의에서 관찰한 것과 해석한 것을 잘 구분했는지, 선행연구와 비교하는 문장에서 주장이 내 자료에 비해 너무 세지 않은지 보고 싶습니다."],
-  journal:["Target journal","목표 저널"], stage:["Manuscript stage","원고 단계"], question:["What you especially want to ask","특히 묻고 싶은 점"],
+  mtitle:["Manuscript title (optional)","원고 제목(선택)"], mtitle_ph:["A working title is fine.","가제도 괜찮습니다."],
+  mkeys:["Keywords (optional)","키워드(선택)"], mkeys_ph:["Words for the material, method or phenomenon, separated by commas","연구 대상·방법·현상을 나타내는 말을 쉼표로 구분해 적어 주세요."],
+  mjournal_ph:["If you have a journal in mind, enter it.","투고하려는 저널이 있으면 적어 주세요."], mquestion_ph:["Parts you want to look at again, or your questions","다시 살펴보고 싶은 부분이나 질문을 적어 주세요."],
+  journal:["Target journal (optional)","목표 저널(선택)"], stage:["Manuscript stage (optional)","원고 단계(선택)"], question:["What you especially want to ask (optional)","특히 묻고 싶은 점(선택)"],
   stages:[["","(choose)","(고르기)"],["class","Course assignment draft","수업 과제 초안"],["thesis","Thesis chapter draft","학위논문 장 초안"],["pre","Before submission","투고 전 원고"],["rev","Revision after review","심사 후 수정본"],["other","Other","기타"]]};
 const SECNAME = {INT:["Introduction","서론"],MET:["Methods","실험·방법"],RD:["Results and Discussion","결과·논의"],CON:["Conclusions","결론"]};
 const SECID = {INT:["Intro","서론"],MET:["Methods","방법"],RD:["RD","결과논의"],CON:["Concl","결론"]};
@@ -105,9 +179,9 @@ const usageName = k => exName("usage_"+k);
 // 위치(눈금 그림 대신 문장)
 function posText(band, short){
   if(short) return P2("Not judged (section under 300 words; rate for reference only)", "판정 보류(300단어 미만 절, 환산 수치는 참고용)");
-  return ({typical:P2("Inside the comparison range (Q1–Q3)","비교 범위(Q1–Q3) 안"),
-    higher:P2("Above the comparison range, inside the full range","비교 범위보다 높음, 전체 범위 안"),
-    lower:P2("Below the comparison range, inside the full range","비교 범위보다 낮음, 전체 범위 안"),
+  return ({typical:P2("Inside the reference range (Q1–Q3)","참조 범위(Q1–Q3) 안"),
+    higher:P2("Above the reference range, inside the full range","참조 범위보다 높음, 전체 범위 안"),
+    lower:P2("Below the reference range, inside the full range","참조 범위보다 낮음, 전체 범위 안"),
     beyond_high:P2("Above the full range (higher than all comparison papers)","전체 범위보다 높음(모든 비교 논문보다 높음)"),
     beyond_low:P2("Below the full range (lower than all comparison papers)","전체 범위보다 낮음(모든 비교 논문보다 낮음)")})[band] || "–";
 }
@@ -168,8 +242,8 @@ function buildDoc(o){
     `${P2("Comparison data","비교 자료")}: ${r.version.baseline}`,
     `${P2("Hedge and booster rules","완화·강조 표현 규칙")}: ${r.version.counting}`,
     `${P2("Reporting-verb rule","보고동사 규칙")}: ${r.version.reporting || r.version.usage_rules} (${P2("subject-based, 2026-11-10","주어 기반, 2026-11-10")})`,
-    `${P2("Verb usage classification","동사 쓰임 분류")}: ${r.version.usage_classes || "verb_usage_rules v0.3"}`,
-    `${P2("Export","내보내기")}: export-2026-11-10b`,
+    `${P2("Verb usage classification","동사 쓰임 분류")}: ${r.version.usage_classes || "verb_usage_rules v0.4"}`,
+    `${P2("Export","내보내기")}: export-2026-11-12`,
     `${P2("Comparison set","비교 집합")}: ${P([r.baseline_info.en, r.baseline_info.ko])}, ${LL==="ko"?`${r.baseline_info.papers}편`:`${r.baseline_info.papers} ${P2("papers","편")}`}${r.baseline_info.reference_only?` (${P2("few papers; for reference only","논문 수가 적어 참고용")})`:""}`,
     `${P2("Generated","만든 때")}: ${stamp}`];
   if(o.secs) info.push(`${P2("Sections included in this copy","이 복사에 넣은 절")}: ${secs.map(c=>P(SECNAME[c])).join(", ")}`);
@@ -198,16 +272,16 @@ function buildDoc(o){
   UL([P2("Sentences are numbered by section, e.g. [Intro-3] is the third sentence of the Introduction. Results and the detection list refer to sentences by these numbers.", "문장에는 절별 번호가 붙어 있습니다. 예를 들어 [서론-3]은 서론의 셋째 문장입니다. 결과와 탐지 목록에서도 같은 번호로 문장을 가리킵니다."),
       P2("Sections shorter than 300 words are not judged as higher or lower. Their per-1,000-word rates are shown for reference only; focus on the actual counts and sentences. The 300-word threshold is this tool's own criterion for withholding frequency judgements on short sections.",
          "300단어보다 짧은 절은 빈도에 따른 높고 낮음을 판정하지 않습니다. 환산 수치는 참고용으로만 제시하므로, 실제 개수와 문장을 중심으로 확인해 주세요. 300단어는 이 도구에서 짧은 절의 빈도 판정을 보류하기 위해 정한 기준입니다."),
-      P2("The comparison range is not a score. Being outside it is information for review, not an error.", "비교 범위는 점수가 아닙니다. 범위를 벗어난 것은 오류가 아니라 검토를 위한 정보입니다."),
+      P2("The reference range is not a score. Being outside it is information for review, not an error.", "참조 범위는 점수가 아닙니다. 범위를 벗어난 것은 오류가 아니라 검토를 위한 정보입니다."),
       P2("Group 4 (usage not found) is not an error; it only means the comparison papers do not show this use.", "분류 ④(해당 용법 미확인)는 오류가 아닙니다. 비교 논문에서 이 쓰임이 확인되지 않았다는 뜻일 뿐입니다."),
       P2("All detections are automatic and can be wrong. Check each item in its sentence (see “4. Complete detection list”).", "모든 탐지는 자동 규칙이라 틀릴 수 있습니다. 항목마다 해당 문장에서 확인하세요(‘4. 전체 탐지 목록’).")]);
   if(!o.short){
     H("h3", P2("How the figures are calculated", "수치의 계산 기준"));
     UL([`${P2("Per 1,000 words","1,000단어당")}: ${P2("count in the section ÷ words in the section × 1,000. Words are alphabetic tokens.","절 안의 개수 ÷ 그 절의 단어 수 × 1,000. 단어는 알파벳으로 된 낱말입니다.")}`,
-        `${P2("Comparison range","비교 범위")}: ${P2("for each paper in the comparison set the per-1,000-words value of the same section is computed; the comparison range is the first to third quartile (Q1–Q3) of those values, computed with the inclusive method (same as Excel QUARTILE.INC).","비교 집합의 논문마다 같은 절의 1,000단어당 값을 구하고, 그 값들의 1사분위수–3사분위수(Q1–Q3)를 비교 범위로 씁니다. 사분위수는 포함 방식(엑셀 QUARTILE.INC와 같음)으로 계산합니다.")}`,
+        `${P2("Reference range","참조 범위")}: ${P2("for each paper in the comparison set the per-1,000-words value of the same section is computed; the reference range is the first to third quartile (Q1–Q3) of those values, computed with the inclusive method (same as Excel QUARTILE.INC).","비교 집합의 논문마다 같은 절의 1,000단어당 값을 구하고, 그 값들의 1사분위수–3사분위수(Q1–Q3)를 참조 범위로 씁니다. 사분위수는 포함 방식(엑셀 QUARTILE.INC와 같음)으로 계산합니다.")}`,
         `${P2("Full range","전체 범위")}: ${P2("the lowest to the highest value among the comparison papers.","비교 논문 값 가운데 최솟값–최댓값.")}`,
         `${P2("Comparison median","비교 중앙값")}: ${exText("median")}`,
-        `${P2("Position labels","판정 말")}: ${P2("“Inside the comparison range” = Q1 ≤ value ≤ Q3; “above/below the comparison range” = outside Q1–Q3 but inside the full range; “above/below the full range” = higher or lower than all comparison papers. Labels describe position, not quality.","‘비교 범위 안’ = Q1 ≤ 값 ≤ Q3, ‘비교 범위보다 높음/낮음’ = Q1–Q3 밖이지만 전체 범위 안, ‘전체 범위보다 높음/낮음’ = 모든 비교 논문보다 높거나 낮음. 위치를 말할 뿐 잘 썼다 못 썼다는 평가가 아닙니다.")}`,
+        `${P2("Position labels","판정 말")}: ${P2("“Inside the reference range” = Q1 ≤ value ≤ Q3; “above/below the reference range” = outside Q1–Q3 but inside the full range; “above/below the full range” = higher or lower than all comparison papers. Labels describe position, not quality.","‘참조 범위 안’ = Q1 ≤ 값 ≤ Q3, ‘참조 범위보다 높음/낮음’ = Q1–Q3 밖이지만 전체 범위 안, ‘전체 범위보다 높음/낮음’ = 모든 비교 논문보다 높거나 낮음. 위치를 말할 뿐 잘 썼다 못 썼다는 평가가 아닙니다.")}`,
         ...["hedge_per1000","booster_per1000","reporting_per1000","verbs_per1000"].map(k => `${exName(k)}: ${exText(k)}`),
         `${P2("No double counting","중복 집계 없음")}: ${P2("Items classified as reporting verbs for previous studies are not counted again as hedges or boosters. The same verb may therefore be counted under different measures depending on its context and classification.","선행연구 보고동사로 분류한 항목은 완화·강조 표현에 중복 집계하지 않습니다. 따라서 같은 동사라도 문맥과 분류에 따라 집계 항목이 달라질 수 있습니다.")}`]);
     // 탐지 개수와 분류별 결과(절 × 항목). 4의 목록 줄 수와 같다
@@ -229,10 +303,10 @@ function buildDoc(o){
         ...(S.short ? [P2("This section is shorter than 300 words, so higher or lower frequencies are not judged. The rates are given for reference only; focus on the actual counts and sentences.","이 절은 300단어보다 짧아 빈도에 따른 높고 낮음은 판정하지 않습니다. 환산 수치는 참고용으로만 제시하므로, 실제 개수와 문장을 중심으로 확인해 주세요.")] : [])]);
     const ms = S.metrics.filter(m => !o.short || (!S.short && m.band && m.band !== "typical"));
     if(ms.length){
-      if(o.short) Pp(P2("Measures outside the comparison range:","비교 범위를 벗어난 지표:"));
-      TB([P2("Measure","지표"),P2("Count","개수"),P2("Per 1,000 words","1,000단어당"),P2("Comparison median","비교 중앙값"),P2("Comparison range (Q1–Q3)","비교 범위(Q1–Q3)"),P2("Full range","전체 범위"),P2("Position","위치")],
+      if(o.short) Pp(P2("Measures outside the reference range:","참조 범위를 벗어난 지표:"));
+      TB([P2("Measure","지표"),P2("Count","개수"),P2("Per 1,000 words","1,000단어당"),P2("Comparison median","비교 중앙값"),P2("Reference range (Q1–Q3)","참조 범위(Q1–Q3)"),P2("Full range","전체 범위"),P2("Position","위치")],
         ms.map(m => { const s = m.baseline; return [exName(m.key), String(m.count), fmt(m.rate), s?fmt(s.median):"–", s?`${fmt(s.q1)}–${fmt(s.q3)}`:"–", s?`${fmt(s.min)}–${fmt(s.max)}`:"–", posText(m.band, S.short)]; }));
-    } else if(o.short) Pp(P2("No measure is outside the comparison range (or the section is too short to judge).","비교 범위를 벗어난 지표가 없습니다(또는 절이 짧아 판정하지 않음)."));
+    } else if(o.short) Pp(P2("No measure is outside the reference range (or the section is too short to judge).","참조 범위를 벗어난 지표가 없습니다(또는 절이 짧아 판정하지 않음)."));
     if(o.short){   // 간단 복사: 탐지 낱말만 짧게
       const det = [];
       S.metrics.forEach(m => {
@@ -307,7 +381,9 @@ function buildDoc(o){
 }
 function manuscriptInfo(){
   const v = id => (document.getElementById(id)?.value || "").trim(), out = [];
-  const j = v("mi-journal"), s = v("mi-stage"), q = v("mi-question");
+  const ti = v("mi-title"), kw = v("mi-keys"), j = v("mi-journal"), s = v("mi-stage"), q = v("mi-question");
+  if(ti) out.push(`${ui("mtitle")}: ${ti}`);
+  if(kw) out.push(`${ui("mkeys")}: ${kw}`);
   if(j) out.push(`${ui("journal")}: ${j}`);
   if(s){ const st = UI.stages.find(x=>x[0]===s); out.push(`${ui("stage")}: ${st?P([st[1],st[2]]):s}`); }
   if(q) out.push(`${ui("question")}: ${q}`);
@@ -369,13 +445,13 @@ function printPdf(){
 // ---- 화면: 저장 영역 그리기
 function drawSave(){
   const box = document.getElementById("savebox"); if(!box) return;
-  const L = LANG, guide = L==="en" ? GUIDE.en : L==="ko" ? GUIDE.ko : GUIDE.en.map((e,i)=>`${e}\n${GUIDE.ko[i]}`);
+  const L = LANG;
   const have = LAST ? SECS.filter(s => LAST.sections[s[0]]) : [];
   const cur = document.getElementById("savesec")?.value || "ALL", rl = document.getElementById("replylang")?.value || "ko";
   const pbtns = L==="both" ? `<button class="btn ghost" data-pcopy="ko">${esc(P(UI.pcopy_ko))}</button><button class="btn ghost" data-pcopy="en">${esc(UI.pcopy_en[0])}</button>`
     : `<button class="btn ghost" data-pcopy="${L}">${esc(ui("pcopy"))}</button>`;
   const ptext = L==="both" ? `${PROMPT.ko}\n\n────────\n\n${PROMPT.en}` : PROMPT[L];
-  box.innerHTML = `<h2>${esc(ui("title"))}</h2>${guide.map(g => `<p class="note save-g">${esc(g).replace(/\n/g,"<br>")}</p>`).join("")}
+  box.innerHTML = `<h2>${esc(ui("title"))}</h2>${guideHtml()}
     <div class="row save-row"><button class="btn" id="pdf2">${esc(ui("pdf"))}</button><span class="note">${esc(ui("pdfnote"))}</span></div>
     <p class="warn save-up">${esc(ui("upload"))}</p>
     <div class="row save-row">
@@ -404,16 +480,20 @@ function counts(){
 function drawInfoFields(){
   const host = document.getElementById("mi-box"); if(!host) return;
   const keep = id => document.getElementById(id)?.value || "";
-  const j = keep("mi-journal"), s = keep("mi-stage"), q = keep("mi-question");
+  const ti = keep("mi-title"), kw = keep("mi-keys"), j = keep("mi-journal"), s = keep("mi-stage"), q = keep("mi-question");
   host.innerHTML = `<summary>${esc(ui("info_h"))}</summary><div class="mi-body"><p class="note">${esc(ui("info_note"))}</p>
     <details class="mi-ex"><summary>${esc(ui("info_ex"))}</summary><dl>
+      <dt>${esc(ui("mtitle"))}</dt><dd>${esc(ui("info_ex_t"))}</dd>
+      <dt>${esc(ui("mkeys"))}</dt><dd>${esc(ui("info_ex_k"))}</dd>
       <dt>${esc(ui("journal"))}</dt><dd>${esc(ui("info_ex_j"))}</dd>
       <dt>${esc(ui("stage"))}</dt><dd>${esc(ui("info_ex_s"))}</dd>
       <dt>${esc(ui("question"))}</dt><dd>${esc(ui("info_ex_q"))}</dd></dl></details>
-    <label>${esc(ui("journal"))}<input id="mi-journal" type="text" autocomplete="off" maxlength="200"></label>
+    <label class="wide">${esc(ui("mtitle"))}<input id="mi-title" type="text" autocomplete="off" maxlength="300" placeholder="${esc(ui("mtitle_ph"))}"></label>
+    <label class="wide">${esc(ui("mkeys"))}<input id="mi-keys" type="text" autocomplete="off" maxlength="300" placeholder="${esc(ui("mkeys_ph"))}"></label>
+    <label>${esc(ui("journal"))}<input id="mi-journal" type="text" autocomplete="off" maxlength="200" placeholder="${esc(ui("mjournal_ph"))}"></label>
     <label>${esc(ui("stage"))}<select id="mi-stage">${UI.stages.map(([k,en,ko]) => `<option value="${k}">${esc(P([en,ko]))}</option>`).join("")}</select></label>
-    <label class="wide">${esc(ui("question"))}<textarea id="mi-question" rows="2" maxlength="1000"></textarea></label></div>`;
-  document.getElementById("mi-journal").value = j; document.getElementById("mi-stage").value = s; document.getElementById("mi-question").value = q;
+    <label class="wide">${esc(ui("question"))}<textarea id="mi-question" rows="2" maxlength="1000" placeholder="${esc(ui("mquestion_ph"))}"></textarea></label></div>`;
+  document.getElementById("mi-title").value = ti; document.getElementById("mi-keys").value = kw; document.getElementById("mi-journal").value = j; document.getElementById("mi-stage").value = s; document.getElementById("mi-question").value = q;
   host.querySelectorAll("input,select,textarea").forEach(el => el.addEventListener("input", () => { if(LAST) counts(); }));
   const jl = document.getElementById("savejump"); if(jl) jl.textContent = ui("jump");
 }

@@ -1,6 +1,6 @@
 """분석 결과 풀이: 절마다 진단 수치를 문장으로 옮긴다(영·한). 외부 생성형 AI를 호출하지 않는다.
 원칙(2026-11-09 조은정 검토 반영)
-- '풀이'에는 표에서 확인되는 사실(개수, 1,000단어당 빈도, 비교 범위와의 관계, 논문별 대조)만 쓴다.
+- '풀이'에는 표에서 확인되는 사실(개수, 1,000단어당 빈도, 참조 범위와의 관계, 논문별 대조)만 쓴다.
 - 숫자로 뒷받침되지 않는 해석(배경 분량, 균형, 적절성)은 쓰지 않고, '추가로 확인해 보세요'에서 작성자가 확인할 질문으로만 쓴다.
 - 개수는 '개', 1,000단어당 환산 빈도는 '회', 서로 다른 동사는 '종'.
 - '17편 중 16편' 같은 논문별 대조는 비교 논문 각각의 실제 빈도(values)와 견주며, 같은 값은 낮은 논문에 넣지 않는다."""
@@ -53,10 +53,10 @@ def make(sec, S, bs, n_papers):
         if bw['q1'] <= w <= bw['q3']: rk, re_ = '해당 범위 안에 있습니다', 'within that range'
         elif w > bw['q3']: rk, re_ = '해당 범위보다 깁니다', 'longer than that range'
         else: rk, re_ = '해당 범위보다 짧습니다', 'shorter than that range'
-        ko.append(f"{sk}{_josa(sk, '은', '는')} {_f(w)}단어입니다. 비교 논문 {bw['n']}편의 {sk} 길이는 중앙값이 {_f(bw['median'])}단어이고, 비교 범위는 {_f(bw['q1'])}~{_f(bw['q3'])}단어입니다. 이 원고의 {sk}{_josa(sk, '은', '는')} {rk}. 다만 길이만으로 설명이 충분한지 판단할 수는 없습니다.")
-        en.append(f"The {se} has {_f(w)} words. In the {bw['n']} comparison papers this section has a median of {_f(bw['median'])} words and a comparison range of {_f(bw['q1'])}–{_f(bw['q3'])}; this manuscript is {re_}. Length alone does not show whether the section says enough.")
+        ko.append(f"{sk}{_josa(sk, '은', '는')} {_f(w)}단어입니다. 비교 논문 {bw['n']}편의 {sk} 길이는 중앙값이 {_f(bw['median'])}단어이고, 참조 범위는 {_f(bw['q1'])}~{_f(bw['q3'])}단어입니다. 이 원고의 {sk}{_josa(sk, '은', '는')} {rk}. 다만 길이만으로 설명이 충분한지 판단할 수는 없습니다.")
+        en.append(f"The {se} has {_f(w)} words. In the {bw['n']} comparison papers this section has a median of {_f(bw['median'])} words and a reference range of {_f(bw['q1'])}–{_f(bw['q3'])}; this manuscript is {re_}. Length alone does not show whether the section says enough.")
     if S['short']:
-        # 문구만 고침(2026-11-10): 표에는 환산 수치와 비교 범위가 남아 있으므로 '개수만'이 아니라 '높고 낮음 판정 보류, 환산 수치는 참고용'
+        # 문구만 고침(2026-11-10): 표에는 환산 수치와 참조 범위가 남아 있으므로 '개수만'이 아니라 '높고 낮음 판정 보류, 환산 수치는 참고용'
         ko.append('이 절은 300단어보다 짧아 빈도에 따른 높고 낮음은 판정하지 않습니다. 환산 수치는 참고용으로만 제시하므로, 실제 개수와 문장을 중심으로 확인해 주세요.')
         en.append('This section is shorter than 300 words, so higher or lower frequencies are not judged. The per-1,000-word rates are given for reference only; focus on the actual counts and sentences.')
     # ② 지표
@@ -88,21 +88,21 @@ def make(sec, S, bs, n_papers):
             rel_ko = f"비교 논문 {n}편 가운데 가장 낮은 논문({_f(s['min'])}회)보다도 낮습니다"
             rel_en = f"lower than in any of the {n} comparison papers (lowest {_f(s['min'])})"
         elif band == 'higher':
-            rel_ko = f"비교 범위인 {_f(s['q1'])}~{_f(s['q3'])}회보다 높습니다. 비교 논문 {n}편 중 {lo}편은 1,000단어당 빈도가 이 원고보다 낮았습니다"
-            rel_en = f"above the comparison range ({_f(s['q1'])}–{_f(s['q3'])}); {lo} of the {n} comparison papers have a lower rate"
+            rel_ko = f"참조 범위인 {_f(s['q1'])}~{_f(s['q3'])}회보다 높습니다. 비교 논문 {n}편 중 {lo}편은 1,000단어당 빈도가 이 원고보다 낮았습니다"
+            rel_en = f"above the reference range ({_f(s['q1'])}–{_f(s['q3'])}); {lo} of the {n} comparison papers have a lower rate"
         else:
-            rel_ko = f"비교 범위인 {_f(s['q1'])}~{_f(s['q3'])}회보다 낮습니다. 비교 논문 {n}편 중 {hi}편은 1,000단어당 빈도가 이 원고보다 높았습니다"
-            rel_en = f"below the comparison range ({_f(s['q1'])}–{_f(s['q3'])}); {hi} of the {n} comparison papers have a higher rate"
+            rel_ko = f"참조 범위인 {_f(s['q1'])}~{_f(s['q3'])}회보다 낮습니다. 비교 논문 {n}편 중 {hi}편은 1,000단어당 빈도가 이 원고보다 높았습니다"
+            rel_en = f"below the reference range ({_f(s['q1'])}–{_f(s['q3'])}); {hi} of the {n} comparison papers have a higher rate"
         cnt_ko = f"{nk}{_josa(nk, '은', '는')} {m['count']}개이며{where_ko}." if where_ko else f"{nk}{_josa(nk, '은', '는')} {m['count']}개입니다."
         ko.append(f"{cnt_ko} 1,000단어당 빈도는 {_f(m['rate'])}회로, {rel_ko}.")
         en.append(f"{ne.capitalize()}: {m['count']}{where_en}. The rate is {_f(m['rate'])} per 1,000 words, {rel_en}.")
         checks.append(key)
     if inside:
-        ko.insert(1 if bw else 0, f"1,000단어 기준으로 환산하면 {', '.join(inside)}이며, {'두 지표 모두' if len(inside) == 2 else ('모두' if len(inside) > 2 else '이 지표는')} 비교 범위 안에 있습니다.")
-        en.insert(1 if bw else 0, f"Per 1,000 words, {', '.join(inside_en)}: {'both are' if len(inside) == 2 else ('all are' if len(inside) > 2 else 'this is')} within the comparison range.")
+        ko.insert(1 if bw else 0, f"1,000단어 기준으로 환산하면 {', '.join(inside)}이며, {'두 지표 모두' if len(inside) == 2 else ('모두' if len(inside) > 2 else '이 지표는')} 참조 범위 안에 있습니다.")
+        en.insert(1 if bw else 0, f"Per 1,000 words, {', '.join(inside_en)}: {'both are' if len(inside) == 2 else ('all are' if len(inside) > 2 else 'this is')} within the reference range.")
     for nk, ne in zip(zero_ok_ko, zero_ok_en):
-        ko.append(f"{nk}{_josa(nk, '은', '는')} 현재 분석 규칙으로는 탐지되지 않았으며, 빈도 0도 비교 범위에 포함됩니다.")
-        en.append(f"No {ne} were detected by the current rules; a rate of 0 is within the comparison range.")
+        ko.append(f"{nk}{_josa(nk, '은', '는')} 현재 분석 규칙으로는 탐지되지 않았으며, 빈도 0도 참조 범위에 포함됩니다.")
+        en.append(f"No {ne} were detected by the current rules; a rate of 0 is within the reference range.")
     mh = any(m['key'] == 'hedge_per1000' for m in S['metrics'])
     if mh and not S['short']:
         ko.append('완화 표현과 강조 표현의 탐지 빈도는 각각 따로 비교했습니다. 두 표현의 비율만으로 주장의 신중함이나 설득력을 판단하지는 않습니다.')
@@ -131,11 +131,11 @@ def make(sec, S, bs, n_papers):
         hi_v = [v['verb'] for v in top if v['band'] == 'higher']
         lo_v = [v['verb'] for v in top if v['band'] == 'lower']
         if hi_v:
-            ko.append(f"{', '.join(hi_v)}({len(hi_v)}종)의 술어 빈도는 각 동사의 비교 범위보다 높습니다.")
-            en.append(f"{', '.join(hi_v)}: predicate rate above each verb's comparison range.")
+            ko.append(f"{', '.join(hi_v)}({len(hi_v)}종)의 술어 빈도는 각 동사의 참조 범위보다 높습니다.")
+            en.append(f"{', '.join(hi_v)}: predicate rate above each verb's reference range.")
         if lo_v:
-            ko.append(f"{', '.join(lo_v)}({len(lo_v)}종)의 술어 빈도는 각 동사의 비교 범위보다 낮습니다.")
-            en.append(f"{', '.join(lo_v)}: predicate rate below each verb's comparison range.")
+            ko.append(f"{', '.join(lo_v)}({len(lo_v)}종)의 술어 빈도는 각 동사의 참조 범위보다 낮습니다.")
+            en.append(f"{', '.join(lo_v)}: predicate rate below each verb's reference range.")
         if hi_v or lo_v or nones:
             cko.append('동사 이름을 누르면 그 동사가 쓰인 문장이 보입니다. 비교 자료와 빈도가 다르거나 확인되지 않은 동사가 어떤 문장에서 쓰였는지 읽어 보세요.')
             cen.append('Click a verb to see its sentences, and read where verbs that differ from or are not found in the comparison data are used.')
@@ -158,8 +158,8 @@ def make(sec, S, bs, n_papers):
             cko.insert(0, CHECK[k][0]) if k == 'reporting_per1000' else cko.append(CHECK[k][0])
             cen.insert(0, CHECK[k][1]) if k == 'reporting_per1000' else cen.append(CHECK[k][1])
     if checks or cko:
-        cko.append('비교 범위를 벗어났다는 이유만으로 문장을 줄이거나 동사를 바꿀 필요는 없습니다. 이 결과는 원고를 다시 읽을 때 참고할 정보입니다.')
-        cen.append('There is no need to shorten sentences or change verbs just because a value is outside the comparison range; the results are information for rereading the manuscript.')
+        cko.append('참조 범위를 벗어났다는 이유만으로 문장을 줄이거나 동사를 바꿀 필요는 없습니다. 이 결과는 원고를 다시 읽을 때 참고할 정보입니다.')
+        cen.append('There is no need to shorten sentences or change verbs just because a value is outside the reference range; the results are information for rereading the manuscript.')
     return dict(ko=ko, en=en, check_ko=cko, check_en=cen,
                 note_ko='이 설명은 표의 수치와 미리 정한 규칙에 따라 작성됩니다. 해설을 만들 때 외부 생성형 AI를 호출하지 않습니다. 같은 입력·비교 자료·규칙 버전에는 같은 설명이 나오도록 구성했으며, 분석의 정확성과 설명의 적절성은 별도로 검증해야 합니다.',
                 note_en='This text is generated from the numbers in the tables with predefined rules; no external generative AI is called. The same input, comparison data and rule version give the same text; the accuracy of the analysis and the wording still need separate validation.')

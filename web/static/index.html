@@ -116,7 +116,7 @@ tr.exrow td>div:not(:empty){padding:4px 0 10px}
 .cat .lb{color:var(--c);font-weight:600}
 .L-genre{--c:var(--c1)}.L-field{--c:var(--c2)}.L-rare{--c:var(--c3)}.L-none{--c:var(--c4)}
 .cats{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 12px}
-/* 위치 눈금: 전체 범위(회색 선)·비교 범위(청록 띠)·중앙값(눈금)·원고(점) */
+/* 위치 눈금: 전체 범위(회색 선)·참조 범위(청록 띠)·중앙값(눈금)·원고(점) */
 .bar{position:relative;width:220px;height:22px}
 .bar .track{position:absolute;top:10px;height:2px;background:var(--line2);border-radius:1px}
 .bar .iqr{position:absolute;top:5px;height:12px;background:color-mix(in srgb,var(--accent) 22%,transparent);border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);border-radius:3px}
@@ -213,6 +213,18 @@ details.mi{margin:14px 0 0;border:1px solid var(--line);border-radius:12px;backg
 details.mi summary{cursor:pointer;padding:10px 16px;font-weight:600;font-size:15px}
 details.mi .mi-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px;padding:0 16px 14px}
 details.mi .mi-body .note,details.mi .mi-body .wide{grid-column:1/-1}
+.ovnote{margin:12px 0 18px;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:14px;line-height:1.65}
+.ovnote p{margin:0 0 6px}
+.ovnote h4{margin:10px 0 4px;font-size:14.5px}.ovnote ul{list-style:none;padding-left:0}.ovnote .ovacts{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;margin-top:2px}
+.ovnote .ovacts details{flex-basis:100%}.ovnote .ovacts details[open]{margin-top:2px}.ovnote .ovacts summary{display:inline}
+.ovnote .gen{margin-top:10px;border-top:1px solid var(--line);padding-top:8px;color:var(--muted);font-size:13.5px}
+details.utab{margin:4px 0 14px;font-size:13.5px}details.utab>summary{cursor:pointer;color:var(--accent);font-weight:600}
+details.utab h4{margin:12px 0 4px;font-size:14px}details.utab td.ex{font-family:var(--serif);white-space:normal;min-width:180px}
+details.utab tr.sub td:first-child{padding-left:22px;font-weight:400}details.utab .en{display:block;font-size:12.5px;color:var(--faint)}
+details.foldlong{margin-top:10px}details.foldlong>summary{cursor:pointer;color:var(--accent);font-weight:600}#foldbody .ex .en{display:block;font-size:12.5px;color:var(--faint)}
+.ovnote details.ovwhy{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}.ovnote details.ovwhy>summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:14px}.ovnote .ovwhy h4{margin:12px 0 4px;font-size:14px}.ovnote .ovwhy table{font-size:13.5px}.ovnote .ovwhy blockquote{margin:6px 0;padding:6px 12px;border-left:3px solid var(--line2);background:var(--bg)}.ovnote .en{display:block;font-size:12.5px;color:var(--faint)}
+.ovnote ul{margin:6px 0 10px;padding-left:20px}.ovnote li{margin:0 0 10px}.ovnote li p{margin:0 0 3px}.ovnote p.adv{color:var(--muted);font-size:13.5px}
+.ovnote p.gen{margin:0;color:var(--muted);font-size:13px}.ovnote details.ovhow summary{cursor:pointer;color:var(--accent);font-size:13px;font-weight:600}.ovnote details.ovhow p{margin:4px 0 0;font-size:13px;color:var(--muted)}
 details.mi .mi-ex{grid-column:1/-1;font-size:13.5px;color:var(--muted)}
 details.mi .mi-ex summary{padding:0;font-weight:600;font-size:13.5px;color:var(--accent)}
 details.mi .mi-ex dl{margin:6px 0 0;padding:10px 12px;border-left:3px solid var(--line2);background:var(--bg);border-radius:6px;display:grid;grid-template-columns:max-content 1fr;gap:4px 12px}
@@ -291,6 +303,7 @@ details.mi input,details.mi select,details.mi textarea{font-weight:400;border:1p
     <button class="linkish" id="exnone" data-t="ex_none" style="margin-left:16px;font-size:13px;font-weight:400"></button>
     <button class="linkish" id="exall" data-t="ex_all" style="margin-left:12px;font-size:13px;font-weight:400"></button></h2>
   <div id="overview" role="tablist" hidden></div>
+  <div class="ovnote" id="ovnote" hidden></div>
   <details id="commonfold" hidden><summary><b data-t="ref_h"></b><span data-t="ref_open"></span></summary>
     <section class="card" id="commonbox" hidden></section></details>
   <div id="results"></div>
@@ -333,18 +346,18 @@ const T = {
   to_input:["Enter your manuscript","원고 입력하기"], st1:["Choose papers to compare","비교할 논문 선택"], st2:["Enter your manuscript","원고 입력"], st3:["See the results","결과 확인"],
   input_hint:["Paste each section into its box. Leave a box empty if your manuscript has no such section.","절마다 해당 칸에 붙여 넣으세요. 없는 절은 비워 두세요."],
   diff_note:["Differences from published papers are not errors; they are information for review.","출판 논문과의 차이는 오류가 아니라 검토를 위한 참고 정보입니다."],
-  fold_h:["Analysis method and comparison data","분석 방법 및 비교 자료 안내"], see_fold:["About the comparison papers and the method","비교 자료와 분석 방법 안내 보기"], about_h:["About this page","이 화면에 대해"], field:["Papers to compare with","비교할 논문 집합"], method_l:["Analysis method and data sources","분석 방법 및 자료 출처"], pc_hint:["For physical chemistry you can compare with computation-centred papers (Physical–computational) or the other papers (Physical). Choose the set that fits your manuscript.","물리화학은 계산 위주 논문(물리-계산)과 그렇지 않은 논문(물리)으로 나누어 비교할 수 있습니다. 원고의 성격에 맞는 집합을 선택하세요."], field_hint:["Choose the field closest to your manuscript from the list below.","아래 목록에서 원고와 가장 가까운 분야를 선택해 주세요."], pick_opt:["— Choose a comparison set —","— 비교할 분야를 고르세요 —"], pick_set:["Choose a comparison set in step 01 first.","먼저 01단계에서 비교할 분야를 골라 주세요."], ov_hold:["not judged (under 300 words)","판정 보류(300단어 미만)"],
+  fold_h:["Analysis method and comparison data","분석 방법 및 비교 자료 안내"], see_fold:["About the comparison papers and the method","비교 자료와 분석 방법 안내 보기"], about_h:["About this page","이 화면에 대해"], field:["Papers to compare with","비교할 논문 집합"], method_l:["Analysis method and data sources","분석 방법 및 자료 출처"], pc_hint:["For physical chemistry you can compare with computation-centred papers (Physical–computational) or the other papers (Physical). Choose the set that fits your manuscript.","물리화학은 계산 위주 논문(물리-계산)과 그렇지 않은 논문(물리)으로 나누어 비교할 수 있습니다. 원고의 성격에 맞는 집합을 선택하세요."], field_hint:["Choose the field closest to your manuscript from the list below.","아래 목록에서 원고와 가장 가까운 분야를 선택해 주세요."], pick_opt:["— Choose a comparison set —","— 비교할 분야를 고르세요 —"], pick_set:["Choose a comparison set in step 01 first.","먼저 01단계에서 비교할 분야를 골라 주세요."], ov_hold:["not judged (under 300 words)","판정 보류(300단어 미만)"], ov_note:["The reference range is where the middle half of the comparison papers fall (1st–3rd quartile). Being outside it does not mean an error or the quality of your writing. Check the items and the related sentences in the tables below.","참조 범위는 비교 논문 가운데 가운데 절반이 들어가는 범위(1사분위수–3사분위수)입니다. 범위 밖이라는 것은 오류나 글의 수준을 뜻하지 않습니다. 아래 표에서 항목과 관련 문장을 확인하세요."],
   go:["Start diagnosis","진단 시작하기"], sample:["Load an example","예시 원고 넣기"], clear:["Clear all","모두 지우기"], words_n:["words","단어"], running:["Analysing… (about 10–30 s)","분석 중… (10–30초)"],
   privacy:["Your manuscript is analysed only on this service’s server and is not sent to any external AI service. The service code does not write it to files or a database.","입력한 원고는 이 서비스의 서버에서만 분석하며, 외부 AI 서비스로 보내지 않습니다. 서비스 코드는 원고를 파일이나 데이터베이스에 저장하지 않습니다."],
   paste:["Paste the section text (optional)","이 절의 본문을 붙여 넣으세요(없으면 비워 둠)"],
   measure:["Measure","지표"], yours:["Your manuscript","원고"], count:["Count","개수"], rate:["per 1,000 words","1,000단어당"],
-  median:["Comparison median","비교 중앙값"], iqr:["Comparison range","비교 범위"], minmax:["Full range","전체 범위"], label:["Position","판정"], pos:["Where you are","위치"],
+  median:["Comparison median","비교 중앙값"], iqr:["Reference range","참조 범위"], minmax:["Full range","전체 범위"], label:["Position","판정"], pos:["Where you are","위치"],
   words:["words","단어"], papers:["papers","편"], basewords:["Section length in comparison papers (median)","비교 논문 절 길이(중앙값)"],
   verbs_h:["Verbs","동사"], verb:["Verb","동사"], layer:["Category","분류"], basev:["Baseline papers using it as predicate","기준선에서 술어로 쓴 논문"], aspred:["As predicate","술어로"], alluses:["All uses","모든 쓰임"], predrate:["Predicate per 1,000 words","술어 1,000단어당"], baseuse:["Baseline usage","기준선 쓰임"], freq:["Frequency","빈도"], usage:["Usage in your text","원고에서의 쓰임"],
   missing:["All-four-journal verbs not used","원고에 없는 ‘네 저널 공통’ 동사"], preplike:["Left out as preposition-like","전치사처럼 쓰여 목록에서 뺀 것"], adjlike:["Set apart as participial adjectives (in the verb total)","분사형 형용사로 따로 본 것(동사 총수에는 포함)"],
   show:["show","보기"], hide:["hide","닫기"], none:["none","없음"], nores:["No text was entered.","입력한 글이 없습니다."],
   refonly:["This comparison set has few papers ({n}). Use it for reference only.","이 비교 집합은 논문 수가 적습니다({n}편). 참고로만 보세요."],
-  legend_iqr:["comparison range","비교 범위"], legend_med:["median","중앙값"], legend_you:["your manuscript","원고"],
+  legend_iqr:["reference range","참조 범위"], legend_med:["median","중앙값"], legend_you:["your manuscript","원고"],
   of:["of","중"],
   cv_h:["Verbs frequently found in all four journals","네 저널에서 공통으로 자주 확인된 동사"],
   cv_rule:["Verbs used as predicates in at least half of the papers in which the section can be compared, in each of the four ACS journal sets separately (not the four sets pooled).","ACS 네 저널 집합 각각에서, 해당 절을 비교할 수 있는 논문의 절반 이상에서 술어 용법이 확인된 동사입니다(네 집합을 합쳐서가 아니라 집합마다 따로 셉니다)."],
@@ -354,7 +367,7 @@ const T = {
   cv_ev:["Show the per-journal counts","저널별 집계 근거 보기"],
   cv_prov:["This list follows the current analysis rules. The list and the numbers may change after the part-of-speech and usage checks.","현재 분석 규칙에 따른 목록입니다. 품사·용법 판정 점검 결과에 따라 목록과 수치가 달라질 수 있습니다."],
   cv_frac:["The first number is the papers in which the verb is used as a predicate at least once; the second is the papers in which the section can be compared. It is not the number of occurrences.","앞의 수는 해당 동사의 술어 용법이 한 번 이상 확인된 논문 수이고, 뒤의 수는 해당 절을 비교할 수 있는 논문 수입니다. 동사의 총 등장 횟수를 뜻하지 않습니다."],
-  cv_verb:["Verb","동사"], verb_list:["Show the verb list for this section","이 절의 동사 목록 보기"], vguide:["Select a verb to see where it appears, then select the highlighted word to read the whole sentence.","동사를 누르면 원고에서 쓰인 자리가 펼쳐지고, 강조된 단어를 누르면 문장 전체를 읽을 수 있습니다."], kw_full:["Read the whole sentence","문장 전체 보기"], ref_h:["Reference: verbs frequently found in all four journals","기준 자료: 네 저널에서 공통으로 자주 확인된 동사"], ref_open:["Expand","펼쳐 보기"], ov_out:["measures outside the comparison range","비교 범위를 벗어난 지표"], ov_none:["none","없음"], legend_trk:["full range","전체 범위"], cv_unit:["", "종"], comm_h:["Reading the results","분석 결과 풀이"], ex_open:["Explain","설명"], ex_close:["Hide","설명 접기"],
+  cv_verb:["Verb","동사"], verb_list:["Show the verb list for this section","이 절의 동사 목록 보기"], vguide:["Select a verb to see where it appears, then select the highlighted word to read the whole sentence.","동사를 누르면 원고에서 쓰인 자리가 펼쳐지고, 강조된 단어를 누르면 문장 전체를 읽을 수 있습니다."], kw_full:["Read the whole sentence","문장 전체 보기"], ref_h:["Reference: verbs frequently found in all four journals","기준 자료: 네 저널에서 공통으로 자주 확인된 동사"], ref_open:["Expand","펼쳐 보기"], ov_out:["Outside the reference range:","참조 범위 밖 항목"], ov_cnt:["{n}","{n}개"], ov_none:["none","없음"], legend_trk:["full range","전체 범위"], cv_unit:["", "종"], comm_h:["Reading the results","분석 결과 풀이"], ex_open:["Explain","설명"], ex_close:["Hide","설명 접기"],
   guide:["Click “Explain” to see what an item means; click an underlined number or verb to see where it occurs.","‘설명’을 누르면 항목의 뜻을, 밑줄 친 숫자나 동사를 누르면 해당 용례를 볼 수 있습니다."], of_which:["of which","그중"], check_h:["Check further","추가로 확인해 보세요"],
   pdf_hint:["In the print window, choose “Save as PDF”. Explanations you have opened are saved too.","인쇄 창에서 ‘PDF로 저장’을 선택하세요. 펼쳐 둔 설명도 함께 저장됩니다."], save_h:["Save the results","결과 저장하기"],
   ex_all:["Open all explanations","설명 모두 열기"], ex_none:["Close all explanations","설명 모두 닫기"],
@@ -407,7 +420,7 @@ function applyStatic(){
   document.querySelectorAll("#inputs textarea").forEach(a => a.placeholder = t("paste"));
   SECS.forEach(([c]) => { if(document.getElementById("wc-"+c)) updWc(c); });
   document.querySelectorAll(".slot").forEach(s => { if(s.innerHTML) s.innerHTML = exHtml(s.dataset.for); });
-  const fb = document.getElementById("foldbody"); if(fb && EX.about) fb.innerHTML = ["about","baseline","pc_sets","method"].filter(k => EX[k]).map(exHtml).join("");
+  const fb = document.getElementById("foldbody"); if(fb) fb.innerHTML = foldHtml();
   drawCommon();
   if(LAST){ render(LAST); if(!document.getElementById("explore").hidden){ xopts(); kwicAll(); } }
 }
@@ -533,7 +546,7 @@ function render(r){
       const evid = m.evidence && m.evidence.length ? id() : null;
       const cnt = evid ? `<button class="linkish" data-toggle="${evid}">${m.count}</button>`
         : (m.key==="verbs_per1000" && m.count) ? `<button class="linkish" title="${esc(t("verb_list"))}" onclick="openVerbList('${code}')">${m.count}</button>` : m.count;
-      return `<tr><td>${h2(exPair(k))}<button class="i" data-ex="${k}" data-slot="${rid}" aria-expanded="false">i</button></td>
+      return `<tr data-mkey="${m.key}"><td>${h2(exPair(k))}<button class="i" data-ex="${k}" data-slot="${rid}" aria-expanded="false">i</button></td>
         <td class="num">${cnt}</td><td class="num"><b>${fmt(m.rate)}</b></td><td class="num">${s?fmt(s.median):"–"}</td>
         <td class="num">${s?fmt(s.q1)+"–"+fmt(s.q3):"–"}</td><td class="num">${s?fmt(s.min)+"–"+fmt(s.max):"–"}</td>
         <td>${S.short?`<span class="tag na">${esc(t("count"))}</span>`:bandTag(m.band)}</td><td>${S.short?"":bar(m.rate,s,m.band)}</td></tr>
@@ -582,6 +595,7 @@ function render(r){
       <h3>${esc(exTitle("verbs_top"))}<button class="i" data-ex="verbs_top" data-slot="${vexp}" aria-expanded="false">i</button></h3>
       <div id="${vexp}"></div>
       <p class="vguide">${esc(t("vguide"))}</p>
+      ${usageTableHtml()}
       <div class="tablewrap"><table data-tid="${++tid}">
         <thead><tr><th>${h2(T.verb)}</th><th>${h2(T.aspred)}</th><th>${h2(T.alluses)}</th><th>${h2(T.predrate)}</th><th>${h2(T.layer)}</th><th>${h2(T.basev)}</th>
         <th>${h2(T.freq)}<button class="i" data-ex="verb_band" data-slot="${uexp}" aria-expanded="false">i</button></th>
@@ -613,10 +627,187 @@ function drawOverview(){
     const out = S.short ? 0 : S.metrics.filter(m => m.band && m.band !== "typical").length, bw = S.words_baseline;
     return `<button class="ov" role="tab" aria-selected="${c===CUR}" data-sec="${c}"><span class="t">${esc(tt([en,ko]))}</span>
       <span class="w"><b>${S.words.toLocaleString()}</b> ${esc(t("words"))}${bw?` · ${esc(t("median"))} ${fmt(bw.median)}`:""}</span>
-      <span class="o">${S.short ? esc(t("ov_hold")) : `${esc(t("ov_out"))} ${out?`<b>${out}</b>`:esc(t("ov_none"))}`}</span></button>`; }).join("");
+      <span class="o">${S.short ? esc(t("ov_hold")) : `${esc(t("ov_out"))} ${out?`<b>${esc(t("ov_cnt").replace("{n}", out))}</b>`:esc(t("ov_none"))}`}</span></button>`; }).join("");
 }
 function showSec(c){ CUR = c; document.querySelectorAll("#results>section.card[data-sec]").forEach(el => el.hidden = el.dataset.sec !== c);
-  document.querySelectorAll("#overview .ov[data-sec]").forEach(b => b.setAttribute("aria-selected", b.dataset.sec === c)); }
+  document.querySelectorAll("#overview .ov[data-sec]").forEach(b => b.setAttribute("aria-selected", b.dataset.sec === c)); drawOvNote(); }
+// 개요 아래 문장(2026-11-12, 교수님 문구 2차): 절 길이 → 항목마다 [실제 횟수 → 비교 결과 → 확인할 것 → 해당 문장 보기 · 비교 방법 보기]
+// → 공통 안내 '비교 결과는 이렇게 읽으세요'. 화면 설명의 수치는 반올림(10 이상은 정수, 그 밖은 소수 한 자리), 상세 표는 그대로.
+const OVN = {
+  verbs_per1000:   {h:["Verbs","동사"], en:"verbs", ko:{subj:"동사가", top:"동사는", none:"동사는"},
+    adv:["See which verbs and uses were counted in the list below.","아래 목록에서 어떤 동사와 쓰임이 집계되었는지 확인하세요."]},
+  hedge_per1000:   {h:["Hedges","완화 표현·헷지"], en:"hedges", ko:{subj:"완화 표현이", top:"완화 표현은", none:"완화 표현은"},
+    adv:["Read the sentences and check whether they are places where you need to leave room for other possibilities or state the claim cautiously.","해당 문장을 읽고, 가능성을 열어 두거나 주장을 신중하게 표현할 필요가 있는 곳에 쓰였는지 살펴보세요."]},
+  booster_per1000: {h:["Boosters","강조 표현·부스터"], en:"boosters", ko:{subj:"강조 표현이", top:"강조 표현은", none:"강조 표현은"},
+    adv:["Read the sentences and check whether the degree of emphasis matches the evidence you give.","해당 문장을 읽고, 강조의 정도가 제시한 근거에 맞는지 확인하세요."]},
+  reporting_per1000:{h:["Reporting verbs (earlier studies)","선행연구 보고동사"], en:"reporting verbs for earlier studies", ko:{subj:"선행연구 보고동사로 분류된 표현이", top:"선행연구 보고동사는", none:"선행연구 보고동사로 분류된 표현은"},
+    adv:["Read the sentences and check whether the claims of earlier studies are kept apart from your own interpretation.","해당 문장을 읽고, 선행연구의 주장과 내 해석이 구분되는지 확인하세요."]}
+};
+const ovR = v => v >= 10 ? Math.round(v).toLocaleString() : String(Math.round(v * 10) / 10);
+const ovAbout = (v, ko) => (Number(ovR(v).replace(/,/g, "")) === v ? "" : (ko ? "약 " : "about ")) + ovR(v);   // 반올림했을 때만 '약'
+function ovShow(key){
+  const card = document.querySelector(`#results>section.card[data-sec="${CUR}"]`); if(!card) return;
+  if(key === "verbs_per1000"){ openVerbList(CUR); return; }
+  const row = card.querySelector(`tr[data-mkey="${key}"]`), b = row && row.querySelector("button[data-toggle]");
+  if(b){ const el = document.getElementById(b.dataset.toggle); if(el) el.hidden = false; row.scrollIntoView({behavior:"smooth", block:"center"}); }
+}
+function drawOvNote(){
+  const box = document.getElementById("ovnote"), S = LAST && LAST.sections[CUR]; if(!box) return;
+  if(!S){ box.hidden = true; return; } box.hidden = false;
+  const SEC = {INT:["Introduction","서론은"], MET:["Methods section","실험·방법은"], RD:["Results and Discussion","결과·논의는"], CON:["Conclusions","결론은"]}[CUR];
+  const both = (en, ko) => LANG==="en" ? esc(en) : LANG==="ko" ? esc(ko) : `${esc(ko)}<span class="en">${esc(en)}</span>`;
+  const out = [], bw = S.words_baseline, w = S.words;
+  if(bw && bw.median != null){
+    const m = bw.median, sh = w < m, eq = w === m;
+    out.push(`<p>${both(
+      `The ${SEC[0]} you entered has ${w.toLocaleString()} words. When the comparison papers are ordered by length, the median is ${fmt(m)} words, so your text is ${eq?"the same length":sh?"shorter":"longer"}.${eq?"":` This does not mean you should make it ${sh?"longer":"shorter"}.`}`,
+      `입력한 ${SEC[1]} ${w.toLocaleString()}단어입니다. 비교 논문을 길이순으로 놓았을 때 중간값은 ${fmt(m)}단어로, ${eq?"입력한 글과 같습니다.":`입력한 글이 더 ${sh?"짧습니다. 분량을 늘려야":"깁니다. 분량을 줄여야"} 한다는 뜻은 아닙니다.`}`)}</p>`);
+  }
+  if(S.short){
+    out.push(`<p>${both("This section is under 300 words, so its expressions are counted but not compared with the reference range.", "이 절은 300단어보다 짧아 표현의 개수만 보여 주고 참조 범위와는 비교하지 않습니다.")}</p>`);
+  } else {
+    const items = S.metrics.filter(m => m.band && m.band !== "typical" && OVN[m.key]).map(m => {
+      const N = OVN[m.key], K = N.ko, b = m.baseline, hi = m.band === "higher" || m.band === "beyond_high", beyond = m.band.startsWith("beyond"), cnt = m.count;
+      const lines = [];
+      // ① 실제 횟수 ② 비교 결과
+      if(cnt){
+        const cmp = beyond
+          ? both(`When text length is evened out, ${N.en} appear ${hi?"more":"less"} often than in every one of the selected comparison papers.`, `글의 길이를 맞춰 비교하면, 선택한 비교 논문 모두보다 ${K.subj} 더 ${hi?"자주":"드물게"} 쓰인 것으로 나타났습니다.`)
+          : both(`When text length is evened out, this is a little ${hi?"above":"below"} the middle range of the comparison papers.`, `글의 길이를 맞춰 비교하면, 비교 논문의 중간 구간보다 조금 ${hi?"높습니다":"낮습니다"}.`);
+        lines.push(`<p>${both(`${N.h[0]}: found ${cnt} time${cnt>1?"s":""}.`, `${K.subj} ${cnt}번 발견되었습니다.`)} ${cmp}</p>`);
+        lines.push(`<p class="adv">${both(N.adv[0], N.adv[1])}</p>`);
+      } else {
+        lines.push(`<p>${both(`No ${N.en} were found.`, `${K.none} 발견되지 않았습니다.`)}</p>`);
+        lines.push(`<p class="adv">${m.key === "reporting_per1000"
+          ? both("This does not mean you did not introduce earlier studies. You may have introduced them with other expressions, or the tool may have missed them. Check the parts of your manuscript that deal with earlier studies yourself.", "선행연구를 소개하지 않았다는 뜻은 아닙니다. 다른 표현으로 소개했거나 도구가 놓쳤을 수 있습니다. 원고에서 선행연구를 다룬 부분을 직접 확인하세요.")
+          : both("This does not mean there are none. You may have used other expressions, or the tool may have missed them.", "그런 표현이 없다는 뜻은 아닙니다. 다른 표현을 썼거나 도구가 놓쳤을 수 있습니다.")}</p>`);
+      }
+      // ③ 비교 방법 보기(반올림한 수치)
+      const r = m.rate, edge = beyond ? (hi ? both(` The highest value among them is ${ovAbout(b.max)}.`, `${""} 가장 높은 값은 ${ovAbout(b.max, 1)}회입니다.`) : both(` The lowest value among them is ${ovAbout(b.min)}.`, ` 가장 낮은 값은 ${ovAbout(b.min, 1)}회입니다.`)) : "";
+      const so = beyond
+        ? both(` In other words, at the same length, ${N.en} appear ${hi?"more":"less"} often in your text.`, ` 즉, 같은 길이로 비교하면 내 글에서 ${K.subj} 더 ${hi?"자주":"드물게"} 쓰인 셈입니다.`)
+        : both(` In other words, at the same length, ${N.en} appear a little ${hi?"more":"less"} often in your text than in the middle range of the comparison papers.`, ` 즉, 같은 길이로 비교하면 내 글에서 ${K.subj} 비교 논문의 중간 구간보다 조금 더 ${hi?"자주":"드물게"} 쓰인 셈입니다.`);
+      const how = `<p>${both("Texts differ in length, so the raw number of times an expression appears cannot be compared directly. All texts are therefore converted to a rate per 1,000 words.", "글마다 길이가 달라, 표현이 나온 횟수만으로는 직접 비교하기 어렵습니다. 그래서 모두 1,000단어 기준으로 환산해 비교합니다.")}</p>
+        <p>${both(`Your text has ${ovAbout(r)} ${N.en} per 1,000 words. The middle half of the comparison papers have ${ovAbout(b.q1)}–${ovR(b.q3)}.`,
+          `내 글의 ${K.top} 1,000단어당 ${ovAbout(r, 1)}회입니다. 비교 논문의 가운데 절반은 ${ovAbout(b.q1, 1)}–${ovR(b.q3)}회${beyond ? "이고," : "입니다."}`)}${edge}${so}</p>`;
+      const show = (cnt || m.key === "verbs_per1000") ? `<button class="linkish" onclick="ovShow('${m.key}')">${both("See the sentences","해당 문장 보기")}</button>` : "";
+      return `<li><h4>${both(N.h[0], N.h[1])}</h4>${lines.join("")}
+        <div class="ovacts">${show}<details class="ovhow"><summary>${both("How the comparison works","비교 방법 보기")}</summary>${how}</details></div></li>`; });
+    out.push(items.length ? `<ul>${items.join("")}</ul>` : `<p>${both("All measures in this section are within the reference range.", "이 절의 지표는 모두 참조 범위 안에 있습니다.")}</p>`);
+  }
+  out.push(`<div class="gen"><h4>${both("How to read the comparison","비교 결과는 이렇게 읽으세요")}</h4>
+    <p>${both("Using an expression often does not mean overuse, and using it rarely does not mean it is lacking. The comparison alone is no reason to use an expression more or less. What matters is the role it plays in the actual sentence.", "표현을 많이 썼다고 과용이고, 적게 썼다고 부족한 것은 아닙니다. 비교 결과만으로 표현을 늘리거나 줄일 필요는 없습니다. 실제 문장에서 어떤 역할을 하는지 확인하는 것이 중요합니다.")}</p>
+    <p>${both("The ‘reference range’ is the band that contains the middle half of the comparison papers when they are ordered by how often they use the expression. It is not a recommended number or a measure of the quality of your writing.", "‘참조 범위’는 비교 논문을 해당 표현의 사용 빈도순으로 놓았을 때, 가운데 절반이 들어가는 구간입니다. 권장 횟수나 글의 수준을 판단하는 기준은 아닙니다.")}</p></div>`);
+  out.push(OV_WHY);   // 교수님 제공 문구 그대로(2026-11-12)
+  box.innerHTML = out.join("");
+}
+const OV_WHY = `<details class="ovwhy"><summary>개수를 비교하는 이유와 읽는 법</summary>
+<p><b>개수를 비교하는 것은 글을 채점하기 위해서가 아니라, 평소에는 눈에 잘 띄지 않던 표현 습관을 발견하고 다시 읽어 볼 곳을 찾는 데 도움이 됩니다.</b> 다만 숫자를 보여 주고 끝내면 도움이 제한적입니다. 어떤 표현이 어느 문장에 쓰였는지까지 연결되어야 합니다. 코퍼스 분석에서도 빈도 확인과 실제 용례 읽기를 함께 사용합니다.</p>
+<h4>예를 들면 이런 질문을 하게 합니다</h4>
+<div class="tablewrap"><table><thead><tr><th>비교에서 발견한 차이</th><th>문장을 읽으며 확인할 질문</th></tr></thead><tbody>
+<tr><td>완화 표현이 자주 나온다</td><td>주장을 신중하게 한 것인가? 같은 내용을 불필요하게 여러 번 완화했는가?</td></tr>
+<tr><td>강조 표현이 자주 나온다</td><td>그만큼 확실한 근거가 있는가? 강조하지 않아도 뜻이 충분히 전달되는가?</td></tr>
+<tr><td>선행연구 보고동사가 잡히지 않는다</td><td>다른 방식으로 선행연구를 소개했는가? 도구가 놓쳤는가?</td></tr>
+<tr><td>특정 동사가 반복된다</td><td>같은 말을 편리하게 반복한 것인가? 서로 다른 의미를 더 정확히 구별할 필요가 있는가?</td></tr>
+</tbody></table></div>
+<p>이 질문들의 답은 개수만으로는 알 수 없습니다. 실제 헷지 연구에서도 후보 표현을 찾은 뒤, 해당 문맥에서 정말 완화 기능을 하는지 연구자가 확인하는 절차를 사용합니다.</p>
+<h4>이번 ‘강조 표현 1번’은 큰 의미를 부여할 필요가 없습니다</h4>
+<p>지금 사례에서는 실제 강조 표현이 1번인데, 1,000단어 기준으로 바꾸면서 2.87이라는 숫자가 되었습니다. 그 값이 비교 구간보다 조금 높다는 이유만으로 “강조하는 습관이 있다”고 말하기는 어렵습니다.</p>
+<p>이 경우에는 다음 정도가 적절합니다.</p>
+<blockquote>강조 표현이 1번 발견되었습니다. 해당 문장에서 강조가 근거에 맞는지 확인해 보세요.</blockquote>
+<p>즉, 모든 수치 차이를 중요한 진단처럼 설명할 필요는 없습니다. ‘1번 사용했다’는 사실과 그 문장을 보여 주는 것으로 충분할 때도 있습니다.</p>
+</details>`;
+// 동사 쓰임 분류표(2026-11-12): '현재 적용하는 분류'(배포된 verb_usage_rules v0.4와 일치, 예문은 모두 규칙에 넣어 확인)와
+// '경계 사례·검토 중'(아직 정하지 않은 것)을 나눈다. 언어학자가 검토·의견을 줄 수 있게 규칙 파일 위치를 밝힌다.
+const USAGE_TABLE = {
+  rows: [
+    ["Predicate","술어","A finite verb: it carries tense or has a finite auxiliary. Includes imperatives and be + past participle describing a state.","시제가 있거나 정형 조동사가 붙은 동사입니다. 명령형과, be동사 뒤에서 상태를 나타내는 과거분사도 포함합니다.",
+      ["The samples were <b>heated</b> at 900 °C.","<b>Notice</b> that the peak shifts.","The hydroxyl groups are H-<b>bonded</b> to the surface."]],
+    ["Pre-noun modifier","명사 앞 수식","A participle before a noun that modifies it; the noun performs or undergoes the action.","명사 앞에서 그 명사를 꾸미는 분사입니다. 꾸밈을 받는 명사가 그 동작을 하거나 받습니다.",
+      ["the <b>doped</b> sample","a <b>reducing</b> agent","the <b>resulting</b> film"]],
+    ["Post-noun modifier","명사 뒤 수식","A participle (phrase) after a noun that modifies it, like a shortened relative clause.","명사 뒤에서 그 명사를 꾸미는 분사(구)입니다. 줄어든 관계절과 같습니다.",
+      ["crystals <b>grown</b> at room temperature","the method <b>reported</b> by Kim"]],
+    ["Non-finite","비정형","A verb form without tense that keeps verbal properties such as an object or an adverbial, wherever it stands: to-infinitive, participle clause, -ing after a preposition.","시제가 없지만 목적어·부사어 같은 동사의 성질이 남아 있는 꼴입니다. 문장 안의 자리와 상관없습니다. to부정사, 분사구문, 전치사 뒤 -ing 등입니다.",
+      ["to <b>calculate</b> the band edge positions","<b>Using</b> DFT, we …","by <b>comparing</b> them with reference data","When <b>compared</b> with the pristine sample, …"]],
+    ["  ↳ fixed-expression mark","  ↳ 굳은 표현 표시","Within non-finite: compared to/with, based on, given used to link a comparison or a basis without a subject or auxiliary get an extra mark. It is a mark, not a separate count. A clause led by if/when (When compared with …) is not marked.","비정형 안에서, 주어·조동사 없이 비교나 근거를 잇는 compared to/with, based on, given에 덧붙이는 표시입니다. 따로 세는 범주가 아닙니다. if/when이 이끄는 경우(When compared with …)는 표시하지 않습니다.",
+      ["<b>Compared</b> to the pristine oxide, …","<b>Based</b> on these results, …"]],
+    ["Nominal","명사처럼","An -ing form that names a process or purpose in front of a noun; the noun does not perform the action. Applied in front of a set list of nouns (rate, temperature, time, oven, chamber, method, …) and to some fixed pairs.","명사 앞에서 과정·용도의 이름이 되는 -ing입니다. 꾸밈을 받는 명사가 그 동작을 하지 않습니다. 정해 둔 명사 목록(rate, temperature, time, oven, chamber, method 등) 앞과 일부 정해 둔 결합에만 적용합니다.",
+      ["a <b>drying</b> oven","the carbon <b>supporting</b> material"]],
+    ["Preposition-like","전치사처럼","A form that has lost its verb meaning and works like a preposition. Counted in the verb total but shown apart from the verb list.","동사 뜻을 잃고 전치사처럼 쓰이는 꼴입니다. 동사 총수에는 넣고, 동사 목록과는 따로 보입니다.",
+      ["several oxides, <b>including</b> TiO<sub>2</sub>","<b>Following</b> the reaction, …"]],
+    ["Participial adjective","분사형 형용사","A participle before a noun that has become an adjective (very and comparatives sound natural). Applied only to a set list of words, without a complement, and only when the analyser has tagged the word as a verb. Counted in the verb total but shown apart from the verb list.","명사 앞에 오는 분사 가운데 형용사로 굳은 것입니다(very나 비교급이 자연스럽습니다). 정해 둔 낱말 목록에서, 보충어가 없고, 품사 분석기가 동사로 붙인 경우에만 씁니다. 동사 총수에는 넣고, 동사 목록과는 따로 보입니다.",
+      ["a <b>pronounced</b> shift"]],
+    ["Needs checking","확인 필요","Cases the rules cannot decide. Check them in context.","규칙으로 정하지 못한 경우입니다. 문맥에서 직접 확인하세요.", []]],
+  review: [
+    ["Words the analyser already tags as nouns or adjectives are not counted as verbs at all, so they never reach this classification (e.g. the <b>heating</b> of the film, the <b>stirring</b> rate, the <b>annealing</b> temperature, a <b>detailed</b> analysis). This happens at the counting stage and is under review.",
+     "품사 분석기가 처음부터 명사나 형용사로 붙인 낱말은 동사로 세지 않으므로 이 분류까지 오지 않습니다(예: the <b>heating</b> of the film, the <b>stirring</b> rate, the <b>annealing</b> temperature, a <b>detailed</b> analysis). 세는 단계의 문제로, 검토 중입니다."],
+    ["Some words that are not verbs can be counted as verbs (e.g. <b>Figure</b> at the start of a sentence). Also a counting-stage issue under review.",
+     "동사가 아닌 낱말이 동사로 세어지는 경우가 있습니다(예: 문장 첫머리의 <b>Figure</b>). 이것도 세는 단계의 문제로, 검토 중입니다."],
+    ["<b>as compared</b> to: the current rules give non-finite with the fixed-expression mark, but how to treat it has not been decided.",
+     "<b>as compared</b> to: 현재 규칙은 비정형에 굳은 표현 표시를 붙이지만, 어떻게 볼지는 아직 정하지 않았습니다."],
+    ["How far to treat process or purpose names as nominal: outside the set noun list, -ing forms before a noun are still classified as pre-noun modifiers.",
+     "과정·용도 이름을 명사처럼으로 볼 범위: 정해 둔 명사 목록 밖에서는 명사 앞 -ing를 지금처럼 명사 앞 수식으로 분류합니다. 목록을 넓힐지는 정하지 않았습니다."],
+    ["Which words belong on the participial-adjective list.",
+     "분사형 형용사 목록에 어떤 낱말을 넣을지."]],
+};
+function usageTableHtml(){
+  const L = LANG, one = (en, ko) => L==="en" ? en : L==="ko" ? ko : `${ko}<span class="en">${en}</span>`;   // 내용은 이 파일에서 쓴 고정 문구(HTML)
+  const rows = USAGE_TABLE.rows.map(([ce, ck, de, dk, ex]) => `<tr${ce.startsWith("  ↳") ? ' class="sub"' : ""}><td><b>${one(ce.trim(), ck.trim())}</b></td><td>${one(de, dk)}</td><td class="ex">${ex.join("<br>")}</td></tr>`).join("");
+  const rv = USAGE_TABLE.review.map(([e, k]) => `<li>${one(e, k)}</li>`).join("");
+  return `<details class="utab"><summary>${one("How are verb uses classified?","동사의 쓰임은 어떻게 구분하나요?")}</summary>
+    <p class="note">${one("Each time a verb appears, the tool classifies its grammatical use. The classification adds the tool’s rules (verb_usage_rules v0.4) on top of the part-of-speech and syntactic analysis of spaCy (en_core_web_sm), so it can differ from what spaCy gives on its own. Every example below was run through the current rules.",
+      "동사가 나올 때마다 문법적 쓰임을 구분합니다. 이 분류는 spaCy(en_core_web_sm)의 품사·구문 분석 위에 도구의 규칙(verb_usage_rules v0.4)을 덧붙여 정하므로, spaCy를 그대로 쓴 결과와 다를 수 있습니다. 아래 예는 모두 현재 규칙에 넣어 확인한 것입니다.")}</p>
+    <h4>${one("Classification currently applied","현재 적용하는 분류")}</h4>
+    <div class="tablewrap"><table><thead><tr><th>${one("Use","쓰임")}</th><th>${one("How it is decided","판단 기준")}</th><th>${one("Examples","예")}</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <h4>${one("Boundary cases and points under review","경계 사례·검토 중")}</h4>
+    <p class="note">${one("These have not been decided and are not presented as current rules.","아직 정하지 않은 내용으로, 현재 규칙에 들어간 것으로 보여 주지 않습니다.")}</p>
+    <ul>${rv}</ul>
+    <p class="note">${one("The rules were revised to fit 60 examples judged by the researcher; on those same 60 examples, 54 matched (not an independent check). The full rule file is public: ",
+      "규칙은 연구자가 판정한 60개 용례에 맞춰 고쳤고, 같은 60개에서 54개가 일치했습니다(독립 검증은 아님). 규칙 파일 전체는 공개되어 있습니다: ")}<a href="https://github.com/angela0420/gnu_10team_cho/blob/main/web/vendor/verb_usage_rules.py" target="_blank" rel="noopener">verb_usage_rules.py</a></p>
+  </details>`;
+}
+// '분석 방법 및 비교 자료 안내' 접기(2026-11-12, 교수님 문구): 요약을 먼저 보이고, 긴 설명은 '자료 선정 과정과 분석 기준 자세히 보기' 안에.
+const FOLD = {
+  short: [
+    ["What this page does","이 화면이 하는 일",
+      ["It analyses how often verbs and stance expressions are used in each section of your manuscript and compares this with published papers from the journal you choose. Stance expressions present something as possible or express certainty.","원고의 각 절에서 동사와 주장 표현이 얼마나 쓰였는지 분석하고, 선택한 저널의 출판 논문과 비교합니다. 주장 표현은 가능성을 제시하거나 확신을 드러내는 표현입니다."],
+      ["The comparison is a cue for rereading your sentences. Using something more or less often than other papers does not mean you wrote it wrongly or must change it.","비교 결과는 내 문장을 다시 읽어 볼 단서입니다. 다른 논문보다 많이 또는 적게 썼다고 해서 잘못 썼거나 반드시 고쳐야 하는 것은 아닙니다."]],
+    ["Comparison data","비교 자료",
+      ["Open-access (CC BY) research articles published in ACS journals in 2020–2021. The comparison figures are reference information for seeing how your text differs from published papers. You do not need to change expressions to match the figures.","ACS 저널에 2020–2021년 출판된 CC BY 공개 연구논문을 사용했습니다. 비교 수치는 내 글이 출판 논문과 어떻게 다른지 살펴보는 참고 정보입니다. 수치를 맞추기 위해 표현을 바꿀 필요는 없습니다."],
+      ["The physical chemistry and physical chemistry · computational sets are both J. Phys. Chem. C papers but were built separately according to whether the work is computational or theoretical. No paper is in both, and the computational set is small, so use it for reference only.","물리화학과 물리화학·계산 집합은 모두 J. Phys. Chem. C 논문이지만, 계산·이론 중심 여부에 따라 따로 구성했습니다. 중복 논문은 없으며, 편수가 적은 물리화학·계산 집합은 참고용으로 보세요."]],
+    ["Analysis method","분석 방법",
+      ["Expressions are found and counted by predefined rules. The tool’s rules are applied on top of the part-of-speech and syntactic analysis of a spaCy English model and the hedge and booster lists of Hyland (2005). Analysis version: section-verb-hedge-baseline 0.4.9.","미리 정한 규칙으로 표현을 찾아 셉니다. spaCy 영어 모델의 품사·구문 분석과 Hyland(2005)의 완화·강조 표현 목록을 바탕으로 도구의 규칙을 적용합니다. 분석 버전은 section-verb-hedge-baseline 0.4.9입니다."],
+      ["The same rules are applied to your manuscript, but because pasted text is split into sentences again, counts can differ slightly from the stored comparison data. The comparison papers were used to obtain the figures, not to train AI.","원고에도 같은 규칙을 적용하지만, 붙여 넣은 텍스트를 문장으로 다시 나누는 과정에서 저장된 비교 자료와 집계가 조금 달라질 수 있습니다. 비교 논문은 수치를 얻는 데 사용했으며, AI 훈련에는 사용하지 않았습니다."]],
+    ["How your manuscript is handled","원고 처리",
+      ["Your manuscript is analysed on this service’s server. The service code does not write it to files or a database, and no external generative AI is called for the analysis or the on-screen explanations.","원고는 이 서비스의 서버에서 분석합니다. 서비스 코드는 원고를 파일이나 데이터베이스에 저장하지 않으며, 분석과 화면 해설을 위해 외부 생성형 AI를 호출하지 않습니다."]]],
+  long: [
+    ["What this page does","이 화면이 하는 일",
+      ["It looks at how often verbs and stance expressions are used in each section of your manuscript and compares this with published papers from the journal you choose. Stance expressions present something as possible or express certainty.","원고의 각 절에서 동사와 주장 표현이 얼마나 쓰였는지 살펴보고, 선택한 저널의 출판 논문과 비교합니다. 주장 표현은 가능성을 제시하거나 확신을 드러내는 표현을 말합니다."],
+      ["The comparison is a cue for rereading your sentences. Using something more or less often than other papers does not by itself make it an error or something you must change.","비교 결과는 내 문장을 다시 읽어 볼 단서입니다. 다른 논문보다 많이 또는 적게 썼다는 이유만으로 오류이거나 반드시 고쳐야 하는 것은 아닙니다."]],
+    ["What is it compared with?","무엇과 비교하나요?",
+      ["It is compared with data in which the same items as in your manuscript were calculated for published papers from the journal you choose. The page shows the distribution of the figures in the comparison papers together with where your manuscript falls.","선택한 저널의 출판 논문에서 내 원고와 같은 항목을 계산한 자료와 비교합니다. 비교 논문에서 나타난 수치의 분포와 내 원고의 위치를 함께 보여 줍니다."],
+      ["These data are not a right answer or recommended figures to follow, but reference material for looking at the expressions in your text.","이 자료는 따라야 할 정답이나 권장 수치가 아니라, 내 글의 표현을 살펴보기 위한 참고 자료입니다."]],
+    ["How do the physical chemistry and physical chemistry · computational sets differ?","물리화학과 물리화학·계산 집합은 어떻게 다른가요?",
+      ["Both sets consist of J. Phys. Chem. C papers but were divided by whether the work is computational or theoretical. No paper appears in both sets. The computational set has few papers, so treat its results as reference for exploration.","두 집합은 모두 J. Phys. Chem. C 논문으로 구성했지만, 계산·이론 중심 여부에 따라 나누었습니다. 두 집합에 중복으로 들어 있는 논문은 없습니다. 물리화학·계산 집합은 논문 수가 적으므로 비교 결과를 탐색하는 참고용으로 보세요."]],
+    ["How the data were selected","자료 선정 과정",
+      ["ul",
+        ["Physical chemistry set: before 2020–2021 CC BY research articles were selected at random, papers judged computation-centred from their titles were excluded. When the abstracts were checked after selection, one paper judged computation-centred (DOI: 10.1021/acs.jpcc.0c06750) was moved to the computational set.","물리화학 집합: 2020–2021년 CC BY 연구논문을 무작위로 선정하기 전에, 제목에서 계산 중심으로 판단된 논문을 제외했습니다. 선정 후 초록을 확인하는 과정에서 계산 중심으로 판단된 1편(DOI: 10.1021/acs.jpcc.0c06750)을 물리화학·계산 집합으로 옮겼습니다."],
+        ["Physical chemistry · computational set: the papers that passed the quality check from a separately selected supplementary list of computational and theoretical papers, plus the one paper above. The random seed for the supplementary list is 20261107.","물리화학·계산 집합: 계산·이론 논문을 별도로 선정한 보강 목록에서 품질 점검을 통과한 논문에 위 1편을 더했습니다. 보강 목록의 무작위 추출 시드는 20261107입니다."]]],
+    ["Analysis method and data sources","분석 방법과 자료 출처",
+      ["The comparison data are open-access (CC BY) research articles published in ACS journals in 2020–2021, extracted and analysed with section-verb-hedge-baseline 0.4.9.","비교 자료는 ACS 저널에 2020–2021년 출판된 CC BY 공개 연구논문입니다. section-verb-hedge-baseline 0.4.9로 추출·분석했습니다."],
+      ["The analysis is done by predefined rules, not by generative AI. The tool’s rules are applied on top of the part-of-speech and syntactic analysis provided by spaCy’s English model en_core_web_sm, and hedges and boosters are detected with the lists of Hyland (2005).","분석은 생성형 AI가 아니라 미리 정한 규칙으로 수행합니다. spaCy의 영어 모델 en_core_web_sm이 제공하는 품사·구문 분석을 바탕으로 도구의 규칙을 적용하며, 완화 표현과 강조 표현의 탐지에는 Hyland(2005)의 목록을 사용합니다."],
+      ["The same rules are applied to your manuscript. Because pasted text is split into sentences again, counts can differ slightly from the stored comparison data even for the same paper.","입력한 원고에도 같은 분석 규칙을 적용합니다. 다만 붙여 넣은 텍스트를 문장 단위로 다시 나누므로, 같은 논문을 입력하더라도 저장된 비교 자료와 집계 결과가 조금 다를 수 있습니다."],
+      ["The comparison papers were used to calculate the comparison figures and were not used to train any AI model.","비교 논문은 비교 수치를 산출하는 데 사용했으며, AI 모델을 훈련하는 데 사용하지 않았습니다."]],
+    ["How is my manuscript handled?","입력한 원고는 어떻게 처리하나요?",
+      ["Your manuscript is analysed on this service’s server. The service code does not write it to files or a database, and no external generative AI is called for the analysis or the on-screen explanations.","입력한 원고는 이 서비스의 서버에서 분석합니다. 서비스 코드는 원고를 파일이나 데이터베이스에 저장하지 않으며, 분석과 화면 해설을 위해 외부 생성형 AI를 호출하지 않습니다."]]]
+};
+function foldHtml(){
+  const L = LANG, one = (en, ko) => L==="en" ? esc(en) : L==="ko" ? esc(ko) : `${esc(ko)}<span class="en">${esc(en)}</span>`;
+  const block = ([te, tk, ...paras]) => `<div class="ex"><b>${one(te, tk)}</b>${paras.map(p => p[0]==="ul"
+    ? `<ul>${p.slice(1).map(([e,k]) => `<li>${one(e,k)}</li>`).join("")}</ul>` : `<p>${one(p[0], p[1])}</p>`).join("")}</div>`;
+  return FOLD.short.map(block).join("") + `<details class="foldlong"><summary>${one("Details: how the data were selected and the analysis criteria","자료 선정 과정과 분석 기준 자세히 보기")}</summary>${FOLD.long.map(block).join("")}</details>`;
+}
+
 document.addEventListener("click", e => { const b = e.target.closest("#overview .ov[data-sec]"); if(b) showSec(b.dataset.sec); });
 
 // ── 내 글 살펴보기: 올린 원고에서만 어휘 목록과 KWIC를 만든다(기준선 논문 문장은 쓰지 않음)
