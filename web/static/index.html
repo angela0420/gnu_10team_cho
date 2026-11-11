@@ -335,7 +335,7 @@ details.mi input,details.mi select,details.mi textarea{font-weight:400;border:1p
     <summary data-t="fold_h"></summary>
     <div id="foldbody"></div>
   </details>
-  <p class="note" id="version"></p>
+  <p class="note" id="version" hidden></p>
 </main>
 <div id="printview" aria-hidden="true"></div>
 <script>
@@ -614,7 +614,7 @@ function render(r){
       ${adjl.length?`<p class="note">${esc(t("adjlike"))}<button class="i" data-ex="usage_분사형 형용사" data-slot="${aexp}" aria-expanded="false">i</button>: ${adjl.map(([k,n])=>`${esc(k)} ${n}`).join(", ")}</p><div id="${aexp}"></div>`:""}
     </section>`;
   }).join("");
-  document.getElementById("version").textContent = `${r.version.baseline} · ${r.version.counting} · reporting ${r.version.reporting} · ${r.version.usage_classes}`;
+  document.getElementById("version").textContent = `${r.version.baseline} · ${r.version.counting} · reporting ${r.version.reporting} · ${r.version.usage_classes}`;   // 화면에는 숨김(2026-11-12: 안내 접기의 버전 표로 옮김). 값은 응답 확인용으로 남김
   if(!secs.find(x => x[0]===CUR)) CUR = secs[0][0];
   drawOverview(); showSec(CUR);
   openAll(box); relabel(document);
@@ -768,45 +768,43 @@ function usageTableHtml(){
       "규칙은 연구자가 판정한 60개 용례에 맞춰 고쳤고, 같은 60개에서 54개가 일치했습니다(독립 검증은 아님). 규칙 파일 전체는 공개되어 있습니다: ")}<a href="https://github.com/angela0420/gnu_10team_cho/blob/main/web/vendor/verb_usage_rules.py" target="_blank" rel="noopener">verb_usage_rules.py</a></p>
   </details>`;
 }
-// '분석 방법 및 비교 자료 안내' 접기(2026-11-12, 교수님 문구): 요약을 먼저 보이고, 긴 설명은 '자료 선정 과정과 분석 기준 자세히 보기' 안에.
+// '분석 방법 및 비교 자료 안내' 접기(2026-11-12 2차, 교수님 문구): 기본 화면은 핵심 안내 세 칸, 펼쳐 보기에는 새로 더하는 세부 정보만.
+// 버전 표는 기준선과 화면이 같은 규칙 파일을 쓰는 것을 확인한 값(2026-11-12)이다. 결과 맨 아래의 긴 버전 문자열은 이 표로 옮겼다.
 const FOLD = {
   short: [
     ["What this page does","이 화면이 하는 일",
       ["It analyses how often verbs and stance expressions are used in each section of your manuscript and compares this with published papers from the journal you choose. Stance expressions present something as possible or express certainty.","원고의 각 절에서 동사와 주장 표현이 얼마나 쓰였는지 분석하고, 선택한 저널의 출판 논문과 비교합니다. 주장 표현은 가능성을 제시하거나 확신을 드러내는 표현입니다."],
       ["The comparison is a cue for rereading your sentences. Using something more or less often than other papers does not mean you wrote it wrongly or must change it.","비교 결과는 내 문장을 다시 읽어 볼 단서입니다. 다른 논문보다 많이 또는 적게 썼다고 해서 잘못 썼거나 반드시 고쳐야 하는 것은 아닙니다."]],
-    ["Comparison data","비교 자료",
-      ["Open-access (CC BY) research articles published in ACS journals in 2020–2021. The comparison figures are reference information for seeing how your text differs from published papers. You do not need to change expressions to match the figures.","ACS 저널에 2020–2021년 출판된 CC BY 공개 연구논문을 사용했습니다. 비교 수치는 내 글이 출판 논문과 어떻게 다른지 살펴보는 참고 정보입니다. 수치를 맞추기 위해 표현을 바꿀 필요는 없습니다."],
-      ["The physical chemistry and physical chemistry · computational sets are both J. Phys. Chem. C papers but were built separately according to whether the work is computational or theoretical. No paper is in both, and the computational set is small, so use it for reference only.","물리화학과 물리화학·계산 집합은 모두 J. Phys. Chem. C 논문이지만, 계산·이론 중심 여부에 따라 따로 구성했습니다. 중복 논문은 없으며, 편수가 적은 물리화학·계산 집합은 참고용으로 보세요."]],
-    ["Analysis method","분석 방법",
-      ["Expressions are found and counted by predefined rules. The tool’s rules are applied on top of the part-of-speech and syntactic analysis of a spaCy English model and the hedge and booster lists of Hyland (2005). Analysis version: section-verb-hedge-baseline 0.4.9.","미리 정한 규칙으로 표현을 찾아 셉니다. spaCy 영어 모델의 품사·구문 분석과 Hyland(2005)의 완화·강조 표현 목록을 바탕으로 도구의 규칙을 적용합니다. 분석 버전은 section-verb-hedge-baseline 0.4.9입니다."],
-      ["The same rules are applied to your manuscript, but because pasted text is split into sentences again, counts can differ slightly from the stored comparison data. The comparison papers were used to obtain the figures, not to train AI.","원고에도 같은 규칙을 적용하지만, 붙여 넣은 텍스트를 문장으로 다시 나누는 과정에서 저장된 비교 자료와 집계가 조금 달라질 수 있습니다. 비교 논문은 수치를 얻는 데 사용했으며, AI 훈련에는 사용하지 않았습니다."]],
+    ["Comparison data and analysis method","비교 자료와 분석 방법",
+      ["The comparison data are open-access (CC BY) research articles published in ACS journals in 2020–2021. Expressions are found and counted by predefined rules, based on the part-of-speech and syntactic analysis of a spaCy English model and the hedge and booster lists of Hyland (2005).","ACS 저널에 2020–2021년 출판된 CC BY 공개 연구논문을 비교 자료로 사용했습니다. spaCy 영어 모델의 품사·구문 분석과 Hyland(2005)의 완화·강조 표현 목록을 바탕으로, 미리 정한 규칙에 따라 표현을 찾아 셉니다."],
+      ["The comparison figures are reference information; you do not need to change expressions to match the figures of published papers.","비교 수치는 참고 정보이며, 출판 논문과 수치를 맞추기 위해 표현을 바꿀 필요는 없습니다."]],
     ["How your manuscript is handled","원고 처리",
       ["Your manuscript is analysed on this service’s server. The service code does not write it to files or a database, and no external generative AI is called for the analysis or the on-screen explanations.","원고는 이 서비스의 서버에서 분석합니다. 서비스 코드는 원고를 파일이나 데이터베이스에 저장하지 않으며, 분석과 화면 해설을 위해 외부 생성형 AI를 호출하지 않습니다."]]],
   long: [
-    ["What this page does","이 화면이 하는 일",
-      ["It looks at how often verbs and stance expressions are used in each section of your manuscript and compares this with published papers from the journal you choose. Stance expressions present something as possible or express certainty.","원고의 각 절에서 동사와 주장 표현이 얼마나 쓰였는지 살펴보고, 선택한 저널의 출판 논문과 비교합니다. 주장 표현은 가능성을 제시하거나 확신을 드러내는 표현을 말합니다."],
-      ["The comparison is a cue for rereading your sentences. Using something more or less often than other papers does not by itself make it an error or something you must change.","비교 결과는 내 문장을 다시 읽어 볼 단서입니다. 다른 논문보다 많이 또는 적게 썼다는 이유만으로 오류이거나 반드시 고쳐야 하는 것은 아닙니다."]],
-    ["What is it compared with?","무엇과 비교하나요?",
-      ["It is compared with data in which the same items as in your manuscript were calculated for published papers from the journal you choose. The page shows the distribution of the figures in the comparison papers together with where your manuscript falls.","선택한 저널의 출판 논문에서 내 원고와 같은 항목을 계산한 자료와 비교합니다. 비교 논문에서 나타난 수치의 분포와 내 원고의 위치를 함께 보여 줍니다."],
-      ["These data are not a right answer or recommended figures to follow, but reference material for looking at the expressions in your text.","이 자료는 따라야 할 정답이나 권장 수치가 아니라, 내 글의 표현을 살펴보기 위한 참고 자료입니다."]],
-    ["How do the physical chemistry and physical chemistry · computational sets differ?","물리화학과 물리화학·계산 집합은 어떻게 다른가요?",
-      ["Both sets consist of J. Phys. Chem. C papers but were divided by whether the work is computational or theoretical. No paper appears in both sets. The computational set has few papers, so treat its results as reference for exploration.","두 집합은 모두 J. Phys. Chem. C 논문으로 구성했지만, 계산·이론 중심 여부에 따라 나누었습니다. 두 집합에 중복으로 들어 있는 논문은 없습니다. 물리화학·계산 집합은 논문 수가 적으므로 비교 결과를 탐색하는 참고용으로 보세요."]],
-    ["How the data were selected","자료 선정 과정",
+    ["The physical chemistry and physical chemistry · computational sets","물리화학과 물리화학·계산 집합",
+      ["Both sets are J. Phys. Chem. C papers but were built separately according to whether the work is computational or theoretical. No paper is in both. The computational set is small, so use it for reference only.","두 집합은 모두 J. Phys. Chem. C 논문이지만, 계산·이론 중심 여부에 따라 따로 구성했습니다. 중복 논문은 없습니다. 물리화학·계산 집합은 편수가 적으므로 참고용으로 보세요."],
       ["ul",
-        ["Physical chemistry set: before 2020–2021 CC BY research articles were selected at random, papers judged computation-centred from their titles were excluded. When the abstracts were checked after selection, one paper judged computation-centred (DOI: 10.1021/acs.jpcc.0c06750) was moved to the computational set.","물리화학 집합: 2020–2021년 CC BY 연구논문을 무작위로 선정하기 전에, 제목에서 계산 중심으로 판단된 논문을 제외했습니다. 선정 후 초록을 확인하는 과정에서 계산 중심으로 판단된 1편(DOI: 10.1021/acs.jpcc.0c06750)을 물리화학·계산 집합으로 옮겼습니다."],
+        ["Physical chemistry set: before random selection, papers judged computation-centred from their titles were excluded. After selection, the abstracts were checked and one paper judged computation-centred (DOI: 10.1021/acs.jpcc.0c06750) was moved to the computational set.","물리화학 집합: 무작위 선정 전에 제목에서 계산 중심으로 판단된 논문을 제외했습니다. 선정 후 초록을 확인하여 계산 중심으로 판단된 1편(DOI: 10.1021/acs.jpcc.0c06750)을 물리화학·계산 집합으로 옮겼습니다."],
         ["Physical chemistry · computational set: the papers that passed the quality check from a separately selected supplementary list of computational and theoretical papers, plus the one paper above. The random seed for the supplementary list is 20261107.","물리화학·계산 집합: 계산·이론 논문을 별도로 선정한 보강 목록에서 품질 점검을 통과한 논문에 위 1편을 더했습니다. 보강 목록의 무작위 추출 시드는 20261107입니다."]]],
-    ["Analysis method and data sources","분석 방법과 자료 출처",
-      ["The comparison data are open-access (CC BY) research articles published in ACS journals in 2020–2021, extracted and analysed with section-verb-hedge-baseline 0.4.9.","비교 자료는 ACS 저널에 2020–2021년 출판된 CC BY 공개 연구논문입니다. section-verb-hedge-baseline 0.4.9로 추출·분석했습니다."],
-      ["The analysis is done by predefined rules, not by generative AI. The tool’s rules are applied on top of the part-of-speech and syntactic analysis provided by spaCy’s English model en_core_web_sm, and hedges and boosters are detected with the lists of Hyland (2005).","분석은 생성형 AI가 아니라 미리 정한 규칙으로 수행합니다. spaCy의 영어 모델 en_core_web_sm이 제공하는 품사·구문 분석을 바탕으로 도구의 규칙을 적용하며, 완화 표현과 강조 표현의 탐지에는 Hyland(2005)의 목록을 사용합니다."],
-      ["The same rules are applied to your manuscript. Because pasted text is split into sentences again, counts can differ slightly from the stored comparison data even for the same paper.","입력한 원고에도 같은 분석 규칙을 적용합니다. 다만 붙여 넣은 텍스트를 문장 단위로 다시 나누므로, 같은 논문을 입력하더라도 저장된 비교 자료와 집계 결과가 조금 다를 수 있습니다."],
-      ["The comparison papers were used to calculate the comparison figures and were not used to train any AI model.","비교 논문은 비교 수치를 산출하는 데 사용했으며, AI 모델을 훈련하는 데 사용하지 않았습니다."]],
-    ["How is my manuscript handled?","입력한 원고는 어떻게 처리하나요?",
-      ["Your manuscript is analysed on this service’s server. The service code does not write it to files or a database, and no external generative AI is called for the analysis or the on-screen explanations.","입력한 원고는 이 서비스의 서버에서 분석합니다. 서비스 코드는 원고를 파일이나 데이터베이스에 저장하지 않으며, 분석과 화면 해설을 위해 외부 생성형 AI를 호출하지 않습니다."]]]
+    ["Why results can differ slightly","분석 결과가 달라질 수 있는 이유",
+      ["The same analysis rules are applied to your manuscript and to the comparison papers. However, because pasted text is split into sentences again, counts can differ slightly from the stored comparison data even for the same paper.","원고와 비교 논문에는 같은 분석 규칙을 적용합니다. 다만 붙여 넣은 텍스트를 문장 단위로 다시 나누는 과정에서, 같은 논문이라도 저장된 비교 자료와 집계 결과가 조금 달라질 수 있습니다."],
+      ["The comparison papers were used to calculate the comparison figures and were not used to train any AI model.","비교 논문은 비교 수치를 산출하는 데 사용했으며, 어떤 AI 모델의 훈련에도 사용하지 않았습니다."]],
+    ["Components and versions","분석 구성과 버전",
+      ["table", ["Component","구성 요소"], ["Version / source","버전·자료"],
+        [["Building the comparison data","비교 자료 생성"], "section-verb-hedge-baseline 0.4.9"],
+        [["PDF extraction","PDF 추출"], "pdf-extract-0.4.9"],
+        [["Hedge and booster analysis","완화·강조 표현 분석"], "hedge-baseline-0.4.5"],
+        [["Reporting-verb analysis","보고동사 분석"], "reporting whole-paper-0.4.3"],
+        [["Verb usage classification","동사 쓰임 분류"], "verb_usage_rules v0.4"],
+        [["English analysis model","영어 분석 모델"], "spaCy en_core_web_sm 3.8.0"],
+        [["Hedge and booster lists","완화·강조 표현 목록"], "Hyland (2005)"]]]]
 };
 function foldHtml(){
   const L = LANG, one = (en, ko) => L==="en" ? esc(en) : L==="ko" ? esc(ko) : `${esc(ko)}<span class="en">${esc(en)}</span>`;
-  const block = ([te, tk, ...paras]) => `<div class="ex"><b>${one(te, tk)}</b>${paras.map(p => p[0]==="ul"
-    ? `<ul>${p.slice(1).map(([e,k]) => `<li>${one(e,k)}</li>`).join("")}</ul>` : `<p>${one(p[0], p[1])}</p>`).join("")}</div>`;
+  const para = p => p[0]==="ul" ? `<ul>${p.slice(1).map(([e,k]) => `<li>${one(e,k)}</li>`).join("")}</ul>`
+    : p[0]==="table" ? `<div class="tablewrap"><table><thead><tr><th>${one(...p[1])}</th><th>${one(...p[2])}</th></tr></thead><tbody>${p.slice(3).map(([n, v]) => `<tr><td>${one(...n)}</td><td><code>${esc(v)}</code></td></tr>`).join("")}</tbody></table></div>`
+    : `<p>${one(p[0], p[1])}</p>`;
+  const block = ([te, tk, ...paras]) => `<div class="ex"><b>${one(te, tk)}</b>${paras.map(para).join("")}</div>`;
   return FOLD.short.map(block).join("") + `<details class="foldlong"><summary>${one("Details: how the data were selected and the analysis criteria","자료 선정 과정과 분석 기준 자세히 보기")}</summary>${FOLD.long.map(block).join("")}</details>`;
 }
 
