@@ -152,6 +152,8 @@ tbody td:first-child:has(.vbtn){white-space:nowrap}
 .kwic .k{color:var(--ink);font-weight:500;background:var(--mark);padding:0 5px;border-radius:3px;cursor:pointer}
 .kwic .k:hover{text-decoration:underline dotted;text-underline-offset:3px}
 .vguide{font-size:13px;color:var(--faint);margin:0 0 10px}
+#wordlist .wlinfo{flex-basis:100%;margin:0 0 6px;font-size:13px}
+#wordlist .wlinfo button{font:inherit;border:0;border-radius:0;padding:0;background:none;color:var(--accent)}
 .kwic .s{color:var(--accent);font-weight:600;font-family:var(--sans);font-size:12px}
 .kwic .kl .muted{font:12px var(--sans)}
 .kwic .full{font:15px/1.65 var(--serif);color:var(--ink);margin:2px 0 8px;padding:8px 0 8px 14px;border-left:2px solid var(--accent);white-space:normal}
@@ -373,7 +375,7 @@ const T = {
   ex_all:["Open all explanations","설명 모두 열기"], ex_none:["Close all explanations","설명 모두 닫기"],
   explore_h:["Explore your text","내 글 살펴보기"], x_section:["Section","절"], x_pos:["Word class","품사"], wordlist_h:["Word list","어휘 목록"],
   kwic_h:["Concordance (KWIC)","용례 보기(KWIC)"], x_lemma:["all forms of the base form","기본형의 모든 꼴"], x_sort:["Sort","정렬"],
-  x_all:["All sections","모든 절"], p_VERB:["Verbs","동사"], p_NOUN:["Nouns","명사"], p_ADJ:["Adjectives","형용사"], p_ADV:["Adverbs","부사"], p_ALL:["All words","모든 낱말"],
+  x_all:["All sections","모든 절"], p_VERB:["Verbs","동사"], p_NOUN:["Nouns","명사"], p_ADJ:["Adjectives","형용사"], p_ADV:["Adverbs","부사"], p_ALL:["All words","모든 낱말"], wl_shown:["Showing {m} of {n} words (most frequent first).","전체 {n}개 낱말 중 {m}개 표시(많이 나온 순)."], wl_more:["Show all","모두 보기"], wl_less:["Show the first 60 only","처음 60개만 보기"], wl_merge:["In All words, forms with the same base form are counted together even if their part of speech differs (e.g. change as a noun and as a verb), and function words and auxiliaries (the, of, be, can …) are included.","‘모든 낱말’에서는 품사가 달라도 원형이 같으면 하나로 셉니다(예: 명사 change와 동사 change). 기능어와 조동사(the, of, be, can 등)도 들어갑니다."],
   s_order:["Text order","글 순서"], s_right:["Next word","오른쪽 낱말"], s_left:["Previous word","왼쪽 낱말"],
   x_hits:["occurrences · click a line to see the whole sentence","개 · 줄을 누르면 문장 전체가 보입니다"], x_type:["Type a word, or click one in the word list.","낱말을 치거나 어휘 목록에서 고르세요."], fixed:["fixed expr.","굳은 표현"], err:["Error","오류"]
 };
@@ -829,12 +831,18 @@ function xtokens(){
     S.tokens.forEach(k => out.push({sec:c, sent:k[0], start:k[1], end:k[2], lemma:k[3], pos:k[4], usage:k[5], nl:k[6], S})); });
   return out;
 }
+let WL_MORE = false;
 function wordlist(){
   const pv = document.getElementById("xpos").value, cnt = {};
   xtokens().forEach(k => { const p = k.pos==="PROPN" ? "NOUN" : k.pos; if(pv!=="ALL" && p!==pv) return; cnt[k.lemma] = (cnt[k.lemma]||0) + 1; });
   const q = document.getElementById("xq").value.trim().toLowerCase();
-  document.getElementById("wordlist").innerHTML = Object.entries(cnt).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,60)
-    .map(([w,n]) => `<button data-word="${esc(w)}" class="${w===q?"on":""}">${esc(w)}<b>${n}</b></button>`).join("") || esc(t("none"));
+  // 2026-11-12: 처음엔 60개만 보이되 '전체 N개 중 60개 표시'와 '모두 보기'를 둔다(예전엔 60개에서 말없이 잘랐음)
+  const all = Object.entries(cnt).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])), cut = WL_MORE ? all.length : Math.min(60, all.length);
+  const info = all.length > 60 ? `<p class="note wlinfo">${esc(t("wl_shown").replace("{n}", all.length.toLocaleString()).replace("{m}", cut.toLocaleString()))} <button class="linkish" id="wlmore">${esc(t(WL_MORE ? "wl_less" : "wl_more"))}</button></p>` : "";
+  const merge = pv === "ALL" ? `<p class="note wlinfo">${esc(t("wl_merge"))}</p>` : "";
+  document.getElementById("wordlist").innerHTML = (info + merge + all.slice(0, cut)
+    .map(([w,n]) => `<button data-word="${esc(w)}" class="${w===q?"on":""}">${esc(w)}<b>${n}</b></button>`).join("")) || esc(t("none"));
+  const mb = document.getElementById("wlmore"); if(mb) mb.onclick = e => { e.stopPropagation(); WL_MORE = !WL_MORE; wordlist(); };
 }
 function kwicAll(){
   const q = document.getElementById("xq").value.trim().toLowerCase(), box = document.getElementById("xkwic"), cntEl = document.getElementById("xcount");
@@ -866,7 +874,7 @@ document.addEventListener("click", e => { const k = e.target.closest(".kl"); if(
   const f = k.dataset.full, a = +k.dataset.s, b = +k.dataset.e;
   k.insertAdjacentHTML("afterend", `<div class="full">${esc(f.slice(0,a))}<mark>${esc(f.slice(a,b))}</mark>${esc(f.slice(b))}</div>`); });
 document.addEventListener("click", e => { const w = e.target.closest("[data-word]"); if(!w) return; document.getElementById("xq").value = w.dataset.word; document.getElementById("xlemma").checked = true; kwicAll(); });
-["xsec","xpos","xsort","xlemma"].forEach(i => document.getElementById(i).addEventListener("change", () => { wordlist(); kwicAll(); }));
+["xsec","xpos","xsort","xlemma"].forEach(i => document.getElementById(i).addEventListener("change", () => { if(i==="xsec"||i==="xpos") WL_MORE = false; wordlist(); kwicAll(); }));
 document.getElementById("xq").addEventListener("input", kwicAll);
 
 document.addEventListener("click", e => {
