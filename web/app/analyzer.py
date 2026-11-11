@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.join(ROOT, 'vendor'))
 import rvtool as rv                                    # noqa: E402
 import engine_local as L                               # noqa: E402
 from hedge_baseline import classify, HEDGE_PHRASES, BOOSTER_PHRASES, VERSION as HEDGE_VERSION   # noqa: E402
-from prose_filters import strip_publication_metadata, is_lexical_verb, noun_like_signature   # noqa: E402
+from prose_filters import strip_publication_metadata, is_lexical_verb, noun_like_signature, misparsed_noun, VERSION as FILTER_VERSION   # noqa: E402
 from verb_usage_rules import usage, is_fixed             # noqa: E402
 from commentary import make as make_commentary          # noqa: E402
 
@@ -82,7 +82,8 @@ def count_section(sec, text, nlp):
                 lab, why = usage(t)
                 verbs[t.lemma_.lower()].append(dict(sent=i, start=t.idx, end=t.idx + len(t.text), usage=lab, fixed=is_fixed(why), noun_like=noun_like_signature(t)))
             if t.is_alpha:
-                tokens.append([i, t.idx, t.idx + len(t.text), t.lemma_.lower(), t.pos_, lab, bool(lab) and noun_like_signature(t)])
+                mp = misparsed_noun(t) if t.pos_ == 'VERB' else None   # 2026-11-12: 보정 사유(원래 품사는 그대로 두고 따로 남김)
+                tokens.append([i, t.idx, t.idx + len(t.text), t.lemma_.lower(), t.pos_, lab, bool(lab) and noun_like_signature(t), mp or ''])
             name, cat = classify(t)
             if name and any(b <= t.idx < e for b, e in prior): name = None    # 선행연구 보고로 이미 셈(기준선과 같음)
             if name in ('hedge', 'booster') and sec in HEDGE_SECS:
@@ -108,7 +109,7 @@ def diagnose(sections, baseline):
     out = dict(baseline=baseline, baseline_info=dict(en=B['en'], ko=B['ko'], papers=B['papers'], reference_only=B['reference_only']),
                version=dict(baseline=BASE['version'], counting=HEDGE_VERSION, usage_rules=USAGE_RULES,
                             # 표기만 나눔(2026-11-10): 규칙은 그대로. 보고동사 판정 = engine_local, 동사 쓰임 분류 = verb_usage_rules
-                            reporting=L.RULE_VERSION, usage_classes=USAGE_CLASSES), sections={})
+                            reporting=L.RULE_VERSION, usage_classes=USAGE_CLASSES, filters=FILTER_VERSION), sections={})
     for sec in SECS:
         text = (sections.get(sec) or '').strip()
         if not text: continue

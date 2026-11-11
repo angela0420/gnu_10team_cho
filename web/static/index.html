@@ -851,6 +851,7 @@ const FOLD = {
         [["Hedge and booster analysis","완화·강조 표현 분석"], "hedge-baseline-0.4.5"],
         [["Reporting-verb analysis","보고동사 분석"], "reporting whole-paper-0.4.3"],
         [["Verb usage classification","동사 쓰임 분류"], "verb_usage_rules v0.4"],
+        [["Verb filter (misparsed nouns, fixed combinations)","동사 거르기(명사 오분류·고정 결합)"], "publication-metadata-1+noun-fix-2"],
         [["English analysis model","영어 분석 모델"], "spaCy en_core_web_sm 3.8.0"],
         [["Hedge and booster lists","완화·강조 표현 목록"], "Hyland (2005)"]]]]
 };
@@ -881,13 +882,14 @@ function xtokens(){
   const sv = document.getElementById("xsec").value || "ALL";
   const out = [];
   SECS.forEach(([c]) => { const S = LAST && LAST.sections[c]; if(!S || (sv!=="ALL" && sv!==c)) return;
-    S.tokens.forEach(k => out.push({sec:c, sent:k[0], start:k[1], end:k[2], lemma:k[3], pos:k[4], usage:k[5], nl:k[6], S})); });
+    S.tokens.forEach(k => out.push({sec:c, sent:k[0], start:k[1], end:k[2], lemma:k[3], pos:k[4], usage:k[5], nl:k[6], fix:k[7] || "", S})); });   // fix: 고정 결합 보정 사유(2026-11-12)
   return out;
 }
 let WL_MORE = false;
 function wordlist(){
   const pv = document.getElementById("xpos").value, cnt = {};
-  xtokens().forEach(k => { const p = k.pos==="PROPN" ? "NOUN" : k.pos; if(pv!=="ALL" && p!==pv) return; cnt[k.lemma] = (cnt[k.lemma]||0) + 1; });
+  // 고정 결합 안의 낱말(k.fix)은 명사 목록으로 센다. 분석기 원래 품사는 k.pos에 그대로(2026-11-12)
+  xtokens().forEach(k => { const p = (k.pos==="PROPN" || k.fix) ? "NOUN" : k.pos; if(pv!=="ALL" && p!==pv) return; cnt[k.lemma] = (cnt[k.lemma]||0) + 1; });
   const q = document.getElementById("xq").value.trim().toLowerCase();
   // 2026-11-12: 처음엔 60개만 보이되 '전체 N개 중 60개 표시'와 '모두 보기'를 둔다(예전엔 60개에서 말없이 잘랐음)
   const all = Object.entries(cnt).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])), cut = WL_MORE ? all.length : Math.min(60, all.length);
