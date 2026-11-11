@@ -173,16 +173,16 @@
    "en": "How the verb is used",
    "ko": "동사 쓰임"
   },
-  "en": "Each time a verb appears, its grammatical use is classified. The usage rules (verb_usage_rules v0.4) were revised to fit 60 examples judged by the researcher; on those same 60 examples, 54 matched (not an independent check). Check individual judgements in context. The criteria and examples are under “How are verb uses classified?” below the verb list.",
-  "ko": "동사가 나올 때마다 문법적 쓰임을 구분합니다. 쓰임 분류 규칙(verb_usage_rules v0.4)은 연구자가 판정한 60개 용례에 맞춰 고쳤고, 같은 60개에서 54개가 일치했습니다(독립 검증은 아님). 낱낱의 판정은 문맥에서 확인하세요. 구분 기준과 예는 동사 목록 아래 ‘동사의 쓰임은 어떻게 구분하나요?’에 있습니다."
+  "en": "Each time a verb appears, its grammatical use is classified. The usage rules (verb_usage_rules v0.4) were adjusted using 60 examples judged by the researcher with reference to an AI’s interpretation; this sample is not independent validation data, and further validation will use a new sample not used for adjusting the rules. Check individual judgements in context. The criteria and examples are under “How are verb uses classified?” below the verb list.",
+  "ko": "동사가 나올 때마다 문법적 쓰임을 구분합니다. 쓰임 분류 규칙(verb_usage_rules v0.4)은 AI의 해석을 참고한 연구자 판정 60개를 사용해 조정했으며, 이 표본은 독립 검증 자료가 아닙니다. 후속 검증은 규칙 조정에 사용하지 않은 새 표본으로 합니다. 낱낱의 판정은 문맥에서 확인하세요. 구분 기준과 예는 동사 목록 아래 ‘동사의 쓰임은 어떻게 구분하나요?’에 있습니다."
  },
  "usage_술어": {
   "title": {
    "en": "Predicate",
    "ko": "술어"
   },
-  "en": "A finite verb: it carries tense or has a finite auxiliary, including imperatives and be + past participle describing a state (The phase orders; were calculated; may be surpassed; Notice that …; are H-bonded to …).",
-  "ko": "정형 동사입니다. 시제 꼴이거나 정형 조동사가 붙어 있습니다. 명령형과, be동사 뒤에서 상태를 나타내는 과거분사도 포함합니다(The phase orders; were calculated; may be surpassed; Notice that …; are H-bonded to …)."
+  "en": "A finite verb: it carries tense or has a finite auxiliary, including imperatives and be + past participle describing a state (The samples were heated; were calculated; may be surpassed; Notice that …; are H-bonded to …).",
+  "ko": "정형 동사입니다. 시제 꼴이거나 정형 조동사가 붙어 있습니다. 명령형과, be동사 뒤에서 상태를 나타내는 과거분사도 포함합니다(The samples were heated; were calculated; may be surpassed; Notice that …; are H-bonded to …)."
  },
  "usage_명사 앞 수식": {
   "title": {
@@ -213,16 +213,16 @@
    "en": "Nominal",
    "ko": "명사처럼"
   },
-  "en": "An -ing form that behaves as a noun: it takes an article, an of-phrase or a noun in front of it, or it names a process or a purpose (the heating of the film; the stirring rate; a drying oven). The noun it modifies does not perform the action.",
-  "ko": "명사로 행동하는 -ing입니다. 관사·of구·앞 명사의 꾸밈을 받거나, 과정·용도의 이름입니다(the heating of the film; the stirring rate; a drying oven). 꾸밈을 받는 명사가 그 동작을 하지 않습니다."
+  "en": "An -ing form that behaves as a noun: it takes an article, an of-phrase or a noun in front of it, or it names a process or a purpose (a drying oven; the stirring rate; the carbon supporting material). The noun it modifies does not perform the action.",
+  "ko": "명사로 행동하는 -ing입니다. 관사·of구·앞 명사의 꾸밈을 받거나, 과정·용도의 이름입니다(a drying oven; the stirring rate; the carbon supporting material). 꾸밈을 받는 명사가 그 동작을 하지 않습니다."
  },
  "usage_전치사처럼": {
   "title": {
    "en": "Preposition-like",
    "ko": "전치사처럼"
   },
-  "en": "A participle that has lost its verbal meaning and works as a preposition (including, following, regarding, concerning). Counted in the baseline totals, but left out of the verb list on this page.",
-  "ko": "동사 뜻을 잃고 전치사처럼 쓰이는 분사입니다(including, following, regarding, concerning). 기준선 총계에는 들어 있지만 이 화면의 동사 목록에서는 뺍니다."
+  "en": "A participle that has lost its verbal meaning and works as a preposition (including, following, regarding). Counted in the baseline totals, but left out of the verb list on this page.",
+  "ko": "동사 뜻을 잃고 전치사처럼 쓰이는 분사입니다(including, following, regarding). 기준선 총계에는 들어 있지만 이 화면의 동사 목록에서는 뺍니다."
  },
  "usage_확인 필요": {
   "title": {
@@ -317,7 +317,7 @@
    "en": "Participial adjective",
    "ko": "분사형 형용사"
   },
-  "en": "An adjective that comes from a participle: very and comparatives sound natural, and it describes a quality rather than an action (a very detailed analysis; interesting results). This label is used only when the part-of-speech analyser has tagged the word as a verb; such words stay in the verb total but are shown apart from the verb list. Words the analyser already tags as adjectives are not counted as verbs at all.",
-  "ko": "분사에서 나온 형용사입니다. very나 비교급이 자연스럽고, 동작이 아니라 성질을 나타냅니다(a very detailed analysis; interesting results). 품사 분석기가 동사로 붙인 낱말에만 이 표시를 쓰며, 이런 낱말은 동사 총수에는 들어가지만 동사 목록과는 따로 봅니다. 품사 분석기가 처음부터 형용사로 붙인 낱말은 동사로 세지 않습니다."
+  "en": "An adjective that comes from a participle: very and comparatives sound natural, and it describes a quality rather than an action (a pronounced shift). This label is used only when the part-of-speech analyser has tagged the word as a verb; such words stay in the verb total but are shown apart from the verb list. Words the analyser already tags as adjectives are not counted as verbs at all.",
+  "ko": "분사에서 나온 형용사입니다. very나 비교급이 자연스럽고, 동작이 아니라 성질을 나타냅니다(a pronounced shift). 품사 분석기가 동사로 붙인 낱말에만 이 표시를 쓰며, 이런 낱말은 동사 총수에는 들어가지만 동사 목록과는 따로 봅니다. 품사 분석기가 처음부터 형용사로 붙인 낱말은 동사로 세지 않습니다."
  }
 }

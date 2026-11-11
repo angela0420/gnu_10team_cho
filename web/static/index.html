@@ -221,12 +221,20 @@ details.mi .mi-body .note,details.mi .mi-body .wide{grid-column:1/-1}
 .ovnote .ovacts details{flex-basis:100%}.ovnote .ovacts details[open]{margin-top:2px}.ovnote .ovacts summary{display:inline}
 .ovnote .gen{margin-top:10px;border-top:1px solid var(--line);padding-top:8px;color:var(--muted);font-size:13.5px}
 details.utab{margin:4px 0 14px;font-size:13.5px}details.utab>summary{cursor:pointer;color:var(--accent);font-weight:600}
-details.utab h4{margin:12px 0 4px;font-size:14px}details.utab td.ex{font-family:var(--serif);white-space:normal;min-width:180px}
+details.utab h4{margin:12px 0 4px;font-size:14px}details.utab ul.cnotes{margin:4px 0 10px;padding-left:20px;color:var(--muted)}details.utab td.ex{font-family:var(--serif);white-space:normal;min-width:180px}
 details.utab tr.sub td:first-child{padding-left:22px;font-weight:400}details.utab .en{display:block;font-size:12.5px;color:var(--faint)}
 details.foldlong{margin-top:10px}details.foldlong>summary{cursor:pointer;color:var(--accent);font-weight:600}#foldbody .ex .en{display:block;font-size:12.5px;color:var(--faint)}
 .ovnote details.ovwhy{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}.ovnote details.ovwhy>summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:14px}.ovnote .ovwhy h4{margin:12px 0 4px;font-size:14px}.ovnote .ovwhy table{font-size:13.5px}.ovnote .ovwhy blockquote{margin:6px 0;padding:6px 12px;border-left:3px solid var(--line2);background:var(--bg)}.ovnote .en{display:block;font-size:12.5px;color:var(--faint)}
 .ovnote ul{margin:6px 0 10px;padding-left:20px}.ovnote li{margin:0 0 10px}.ovnote li p{margin:0 0 3px}.ovnote p.adv{color:var(--muted);font-size:13.5px}
 .ovnote p.gen{margin:0;color:var(--muted);font-size:13px}.ovnote details.ovhow summary{cursor:pointer;color:var(--accent);font-size:13px;font-weight:600}.ovnote details.ovhow p{margin:4px 0 0;font-size:13px;color:var(--muted)}
+details.mi .req{display:flex;flex-direction:column;gap:4px;font-size:14px;font-weight:600}details.mi .req.wide,details.mi .jhint{grid-column:1/-1}
+details.mi .req.missing input,details.mi .req.missing select,details.mi .req.missing textarea{border-color:var(--warn,#b45309);outline:1px solid var(--warn,#b45309)}
+details.mi .req .miss{color:var(--warn,#b45309);font-size:13px;font-weight:600}details.mi .req.missing .qlab{color:var(--warn,#b45309)}
+details.mi .qopt{flex-direction:row;align-items:flex-start;gap:8px;font-weight:400}details.mi .qopt input{margin-top:4px}details.mi .qown{margin-top:6px}
+details.mi .jhint pre{white-space:pre-wrap;font-size:12.5px;max-height:320px;overflow:auto;background:var(--bg);padding:10px;border-radius:8px}
+.ctxbox{margin:0 0 14px;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:14px}.ctxbox h3{margin:0 0 8px;font-size:16px}
+.ctxbox dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:0 0 8px}.ctxbox dt{font-weight:600}.ctxbox dd{margin:0}.ctxbox ul{margin:0;padding-left:18px}
+@media (max-width:560px){.ctxbox dl{grid-template-columns:1fr}.ctxbox dd{margin-bottom:6px}}
 details.mi .mi-ex{grid-column:1/-1;font-size:13.5px;color:var(--muted)}
 details.mi .mi-ex summary{padding:0;font-weight:600;font-size:13.5px;color:var(--accent)}
 details.mi .mi-ex dl{margin:6px 0 0;padding:10px 12px;border-left:3px solid var(--line2);background:var(--bg);border-radius:6px;display:grid;grid-template-columns:max-content 1fr;gap:4px 12px}
@@ -249,7 +257,7 @@ details.mi input,details.mi select,details.mi textarea{font-weight:400;border:1p
   #printview h1{font-size:18pt;margin:0 0 8pt}#printview h2{font-size:14pt;margin:16pt 0 6pt;border-bottom:1px solid #999;padding-bottom:3pt}
   #printview h3{font-size:12pt;margin:12pt 0 4pt}#printview p,#printview li{margin:3pt 0}
   #printview table{border-collapse:collapse;width:100%;font-size:9.5pt;margin:4pt 0 8pt}#printview th,#printview td{border:1px solid #bbb;padding:3pt 5pt;text-align:left;vertical-align:top}
-  #printview th{background:#eee}#printview tr{break-inside:avoid}
+  #printview th{background:#eee}#printview tr{break-inside:avoid}#printview thead{display:table-header-group}#printview .pv-s{break-inside:avoid}#printview a{color:#000;text-decoration:underline}#printview h1,#printview h2,#printview h3{break-after:avoid}#printview h2+p,#printview h3+p{break-before:avoid}
   #printview .pv-ai{border:1px solid #888;padding:6pt 8pt;margin:4pt 0 10pt}
   #printview .pv-s b{font-size:9pt}
   #printview mark{background:#ffe9a8;color:#000;font-weight:700}#printview .pv-l{font-size:9pt;color:#444}
@@ -290,7 +298,7 @@ details.mi input,details.mi select,details.mi textarea{font-weight:400;border:1p
     <h2><span class="stepno">02</span><span data-t="st2"></span></h2>
     <p class="note" data-t="input_hint"></p>
     <div id="inputs"></div>
-    <details class="mi" id="mi-box"></details>
+    <details class="mi" id="mi-box" open></details>
     <div class="row go-row">
       <button class="btn" id="go"></button>
       <button class="btn ghost" id="sample"></button>
@@ -304,6 +312,7 @@ details.mi input,details.mi select,details.mi textarea{font-weight:400;border:1p
     <a class="linkish" id="savejump" href="#savebox" style="margin-left:auto;font-size:13px;font-weight:400;text-decoration:underline"></a>
     <button class="linkish" id="exnone" data-t="ex_none" style="margin-left:16px;font-size:13px;font-weight:400"></button>
     <button class="linkish" id="exall" data-t="ex_all" style="margin-left:12px;font-size:13px;font-weight:400"></button></h2>
+  <div class="ctxbox" id="ctxbox" hidden></div>
   <div id="overview" role="tablist" hidden></div>
   <div class="ovnote" id="ovnote" hidden></div>
   <details id="commonfold" hidden><summary><b data-t="ref_h"></b><span data-t="ref_open"></span></summary>
@@ -616,7 +625,7 @@ function render(r){
   }).join("");
   document.getElementById("version").textContent = `${r.version.baseline} · ${r.version.counting} · reporting ${r.version.reporting} · ${r.version.usage_classes}`;   // 화면에는 숨김(2026-11-12: 안내 접기의 버전 표로 옮김). 값은 응답 확인용으로 남김
   if(!secs.find(x => x[0]===CUR)) CUR = secs[0][0];
-  drawOverview(); showSec(CUR);
+  drawOverview(); showSec(CUR); if(window.EXPORT && EXPORT.drawCtx) EXPORT.drawCtx();
   openAll(box); relabel(document);
 }
 
@@ -752,6 +761,51 @@ const USAGE_TABLE = {
     ["Which words belong on the participial-adjective list.",
      "분사형 형용사 목록에 어떤 낱말을 넣을지."]],
 };
+// 분석 기준의 세 표(2026-11-12, 교수님 문구 바탕): ① 동사의 쓰임 ② 용례에 붙는 추가 표시 ③ 비교 논문에 따른 동사 분류.
+// 표에는 이름·짧은 뜻·예만, 집계 기준과 예외는 표 아래에. 예는 모두 v0.4 규칙에 넣어 확인한 것(the heating of, detailed는 분석기가 처음부터 명사·형용사로 붙여 쓰지 않음)
+// 60개 용례 비교(2026-11-12, 분석_2026-11-11_rules0.4.9/B_60문장_판정준비/채점결과_v0.4_불일치유형.md). 규칙 조정에 쓴 표본이라 독립 검증이 아니다
+const SAMPLE60 = {h:["Comparison with the 60 researcher-judged examples","60개 용례 비교"],
+  lead:["The usage rules (verb_usage_rules v0.4) were adjusted using these 60 examples, judged by the researcher with reference to an AI’s interpretation. This sample is not independent validation data; further validation will use a new sample not used for adjusting the rules.","동사 쓰임 분류 규칙(verb_usage_rules v0.4)은 AI의 해석을 참고한 연구자 판정 60개를 사용해 조정했습니다. 이 표본은 독립 검증 자료가 아니며, 후속 검증은 규칙 조정에 사용하지 않은 새 표본으로 수행합니다."],
+  cols:[["Result","비교 결과"],["Count","개수"],["Example numbers","사례 번호"]],
+  rows:[[["Both treat it as a verb, same use","양쪽 모두 동사로 보고 쓰임도 일치"],"53","1–4, 6–21, 23–29, 31, 32, 34–37, 39–46, 48–50, 52–60"],
+        [["Both treat it as a verb, different use","양쪽 모두 동사로 보지만 쓰임 불일치"],"1","5"],
+        [["Researcher: not a verb; tool: counted as a verb","연구자는 비동사, 도구는 동사로 탐지"],"1","30"],
+        [["Researcher: a verb; analyser tagged it as an adjective and did not count it","연구자는 동사로 판단, 분석기는 형용사로 판정하여 제외"],"5","22, 33, 38, 47, 51"],
+        [["Total","합계"],"60",""]],
+  notes:[["These figures include the verb-detection stage, so they are not a pure ‘usage classification accuracy’. The earlier figure ‘54 of 60’ counted no. 51 (tagged as an adjective) as a match.","동사 탐지 단계까지 포함한 결과이므로 순수한 ‘동사 쓰임 분류 정확도’가 아닙니다. 예전에 적은 ‘60개 중 54개’는 51번(분석기가 형용사로 판정)을 일치로 센 수입니다."]]};
+const CRIT_T = {
+  usage: {h:["1. Verb uses","1. 동사의 쓰임"], cols:[["Use","구분"],["Meaning in this tool","이 도구에서의 뜻"],["Examples","예"]], rows:[
+    [["Predicate","술어"],["A verb with tense or a finite auxiliary that predicates in the sentence","시제나 정형 조동사를 갖추어 문장에서 서술하는 동사"],"were heated; may be surpassed; Notice that …"],
+    [["Pre-noun modifier","명사 앞 수식"],["A participle modifying a noun from before","명사 앞에서 꾸미는 분사"],"the doped sample; a reducing agent"],
+    [["Post-noun modifier","명사 뒤 수식"],["A participle modifying a noun from after (a shortened relative clause)","명사 뒤에서 꾸미는 분사(줄어든 관계절)"],"crystals grown at room temperature; the method reported by Kim"],
+    [["Non-finite","비정형"],["A verb form without tense that keeps verbal properties","시제 없이 쓰이지만 동사의 성질이 남은 꼴"],"to calculate the band edge positions; Using DFT, …; by comparing them"],
+    [["Nominal","명사처럼"],["An -ing form used as the name of a process or purpose","과정·용도의 이름으로 쓰이는 -ing형"],"a drying oven; the carbon supporting material"],
+    [["Preposition-like","전치사처럼"],["A form that has lost its verb meaning and works like a preposition","동사 뜻을 잃고 전치사처럼 쓰이는 꼴"],"including; following"],
+    [["Participial adjective","분사형 형용사"],["A participle that has become an adjective, describing a quality rather than an action","동작보다 성질을 나타내는, 형용사로 굳은 분사"],"a pronounced shift"],
+    [["Needs checking","확인 필요"],["Cases the rules could not decide","자동 규칙으로 쓰임을 정하지 못한 경우"],["titles, fragments, part-of-speech errors, etc.","제목·조각문·품사 분석 오류 등"]]],
+    notes:[["Predicates include imperatives and past participles after be that describe a state.","술어에는 명령형과, be동사 뒤에서 상태를 나타내는 과거분사도 포함합니다."],
+      ["Non-finite forms are not decided by their position in the sentence; -ing clauses in subject position are included.","비정형은 문장 안의 위치로 구분하지 않습니다. 주어 자리에 오는 -ing절도 포함합니다."],
+      ["Nominal is applied only in front of a set list of nouns (rate, temperature, time, oven, chamber, method, …) and to some fixed pairs; elsewhere -ing forms before a noun are pre-noun modifiers.","명사처럼은 정해 둔 명사 목록(rate, temperature, time, oven, chamber, method 등) 앞과 일부 정해 둔 결합에만 적용합니다. 그 밖의 명사 앞 -ing는 명사 앞 수식으로 분류합니다."],
+      ["Preposition-like uses are included in the verb total and the complete detection list, but left out of the individual verb comparison tables.","전치사처럼 쓰인 표현은 동사 총계와 전체 탐지 목록에는 포함하지만, 개별 동사 비교표에서는 제외합니다."],
+      ["Participial adjectives are marked only when the analyser has tagged the word as a verb (included in the verb total, shown apart from the verb list). Words the analyser tags as adjectives from the start are not counted as verbs.","분사형 형용사는 분석기가 동사로 판정한 경우에만 따로 표시합니다(동사 총계에는 포함, 동사 목록과는 따로 보임). 처음부터 형용사로 판정한 낱말은 동사로 세지 않습니다."],
+      ["Automatic classification can be wrong. For items that are hard to judge, follow the sentence number to the original text.","자동 분류는 틀릴 수 있습니다. 판단이 어려운 항목은 문장번호를 따라 원문에서 확인하세요."]]},
+  marks: {h:["2. Extra marks on examples","2. 용례에 붙는 추가 표시"], cols:[["Mark","표시"],["Meaning","뜻"],["What to check","확인할 점"]], rows:[
+    [["Fixed expression","굳은 표현"],["compared to/with, based on, given linking a comparison or a basis without a subject or auxiliary (not marked after if/when)","주어·조동사 없이 비교나 근거를 잇는 compared to/with, based on, given(if/when 뒤에서는 표시하지 않음)"],["Counted as non-finite in this tool","이 도구에서는 비정형으로 집계"]],
+    [["May be a noun · check the example","명사일 수 있음 · 용례 확인"],["The analyser took the word as a verb, but noun-like features (article, adjective, number or noun modifier) were found","분석기는 동사로 판정했지만 명사적 특징(관사·형용사·수사·명사 수식어)이 감지된 경우"],["The figure counted as a verb is kept, so check the original text","동사로 센 수치는 유지하므로 원문 확인 필요"]]],
+    notes:[["‘Fixed expression’ and ‘may be a noun’ do not add separate verb counts; they are extra marks to keep in mind when reading the example. ‘May be a noun’ does not mean it has been decided to be a noun.","‘굳은 표현’과 ‘명사일 수 있음’은 별도의 동사 개수를 더하는 항목이 아니라, 해당 용례를 읽을 때 참고하는 추가 표시입니다. ‘명사일 수 있음’도 명사로 확정했다는 뜻은 아닙니다."]]},
+  layers: {h:["3. Verb groups by the comparison papers","3. 비교 논문에 따른 동사 분류"],
+    lead:["Verbs are grouped by the number of papers in which the verb is used as a predicate in each section. This is not an evaluation of how often the verb occurs in total or of whether the expression is appropriate.","각 절에서 해당 동사가 술어로 쓰인 논문 수를 기준으로 분류합니다. 동사의 총 등장 횟수나 표현의 적절성을 평가한 분류가 아닙니다."],
+    cols:[["Group","분류"],["Criterion","확인 기준"]], rows:[
+    [["① Common to four journals","① 네 저널 공통"],["In each of the four journal sets, used as a predicate in at least half of the papers in which the section can be compared","네 저널 집합 각각에서, 해당 절을 비교할 수 있는 논문의 절반 이상에 술어 용법이 있음"]],
+    [["② Frequent in the chosen set","② 선택 집합에서 자주 확인"],["In the chosen set, used as a predicate in at least half of the papers, but not all four sets meet the condition of ①","선택 집합에서는 절반 이상에 술어 용법이 있지만, 네 집합 모두가 ①의 조건을 충족하지는 않음"]],
+    [["③ Found in some comparison papers","③ 일부 비교 논문에서 확인"],["In the chosen set, used as a predicate in at least one but fewer than half of the papers","선택 집합에서 한 편 이상, 절반 미만에 술어 용법이 있음"]],
+    [["④ Use not found","④ 해당 용법 미확인"],["Not used as a predicate in the same section of the chosen set","선택 집합의 같은 절에서 술어 용법이 확인되지 않음"]]],
+    notes:[["These groups do not decide which verbs must be used or avoided. ② does not mean the verb is used only in one field, and ④ does not mean it is wrong. Whether a verb in ④ appears in other sections or other uses can be seen in the detailed results.","이 분류는 반드시 써야 할 동사나 피해야 할 동사를 정한 것이 아닙니다. ②는 특정 분야에서만 쓰인다는 뜻이 아니며, ④도 잘못된 표현이라는 뜻이 아닙니다. ④에 해당하는 동사가 다른 절이나 다른 쓰임으로 나타났는지는 상세 결과에서 확인할 수 있습니다."]]}
+};
+function critTablesHtml(one){
+  const tb = T => `<h4>${one(...T.h)}</h4>${T.lead ? `<p class="note">${one(...T.lead)}</p>` : ""}<div class="tablewrap"><table><thead><tr>${T.cols.map(c => `<th>${one(...c)}</th>`).join("")}</tr></thead><tbody>${T.rows.map(r => `<tr>${r.map((c, i) => `<td${i===2 && T===CRIT_T.usage ? ' class="ex"' : ""}>${Array.isArray(c) ? one(...c) : esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div><ul class="cnotes">${T.notes.map(n => `<li>${one(...n)}</li>`).join("")}</ul>`;
+  return [CRIT_T.usage, CRIT_T.marks, CRIT_T.layers].map(tb).join("");
+}
 function usageTableHtml(){
   const L = LANG, one = (en, ko) => L==="en" ? en : L==="ko" ? ko : `${ko}<span class="en">${en}</span>`;   // 내용은 이 파일에서 쓴 고정 문구(HTML)
   const rows = USAGE_TABLE.rows.map(([ce, ck, de, dk, ex]) => `<tr${ce.startsWith("  ↳") ? ' class="sub"' : ""}><td><b>${one(ce.trim(), ck.trim())}</b></td><td>${one(de, dk)}</td><td class="ex">${ex.join("<br>")}</td></tr>`).join("");
@@ -759,13 +813,14 @@ function usageTableHtml(){
   return `<details class="utab"><summary>${one("How are verb uses classified?","동사의 쓰임은 어떻게 구분하나요?")}</summary>
     <p class="note">${one("Each time a verb appears, the tool classifies its grammatical use. The classification adds the tool’s rules (verb_usage_rules v0.4) on top of the part-of-speech and syntactic analysis of spaCy (en_core_web_sm), so it can differ from what spaCy gives on its own. Every example below was run through the current rules.",
       "동사가 나올 때마다 문법적 쓰임을 구분합니다. 이 분류는 spaCy(en_core_web_sm)의 품사·구문 분석 위에 도구의 규칙(verb_usage_rules v0.4)을 덧붙여 정하므로, spaCy를 그대로 쓴 결과와 다를 수 있습니다. 아래 예는 모두 현재 규칙에 넣어 확인한 것입니다.")}</p>
-    <h4>${one("Classification currently applied","현재 적용하는 분류")}</h4>
-    <div class="tablewrap"><table><thead><tr><th>${one("Use","쓰임")}</th><th>${one("How it is decided","판단 기준")}</th><th>${one("Examples","예")}</th></tr></thead><tbody>${rows}</tbody></table></div>
+    ${critTablesHtml((en, ko) => one(esc(en), esc(ko)))}
     <h4>${one("Boundary cases and points under review","경계 사례·검토 중")}</h4>
     <p class="note">${one("These have not been decided and are not presented as current rules.","아직 정하지 않은 내용으로, 현재 규칙에 들어간 것으로 보여 주지 않습니다.")}</p>
     <ul>${rv}</ul>
-    <p class="note">${one("The rules were revised to fit 60 examples judged by the researcher; on those same 60 examples, 54 matched (not an independent check). The full rule file is public: ",
-      "규칙은 연구자가 판정한 60개 용례에 맞춰 고쳤고, 같은 60개에서 54개가 일치했습니다(독립 검증은 아님). 규칙 파일 전체는 공개되어 있습니다: ")}<a href="https://github.com/angela0420/gnu_10team_cho/blob/main/web/vendor/verb_usage_rules.py" target="_blank" rel="noopener">verb_usage_rules.py</a></p>
+    <h4>${one(esc(SAMPLE60.h[0]), esc(SAMPLE60.h[1]))}</h4><p class="note">${one(esc(SAMPLE60.lead[0]), esc(SAMPLE60.lead[1]))}</p>
+    <div class="tablewrap"><table><thead><tr>${SAMPLE60.cols.map(c => `<th>${one(esc(c[0]), esc(c[1]))}</th>`).join("")}</tr></thead><tbody>${SAMPLE60.rows.map(([n, k, ids]) => `<tr><td>${one(esc(n[0]), esc(n[1]))}</td><td>${esc(k)}</td><td>${esc(ids)}</td></tr>`).join("")}</tbody></table></div>
+    <ul class="cnotes">${SAMPLE60.notes.map(n => `<li>${one(esc(n[0]), esc(n[1]))}</li>`).join("")}</ul>
+    <p class="note">${one("The full rule file is public: ", "규칙 파일 전체는 공개되어 있습니다: ")}<a href="https://github.com/angela0420/gnu_10team_cho/blob/main/web/vendor/verb_usage_rules.py" target="_blank" rel="noopener">verb_usage_rules.py</a></p>
   </details>`;
 }
 // '분석 방법 및 비교 자료 안내' 접기(2026-11-12 2차, 교수님 문구): 기본 화면은 핵심 안내 세 칸, 펼쳐 보기에는 새로 더하는 세부 정보만.
@@ -893,13 +948,14 @@ const SAMPLE = {
   RD: "Figure 1 shows the diffraction patterns of the pristine and doped samples. All reflections can be indexed to a hexagonal cell, indicating that no impurity phase is formed within the detection limit of the instrument. Compared to the pristine oxide, the doped sample shows a slightly larger lattice parameter along the c axis, which suggests that titanium enters the structure rather than forming a separate oxide. The refinement supports this interpretation. When titanium was placed on the transition-metal site, the fit improved clearly, whereas placing it on the sodium site gave unrealistic thermal parameters. We therefore assign titanium to the transition-metal layer. The particles of both samples have a plate-like shape with a size of 2–5 μm, and the elemental maps show that titanium is distributed evenly across the particles. This observation rules out a surface-rich distribution of the dopant. Figure 2 compares the first charge and discharge curves. The two samples deliver similar initial capacities, so the small amount of titanium does not reduce the energy density in a measurable way. The voltage plateau associated with the phase transition, however, appears at a higher potential in the doped sample and is noticeably shorter. This result implies that titanium delays the gliding of the layers. A possible explanation is that the strong titanium–oxygen bonds make the layers more rigid, although other factors such as changes in sodium ordering may also contribute. Long-term cycling confirms the effect. After 300 cycles, the doped cathode retains about 85 percent of its initial capacity, while the pristine cathode retains less than 60 percent. Electron microscopy of the cycled electrodes reveals extensive cracking in the pristine particles but only minor cracks in the doped ones. It is likely that the reduced volume change prevents the formation of cracks and thereby slows the loss of electrical contact. We note that the improvement was smaller at 45 °C, which may indicate that side reactions with the electrolyte become more important at elevated temperature. Overall, these findings show that the dopant acts mainly in the bulk and that its benefit does not depend on a protective surface layer.",
   CON: "We have shown that a small amount of titanium, introduced into the transition-metal layer of a layered sodium manganese oxide, delays the phase transition that limits the cycle life of this cathode. The dopant was distributed evenly through the particles, and structural refinement placed it on the transition-metal site rather than in the sodium layer. Because the doped and pristine samples delivered almost the same initial capacity, the improvement in stability was obtained without a loss of energy density. The voltage plateau associated with layer gliding was shifted to a higher potential and shortened, and the cycled particles showed far fewer cracks. Taken together, these observations suggest that titanium stiffens the layers and reduces the volume change during charging, which in turn preserves the electrical contact within the electrode. These results suggest that bulk doping is a simple route to more durable cathodes. Unlike surface coatings, which can be lost after repeated cycling, a dopant built into the lattice remains active throughout the life of the cell. The approach also requires no additional processing step, since the dopant is added together with the other precursors before the solid-state reaction. Some limitations remain. The benefit was smaller at elevated temperature, which suggests that side reactions at the electrode surface were not addressed by doping alone. A combination of bulk doping with a stable electrolyte or a thin protective layer may therefore be needed for applications that operate above room temperature. In addition, we examined only one dopant level, and it is possible that slightly higher amounts would give a larger effect without lowering the capacity. Future work should test a range of compositions, examine other redox-inactive dopants with strong bonds to oxygen, and follow the structural changes during cycling by in situ diffraction. Such studies would clarify how general the mechanism proposed here is and would help researchers select dopants for other layered oxides used in sodium-ion and lithium-ion batteries."
 };
-document.getElementById("sample").onclick = () => { SECS.forEach(([c]) => { document.getElementById("t-"+c).value = SAMPLE[c]; updWc(c); }); };
+document.getElementById("sample").onclick = () => { SECS.forEach(([c]) => { document.getElementById("t-"+c).value = SAMPLE[c]; updWc(c); }); if(window.EXPORT && EXPORT.fillInfoExample) EXPORT.fillInfoExample(); };
 document.getElementById("clearall").onclick = () => { SECS.forEach(([c]) => { document.getElementById("t-"+c).value = ""; updWc(c); }); };
 document.getElementById("openfold").onclick = () => { const f = document.getElementById("fold"); f.open = true; f.scrollIntoView({behavior:"smooth"}); };
 
 
 document.getElementById("go").onclick = async () => {
   const btn = document.getElementById("go"), st = document.getElementById("status");
+  if(window.EXPORT && EXPORT.checkInfo && EXPORT.checkInfo()){ st.textContent = EXPORT.missMsg(); return; }
   if(!document.getElementById("baseline").value){ st.textContent = t("pick_set"); const b = document.getElementById("baseline"); b.focus(); b.scrollIntoView({behavior:"smooth", block:"center"}); return; }
   const sections = {}; SECS.forEach(([c]) => { const v = document.getElementById("t-"+c).value.trim(); if(v) sections[c] = v; });
   btn.disabled = true; st.textContent = t("running");
