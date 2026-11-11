@@ -211,6 +211,8 @@ body[data-page="why"] .only-home,body[data-page="why"] .only-bg{display:none}
 body[data-page="background"] .only-home,body[data-page="background"] .only-why{display:none}
 @media (max-width:880px){.steps,.cards,.data,.reads{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:560px){.brand{white-space:normal;flex-wrap:wrap}.brand span:not(.abbr){display:none}}   /* 좁은 화면: 이름 옆 작은 부제를 숨겨 가로 넘침을 막는다(진단 화면과 같음) */
+
+.updbox{margin-top:16px}details.upd{font-size:14px;color:var(--muted,#555)}details.upd>summary{cursor:pointer}details.upd ul{margin:6px 0 0;padding-left:18px}details.upd .upd-b{display:block;font-size:13px;opacity:.8}
 </style>
 
 </head>
@@ -238,6 +240,7 @@ body[data-page="background"] .only-home,body[data-page="background"] .only-why{d
         <h1 data-i="hero.title" data-br="1"></h1>
         <p class="lede" data-i="hero.lede" data-br="1"></p>
         <div class="actions"><a class="btn" href="/diagnose" data-i="hero.button"></a><a class="link-quiet" href="#how" data-i="hero.link"></a></div>
+        <div class="updbox" id="updbox" hidden></div>
         <p class="micro" data-i="hero.micro"></p>
       </div>
       <div>
@@ -455,5 +458,7 @@ function watchToc() {
 }
 fetch("/static/portal-i18n.json?v=2026-11-11b1").then(r => r.json()).then(j => { I = j; applyLang(); if (location.hash) { const t = document.querySelector(location.hash); if (t) t.scrollIntoView(); } });
 </script>
+<script src="/static/feedback.js"></script>
+<script>if(window.FEEDBACK) FEEDBACK.loadUpdates(document.getElementById("updbox"), 3);</script>
 </body>
 </html>

@@ -271,6 +271,11 @@ details.mi input,details.mi select,details.mi textarea{font-weight:400;border:1p
   #overview{grid-template-columns:repeat(2,minmax(0,1fr))}.ov:nth-child(2){border-right:0}.ov:nth-child(-n+2){border-bottom:1px solid var(--line)}
   header .brand small{display:none}.kwic .kl{min-width:560px}}
 @media (max-width:600px){header .brand span{font-size:15.5px}.seg button{padding:4px 8px;font-size:13px}.hero{padding:32px 0 20px}}
+
+#updbox,.updbox{margin:10px 0 0}details.upd{font-size:13.5px;color:var(--muted)}details.upd>summary{cursor:pointer}details.upd ul{margin:6px 0 0;padding-left:18px}details.upd li{margin:4px 0}details.upd .upd-b{display:block;color:var(--faint);font-size:13px}
+#fbbox .fb-l{display:block;font-weight:600;font-size:14px;margin:10px 0 4px}#fbbox textarea,#fbbox input[type=text]{width:100%;box-sizing:border-box;border:1px solid var(--line2);border-radius:8px;background:var(--bg);padding:8px 10px;font:inherit}
+#fbbox .fb-c{display:flex;gap:8px;align-items:flex-start;margin:10px 0;font-size:14px}#fbbox .fb-n{font-size:13px;color:var(--muted);margin:6px 0}#fbbox .fb-n summary{cursor:pointer;color:var(--accent)}
+#fbbox .fb-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}#fb-confirm{margin-top:10px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-size:14px}
 </style>
 </head>
 <body>
@@ -285,6 +290,7 @@ details.mi input,details.mi select,details.mi textarea{font-weight:400;border:1p
     <h2 data-t="hero_t"></h2>
     <p class="sub" data-t="hero_s"></p>
     <p class="desc" data-t="hero_d"></p>
+    <div id="updbox" hidden></div>
   </section>
   <section class="card step" id="step1">
     <h2><span class="stepno">01</span><label for="baseline" data-t="st1"></label></h2>
@@ -340,6 +346,7 @@ details.mi input,details.mi select,details.mi textarea{font-weight:400;border:1p
   </section>
   <!-- 결과를 저장하고, 내가 쓰는 AI에게 물어보세요(export.js가 그린다: PDF, 전체·간단·절별 복사, 프롬프트 복사) -->
   <section class="card" id="savebox" hidden></section>
+  <section class="card" id="fbbox" hidden></section>
   <details class="card fold" id="fold">
     <summary data-t="fold_h"></summary>
     <div id="foldbody"></div>
@@ -416,6 +423,7 @@ function applyStatic(){
   document.getElementById("go").textContent = t("go");
   document.getElementById("sample").textContent = t("sample");
   if(window.EXPORT){ EXPORT.drawInfoFields(); if(LAST && !document.getElementById("savebox").hidden) EXPORT.drawSave(); }
+  if(window.FEEDBACK && LAST) FEEDBACK.drawForm(document.getElementById("fbbox"));
   document.querySelectorAll(".seg button").forEach(b => b.classList.toggle("on", b.dataset.lang===LANG));
   document.documentElement.lang = LANG==="en" ? "en" : "ko";
   const sel = document.getElementById("baseline"), cur = sel.value;
@@ -834,7 +842,8 @@ const FOLD = {
       ["The comparison data are open-access (CC BY) research articles published in ACS journals in 2020–2021. Expressions are found and counted by predefined rules, based on the part-of-speech and syntactic analysis of a spaCy English model and the hedge and booster lists of Hyland (2005).","ACS 저널에 2020–2021년 출판된 CC BY 공개 연구논문을 비교 자료로 사용했습니다. spaCy 영어 모델의 품사·구문 분석과 Hyland(2005)의 완화·강조 표현 목록을 바탕으로, 미리 정한 규칙에 따라 표현을 찾아 셉니다."],
       ["The comparison figures are reference information; you do not need to change expressions to match the figures of published papers.","비교 수치는 참고 정보이며, 출판 논문과 수치를 맞추기 위해 표현을 바꿀 필요는 없습니다."]],
     ["How your manuscript is handled","원고 처리",
-      ["Your manuscript is analysed on this service’s server. The service code does not write it to files or a database, and no external generative AI is called for the analysis or the on-screen explanations.","원고는 이 서비스의 서버에서 분석합니다. 서비스 코드는 원고를 파일이나 데이터베이스에 저장하지 않으며, 분석과 화면 해설을 위해 외부 생성형 AI를 호출하지 않습니다."]]],
+      ["Your manuscript is analysed on this service’s server. The service code does not write it to files or a database, and no external generative AI is called for the analysis or the on-screen explanations.","원고는 이 서비스의 서버에서 분석합니다. 서비스 코드는 원고를 파일이나 데이터베이스에 저장하지 않으며, 분석과 화면 해설을 위해 외부 생성형 AI를 호출하지 않습니다."],
+      ["Feedback is separate: only if you send it in the feedback box below the results, your feedback, nickname (optional), submission time and consent are stored with Supabase (an external database service) for 2 years. Your manuscript and results are not sent with it.","의견은 따로입니다: 결과 아래 의견 칸에서 직접 보낼 때만 의견, 별명(선택), 제출 시각, 공개 동의 여부를 Supabase(외부 데이터베이스 서비스)에 2년 동안 보관합니다. 원고와 분석 결과는 함께 보내지 않습니다."]]],
   long: [
     ["The physical chemistry and physical chemistry · computational sets","물리화학과 물리화학·계산 집합",
       ["Both sets are J. Phys. Chem. C papers but were built separately according to whether the work is computational or theoretical. No paper is in both. The computational set is small, so use it for reference only.","두 집합은 모두 J. Phys. Chem. C 논문이지만, 계산·이론 중심 여부에 따라 따로 구성했습니다. 중복 논문은 없습니다. 물리화학·계산 집합은 편수가 적으므로 참고용으로 보세요."],
@@ -964,7 +973,7 @@ document.getElementById("go").onclick = async () => {
   try{
     const res = await fetch("/api/diagnose", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({baseline: document.getElementById("baseline").value, sections})});
     if(!res.ok) throw new Error(res.status + " " + (await res.text()));
-    render(await res.json()); st.textContent = ""; document.getElementById("step3h").hidden = false; document.getElementById("commonbox").hidden = false; document.getElementById("commonfold").hidden = false; drawCommon(); showExplore(); document.getElementById("savebox").hidden = false; if(window.EXPORT) EXPORT.drawSave();
+    render(await res.json()); st.textContent = ""; document.getElementById("step3h").hidden = false; document.getElementById("commonbox").hidden = false; document.getElementById("commonfold").hidden = false; drawCommon(); showExplore(); document.getElementById("savebox").hidden = false; if(window.FEEDBACK) FEEDBACK.drawForm(document.getElementById("fbbox")); if(window.EXPORT) EXPORT.drawSave();
     document.getElementById("step3h").scrollIntoView({behavior:"smooth"});
   }catch(err){ st.textContent = t("err") + ": " + err.message; }
   finally{ btn.disabled = false; }
@@ -979,6 +988,8 @@ document.getElementById("go").onclick = async () => {
 })();
 </script>
 <script src="/static/export.js"></script>
+<script src="/static/feedback.js"></script>
+<script>if(window.FEEDBACK) FEEDBACK.loadUpdates(document.getElementById("updbox"), 5);</script>
 <script>if(window.EXPORT) EXPORT.drawInfoFields();</script>
 </body>
 </html>
