@@ -71,7 +71,11 @@ const UI = {
   pdfnote:["A print view with everything expanded opens. In the print window, set the destination to “Save as PDF”. If you save through a printer such as Hancom PDF, the letters become pictures and an AI cannot read them.",
            "모든 내용을 펼친 인쇄용 화면이 열립니다. 인쇄 창의 대상에서 ‘PDF로 저장’을 고르세요. 한컴 PDF 같은 프린터로 저장하면 글자가 그림이 되어 AI가 읽지 못합니다."],
   upload:["This file contains your full manuscript. If you upload it to an external AI, it is sent to that service.","원고 전문이 포함되어 있으며, 외부 AI에 업로드하면 해당 서비스로 전달됩니다."],
-  info_h:["About your manuscript (optional)","원고 정보(선택)"], info_note:["These go only into your saved results, so that an AI can give more specific feedback. They are not sent to the server.","저장하는 결과에만 들어가 AI가 더 구체적으로 피드백하게 돕습니다. 서버로 보내지 않습니다."],
+  info_h:["About your manuscript (optional)","원고 정보(선택)"], info_note:["When you later save your results as a PDF, a generative AI can refer to these notes and give you more specific feedback. They are not sent to the server.","나중에 PDF로 저장할 때 생성형 AI가 참고함으로써 더 구체적인 피드백을 받을 수 있습니다. 서버로 보내지 않습니다."],
+  info_ex:["Example →","예시 →"],
+  info_ex_j:["Inorganic Chemistry","Inorganic Chemistry"],
+  info_ex_s:["Before submission","투고 전 원고"],
+  info_ex_q:["In Results and Discussion, I want to check whether I separate what I observed from how I interpret it, and whether my claims compared with earlier studies are too strong for my data.","결과·논의에서 관찰한 것과 해석한 것을 잘 구분했는지, 선행연구와 비교하는 문장에서 주장이 내 자료에 비해 너무 세지 않은지 보고 싶습니다."],
   journal:["Target journal","목표 저널"], stage:["Manuscript stage","원고 단계"], question:["What you especially want to ask","특히 묻고 싶은 점"],
   stages:[["","(choose)","(고르기)"],["class","Course assignment draft","수업 과제 초안"],["thesis","Thesis chapter draft","학위논문 장 초안"],["pre","Before submission","투고 전 원고"],["rev","Revision after review","심사 후 수정본"],["other","Other","기타"]]};
 const SECNAME = {INT:["Introduction","서론"],MET:["Methods","실험·방법"],RD:["Results and Discussion","결과·논의"],CON:["Conclusions","결론"]};
@@ -402,6 +406,10 @@ function drawInfoFields(){
   const keep = id => document.getElementById(id)?.value || "";
   const j = keep("mi-journal"), s = keep("mi-stage"), q = keep("mi-question");
   host.innerHTML = `<summary>${esc(ui("info_h"))}</summary><div class="mi-body"><p class="note">${esc(ui("info_note"))}</p>
+    <details class="mi-ex"><summary>${esc(ui("info_ex"))}</summary><dl>
+      <dt>${esc(ui("journal"))}</dt><dd>${esc(ui("info_ex_j"))}</dd>
+      <dt>${esc(ui("stage"))}</dt><dd>${esc(ui("info_ex_s"))}</dd>
+      <dt>${esc(ui("question"))}</dt><dd>${esc(ui("info_ex_q"))}</dd></dl></details>
     <label>${esc(ui("journal"))}<input id="mi-journal" type="text" autocomplete="off" maxlength="200"></label>
     <label>${esc(ui("stage"))}<select id="mi-stage">${UI.stages.map(([k,en,ko]) => `<option value="${k}">${esc(P([en,ko]))}</option>`).join("")}</select></label>
     <label class="wide">${esc(ui("question"))}<textarea id="mi-question" rows="2" maxlength="1000"></textarea></label></div>`;

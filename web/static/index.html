@@ -213,6 +213,12 @@ details.mi{margin:14px 0 0;border:1px solid var(--line);border-radius:12px;backg
 details.mi summary{cursor:pointer;padding:10px 16px;font-weight:600;font-size:15px}
 details.mi .mi-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px;padding:0 16px 14px}
 details.mi .mi-body .note,details.mi .mi-body .wide{grid-column:1/-1}
+details.mi .mi-ex{grid-column:1/-1;font-size:13.5px;color:var(--muted)}
+details.mi .mi-ex summary{padding:0;font-weight:600;font-size:13.5px;color:var(--accent)}
+details.mi .mi-ex dl{margin:6px 0 0;padding:10px 12px;border-left:3px solid var(--line2);background:var(--bg);border-radius:6px;display:grid;grid-template-columns:max-content 1fr;gap:4px 12px}
+details.mi .mi-ex dt{font-weight:600}
+details.mi .mi-ex dd{margin:0}
+@media (max-width:560px){details.mi .mi-ex dl{grid-template-columns:1fr}details.mi .mi-ex dd{margin-bottom:4px}}
 details.mi label{display:flex;flex-direction:column;gap:4px;font-size:14px;font-weight:600}
 details.mi input,details.mi select,details.mi textarea{font-weight:400;border:1px solid var(--line2);border-radius:8px;background:var(--bg);padding:8px 10px;font-size:14.5px}
 @media (max-width:860px){details.mi .mi-body{grid-template-columns:minmax(0,1fr)}}
