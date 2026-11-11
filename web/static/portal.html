@@ -169,17 +169,60 @@ nav.site a.go:hover{border-bottom-color:var(--teal)}
 .kwic-lines .full mark{background:var(--mark);color:var(--ink);font-weight:700;border-radius:3px;padding:0 3px;box-shadow:inset 0 -2px 0 var(--teal)}
 @media (max-width:880px){nav.site{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:13.5px;order:3;width:100%;margin-left:0;padding-bottom:6px}nav.site a{white-space:nowrap}}
 @media print{.lang{display:none!important}}
+
+/* 2026-11-11 묶음 1: 첫 화면 구성안(수정본) — MD 표지, 시작 버튼, 세 단계, 네 칸, 비교 자료 표, 읽을거리, 반짝이는 안내 */
+.brand .abbr{display:inline-block;padding:1px 7px;border-radius:6px;background:var(--teal);color:var(--on-teal);font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.04em;vertical-align:2px}
+.hero .micro{font-size:13.5px;color:var(--ink-3);margin:14px 0 0}
+.hero .kwic{margin-top:14px}
+.hero .kwic-lines{min-width:0}
+.hero .kwic-head{padding:12px 16px}.hero .kwic-lines{padding:0 16px}.hero .kwic-foot{padding:10px 16px}
+.hero .line{font-size:13px}
+.kwic-after{font-size:13.5px;color:var(--ink-3);margin:10px 0 0}
+.twinkle{display:inline-block;margin-top:4px;padding:1px 8px 1px 4px;border-radius:6px;color:var(--ink);font-weight:600;animation:glow 1.8s ease-in-out infinite}
+.twinkle .star{display:inline-block;margin-right:5px;color:var(--teal);animation:spark 1.8s ease-in-out infinite}
+.kwic:not(.seen) .line .k{animation:ring 1.8s ease-in-out infinite}
+.kwic.seen .twinkle,.kwic.seen .twinkle .star{animation:none;font-weight:400;color:inherit}
+@keyframes ring{0%,100%{box-shadow:0 0 0 0 transparent}50%{box-shadow:0 0 0 3px var(--teal)}}
+@keyframes glow{0%,100%{background-color:transparent;box-shadow:0 0 0 0 transparent}50%{background-color:var(--mark);box-shadow:0 0 0 3px var(--mark)}}
+@keyframes spark{0%,100%{transform:scale(.8) rotate(0);opacity:.55}50%{transform:scale(1.25) rotate(20deg);opacity:1}}
+@media (prefers-reduced-motion:reduce){.twinkle,.twinkle .star,.kwic .line .k{animation:none!important}.twinkle{background:var(--mark)}}
+section.band{background:var(--band);border-block:1px solid var(--rule);padding:56px 0}
+.sec-h{font-size:clamp(24px,2.6vw,30px);line-height:1.35;letter-spacing:-.02em;font-weight:700;margin:0 0 8px}
+.sec-sub{color:var(--ink-2);margin:0 0 28px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.step{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:22px}
+.step .no{font-family:var(--mono);font-size:13px;color:var(--teal);font-weight:500}
+.step h3{margin:6px 0 8px;font-size:18px;line-height:1.45}.step p{margin:0;font-size:15px;color:var(--ink-2)}
+section.plain{padding:64px 0 8px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 40px}
+.card4{padding:18px 0;border-top:1px solid var(--rule)}.card4 h3{margin:0 0 6px;font-size:17px;line-height:1.45}.card4 p{margin:0;font-size:15px;color:var(--ink-2)}
+.data{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+.data table{min-width:0}.data td:first-child{width:auto}.data td.n{text-align:right;font-family:var(--mono)}.data th.n{text-align:right}
+.data .ro{font-size:12.5px;color:var(--ink-3);font-weight:400}
+.warnnote{background:#FBF0DF;color:#7A4E0C;border-radius:10px;padding:14px 16px;font-size:14.5px;margin:0 0 14px}
+@media (prefers-color-scheme:dark){.warnnote{background:#3A2C14;color:#F0C98A}}
+.data .small{margin:0 0 14px;font-size:14.5px;color:var(--ink-2)}
+.reads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.read{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:22px}.read:hover{border-color:var(--teal)}
+.read h3{margin:0 0 6px;font-size:18px}.read p{margin:0 0 10px;font-size:15px;color:var(--ink-2)}.read .more{font-size:14px;color:var(--teal);font-weight:600}
+.backlink{display:inline-block;margin:28px 0 0;font-size:15px;color:var(--ink-2)}
+body[data-page="home"] .only-why,body[data-page="home"] .only-bg{display:none}
+body[data-page="why"] .only-home,body[data-page="why"] .only-bg{display:none}
+body[data-page="background"] .only-home,body[data-page="background"] .only-why{display:none}
+@media (max-width:880px){.steps,.cards,.data,.reads{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.brand{white-space:normal;flex-wrap:wrap}.brand span:not(.abbr){display:none}}   /* 좁은 화면: 이름 옆 작은 부제를 숨겨 가로 넘침을 막는다(진단 화면과 같음) */
 </style>
 
 </head>
 <body>
 <header class="site">
   <div class="wrap">
-    <a class="brand" href="/"><b data-i="brand.title" data-mono="1"></b><span data-i="brand.sub" data-mono="1"></span></a>
+    <a class="brand" href="/"><b data-i="brand.title" data-mono="1"></b><span class="abbr" title="Manuscript Diagnosis">MD</span><span data-i="brand.sub" data-mono="1"></span></a>
     <nav class="site" aria-label="주요 메뉴">
-      <a href="#about" data-i="nav.about"></a>
-      <a href="#why" data-i="nav.why"></a>
-      <a href="#kwic" data-i="nav.kwic"></a>
+      <a class="only-home" href="#how" data-i="nav.how"></a>
+      <a class="only-home" href="#about" data-i="nav.about"></a>
+      <a class="only-home" href="#data" data-i="nav.data"></a>
+      <a class="only-home" href="#reads" data-i="nav.reads"></a>
       <a href="/diagnose" class="go" data-i="nav.diagnose"></a>
     </nav>
     <div class="lang" role="group" aria-label="language">
@@ -189,12 +232,13 @@ nav.site a.go:hover{border-bottom-color:var(--teal)}
 </header>
 
 <main id="top">
-  <section class="hero">
+  <section class="hero only-home">
     <div class="wrap hero-grid">
       <div>
         <h1 data-i="hero.title" data-br="1"></h1>
-        <p class="lede" data-i="hero.lede"></p>
-        <div class="actions"><a class="link-quiet" href="#why" data-i="hero.link"></a></div>
+        <p class="lede" data-i="hero.lede" data-br="1"></p>
+        <div class="actions"><a class="btn" href="/diagnose" data-i="hero.button"></a><a class="link-quiet" href="#how" data-i="hero.link"></a></div>
+        <p class="micro" data-i="hero.micro"></p>
       </div>
       <div>
         <div class="tiles" role="group" aria-label="verbs">
@@ -203,47 +247,53 @@ nav.site a.go:hover{border-bottom-color:var(--teal)}
           <button class="tile report" data-key="report" aria-pressed="false"><span class="ko" data-i="tiles.report.label"></span><span class="en">report</span><span class="role" data-i="tiles.report.role"></span></button>
         </div>
         <p class="tiles-cap" data-i="tiles.hint"></p>
+        <div class="kwic">
+          <div class="kwic-head"><h2><span data-i="kwic_box.title"></span> <code id="kw-label">observe</code></h2><span class="chip" data-i="kwic_box.label"></span></div>
+          <div class="kwic-body"><div class="kwic-lines" id="lines" aria-live="polite"></div></div>
+          <p class="kwic-foot"><span data-i="kwic_box.foot_common"></span><br><span class="twinkle"><span class="star" aria-hidden="true">✦</span><span data-i="kwic_box.foot_hint"></span></span></p>
+        </div>
+        <p class="kwic-after" data-i="kwic_box.after"></p>
       </div>
     </div>
   </section>
 
-  <section class="kwic-sec">
-    <div class="wrap">
-      <div class="kwic">
-        <div class="kwic-head"><h2><span data-i="kwic_box.title"></span> <code id="kw-label">observe</code></h2><span class="chip" data-i="kwic_box.label"></span></div>
-        <div class="kwic-body"><div class="kwic-lines" id="lines" aria-live="polite"></div></div>
-        <p class="kwic-foot" data-i="kwic_box.foot_common"></p>
+  <section class="band only-home" id="how">
+    <div class="wrap"><h2 class="sec-h" data-i="how.title"></h2><p class="sec-sub" data-i="how.sub"></p><div class="steps" id="steps"></div></div>
+  </section>
+
+  <section class="plain only-home" id="about">
+    <div class="wrap"><h2 class="sec-h" data-i="about4.title"></h2><p class="sec-sub" data-i="about4.sub"></p><div class="cards" id="cards4"></div></div>
+  </section>
+
+  <section class="plain only-home" id="data">
+    <div class="wrap"><h2 class="sec-h" data-i="data.title"></h2><p class="sec-sub" data-i="data.sub"></p>
+      <div class="data">
+        <div class="table-wrap"><table><thead><tr><th data-i="data.th.0"></th><th data-i="data.th.1"></th><th class="n" data-i="data.th.2"></th></tr></thead><tbody id="sets"></tbody></table></div>
+        <div><p class="warnnote" id="setnote"></p>
+          <p class="small"><span data-i="data.basis_pre"></span><a href="/diagnose#fold" data-i="data.basis_link"></a><span data-i="data.basis_post"></span></p>
+          <p class="small" data-i="data.privacy"></p></div>
       </div>
     </div>
   </section>
 
-  <section class="about" id="about">
-    <div class="wrap"><div class="about-in">
-      <h2 data-i="about.title"></h2>
-      <p data-i="about.p1" data-para="1"></p>
-      <p data-i="about.p2" data-para="1"></p>
-      <p data-i="about.p3" data-para="1"></p>
-    </div></div>
+  <section class="plain only-home" id="reads">
+    <div class="wrap"><h2 class="sec-h" data-i="reads.title"></h2><p class="sec-sub" data-i="reads.sub"></p><div class="reads" id="readsbox"></div></div>
   </section>
 
-  <section class="about features" id="features">
-    <div class="wrap"><div class="about-in" id="features-in"></div></div>
-  </section>
-
-  <div class="wrap body-grid">
+  <div class="wrap body-grid only-why">
     <aside class="toc">
       <p data-i="why.toc_label"></p>
       <ol>
         <li><a href="#why" data-i="why.title"></a></li>
         <li><a href="#s1" data-i="toc.s1"></a></li><li><a href="#s2" data-i="toc.s2"></a></li><li><a href="#s3" data-i="toc.s3"></a></li>
         <li><a href="#s4" data-i="toc.s4"></a></li><li><a href="#s5" data-i="toc.s5"></a></li><li><a href="#s6" data-i="toc.s6"></a></li>
-        <li><a href="#kwic" data-i="toc.kwic"></a></li><li><a href="#background" data-i="toc.background"></a></li><li><a href="#start" data-i="toc.start"></a></li>
+        <li><a href="#kwic" data-i="toc.kwic"></a></li><li><a href="#start" data-i="toc.start"></a></li>
       </ol>
     </aside>
     <article id="article"></article>
   </div>
 
-  <section class="end-kwic" id="kwic">
+  <section class="end-kwic only-why" id="kwic">
     <div class="wrap">
       <div class="intro">
         <h2 data-i="kwic_section.title"></h2>
@@ -254,13 +304,14 @@ nav.site a.go:hover{border-bottom-color:var(--teal)}
       <div class="kwic">
         <div class="kwic-head"><h2><span data-i="kwic_box.title"></span> <code>show</code></h2><span class="chip" data-i="kwic_box.label"></span></div>
         <div class="kwic-body"><div class="kwic-lines" id="lines-show"></div></div>
-        <p class="kwic-foot" data-i="kwic_box.foot_common"></p>
+        <p class="kwic-foot"><span data-i="kwic_box.foot_common"></span><br><span class="twinkle"><span class="star" aria-hidden="true">✦</span><span data-i="kwic_box.foot_hint"></span></span></p>
       </div>
+      <a class="backlink" href="/" data-i="page.back"></a>
     </div>
   </section>
 
-  <section class="about background" id="background">
-    <div class="wrap"><div class="about-in" id="background-in"></div></div>
+  <section class="about background only-bg" id="background">
+    <div class="wrap"><div class="about-in" id="background-in"></div><a class="backlink" href="/" data-i="page.back"></a></div>
   </section>
 
   <section class="start" id="start">
@@ -325,9 +376,12 @@ function renderArticle() {
   <section id="s6">${H3(6, J.s6)}<div class="table-wrap"><table><thead><tr>${J.s6.th.map(h => `<th scope="col">${L(h)}</th>`).join("")}</tr></thead>
     <tbody>${J.s6.rows.map(r => `<tr>${r.map(c => `<td>${L(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>${P(J.s6.p)}</section>
 `;
-  const F = J.features, G = J.background;
-  document.getElementById("features-in").innerHTML = `<h2>${L(F.title)}</h2><p class="feat-lead">${L(F.lead)}</p>${P(F.intro)}
-    <div class="feat">${F.items.map(it => `<div class="feat-i"><h3>${L(it.h)}</h3>${P(it.p)}</div>`).join("")}</div>${P(F.note, "", "feat-note")}`;
+  const G = J.background;
+  // 첫 화면(2026-11-11 묶음 1): 세 단계, 네 칸, 읽을거리, 비교 자료 표
+  document.getElementById("steps").innerHTML = J.how.steps.map((s, i) => `<div class="step"><span class="no">0${i + 1}</span><h3>${L(s.h)}</h3>${P(s.p)}</div>`).join("");
+  document.getElementById("cards4").innerHTML = J.about4.cards.map(c => `<div class="card4"><h3>${L(c.h)}</h3>${P(c.p)}</div>`).join("");
+  document.getElementById("readsbox").innerHTML = J.reads.items.map(r => `<a class="read" href="${r.href}${LANG !== "ko" ? `?lang=${LANG}` : ""}"><h3>${L(r.h)}</h3>${P(r.p)}<span class="more">${L(J.reads.more)}</span></a>`).join("");
+  renderSets();
   document.getElementById("background-in").innerHTML = `<h2>${L(G.title)}</h2><p class="feat-lead">${L(G.q)}</p>${P(G.intro)}
     ${G.items.map(it => `<div class="bg-i"><h3>${L(it.h)}</h3>${it.p.map((x, i) => P(x, i === 0 ? src(it.src) : "")).join("")}</div>`).join("")}
     <div class="summary"><h3>${L(G.sep_title)}</h3>${P(G.sep_p)}</div>
@@ -349,7 +403,23 @@ function toggleFull(k) {
   const p = k.dataset.p, a = +k.dataset.a, b = +k.dataset.b;
   line.insertAdjacentHTML("afterend", `<div class="full">${esc(p.slice(0, a))}<mark>${esc(p.slice(a, b))}</mark>${esc(p.slice(b))}</div>`);
 }
-document.addEventListener("click", e => { const k = e.target.closest(".line .k"); if (k) toggleFull(k); });
+document.addEventListener("click", e => { const k = e.target.closest(".line .k"); if (k) { toggleFull(k); const box = k.closest(".kwic"); if (box) box.classList.add("seen"); } });   // 한 번 누르면 반짝임이 멈춘다
+
+// 비교 자료 표: 편수는 /api/baselines에서 읽는다(직접 적어 넣지 않음)
+let BL = null;
+fetch("/api/baselines").then(r => r.json()).then(j => { BL = j; if (I) renderSets(); }).catch(() => {});
+function renderSets() {
+  const tb = document.getElementById("sets"), note = document.getElementById("setnote");
+  if (!tb || !I) return;
+  if (!BL) { tb.innerHTML = ""; note.textContent = ""; return; }
+  const D = I.data, keys = Object.keys(D.sets).filter(k => BL[k]);
+  tb.innerHTML = keys.map(k => `<tr><td>${L(D.sets[k])}${BL[k].reference_only ? ` <span class="ro">${L(D.ref_only)}</span>` : ""}</td><td>${esc(D.journals[k])}</td><td class="n">${BL[k].papers}</td></tr>`).join("");
+  const ns = keys.map(k => BL[k].papers), fill = s => s.replace("{min}", Math.min(...ns)).replace("{max}", Math.max(...ns));
+  note.innerHTML = LANG === "both" ? `${esc(fill(D.note.ko))}<span class="en-para-inline">${esc(fill(D.note.en))}</span>` : esc(fill(LANG === "en" ? D.note.en : D.note.ko));
+}
+// 같은 화면을 세 주소에서 쓴다: / (첫 화면), /why (왜 동사를 살펴보나요?), /background (설계의 학술적 배경)
+const PAGE = location.pathname.replace(/\/+$/, "") === "/why" ? "why" : location.pathname.replace(/\/+$/, "") === "/background" ? "background" : "home";
+document.body.dataset.page = PAGE;
 document.addEventListener("keydown", e => { const k = e.target.closest && e.target.closest(".line .k"); if (k && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggleFull(k); } });
 
 let CURKEY = "observe";
@@ -370,7 +440,8 @@ function applyLang() {
     else el.innerHTML = L(o, !!el.dataset.br);
   });
   document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("on", b.dataset.lang === LANG));
-  document.querySelectorAll('a[href="/diagnose"]').forEach(a => a.href = "/diagnose" + (LANG !== "ko" ? `?lang=${LANG}` : ""));
+  document.querySelectorAll('a[href^="/diagnose"]').forEach(a => { const h = a.getAttribute("href").split("?")[0].split("#"); a.href = h[0] + (LANG !== "ko" ? `?lang=${LANG}` : "") + (h[1] ? "#" + h[1] : ""); });
+  document.querySelectorAll('a.backlink').forEach(a => a.href = "/" + (LANG !== "ko" ? `?lang=${LANG}` : ""));
   renderArticle(); renderTile(CURKEY); kwicLines("show", document.getElementById("lines-show")); watchToc();
 }
 document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => { LANG = b.dataset.lang; try { localStorage.setItem("diag-lang", LANG); } catch (e) {} applyLang(); }));
@@ -382,7 +453,7 @@ function watchToc() {
   io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const i = targets.indexOf(e.target); links.forEach((a, j) => a.classList.toggle("on", j === i)); } }), {rootMargin: "-30% 0px -60% 0px"});
   targets.forEach(t => t && io.observe(t));
 }
-fetch("/static/portal-i18n.json?v=2026-11-10f").then(r => r.json()).then(j => { I = j; applyLang(); if (location.hash) { const t = document.querySelector(location.hash); if (t) t.scrollIntoView(); } });
+fetch("/static/portal-i18n.json?v=2026-11-11b1").then(r => r.json()).then(j => { I = j; applyLang(); if (location.hash) { const t = document.querySelector(location.hash); if (t) t.scrollIntoView(); } });
 </script>
 </body>
 </html>

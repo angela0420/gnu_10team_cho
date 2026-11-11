@@ -58,6 +58,12 @@ def portal():
     return FileResponse(os.path.join(STATIC, 'portal.html'))   # 교육 포털(입구)
 
 
+@app.get('/why')
+@app.get('/background')
+def portal_reading():
+    return FileResponse(os.path.join(STATIC, 'portal.html'))   # 읽을거리 두 편(같은 화면, 주소로 구분: 2026-11-11 묶음 1)
+
+
 @app.get('/diagnose')
 def index():
     return FileResponse(os.path.join(STATIC, 'index.html'))    # 원고 입력·분석 작업 화면

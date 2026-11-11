@@ -26,6 +26,7 @@ header .brand span,.seg button{white-space:nowrap}
 header .brand{flex:1;display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--ink)}
 header .brand span{font-weight:700;font-size:18px;letter-spacing:-.01em}
 header .brand small{font-size:13px;color:var(--faint)}
+header .brand .abbr{display:inline-block;align-self:center;padding:1px 7px;border-radius:6px;background:var(--accent);color:var(--on-accent);font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;font-weight:500;letter-spacing:.04em}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;padding:2px;background:var(--card)}
 .seg button{border:0;background:transparent;padding:4px 12px;border-radius:6px;font-size:14px;color:var(--muted);cursor:pointer}
 .seg button.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
@@ -244,7 +245,7 @@ details.mi input,details.mi select,details.mi textarea{font-weight:400;border:1p
 </head>
 <body>
 <header>
-  <a class="brand" href="/"><span data-t="app_ko"></span><small data-t="app_en"></small></a>
+  <a class="brand" href="/"><span data-t="app_ko"></span><b class="abbr" title="Manuscript Diagnosis">MD</b><small data-t="app_en"></small></a>
   <div class="seg" role="group" aria-label="language">
     <button data-lang="ko">한국어</button><button data-lang="en">English</button><button data-lang="both">한·EN</button>
   </div>
@@ -398,7 +399,7 @@ function applyStatic(){
   document.querySelectorAll("#inputs textarea").forEach(a => a.placeholder = t("paste"));
   SECS.forEach(([c]) => { if(document.getElementById("wc-"+c)) updWc(c); });
   document.querySelectorAll(".slot").forEach(s => { if(s.innerHTML) s.innerHTML = exHtml(s.dataset.for); });
-  const fb = document.getElementById("foldbody"); if(fb && EX.about) fb.innerHTML = ["about","baseline","method"].map(exHtml).join("");
+  const fb = document.getElementById("foldbody"); if(fb && EX.about) fb.innerHTML = ["about","baseline","pc_sets","method"].filter(k => EX[k]).map(exHtml).join("");
   drawCommon();
   if(LAST){ render(LAST); if(!document.getElementById("explore").hidden){ xopts(); kwicAll(); } }
 }

@@ -303,5 +303,13 @@
   },
   "en": "The analyser took this word as a verb, but it has an article, adjective, number or noun modifier, as nouns do. It is still counted as a verb. Open the examples (KWIC) and decide from the context.",
   "ko": "분석기는 동사로 보았지만, 명사처럼 관사·형용사·수사·명사 수식어를 거느린 경우입니다. 숫자는 동사로 센 그대로입니다. 용례(KWIC)를 펼쳐 문맥을 보고 판단하세요."
+ },
+ "pc_sets": {
+  "title": {
+   "ko": "물리화학과 물리화학·계산 집합",
+   "en": "The physical chemistry and physical chemistry · computational sets"
+  },
+  "ko": "두 집합은 모두 J. Phys. Chem. C 논문이지만 따로 모았습니다. 물리화학 집합은 2020–2021년 CC BY 연구논문을 무작위로 뽑을 때 제목으로 계산 위주 논문을 미리 뺐고, 받은 뒤 초록에서 계산 중심으로 확인된 1편(10.1021/acs.jpcc.0c06750)을 물리화학·계산으로 옮겼습니다. 물리화학·계산 집합은 계산·이론 논문만 따로 뽑은 보강 목록(시드 20261107)에서 품질 점검을 통과한 논문에 그 1편을 더한 것입니다. 두 집합에 함께 들어 있는 논문은 없습니다(논문 목록으로 확인). 물리화학·계산 집합은 편수가 적어 참고용으로만 보여 줍니다.",
+  "en": "Both sets are papers from J. Phys. Chem. C, but they were collected separately. For the physical chemistry set, computation-centred papers were excluded by title when 2020–2021 CC BY research articles were sampled at random, and one paper whose abstract showed it to be computation-centred (10.1021/acs.jpcc.0c06750) was moved to the computational set after download. The physical chemistry · computational set consists of the papers that passed the quality check from a separately sampled list of computational and theoretical papers (seed 20261107), plus that one paper. No paper appears in both sets (checked against the paper lists). The computational set is small, so it is shown for reference only."
  }
 }
