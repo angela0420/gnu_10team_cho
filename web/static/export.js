@@ -210,6 +210,7 @@ const LIMITS = [
    "동사 쓰임 분류 규칙(verb_usage_rules v0.4)은 AI의 해석을 참고한 연구자 판정 60개를 사용해 조정했으며, 이 표본은 독립 검증 자료가 아닙니다. 비교 결과는 위 ‘60개 용례 비교’ 표에 있습니다. 후속 검증은 규칙 조정에 사용하지 않은 새 표본으로 수행합니다."],
 
   ["Comparison sets contain 10–19 papers per journal, so ranges are wide.","비교 집합은 저널마다 10–19편이라 범위가 넓습니다."],
+  ["The comparison data are published research articles. There are no reference data for lab reports or course assignments yet; when such a manuscript stage is chosen, the results note and the request to the AI say that differences may come from the kind of writing, but the figures are still calculated against research articles.","비교 기준은 출판 연구논문입니다. 실험보고서나 수업 과제의 기준 자료는 아직 없습니다. 원고 단계에서 이런 글을 고르면 결과 안내와 AI 요청문에 글의 종류에서 오는 차이를 감안하라는 안내가 붙지만, 수치는 여전히 연구논문을 기준으로 계산합니다."],
   ["Reporting verbs: a verb whose phrase contains a citation number, or whose subject is a word such as ‘researchers’, is attributed to earlier studies even when the sentence describes the writer’s own material or a future possibility (e.g. ‘the oxides can be prepared from … precursors.[1,2]’, ‘would help researchers select …’). The same rules were applied to the comparison data; whether and how often such cases occur there has not been checked.",
    "선행연구 보고동사: 동사구 안에 인용 번호가 있거나 주어가 ‘researchers’ 같은 낱말이면, 문장이 필자의 자료나 앞으로의 가능성을 말할 때도 선행연구로 귀속될 수 있습니다(예: ‘the oxides can be prepared from … precursors.[1,2]’, ‘would help researchers select …’). 비교 자료에도 같은 규칙을 적용했지만, 비교 자료 안의 같은 유형 오탐의 존재·빈도는 확인하지 않았습니다."],
   ["Hedges and boosters are counted from lists and do not separate uncertainty about the present results from future possibility or recommendation (would, should, …); they also do not separate the writer’s own claims from claims of earlier studies being reported (the ‘may’ in ‘Kim et al. suggested that … may …’ is counted for the section). Do not read these counts alone as showing that the writer’s claims are weak.",
@@ -217,8 +218,21 @@ const LIMITS = [
   ["Some words are tagged as verbs inside noun phrases or technique names, or the same -ing form is classified differently in similar contexts (e.g. ‘scanning electron microscopy’, ‘during charging’ classified once as non-finite and once as nominal; ‘room temperature’ and ‘charge and discharge curves’ were corrected on 2026-11-12). Check such items in context.",
    "명사구나 기법 이름 안의 낱말이 동사로 잡히거나, 비슷한 문맥의 같은 -ing가 다르게 분류되는 경우가 있습니다(예: ‘scanning electron microscopy’, ‘during charging’이 한 번은 비정형, 한 번은 명사처럼. ‘room temperature’와 ‘charge and discharge curves’는 2026-11-12에 바로잡음). 문맥에서 확인하세요."]];
 // 글자로 붙여 넣을 때는 'PDF' 대신 '아래 글'로 읽히게 한다
-const promptFor = (lang, asText) => asText ? PROMPT[lang].replace("첨부한 PDF는", "아래 글은").replaceAll("PDF의 ‘이 결과를 읽는 법’", "아래 ‘이 결과를 읽는 법’").replaceAll("PDF에 있는 정보", "아래 글에 있는 정보").replaceAll("“이 PDF에서", "“이 자료에서")
-  .replace("The attached PDF contains", "The text below contains").replaceAll("in the PDF", "below").replaceAll("from this PDF", "from this material") : PROMPT[lang];
+// 글의 종류 안내(2026-11-13, 조은정 교수 결정): 원고 단계가 실험보고서·수업 과제·학위논문이면 결과 맨 위 안내와 AI 요청문 첫 문단 뒤에 한 단락을 붙인다.
+// 비교 자료는 출판 연구논문이므로 차이가 글의 종류에서 올 수 있음을 사람과 AI가 모두 보게 한다. 수치 계산은 바꾸지 않는다
+const GENRE = {
+  lab:["This text is not a published research article but a lab report written for a course. The comparison data are published research articles, so differences may come from the different kind of writing. Do not recommend matching the expressions or frequencies of published articles; judge in the light of this text’s purpose. For a lab report, that purpose is recording the procedure, interpreting the results and practising giving evidence.",
+       "이 글은 출판 연구논문이 아니라 실험보고서(수업)입니다. 비교 자료는 출판된 연구논문이므로, 차이가 보이면 글의 종류가 달라서 생긴 것일 수 있습니다. 출판 논문의 표현이나 빈도에 맞추라고 권하지 말고, 이 글의 목적에 비추어 판단해 주세요. 실험보고서의 목적은 과정의 기록, 결과의 해석, 근거 제시 연습입니다."],
+  class:["This text is not a published research article but a draft course assignment. The comparison data are published research articles, so differences may come from the different kind of writing. Do not recommend matching the expressions or frequencies of published articles; judge in the light of this text’s purpose and the assignment’s instructions.",
+         "이 글은 출판 연구논문이 아니라 수업 과제 초안입니다. 비교 자료는 출판된 연구논문이므로, 차이가 보이면 글의 종류가 달라서 생긴 것일 수 있습니다. 출판 논문의 표현이나 빈도에 맞추라고 권하지 말고, 이 글의 목적과 과제의 지시에 비추어 판단해 주세요."],
+  thesis:["This text is a draft thesis chapter. The comparison data are published research articles. Thesis chapters often give background and methods in more detail than published articles; keep differences that come from this apart.",
+          "이 글은 학위논문의 장 초안입니다. 비교 자료는 출판된 연구논문입니다. 학위논문은 출판 논문보다 배경과 방법을 자세히 쓰는 경우가 많으니, 그로 인한 차이는 구분해 주세요."]};
+const curStage = () => (document.getElementById("mi-stage")?.value || "");
+const genreNote = lang => { const g = GENRE[curStage()]; return g ? g[lang === "en" ? 0 : 1] : ""; };
+const withGenre = (txt, lang) => { const g = genreNote(lang); if(!g) return txt; const i = txt.indexOf("\n\n"); return i < 0 ? `${txt}\n\n${g}` : `${txt.slice(0, i)}\n\n${g}${txt.slice(i)}`; };
+const promptText = L => L === "both" ? `${withGenre(PROMPT.ko, "ko")}\n\n────────\n\n${withGenre(PROMPT.en, "en")}` : withGenre(PROMPT[L], L);
+const promptFor = (lang, asText) => withGenre(asText ? PROMPT[lang].replace("첨부한 PDF는", "아래 글은").replaceAll("PDF의 ‘이 결과를 읽는 법’", "아래 ‘이 결과를 읽는 법’").replaceAll("PDF에 있는 정보", "아래 글에 있는 정보").replaceAll("“이 PDF에서", "“이 자료에서")
+  .replace("The attached PDF contains", "The text below contains").replaceAll("in the PDF", "below").replaceAll("from this PDF", "from this material") : PROMPT[lang], lang);
 const GUIDE = [   // [종류, en, ko] 2026-11-12 교수님 문구
   ["p","This tool does not send your manuscript to any generative AI. If you would like AI feedback, save your results as a PDF and upload it yourself to the AI you usually use.","이 도구는 원고를 생성형 AI에 보내지 않습니다. AI 피드백을 받고 싶다면 결과를 PDF로 저장해, 평소 사용하는 AI에 직접 올려 보세요."],
   ["p","The PDF includes your full manuscript. If you upload it to an external AI, your manuscript is sent to that service, so before uploading, check the service’s data-handling policy and whether your manuscript may be shared.","PDF에는 원고 전문이 포함됩니다. 외부 AI에 올리면 원고가 해당 서비스로 전달되므로, 업로드 전에 그 서비스의 데이터 처리 정책과 원고의 공유 가능 여부를 확인하세요."],
@@ -263,7 +277,7 @@ const UI = {
   ctx_h:["This manuscript and the questions to check","이번 원고와 확인할 질문"],
   ctx_role:["The rule-based analysis finds and shows expressions and their sentences. It does not decide the answers to these questions. Read the original text and the results together and judge for yourself.","규칙 분석은 표현과 용례를 찾아 보여 줍니다. 이 질문에 대한 답을 자동으로 판정하지는 않습니다. 원문과 분석 결과를 함께 읽고 판단해 주세요."],
   journal:["Target journal *","목표 저널 *"], stage:["Manuscript stage *","원고 단계 *"], question:["What I want to check in my manuscript *","내 원고에서 확인하고 싶은 점 *"],
-  stages:[["","(choose)","(고르기)"],["draft","First draft","초고"],["revising","Being revised","수정 중"],["pre","Before submission","투고 전 원고"],["rev","Revision after review","심사 후 수정본"],["class","Course assignment draft","수업 과제 초안"],["thesis","Thesis chapter draft","학위논문 장 초안"],["other","Other","기타"]]};
+  stages:[["","(choose)","(고르기)"],["draft","First draft","초고"],["revising","Being revised","수정 중"],["pre","Before submission","투고 전 원고"],["rev","Revision after review","심사 후 수정본"],["lab","Lab report (course)","실험보고서(수업)"],["class","Course assignment draft","수업 과제 초안"],["thesis","Thesis chapter draft","학위논문 장 초안"],["other","Other","기타"]]};
 const SECNAME = {INT:["Introduction","서론"],MET:["Methods","실험·방법"],RD:["Results and Discussion","결과·논의"],CON:["Conclusions","결론"]};
 const SECID = {INT:["Intro","서론"],MET:["Methods","방법"],RD:["RD","결과논의"],CON:["Concl","결론"]};
 
@@ -357,6 +371,7 @@ function frontPart(r, secs, stamp){
   H("h2", ui("ctx_h"));
   UL(ctxItems(r).map(([k, v]) => `${k}: ${Array.isArray(v) ? (v.length ? v.join(" / ") : "–") : (v || "–")}`).concat([`${P2("Generated","만든 때")}: ${stamp}`]));
   const jr = journalRelation(iv, r); if(jr) Pp(jr);
+  if(GENRE[iv.stage]) Pp(P(GENRE[iv.stage]));
   Pp(ui("ctx_role"));
   Pp(P2("This document is for rereading the sentences in which expressions were used. The comparison figures are not scores, and automatic detection can be wrong. Look at the expressions and sentences in the sections you are interested in, and use the appendices when you need the details.",
         "이 자료는 표현이 쓰인 문장을 다시 읽기 위한 자료입니다. 비교 수치는 평가 점수가 아니며, 자동 탐지는 틀릴 수 있습니다. 관심 있는 절의 표현과 문장을 확인하고, 필요한 경우 뒤의 상세 자료를 참고하세요."));
@@ -638,7 +653,7 @@ function drawSave(){
   const cur = document.getElementById("savesec")?.value || "ALL", rl = document.getElementById("replylang")?.value || "ko";
   const pbtns = L==="both" ? `<button class="btn ghost" data-pcopy="ko">${esc(P(UI.pcopy_ko))}</button><button class="btn ghost" data-pcopy="en">${esc(UI.pcopy_en[0])}</button>`
     : `<button class="btn ghost" data-pcopy="${L}">${esc(ui("pcopy"))}</button>`;
-  const ptext = L==="both" ? `${PROMPT.ko}\n\n────────\n\n${PROMPT.en}` : PROMPT[L];
+  const ptext = promptText(L);
   box.innerHTML = `<h2>${esc(ui("title"))}</h2>${guideHtml()}
     <div class="row save-row"><button class="btn" id="pdf2">${esc(ui("pdf"))}</button><span class="note">${esc(ui("pdfnote"))}</span></div>
     <p class="warn save-up">${esc(ui("upload"))}</p>
@@ -657,7 +672,11 @@ function drawSave(){
   document.getElementById("pdf2").onclick = printPdf;
   document.getElementById("cpall").onclick = e => copyText(toMd(buildDoc({mode:"text", short:false, secs:secsChosen()})), e.currentTarget);
   document.getElementById("cpshort").onclick = e => copyText(toMd(buildDoc({mode:"text", short:true, secs:secsChosen()})), e.currentTarget);
-  box.querySelectorAll("[data-pcopy]").forEach(b => b.onclick = () => copyText(PROMPT[b.dataset.pcopy], b));
+  box.querySelectorAll("[data-pcopy]").forEach(b => b.onclick = () => copyText(withGenre(PROMPT[b.dataset.pcopy], b.dataset.pcopy), b));
+}
+function refreshPrompt(){   // 원고 단계를 바꾸면 펼쳐 보는 프롬프트도 바꾼다
+  const pt = document.getElementById("prompttext"); if(!pt) return;
+  pt.textContent = promptText(LANG);
 }
 function counts(){
   if(!LAST) return;
@@ -787,7 +806,7 @@ function drawCtx(){
   const box = document.getElementById("ctxbox"); if(!box || !LAST) return; box.hidden = false;
   const it = ctxItems(LAST), iv = infoValues();
   box.innerHTML = `<h3>${esc(ui("ctx_h"))}</h3><dl>${it.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${Array.isArray(v) ? (v.length ? `<ul>${v.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : "–") : esc(v || "–")}</dd>`).join("")}</dl>
-    ${journalRelation(iv, LAST) ? `<p class="note">${esc(journalRelation(iv, LAST))}</p>` : ""}<p class="note">${esc(ui("ctx_role"))}</p>`;
+    ${journalRelation(iv, LAST) ? `<p class="note">${esc(journalRelation(iv, LAST))}</p>` : ""}${GENRE[iv.stage] ? `<p class="note"><b>${esc(P(GENRE[iv.stage]))}</b></p>` : ""}<p class="note">${esc(ui("ctx_role"))}</p>`;
 }
 // 분석 전에 빠진 칸을 찾고 그 칸 가까이에 알린다. 빠진 것이 없으면 null
 function checkInfo(){
@@ -827,7 +846,8 @@ function drawInfoFields(){
   host.querySelectorAll("input,select,textarea").forEach(el => el.addEventListener("input", () => {
     const w = el.closest(".req");
     if(w){ w.classList.remove("missing"); const m = w.querySelector(".miss"); if(m) m.hidden = true; }
-    if(LAST){ counts(); drawCtx(); } }));
+    if(LAST){ counts(); drawCtx(); refreshPrompt(); } }));
+  const stSel = document.getElementById("mi-stage"); if(stSel) stSel.addEventListener("change", () => { if(LAST){ counts(); drawCtx(); refreshPrompt(); } });
   host.querySelectorAll("input[type=checkbox]").forEach(el => el.addEventListener("change", () => { const w = el.closest(".req"); if(w){ w.classList.remove("missing"); w.querySelector(".miss").hidden = true; } if(LAST){ counts(); drawCtx(); } }));
   const jb = document.getElementById("jpcopy"); if(jb) jb.onclick = () => copyText(JPROMPT[LANG === "en" ? "en" : "ko"], jb);
   const jl = document.getElementById("savejump"); if(jl) jl.textContent = ui("jump");
